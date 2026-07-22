@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图片EXIF信息读取工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+button{padding:12px 24px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin-bottom:15px}
+textarea{width:100%;height:300px;border:1px solid #ddd;border-radius:6px;padding:12px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>读取照片EXIF参数（相机、时间、坐标）</h2>
+<div class="upload-box">
+<input type="file" accept="image/*" id="imgFile">
+</div>
+<button onclick="readExif()">读取EXIF信息</button>
+<textarea id="exifResult" readonly></textarea>
+<script>
+const { FFmpeg } = FFmpegWASM;
+let ffmpeg = null;
+let imgFile = null;
+document.getElementById('imgFile').onchange = e=>imgFile = e.target.files[0];
+async function loadFFmpeg(){
+  if(!ffmpeg){
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load();
+  }
+}
+async function readExif(){
+  if(!imgFile) return alert("上传图片");
+  await loadFFmpeg();
+  const buf = new Uint8Array(await imgFile.arrayBuffer());
+  ffmpeg.writeFile("src.jpg", buf);
+  const meta = await ffmpeg.probe("src.jpg");
+  document.getElementById("exifResult").value = JSON.stringify(meta.streams[0].tags,null,2);
+}
+</script>
+</body>
+</html>

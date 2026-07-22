@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>正则表达式在线测试</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0;font-family:monospace}
+textarea{width:100%;height:180px;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{padding:12px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:15px;cursor:pointer}
+#result{white-space:pre-wrap;padding:12px;border:1px solid #eee;border-radius:6px;min-height:120px}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>正则表达式在线测试匹配、提取</h2>
+<input id="regInput" placeholder="正则表达式，不要前后斜杠">
+<input id="regFlag" placeholder="修饰符 g i m" value="g">
+<textarea id="testText" placeholder="待匹配文本"></textarea>
+<div class="btn-row">
+<button onclick="regMatch()">匹配查找</button>
+<button onclick="regReplace()">替换测试</button>
+</div>
+<input id="repStr" placeholder="替换为文本">
+<div id="result"></div>
+<script>
+const resultBox = document.getElementById('result');
+function regMatch(){
+  const pat = document.getElementById('regInput').value.trim();
+  const flag = document.getElementById('regFlag').value.trim();
+  const text = document.getElementById('testText').value;
+  try{
+    const reg = new RegExp(pat,flag);
+    const arr = text.match(reg);
+    if(arr){
+      resultBox.innerText = "匹配结果：\n"+JSON.stringify(arr,null,2);
+    }else{
+      resultBox.innerText = "无匹配内容";
+    }
+  }catch(e){
+    resultBox.innerText = "正则错误："+e.message;
+  }
+}
+function regReplace(){
+  const pat = document.getElementById('regInput').value.trim();
+  const flag = document.getElementById('regFlag').value.trim();
+  const text = document.getElementById('testText').value;
+  const rep = document.getElementById('repStr').value;
+  try{
+    const reg = new RegExp(pat,flag);
+    resultBox.innerText = "替换结果：\n"+text.replace(reg,rep);
+  }catch(e){
+    resultBox.innerText = "正则错误："+e.message;
+  }
+}
+</script>
+</body>
+</html>

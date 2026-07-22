@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视频批量提取每一帧图片</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>视频按间隔提取帧图片，打包ZIP下载</h2>
+<div class="upload-box">
+<input type="file" accept="video/*" id="videoFile">
+</div>
+<input id="frameInterval" placeholder="每多少帧提取一张，例10" value="10">
+<button onclick="extractFrame()">提取帧打包下载</button>
+<script>
+const { FFmpeg } = FFmpegWASM;
+let ffmpeg = null;
+let vidBlob = null;
+document.getElementById('videoFile').onchange = e=>vidBlob = e.target.files[0];
+async function loadFFmpeg(){
+  if(!ffmpeg){
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load();
+  }
+}
+async function extractFrame(){
+  if(!vidBlob) return alert("上传视频");
+  const interval = frameInterval.value;
+  await loadFFmpeg();
+  const buf = new Uint8Array(await vidBlob.arrayBuffer());
+  ffmpeg.writeFile("src.mp4", buf);
+  await ffmpeg.exec(["-i","src.mp4","-vf",`fps=${1/interval}`,"frame_%04d.png"]);
+  const zip = new JSZip();
+  const files = ffmpeg.listDir("/");
+  for(let fname of files){
+    if(fname.startsWith("frame_")){
+      const data = ffmpeg.readFile(fname);
+      zip.file(fname, data);
+    }
+  }
+  const zipBuf = await zip.generateAsync({type:"uint8array"});
+  const blob = new Blob([zipBuf],{type:"application/zip"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "视频帧图片.zip";
+  a.click();
+}
+</script>
+</body>
+</html>

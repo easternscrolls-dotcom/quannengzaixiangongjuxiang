@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>随机生成测试CSV数据表</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1300px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input{padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>随机生成测试CSV（姓名、手机号、数字、地址）</h2>
+<div class="row">
+<input id="rowCount" placeholder="生成行数" value="100">
+<input id="colCount" placeholder="字段数量" value="4">
+</div>
+<button onclick="generateRandomTable()">生成并下载CSV</button>
+<script>
+function randomName(){
+  const xing = ["张","李","王","刘","陈","杨","黄","赵","周","吴"];
+  const ming = ["伟","芳","娜","强","磊","敏","静","杰","娟","涛"];
+  return xing[Math.floor(Math.random()*xing.length)] + ming[Math.floor(Math.random()*ming.length)];
+}
+function randomPhone(){
+  const head = ["135","136","138","139","158","159","188"];
+  let num = head[Math.floor(Math.random()*head.length)];
+  for(let i=0;i<8;i++) num += Math.floor(Math.random()*10);
+  return num;
+}
+function generateRandomTable(){
+  const rows = parseInt(document.getElementById('rowCount').value)||50;
+  const cols = parseInt(document.getElementById('colCount').value)||4;
+  const fields = [];
+  for(let i=1;i<=cols;i++) fields.push("字段"+i);
+  const data = [];
+  for(let i=0;i<rows;i++){
+    const row = {};
+    fields.forEach((f,idx)=>{
+      if(idx===0) row[f] = randomName();
+      else if(idx===1) row[f] = randomPhone();
+      else row[f] = Math.floor(Math.random()*99999);
+    })
+    data.push(row);
+  }
+  const csvTxt = Papa.unparse({fields,data});
+  const blob = new Blob([csvTxt],{type:"text/csv;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "随机测试数据.csv";
+  a.click();
+}
+</script>
+</body>
+</html>

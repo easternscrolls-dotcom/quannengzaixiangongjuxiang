@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>折扣计算器 原价 现价 优惠</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:10px 0}
+#resultOut{padding:12px;border:1px solid #ddd;border-radius:6px;white-space:pre-line}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>折扣计算器｜原价、现价、优惠金额、折扣力度</h2>
+<input id="original" placeholder="商品原价" type="number" step="0.01">
+<input id="sale" placeholder="折后现价" type="number" step="0.01">
+<button onclick="calcDiscount()">计算折扣</button>
+<div id="resultOut"></div>
+<script>
+function calcDiscount(){
+    const orig = parseFloat(document.getElementById('original').value);
+    const now = parseFloat(document.getElementById('sale').value);
+    if(isNaN(orig)||isNaN(now)||orig<=0){alert("原价必须大于0");return;}
+    const discount = now / orig;
+    const offMoney = orig - now;
+    const zhe = (discount*10).toFixed(2);
+    let txt = `原价：${orig.toFixed(2)} 元
+现价：${now.toFixed(2)} 元
+优惠金额：${offMoney.toFixed(2)} 元
+折扣：${zhe} 折`;
+    document.getElementById('resultOut').innerText = txt;
+}
+</script>
+</body>
+</html>

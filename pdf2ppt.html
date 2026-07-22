@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF转PPT演示文稿PPTX</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+p.tip{color:#666;margin-top:10px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.4/dist/pizzip.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>PDF转PPT PPTX演示文档</h2>
+<p class="tip">每页PDF生成独立幻灯片，提取文字放入文本框</p>
+<div class="upload-box">
+<input type="file" accept=".pdf" id="pdfFile">
+</div>
+<button onclick="pdfToPpt()">转换下载PPTX</button>
+<script>
+const pdfjsLib = window.pdfjsLib;
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.worker.min.js";
+async function pdfToPpt(){
+  const file = document.getElementById('pdfFile').files[0];
+  if(!file) return alert("上传PDF");
+  const buf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument(buf).promise;
+  const total = pdf.numPages;
+  const zip = new PizZip();
+  // 极简PPTX基础结构
+  zip.file("[Content_Types].xml",`<?xml version="1.0" encoding="UTF-8"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+<Default Extension="xml" ContentType="application/xml"/>
+<Override PartName="/ppt/presentation.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml"/>
+</Types>`);
+  zip.file("_rels/.rels",`<?xml version="1.0" encoding="UTF-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="ppt/presentation.xml"/>
+</Relationships>`);
+  let slideList = "";
+  for(let i=1;i<=total;i++){
+    const page = await pdf.getPage(i);
+    const textObj = await page.getTextContent();
+    const pageText = textObj.items.map(t=>t.str).join(" ");
+    zip.file(`ppt/slides/slide${i}.xml`,`<?xml version="1.0" encoding="UTF-8"?>
+<p:sld xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+<p:cSld><p:spTree>
+<p:sp><p:txBody><a:p><a:r><a:t>${pageText.replace(/&/g,"&amp;").replace(/</g,"&lt;")}</a:t></a:r></a:p></p:txBody></p:sp>
+</p:spTree></p:cSld>
+</p:sld>`);
+    slideList += `<p:sldId r:id="rId${i}" id="${i}"/>`;
+    zip.file(`ppt/_rels/presentation.xml.rels`,`<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">`);
+  }
+  zip.file("ppt/presentation.xml",`<?xml version="1.0" encoding="UTF-8"?>
+<p:presentation xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+<p:sldIdLst>${slideList}</p:sldIdLst>
+</p:presentation>`);
+  const outBuf = await zip.generateAsync({type:"uint8array"});
+  const blob = new Blob([outBuf],{type:"application/vnd.openxmlformats-officedocument.presentationml.presentation"});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = "文档.pptx";
+  a.click();
+}
+</script>
+</body>
+</html>

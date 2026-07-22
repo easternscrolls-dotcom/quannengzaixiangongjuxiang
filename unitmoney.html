@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>简易汇率换算 人民币 美元 欧元 日元</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+input,select{padding:12px;border:1px solid #ddd;border-radius:6px;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:10px 0}
+#tip{color:#999;font-size:14px;margin:8px 0}
+#resultOut{padding:12px;border:1px solid #ddd;border-radius:6px;white-space:pre-line}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>简易货币汇率换算（手动更新汇率，仅供估算）</h2>
+<div class="row">
+<input id="valInput" placeholder="金额" type="number" step="any">
+<select id="unitFrom">
+<option value="cny">人民币 CNY</option>
+<option value="usd">美元 USD</option>
+<option value="eur">欧元 EUR</option>
+<option value="jpy">日元 JPY</option>
+<option value="gbp">英镑 GBP</option>
+</select>
+</div>
+<p id="tip">⚠️ 汇率为本地预设，仅粗略估算，不作为金融依据</p>
+<button onclick="calcMoney()">换算</button>
+<div id="resultOut"></div>
+<script>
+//基准：1CNY
+const rate = {
+    cny:1,
+    usd:0.14,
+    eur:0.13,
+    jpy:20.5,
+    gbp:0.11
+};
+function calcMoney(){
+    const v = parseFloat(document.getElementById('valInput').value);
+    const from = document.getElementById('unitFrom').value;
+    if(isNaN(v)){alert("请输入金额");return;}
+    const cny = v / rate[from];
+    let txt = `人民币：${(cny*rate.cny).toFixed(2)}\n`;
+    txt += `美元：${(cny*rate.usd).toFixed(2)}\n`;
+    txt += `欧元：${(cny*rate.eur).toFixed(2)}\n`;
+    txt += `日元：${(cny*rate.jpy).toFixed(2)}\n`;
+    txt += `英镑：${(cny*rate.gbp).toFixed(2)}`;
+    document.getElementById('resultOut').innerText = txt;
+}
+</script>
+</body>
+</html>

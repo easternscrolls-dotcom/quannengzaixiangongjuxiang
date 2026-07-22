@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图片叠加贴图工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.box-item{border:2px dashed #ccd6e0;padding:40px;text-align:center;margin:12px 0;border-radius:8px}
+.coord-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input{padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>底图叠加贴纸/自定义图片水印</h2>
+<div class="box-item">
+<input type="file" accept="image/*" id="baseImg">
+<p>底层主图片</p>
+</div>
+<div class="box-item">
+<input type="file" accept="image/*" id="overlayImg">
+<p>上层贴纸/水印图</p>
+</div>
+<div class="coord-row">
+<input id="ovX" placeholder="贴图X坐标" value="10">
+<input id="ovY" placeholder="贴图Y坐标" value="10">
+</div>
+<button onclick="overlayImage()">叠加合成导出</button>
+<script>
+const { FFmpeg } = FFmpegWASM;
+let ffmpeg = null;
+let base = null, overlay = null;
+document.getElementById('baseImg').onchange = e=>base = e.target.files[0];
+document.getElementById('overlayImg').onchange = e=>overlay = e.target.files[0];
+async function loadFFmpeg(){
+  if(!ffmpeg){
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load();
+  }
+}
+async function overlayImage(){
+  if(!base || !overlay) return alert("上传底图与贴图");
+  const x = ovX.value;
+  const y = ovY.value;
+  await loadFFmpeg();
+  const buf1 = new Uint8Array(await base.arrayBuffer());
+  const buf2 = new Uint8Array(await overlay.arrayBuffer());
+  ffmpeg.writeFile("base.png", buf1);
+  ffmpeg.writeFile("sticker.png", buf2);
+  await ffmpeg.exec(["-i","base.png","-i","sticker.png","-filter_complex",`[0][1]overlay=x=${x}:y=${y}`,"overlay_out.png"]);
+  const outBuf = ffmpeg.readFile("overlay_out.png");
+  const blob = new Blob([outBuf],{type:"image/png"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "贴图合成图片.png";
+  a.click();
+}
+</script>
+</body>
+</html>

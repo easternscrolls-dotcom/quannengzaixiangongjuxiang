@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTTP状态码查询</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+textarea{width:100%;height:240px;padding:12px;border:1px solid #ddd;border-radius:6px;margin-top:10px;font-family:monospace}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>HTTP状态码查询（SEO爬虫排障）</h2>
+<input id="codeInput" placeholder="输入状态码 301/404/503">
+<button onclick="queryHttpCode()">查询</button>
+<textarea id="codeResult" readonly></textarea>
+<script>
+const codeDict = {
+"200":"请求成功，正常收录",
+"301":"永久重定向，SEO权重转移",
+"302":"临时重定向，不传递权重",
+"403":"禁止访问，爬虫无法抓取",
+"404":"页面不存在，建议做404页面",
+"410":"资源永久删除",
+"500":"服务器内部错误",
+"503":"服务器临时不可用"
+};
+function queryHttpCode(){
+  const c = document.getElementById('codeInput').value.trim();
+  if(codeDict[c]){
+    document.getElementById('codeResult').value = `【${c}】${codeDict[c]}`;
+  }else{
+    document.getElementById('codeResult').value = "暂无该状态码说明";
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>能量换算 焦耳 千瓦时 千卡</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+input,select{padding:12px;border:1px solid #ddd;border-radius:6px;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:10px 0}
+#resultOut{padding:12px;border:1px solid #ddd;border-radius:6px;white-space:pre-line}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>能量换算：焦耳(J)、千瓦时(kWh)、千卡(kcal)</h2>
+<div class="row">
+<input id="valInput" placeholder="输入数值" type="number" step="any">
+<select id="unitFrom">
+<option value="j">焦耳(J)</option>
+<option value="kwh">千瓦时(kWh)</option>
+<option value="kcal">千卡(kcal)</option>
+</select>
+</div>
+<button onclick="calcEnergy()">换算</button>
+<div id="resultOut"></div>
+<script>
+const rate = {
+    j:1,
+    kwh:3600000,
+    kcal:4184
+};
+function calcEnergy(){
+    const v = parseFloat(document.getElementById('valInput').value);
+    const from = document.getElementById('unitFrom').value;
+    if(isNaN(v)){alert("请输入数字");return;}
+    const j = v * rate[from];
+    let txt = `焦耳：${(j/rate.j).toFixed(2)}\n`;
+    txt += `千瓦时：${(j/rate.kwh).toFixed(6)}\n`;
+    txt += `千卡：${(j/rate.kcal).toFixed(4)}`;
+    document.getElementById('resultOut').innerText = txt;
+}
+</script>
+</body>
+</html>

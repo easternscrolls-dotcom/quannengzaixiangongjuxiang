@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>按页码区间批量拆分PDF多份文件</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+textarea{width:100%;height:140px;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+p.tip{color:#666}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>按多组页码区间拆分PDF（生成多个独立文件）</h2>
+<p class="tip">每行一组区间，示例：1-5、6-12、13-20</p>
+<div class="upload-box">
+<input type="file" accept=".pdf" id="pdfFile">
+</div>
+<textarea id="rangeInput" placeholder="每行填写一组页码范围
+1-3
+4-7
+8-12"></textarea>
+<button onclick="splitByRange()">批量拆分PDF</button>
+<script>
+const { PDFDocument } = window.PDFLib;
+async function splitByRange(){
+  const file = document.getElementById('pdfFile').files[0];
+  const rangeText = rangeInput.value.trim();
+  if(!file || !rangeText) return alert("上传PDF并填写拆分区间");
+  const buf = await file.arrayBuffer();
+  const srcPdf = await PDFDocument.load(buf);
+  const lines = rangeText.split("\n").filter(l=>l.trim());
+  for(let idx=0;idx<lines.length;idx++){
+    const line = lines[idx].trim();
+    const [start,end] = line.split("-").map(Number);
+    const pageIdxList = [];
+    for(let i=start-1;i<=end-1;i++) pageIdxList.push(i);
+    const newPdf = await PDFDocument.create();
+    const copyPages = await newPdf.copyPages(srcPdf, pageIdxList);
+    copyPages.forEach(p=>newPdf.addPage(p));
+    const outBuf = await newPdf.save();
+    const blob = new Blob([outBuf],{type:"application/pdf"});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `拆分文件${idx+1}_${start}-${end}.pdf`;
+    a.click();
+  }
+}
+</script>
+</body>
+</html>

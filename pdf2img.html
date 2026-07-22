@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF批量分页导出图片</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>PDF每页自动导出图片打包下载</h2>
+<div class="upload-box">
+<input type="file" accept=".pdf" id="pdfFile">
+</div>
+<button onclick="pdfToImg()">PDF转分页图片包</button>
+<script>
+const { FFmpeg } = FFmpegWASM;
+let ffmpeg = null;
+let pdfBlob = null;
+document.getElementById('pdfFile').onchange = e=>pdfBlob = e.target.files[0];
+async function loadFFmpeg(){
+  if(!ffmpeg){
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load();
+  }
+}
+async function pdfToImg(){
+  if(!pdfBlob) return alert("上传PDF文件");
+  await loadFFmpeg();
+  const buf = new Uint8Array(await pdfBlob.arrayBuffer());
+  ffmpeg.writeFile("doc.pdf", buf);
+  await ffmpeg.exec(["-i","doc.pdf","page_%03d.png"]);
+  const zip = new JSZip();
+  const files = ffmpeg.listDir("/");
+  for(let name of files){
+    if(name.startsWith("page_")){
+      zip.file(name, ffmpeg.readFile(name));
+    }
+  }
+  const zipBuf = await zip.generateAsync({type:"uint8array"});
+  const blob = new Blob([zipBuf],{type:"application/zip"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "PDF分页图片.zip";
+  a.click();
+}
+</script>
+</body>
+</html>

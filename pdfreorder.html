@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF自定义页面顺序调整工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+p.tip{color:#666}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>PDF页面自定义排序</h2>
+<div class="upload-box">
+<input type="file" accept=".pdf" id="pdfFile">
+</div>
+<input id="orderInput" placeholder="新页面顺序，逗号分隔，例：3,1,2,5,4">
+<p class="tip">填写全部页码，按填写顺序重新排列文档</p>
+<button onclick="reorderPdf()">重新排序导出PDF</button>
+<script>
+const { PDFDocument } = window.PDFLib;
+async function reorderPdf(){
+  const file = document.getElementById('pdfFile').files[0];
+  const orderStr = document.getElementById('orderInput').value.trim();
+  if(!file || !orderStr) return alert("上传PDF并填写完整页面顺序");
+  const buf = await file.arrayBuffer();
+  const srcPdf = await PDFDocument.load(buf);
+  const total = srcPdf.getPageCount();
+  const orderArr = orderStr.split(',').map(x=>Number(x.trim())-1);
+  if(orderArr.length !== total) return alert("页码数量与文档总页数不一致");
+  const newPdf = await PDFDocument.create();
+  const copyPages = await newPdf.copyPages(srcPdf, orderArr);
+  copyPages.forEach(p=>newPdf.addPage(p));
+  const outBuf = await newPdf.save();
+  const blob = new Blob([outBuf],{type:"application/pdf"});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = "调整顺序文档.pdf";
+  a.click();
+}
+</script>
+</body>
+</html>

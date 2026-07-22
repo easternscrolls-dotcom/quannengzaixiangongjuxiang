@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图片比例尺寸换算 1:1 3:4 16:9</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<input id="w" placeholder="宽度" type="number">
+<input id="h" placeholder="高度" type="number">
+</div>
+<select id="ratioMode" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0">
+<option value="1-1">1:1 正方形主图</option>
+<option value="3-4">3:4 淘宝商品图</option>
+<option value="16-9">16:9 横幅海报</option>
+<option value="9-16">9:16 短视频竖图</option>
+</select>
+<button onclick="calcCoverRatio()" style="width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:10px 0">计算适配尺寸</button>
+<textarea id="ratioOut" readonly style="width:100%;height:140px;padding:12px;border:1px solid #ddd;border-radius:6px;font-family:monospace"></textarea>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>电商主图比例尺寸换算（1:1 / 3:4 / 9:16 /16:9）</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<input id="w" placeholder="宽度" type="number">
+<input id="h" placeholder="高度" type="number">
+</div>
+<select id="ratioMode">
+<option value="1-1">1:1 正方形主图</option>
+<option value="3-4">3:4 淘宝商品图</option>
+<option value="16-9">16:9 横幅海报</option>
+<option value="9-16">9:16 短视频竖图</option>
+</select>
+<button onclick="calcCoverRatio()">计算适配尺寸</button>
+<textarea id="ratioOut" readonly></textarea>
+<script>
+function calcCoverRatio(){
+    const w = parseFloat(document.getElementById('w').value);
+    const h = parseFloat(document.getElementById('h').value);
+    const mode = document.getElementById('ratioMode').value;
+    let rw,rh;
+    if(mode === "1-1"){rw=1;rh=1;}
+    else if(mode === "3-4"){rw=3;rh=4;}
+    else if(mode === "16-9"){rw=16;rh=9;}
+    else {rw=9;rh=16;}
+    let outW,outH;
+    if(w/h > rw/rh){
+        outW = w;
+        outH = w / rw * rh;
+    }else{
+        outH = h;
+        outW = h / rh * rw;
+    }
+    let txt = `目标比例 ${rw}:${rh}
+参考适配尺寸：
+宽：${Math.round(outW)} px
+高：${Math.round(outH)} px`;
+    document.getElementById('ratioOut').value = txt;
+}
+</script>
+</body>
+</html>

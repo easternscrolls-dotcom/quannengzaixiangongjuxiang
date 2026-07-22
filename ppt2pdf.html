@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPT PPTX演示文稿转PDF</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1.4.21/mammoth.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.4/dist/pizzip.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>PPTX演示文稿转PDF</h2>
+<div class="upload-box">
+<input type="file" accept=".pptx" id="pptFile">
+</div>
+<button onclick="pptToPdf()">转换PDF</button>
+<script>
+const { jsPDF } = window.jspdf;
+async function pptToPdf(){
+  const file = document.getElementById('pptFile').files[0];
+  if(!file) return alert("上传pptx文件");
+  const buf = await file.arrayBuffer();
+  const zip = new PizZip(buf);
+  let slideTexts = [];
+  const fileList = Object.keys(zip.files);
+  for(let name of fileList){
+    if(name.match(/ppt\/slides\/slide\d+\.xml/)){
+      const xml = await zip.file(name).asyncText();
+      const txt = xml.replace(/<.+?>/g,"").trim();
+      slideTexts.push(txt);
+    }
+  }
+  const doc = new jsPDF('l','mm','a4');
+  doc.setFont("simhei");
+  let y = 15;
+  slideTexts.forEach((t,idx)=>{
+    if(idx>0) doc.addPage();
+    doc.text(`第${idx+1}页幻灯片：\n${t}`,12,y,{maxWidth:270});
+  })
+  doc.save("演示文稿.pdf");
+}
+</script>
+</body>
+</html>

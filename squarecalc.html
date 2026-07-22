@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>平方立方平方根计算器</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+#resultOut{padding:12px;border:1px solid #ddd;border-radius:6px;margin-top:10px;white-space:pre-line}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>数学计算器：平方、立方、平方根</h2>
+<input id="mathNum" placeholder="输入数字" type="number" step="any">
+<button onclick="calcSquare()">计算</button>
+<div id="resultOut"></div>
+<script>
+function calcSquare(){
+    const n = parseFloat(document.getElementById('mathNum').value);
+    if(isNaN(n)){alert("请输入数字");return;}
+    const square = n*n;
+    const cube = n**3;
+    let sqrtVal = "负数无实数平方根";
+    if(n>=0) sqrtVal = Math.sqrt(n).toFixed(6);
+    let txt = `原数：${n}
+平方 x²：${square.toFixed(6)}
+立方 x³：${cube.toFixed(6)}
+平方根 √x：${sqrtVal}`;
+    document.getElementById('resultOut').innerText = txt;
+}
+</script>
+</body>
+</html>

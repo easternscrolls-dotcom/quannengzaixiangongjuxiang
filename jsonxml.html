@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON XML 互相转换</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+textarea{width:100%;height:300px;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:Consolas,monospace}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{padding:12px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:15px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/xml-js@1.6.11/dist/xml-js.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>JSON ↔ XML 双向转换</h2>
+<textarea id="jxInput"></textarea>
+<div class="btn-row">
+<button onclick="jsonToXml()">JSON → XML</button>
+<button onclick="xmlToJson()">XML → JSON</button>
+</div>
+<textarea id="jxOutput" readonly></textarea>
+<script>
+function jsonToXml(){
+  try{
+    const jsonObj = JSON.parse(document.getElementById('jxInput').value);
+    const xml = xmljs.js2xml(jsonObj,{compact:true,indent:"  "});
+    document.getElementById('jxOutput').value = xml;
+  }catch(e){
+    document.getElementById('jxOutput').value = "转换失败："+e.message;
+  }
+}
+function xmlToJson(){
+  try{
+    const xmlTxt = document.getElementById('jxInput').value;
+    const jsonObj = xmljs.xml2js(xmlTxt,{compact:true});
+    document.getElementById('jxOutput').value = JSON.stringify(jsonObj,null,2);
+  }catch(e){
+    document.getElementById('jxOutput').value = "转换失败："+e.message;
+  }
+}
+</script>
+</body>
+</html>

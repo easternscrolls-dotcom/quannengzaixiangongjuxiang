@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>整张图片全局高斯模糊工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>图片整体高斯模糊（背景虚化）</h2>
+<div class="upload-box">
+<input type="file" accept="image/*" id="imgFile">
+</div>
+<input id="blurStrength" placeholder="模糊强度 1~30" value="10">
+<button onclick="fullBlurImg()">全局模糊导出</button>
+<script>
+const { FFmpeg } = FFmpegWASM;
+let ffmpeg = null;
+let imgFile = null;
+document.getElementById('imgFile').onchange = e=>imgFile = e.target.files[0];
+async function loadFFmpeg(){
+  if(!ffmpeg){
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load();
+  }
+}
+async function fullBlurImg(){
+  if(!imgFile) return alert("上传图片");
+  const s = blurStrength.value;
+  await loadFFmpeg();
+  const buf = new Uint8Array(await imgFile.arrayBuffer());
+  ffmpeg.writeFile("src.png", buf);
+  await ffmpeg.exec(["-i","src.png","-vf",`gaussianblur=${s}:${s}`,"full_blur_out.png"]);
+  const outBuf = ffmpeg.readFile("full_blur_out.png");
+  const blob = new Blob([outBuf],{type:"image/png"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "全局模糊图片.png";
+  a.click();
+}
+</script>
+</body>
+</html>

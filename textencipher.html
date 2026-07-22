@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>简易文本加盐加解密</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+textarea{width:100%;height:180px;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{padding:12px;background:#2478f5;color:#fff;border:none;border-radius:6px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>AES文本加盐加密解密</h2>
+<textarea id="encInput" placeholder="明文/密文"></textarea>
+<input id="encKey" placeholder="密钥（盐值）">
+<div class="btn-row">
+<button onclick="encryptText()">加密</button>
+<button onclick="decryptText()">解密</button>
+</div>
+<textarea id="encOutput" readonly></textarea>
+<script>
+function encryptText(){
+  const txt = document.getElementById('encInput').value;
+  const key = document.getElementById('encKey').value;
+  if(!key){alert("请输入密钥");return;}
+  const cipher = CryptoJS.AES.encrypt(txt, key).toString();
+  document.getElementById('encOutput').value = cipher;
+}
+function decryptText(){
+  const txt = document.getElementById('encInput').value;
+  const key = document.getElementById('encKey').value;
+  if(!key){alert("请输入密钥");return;}
+  try{
+    const bytes = CryptoJS.AES.decrypt(txt, key);
+    document.getElementById('encOutput').value = bytes.toString(CryptoJS.Utf8);
+  }catch{
+    document.getElementById('encOutput').value = "解密失败，密钥错误或密文非法";
+  }
+}
+</script>
+</body>
+</html>

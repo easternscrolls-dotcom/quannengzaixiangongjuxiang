@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>robots.txt 路径访问检测</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+textarea{width:100%;height:220px;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+<textarea id="robotsCheckResult" readonly></textarea>
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>robots.txt 规则测试：检测路径是否允许爬虫抓取</h2>
+<textarea id="robotsText" placeholder="粘贴完整robots.txt内容"></textarea>
+<input id="testPath" placeholder="待测试路径 /admin/login.html">
+<button onclick="testRobotsRule()">检测抓取权限</button>
+<textarea id="robotsCheckResult" readonly></textarea>
+<script>
+function testRobotsRule(){
+  const robotsTxt = document.getElementById('robotsText').value;
+  const path = document.getElementById('testPath').value.trim();
+  const lines = robotsTxt.split(/\r?\n/);
+  let disallowList = [];
+  lines.forEach(line=>{
+    line = line.trim();
+    if(line.toLowerCase().startsWith("disallow:")){
+      const rulePath = line.replace(/disallow:\s*/i,"").trim();
+      if(rulePath) disallowList.push(rulePath);
+    }
+  });
+  let blocked = false;
+  for(let rule of disallowList){
+    if(path.startsWith(rule)){
+      blocked = true;
+      break;
+    }
+  }
+  let resText;
+  if(blocked){
+    resText = `❌ 路径【${path}】被禁止抓取（匹配Disallow规则）`;
+  }else{
+    resText = `✅ 路径【${path}】允许爬虫抓取`;
+  }
+  document.getElementById('robotsCheckResult').value = resText;
+}
+</script>
+</body>
+</html>
+</script>
+</head>
+</html>

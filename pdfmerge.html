@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF合并工具 - 在线多PDF合并为单个文档</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+input[type="file"]{width:100%}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin-top:10px}
+button:active{background:#1f68d9}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>PDF合并（批量多个PDF合成一个）</h2>
+<div class="upload-box">
+<input type="file" accept=".pdf" multiple id="fileInput">
+<p style="margin-top:10px;color:#666">可多选多个PDF文件，按上传顺序合并</p>
+</div>
+<button onclick="mergePdf()">开始合并并下载</button>
+<script>
+const { PDFDocument } = window.PDFLib;
+async function mergePdf(){
+  const files = document.getElementById('fileInput').files;
+  if(files.length < 2) return alert("请至少选择2个PDF文件");
+  const mergedPdf = await PDFDocument.create();
+  for(let file of files){
+    const buf = await file.arrayBuffer();
+    const srcPdf = await PDFDocument.load(buf);
+    const pages = await mergedPdf.copyPages(srcPdf, srcPdf.getPageIndices());
+    pages.forEach(p=>mergedPdf.addPage(p));
+  }
+  const saveBuf = await mergedPdf.save();
+  const blob = new Blob([saveBuf],{type:"application/pdf"});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = "合并文档.pdf";
+  a.click();
+}
+</script>
+</body>
+</html>

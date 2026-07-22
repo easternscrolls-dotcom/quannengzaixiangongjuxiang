@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>双音频混合叠加工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.box-row{margin:16px 0}
+.upload-box{border:2px dashed #ccd6e0;padding:40px;text-align:center;border-radius:8px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>两段音频混合叠加（人声+背景音乐）</h2>
+<div class="box-row upload-box">
+<input type="file" accept="audio/*" id="aud1">
+<p>主音频（人声）</p>
+</div>
+<div class="box-row upload-box">
+<input type="file" accept="audio/*" id="aud2">
+<p>叠加音频（背景音乐）</p>
+</div>
+<button onclick="mixAudio()">混合导出音频</button>
+<script>
+const { FFmpeg } = FFmpegWASM;
+let ffmpeg = null;
+let a1 = null,a2=null;
+document.getElementById('aud1').onchange = e=>a1 = e.target.files[0];
+document.getElementById('aud2').onchange = e=>a2 = e.target.files[0];
+async function loadFFmpeg(){
+  if(!ffmpeg){
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load();
+  }
+}
+async function mixAudio(){
+  if(!a1||!a2) return alert("上传两段音频");
+  await loadFFmpeg();
+  const buf1 = new Uint8Array(await a1.arrayBuffer());
+  const buf2 = new Uint8Array(await a2.arrayBuffer());
+  ffmpeg.writeFile("main.mp3", buf1);
+  ffmpeg.writeFile("bgm.mp3", buf2);
+  await ffmpeg.exec(["-i","main.mp3","-i","bgm.mp3","-filter_complex","[0:a][1:a]amix=inputs=2:duration=shortest","mix_out.mp3"]);
+  const outBuf = ffmpeg.readFile("mix_out.mp3");
+  const blob = new Blob([outBuf],{type:"audio/mpeg"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "混合音频.mp3";
+  a.click();
+}
+</script>
+</body>
+</html>

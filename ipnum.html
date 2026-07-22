@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IP地址与数字互转</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0;font-family:monospace}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+button{padding:12px;background:#2478f5;color:#fff;border:none;border-radius:6px;cursor:pointer}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>IPv4 ↔ 32位十进制数字互转</h2>
+<input id="ipInput" placeholder="输入IP或数字">
+<div class="btn-row">
+<button onclick="ip2num()">IP转数字</button>
+<button onclick="num2ip()">数字转IP</button>
+</div>
+<input id="ipOutput" readonly>
+<script>
+function ip2num(){
+  const ip = document.getElementById('ipInput').value.trim();
+  const parts = ip.split(".").map(Number);
+  if(parts.length!==4 || parts.some(n=>isNaN(n)||n<0||n>255)){
+    alert("非法IPv4地址");return;
+  }
+  const num = parts[0]*(256**3)+parts[1]*(256**2)+parts[2]*256+parts[3];
+  document.getElementById('ipOutput').value = num.toString();
+}
+function num2ip(){
+  let num = BigInt(document.getElementById('ipInput').value.trim());
+  if(num<0n||num>4294967295n){alert("数字超出IPv4范围");return;}
+  const p1 = num >> 24n;
+  const p2 = (num >> 16n) & 0xffn;
+  const p3 = (num >> 8n) & 0xffn;
+  const p4 = num & 0xffn;
+  document.getElementById('ipOutput').value = `${p1}.${p2}.${p3}.${p4}`;
+}
+</script>
+</body>
+</html>

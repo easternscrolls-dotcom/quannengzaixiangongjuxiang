@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工资个税简易计算器</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:10px 0}
+#resultOut{padding:12px;border:1px solid #ddd;border-radius:6px;white-space:pre-line}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>工资薪金个税简易计算器（起征点5000/月）</h2>
+<input id="salary" placeholder="税前月工资" type="number" step="0.01">
+<input id="insurance" placeholder="五险一金个人部分" type="number" step="0.01" value="0">
+<button onclick="calcTax()">计算个税</button>
+<div id="resultOut"></div>
+<script>
+function calcTax(){
+    const salary = parseFloat(document.getElementById('salary').value);
+    const insurance = parseFloat(document.getElementById('insurance').value);
+    if(isNaN(salary)){alert("请输入税前工资");return;}
+    const taxable = salary - insurance - 5000;
+    let tax = 0;
+    if(taxable > 0){
+        if(taxable <= 3000){
+            tax = taxable * 0.03;
+        }else if(taxable <=12000){
+            tax = taxable*0.1 -210;
+        }else if(taxable <=25000){
+            tax = taxable*0.2 -1410;
+        }else if(taxable <=35000){
+            tax = taxable*0.25 -2660;
+        }else if(taxable <=55000){
+            tax = taxable*0.3 -4410;
+        }else if(taxable <=80000){
+            tax = taxable*0.35 -7160;
+        }else{
+            tax = taxable*0.45 -15160;
+        }
+    }
+    const afterTax = salary - insurance - tax;
+    let txt = `应纳税所得额：${taxable.toFixed(2)} 元
+当月个税：${tax.toFixed(2)} 元
+税后到手工资：${afterTax.toFixed(2)} 元
+⚠️ 仅简易估算，不包含专项附加扣除`;
+    document.getElementById('resultOut').innerText = txt;
+}
+</script>
+</body>
+</html>

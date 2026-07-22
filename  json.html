@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON格式化、压缩、校验工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+textarea{width:100%;height:320px;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:Consolas,monospace}
+.btn-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:10px 0}
+button{padding:12px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:15px;cursor:pointer}
+#msg{margin:10px 0;font-weight:bold}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>JSON 格式化 / 压缩 / 语法校验</h2>
+<textarea id="jsonInput" placeholder="粘贴JSON字符串"></textarea>
+<div class="btn-row">
+<button onclick="formatJson()">格式化</button>
+<button onclick="compressJson()">压缩一行</button>
+<button onclick="validateJson()">语法校验</button>
+</div>
+<p id="msg"></p>
+<textarea id="jsonOutput" readonly></textarea>
+<script>
+const input = document.getElementById('jsonInput');
+const output = document.getElementById('jsonOutput');
+const msg = document.getElementById('msg');
+
+function formatJson(){
+  try{
+    const data = JSON.parse(input.value.trim());
+    output.value = JSON.stringify(data,null,2);
+    msg.innerText = "✅ JSON格式正确";
+    msg.style.color="green";
+  }catch(e){
+    msg.innerText = "❌ JSON语法错误："+e.message;
+    msg.style.color="red";
+  }
+}
+function compressJson(){
+  try{
+    const data = JSON.parse(input.value.trim());
+    output.value = JSON.stringify(data);
+    msg.innerText = "✅ 压缩完成";
+    msg.style.color="green";
+  }catch(e){
+    msg.innerText = "❌ JSON语法错误："+e.message;
+    msg.style.color="red";
+  }
+}
+function validateJson(){
+  try{
+    JSON.parse(input.value.trim());
+    msg.innerText = "✅ JSON语法合法";
+    msg.style.color="green";
+  }catch(e){
+    msg.innerText = "❌ JSON语法错误："+e.message;
+    msg.style.color="red";
+  }
+}
+</script>
+</body>
+</html>

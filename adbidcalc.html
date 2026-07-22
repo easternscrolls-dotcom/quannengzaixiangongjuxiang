@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>直通车保本出价计算器</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:10px 0}
+#resultOut{padding:12px;border:1px solid #ddd;border-radius:6px;white-space:pre-line}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>直通车保本出价测算｜利润率、转化率</h2>
+<input id="profit" placeholder="单件毛利" step="0.01" type="number">
+<input id="convertRate" placeholder="转化率(%)" step="0.01" type="number">
+<button onclick="calcBid()">计算保本出价</button>
+<div id="resultOut"></div>
+<script>
+function calcBid(){
+    const profit = parseFloat(document.getElementById('profit').value||0);
+    const cr = parseFloat(document.getElementById('convertRate').value||0)/100;
+    if(cr <=0){alert("转化率不能为0");return;}
+    const maxBid = profit * cr;
+    let txt = `保本最高出价：${maxBid.toFixed(2)} 元/点击
+建议实际出价低于保本价，保证盈利`;
+    document.getElementById('resultOut').innerText = txt;
+}
+</script>
+</body>
+</html>

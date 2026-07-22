@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电商商品标题清洗工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+textarea{width:100%;height:180px;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>商品标题清洗｜去除特殊符号、多余空格</h2>
+<textarea id="rawTitle" placeholder="粘贴原始商品标题"></textarea>
+<button onclick="cleanTitle()">清洗标题</button>
+<textarea id="cleanOut" readonly></textarea>
+<script>
+function cleanTitle(){
+    let text = document.getElementById('rawTitle').value;
+    //移除常见特殊符号，只保留中文、英文、数字
+    text = text.replace(/[^\u4e00-\u9fa5a-zA-Z0-9]/g," ");
+    text = text.replace(/\s+/g," ").trim();
+    document.getElementById('cleanOut').value = text;
+}
+</script>
+</body>
+</html>

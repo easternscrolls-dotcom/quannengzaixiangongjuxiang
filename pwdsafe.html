@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>密码强度安全检测</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+<input id="pwdCheckInput" placeholder="输入密码检测强度" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace">
+<button onclick="checkPwdSafe()" style="width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer">检测密码强度</button>
+<div id="safeResult" style="margin-top:12px;padding:12px;border:1px solid #ddd;border-radius:6px;white-space:pre-line"></div>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>密码安全强度检测</h2>
+<input id="pwdCheckInput" placeholder="输入密码检测强度">
+<button onclick="checkPwdSafe()">检测密码强度</button>
+<div id="safeResult"></div>
+<script>
+function checkPwdSafe(){
+    const pwd = document.getElementById('pwdCheckInput').value;
+    let score = 0;
+    if(pwd.length >=8) score +=1;
+    if(/[a-z]/.test(pwd)) score +=1;
+    if(/[A-Z]/.test(pwd)) score +=1;
+    if(/[0-9]/.test(pwd)) score +=1;
+    if(/[!@#$%^&*()_+-]/.test(pwd)) score +=1;
+    let level,tip;
+    if(score <=2){level="弱";tip="容易被暴力破解，建议修改";}
+    else if(score <=3){level="中等";tip="安全性一般，建议增加符号与大小写";}
+    else if(score <=4){level="较强";tip="基本安全";}
+    else {level="高强度";tip="安全性优秀";}
+    document.getElementById('safeResult').innerText = `综合评分：${score} / 5
+安全等级：${level}
+建议：${tip}`;
+}
+</script>
+</body>
+</html>

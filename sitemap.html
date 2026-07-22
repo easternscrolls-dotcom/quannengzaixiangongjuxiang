@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sitemap XML站点地图生成</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+textarea{width:100%;height:220px;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+input,select{padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:8px 0}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>Sitemap.xml 站点地图生成（每行一条URL）</h2>
+<textarea id="urlList" placeholder="每行填写一条完整链接"></textarea>
+<div class="row">
+<select id="prioritySel">
+<option value="1.0">优先级 1.0</option>
+<option value="0.8" selected>优先级 0.8</option>
+<option value="0.6">优先级 0.6</option>
+<option value="0.4">优先级 0.4</option>
+</select>
+<select id="changefreq">
+<option value="always">always</option>
+<option value="daily" selected>daily</option>
+<option value="weekly">weekly</option>
+<option value="monthly">monthly</option>
+</select>
+<input id="lastmod" placeholder="lastmod 留空使用今日日期">
+</div>
+<button onclick="buildSitemap()">生成Sitemap XML</button>
+<textarea id="xmlOutput" readonly></textarea>
+<script>
+function getToday(){
+  const d=new Date();
+  const y=d.getFullYear();
+  const m=(d.getMonth()+1).toString().padStart(2,"0");
+  const day=d.getDate().toString().padStart(2,"0");
+  return `${y}-${m}-${day}`;
+}
+function buildSitemap(){
+  const urls = document.getElementById('urlList').value.split(/\r?\n/).filter(s=>s.trim());
+  const priority = document.getElementById('prioritySel').value;
+  const freq = document.getElementById('changefreq').value;
+  let lastmod = document.getElementById('lastmod').value.trim() || getToday();
+  let xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+`;
+  urls.forEach(u=>{
+    const link = u.trim();
+    xml += `<url>
+  <loc>${link}</loc>
+  <lastmod>${lastmod}</lastmod>
+  <changefreq>${freq}</changefreq>
+  <priority>${priority}</priority>
+</url>
+`;
+  })
+  xml += "</urlset>";
+  document.getElementById('xmlOutput').value = xml;
+}
+</script>
+</body>
+</html>

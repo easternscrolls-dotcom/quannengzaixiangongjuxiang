@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>年龄计算器 周岁虚岁 存活天数</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:10px 0}
+#resultOut{padding:12px;border:1px solid #ddd;border-radius:6px;white-space:pre-line}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>年龄计算器｜周岁、虚岁、存活总天数</h2>
+<input id="birth" type="date">
+<button onclick="calcAge()">计算年龄</button>
+<div id="resultOut"></div>
+<script>
+function calcAge(){
+    const birthStr = document.getElementById('birth').value;
+    if(!birthStr){alert("请选择出生日期");return;}
+    const birth = new Date(birthStr);
+    const now = new Date();
+    let yearNow = now.getFullYear();
+    let monNow = now.getMonth();
+    let dayNow = now.getDate();
+    let yearBir = birth.getFullYear();
+    let monBir = birth.getMonth();
+    let dayBir = birth.getDate();
+    let ageSui = yearNow - yearBir;
+    if(monNow < monBir || (monNow === monBir && dayNow < dayBir)){
+        ageSui--;
+    }
+    const ageXu = yearNow - yearBir + 1;
+    const diffMs = now.getTime() - birth.getTime();
+    const dayTotal = Math.floor(diffMs/(1000*3600*24));
+    let txt = `周岁：${ageSui} 岁
+虚岁：${ageXu} 岁
+来到世界总天数：${dayTotal} 天`;
+    document.getElementById('resultOut').innerText = txt;
+}
+</script>
+</body>
+</html>

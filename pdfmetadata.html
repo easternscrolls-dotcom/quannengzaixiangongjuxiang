@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF清除元数据 清理作者/创建信息</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+p.tip{color:#666;margin-top:10px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>清理PDF元数据（作者、创建程序、修改记录）</h2>
+<p class="tip">对外分享前清除隐私文档信息，保护来源信息</p>
+<div class="upload-box">
+<input type="file" accept=".pdf" id="pdfFile">
+</div>
+<button onclick="cleanPdfMeta()">清除元数据导出PDF</button>
+<script>
+const { PDFDocument } = window.PDFLib;
+async function cleanPdfMeta(){
+  const file = document.getElementById('pdfFile').files[0];
+  if(!file) return alert("上传PDF文件");
+  const buf = await file.arrayBuffer();
+  const pdf = await PDFDocument.load(buf);
+  pdf.setTitle("");
+  pdf.setAuthor("");
+  pdf.setSubject("");
+  pdf.setKeywords([]);
+  pdf.setCreator("");
+  pdf.setProducer("");
+  const outBuf = await pdf.save();
+  const blob = new Blob([outBuf],{type:"application/pdf"});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = "无元数据文档.pdf";
+  a.click();
+}
+</script>
+</body>
+</html>

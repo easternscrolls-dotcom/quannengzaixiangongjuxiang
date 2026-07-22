@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视频码率/文件大小计算器</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.calc-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+input{padding:12px;border:1px solid #ddd;border-radius:6px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+p.res{font-size:18px;margin-top:20px;font-weight:bold}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>视频时长+码率计算预估文件体积</h2>
+<div class="calc-row">
+<input id="durMin" placeholder="时长(分钟)" value="5">
+<input id="bitK" placeholder="码率(kbps)" value="1200">
+</div>
+<button onclick="calcVideoSize()">计算预估大小</button>
+<p class="res">预估文件大小：<span id="sizeOut">0</span> MB</p>
+<script>
+function calcVideoSize(){
+  const min = Number(durMin.value);
+  const kbit = Number(bitK.value);
+  const totalBit = min * 60 * kbit * 1000;
+  const mb = totalBit / (8 * 1024 * 1024);
+  document.getElementById("sizeOut").innerText = mb.toFixed(2);
+}
+</script>
+</body>
+</html>

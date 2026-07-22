@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML页面Meta标签、关键词提取</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+textarea{width:100%;height:260px;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+<textarea id="tagOut" readonly></textarea>
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>粘贴HTML源码，自动提取Title、Keywords、Description</h2>
+<textarea id="htmlSource" placeholder="粘贴网页HTML源码"></textarea>
+<button onclick="extractMetaTag()">提取SEO标签</button>
+<textarea id="tagOut" readonly></textarea>
+<script>
+function extractMetaTag(){
+  const html = document.getElementById('htmlSource').value;
+  let title = html.match(/<title>([\s\S]*?)<\/title>/i);
+  let keywords = html.match(/<meta\s+name=["']keywords["']\s+content=["']([\s\S]*?)["']/i);
+  let desc = html.match(/<meta\s+name=["']description["']\s+content=["']([\s\S]*?)["']/i);
+  let result = "";
+  result += "标题 Title："+ (title ? title[1].trim() : "未找到") + "\n\n";
+  result += "关键词 Keywords："+ (keywords ? keywords[1].trim() : "未找到") + "\n\n";
+  result += "描述 Description："+ (desc ? desc[1].trim() : "未找到");
+  document.getElementById('tagOut').value = result;
+}
+</script>
+</body>
+</html>

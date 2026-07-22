@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>角度弧度互相转换</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+input,select{padding:12px;border:1px solid #ddd;border-radius:6px;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:10px 0}
+#resultOut{padding:12px;border:1px solid #ddd;border-radius:6px;white-space:pre-line}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>角度 ↔ 弧度 互相转换</h2>
+<div class="row">
+<input id="valInput" placeholder="输入数值" type="number" step="any">
+<select id="unitFrom">
+<option value="deg">角度(°)</option>
+<option value="rad">弧度(rad)</option>
+</select>
+</div>
+<button onclick="calcAngle()">换算</button>
+<div id="resultOut"></div>
+<script>
+const PI = Math.PI;
+function calcAngle(){
+    const v = parseFloat(document.getElementById('valInput').value);
+    const from = document.getElementById('unitFrom').value;
+    if(isNaN(v)){alert("请输入数字");return;}
+    let deg,rad;
+    if(from === "deg"){
+        deg = v;
+        rad = v * PI / 180;
+    }else{
+        rad = v;
+        deg = v * 180 / PI;
+    }
+    let txt = `角度：${deg.toFixed(4)} °\n`;
+    txt += `弧度：${rad.toFixed(6)} rad`;
+    document.getElementById('resultOut').innerText = txt;
+}
+</script>
+</body>
+</html>

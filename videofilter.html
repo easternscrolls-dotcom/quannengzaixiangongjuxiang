@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视频调色滤镜工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+select{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>视频滤镜调色（复古/冷调/黑白/提亮）</h2>
+<div class="upload-box">
+<input type="file" accept="video/*" id="videoFile">
+</div>
+<select id="filterSel">
+<option value="colorbalance=rs=0.3:gs=0.1:bs=-0.2">复古暖调</option>
+<option value="colorbalance=rs=-0.2:gs=0.1:bs=0.3">冷调清新</option>
+<option value="hue=saturation=0">黑白灰度</option>
+<option value="eq=brightness=0.18">提亮高清</option>
+</select>
+<button onclick="filterVideo()">应用滤镜导出</button>
+<script>
+const { FFmpeg } = FFmpegWASM;
+let ffmpeg = null;
+let vidFile = null;
+document.getElementById('videoFile').onchange = e=>vidFile = e.target.files[0];
+async function loadFFmpeg(){
+  if(!ffmpeg){
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load();
+  }
+}
+async function filterVideo(){
+  if(!vidFile) return alert("上传视频");
+  const filter = filterSel.value;
+  await loadFFmpeg();
+  const buf = new Uint8Array(await vidFile.arrayBuffer());
+  ffmpeg.writeFile("in.mp4", buf);
+  await ffmpeg.exec(["-i","in.mp4","-vf",filter,"filter_out.mp4"]);
+  const outBuf = ffmpeg.readFile("filter_out.mp4");
+  const blob = new Blob([outBuf],{type:"video/mp4"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "滤镜视频.mp4";
+  a.click();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>目标日期倒计时计算器</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+#resultOut{padding:12px;border:1px solid #ddd;border-radius:6px;margin-top:10px;white-space:pre-line;font-size:18px}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>目标日期倒计时｜剩余天数、时分秒</h2>
+<input id="targetDate" type="datetime-local">
+<button onclick="calcCountdown()">计算倒计时</button>
+<div id="resultOut"></div>
+<script>
+function calcCountdown(){
+    const dtStr = document.getElementById('targetDate').value;
+    if(!dtStr){alert("请选择目标时间");return;}
+    const target = new Date(dtStr);
+    const now = new Date();
+    let diff = target.getTime() - now.getTime();
+    let prefix = "";
+    if(diff <0){
+        prefix = "已过去";
+        diff = Math.abs(diff);
+    }else{
+        prefix = "剩余";
+    }
+    const day = Math.floor(diff/(1000*3600*24));
+    const hour = Math.floor((diff%(1000*3600*24))/(1000*3600));
+    const min = Math.floor((diff%(1000*3600))/(1000*60));
+    const sec = Math.floor((diff%(1000*60))/1000);
+    let txt = `${prefix} ${day} 天 ${hour} 小时 ${min} 分钟 ${sec} 秒`;
+    document.getElementById('resultOut').innerText = txt;
+}
+</script>
+</body>
+</html>

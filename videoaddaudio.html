@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视频叠加背景音乐工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.box-row{margin:16px 0}
+.upload-box{border:2px dashed #ccd6e0;padding:40px;text-align:center;border-radius:8px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>视频叠加背景音乐（保留原音+背景音乐）</h2>
+<div class="box-row upload-box">
+<input type="file" accept="video/*" id="vidInput">
+<p>上传主视频</p>
+</div>
+<div class="box-row upload-box">
+<input type="file" accept="audio/*" id="bgmInput">
+<p>上传背景音乐音频</p>
+</div>
+<button onclick="addBgmToVideo()">合成带背景音乐视频</button>
+<script>
+const { FFmpeg } = FFmpegWASM;
+let ffmpeg = null;
+let mainVid = null;
+let bgmAudio = null;
+document.getElementById('vidInput').onchange = e=>mainVid = e.target.files[0];
+document.getElementById('bgmInput').onchange = e=>bgmAudio = e.target.files[0];
+async function loadFFmpeg(){
+  if(!ffmpeg){
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load();
+  }
+}
+async function addBgmToVideo(){
+  if(!mainVid || !bgmAudio) return alert("同时上传视频与背景音乐");
+  await loadFFmpeg();
+  const vidBuf = new Uint8Array(await mainVid.arrayBuffer());
+  const audBuf = new Uint8Array(await bgmAudio.arrayBuffer());
+  ffmpeg.writeFile("video.mp4", vidBuf);
+  ffmpeg.writeFile("bgm.mp3", audBuf);
+  await ffmpeg.exec(["-i", "video.mp4", "-i", "bgm.mp3", "-filter_complex", "[0:a][1:a]amix=inputs=2:duration=shortest", "-c:v", "copy", "bgm_out.mp4"]);
+  const outBuf = ffmpeg.readFile("bgm_out.mp4");
+  const blob = new Blob([outBuf], {type:"video/mp4"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "带背景音乐视频.mp4";
+  a.click();
+}
+</script>
+</body>
+</html>

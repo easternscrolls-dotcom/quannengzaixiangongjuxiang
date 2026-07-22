@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电商单件商品利润计算器</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:10px 0}
+#resultOut{padding:12px;border:1px solid #ddd;border-radius:6px;white-space:pre-line}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>电商单件利润测算｜成本、售价、佣金、运费</h2>
+<input id="cost" placeholder="进货成本" step="0.01" type="number">
+<input id="price" placeholder="商品售价" step="0.01" type="number">
+<input id="freight" placeholder="单件运费" step="0.01" type="number" value="0">
+<input id="commissionRate" placeholder="佣金比例(%)" step="0.01" type="number" value="0">
+<input id="platformFee" placeholder="平台固定服务费" step="0.01" type="number" value="0">
+<button onclick="calcProfit()">计算利润</button>
+<div id="resultOut"></div>
+<script>
+function calcProfit(){
+    const cost = parseFloat(document.getElementById('cost').value||0);
+    const price = parseFloat(document.getElementById('price').value||0);
+    const freight = parseFloat(document.getElementById('freight').value||0);
+    const commRate = parseFloat(document.getElementById('commissionRate').value||0)/100;
+    const platformFee = parseFloat(document.getElementById('platformFee').value||0);
+    const commission = price * commRate;
+    const totalCost = cost + freight + commission + platformFee;
+    const profit = price - totalCost;
+    const profitRate = price>0 ? (profit/price*100) : 0;
+    let txt = `单件总成本：${totalCost.toFixed(2)} 元
+佣金费用：${commission.toFixed(2)} 元
+单件纯利润：${profit.toFixed(2)} 元
+销售利润率：${profitRate.toFixed(2)} %`;
+    document.getElementById('resultOut').innerText = txt;
+}
+</script>
+</body>
+</html>

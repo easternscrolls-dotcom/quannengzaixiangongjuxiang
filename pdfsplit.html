@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF拆分提取页面 - 自定义页码导出新PDF</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+input{width:100%;padding:12px;margin:10px 0;border:1px solid #ddd;border-radius:6px;font-size:15px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>PDF拆分提取指定页面</h2>
+<div class="upload-box">
+<input type="file" accept=".pdf" id="pdfFile">
+</div>
+<input id="pageRule" placeholder="输入页码，示例：1,3-5,7">
+<button onclick="splitPdf()">提取页面生成新PDF</button>
+<script>
+const { PDFDocument } = window.PDFLib;
+function parsePageRule(str){
+  const set = new Set();
+  str.split(',').forEach(item=>{
+    if(item.includes('-')){
+      let [s,e] = item.split('-').map(Number);
+      for(let i=s;i<=e;i++) set.add(i-1);
+    }else set.add(Number(item)-1);
+  })
+  return Array.from(set).sort((a,b)=>a-b);
+}
+async function splitPdf(){
+  const file = document.getElementById('pdfFile').files[0];
+  const rule = document.getElementById('pageRule').value.trim();
+  if(!file || !rule) return alert("上传PDF并填写提取页码");
+  const srcBuf = await file.arrayBuffer();
+  const srcDoc = await PDFDocument.load(srcBuf);
+  const targetIdx = parsePageRule(rule);
+  const newDoc = await PDFDocument.create();
+  const copyPages = await newDoc.copyPages(srcDoc, targetIdx);
+  copyPages.forEach(p=>newDoc.addPage(p));
+  const outBuf = await newDoc.save();
+  const blob = new Blob([outBuf],{type:"application/pdf"});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = "拆分页面.pdf";
+  a.click();
+}
+</script>
+</body>
+</html>

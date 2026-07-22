@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>音频均衡器 高低音调节</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+.eq-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input{padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>音频均衡器（低音/高音增益调节）</h2>
+<div class="upload-box">
+<input type="file" accept="audio/*" id="audioFile">
+</div>
+<div class="eq-row">
+<input id="bassGain" placeholder="低音增益 dB，-6~+6" value="3">
+<input id="trebleGain" placeholder="高音增益 dB，-6~+6" value="2">
+</div>
+<button onclick="audioEQ()">均衡处理导出</button>
+<script>
+const { FFmpeg } = FFmpegWASM;
+let ffmpeg = null;
+let sourceAud = null;
+document.getElementById('audioFile').onchange = e=>sourceAud = e.target.files[0];
+async function loadFFmpeg(){
+  if(!ffmpeg){
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load();
+  }
+}
+async function audioEQ(){
+  if(!sourceAud) return alert("上传音频");
+  const bass = bassGain.value;
+  const treble = trebleGain.value;
+  await loadFFmpeg();
+  const buf = new Uint8Array(await sourceAud.arrayBuffer());
+  ffmpeg.writeFile("in.mp3", buf);
+  const filter = `equalizer=f=100:t=h:width_type=o:width=200:g=${bass},equalizer=f=8000:t=h:width_type=o:width=2000:g=${treble}`;
+  await ffmpeg.exec(["-i","in.mp3","-af",filter,"eq_out.mp3"]);
+  const outBuf = ffmpeg.readFile("eq_out.mp3");
+  const blob = new Blob([outBuf],{type:"audio/mpeg"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "均衡音频.mp3";
+  a.click();
+}
+</script>
+</body>
+</html>

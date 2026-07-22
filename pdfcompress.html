@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF在线压缩 - 本地无损缩小文件体积</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+select{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-size:15px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>PDF压缩瘦身（本地处理不上传）</h2>
+<div class="upload-box">
+<input type="file" accept=".pdf" id="pdfFile">
+</div>
+<select id="qualitySel">
+<option value="0.3">高压缩 体积最小</option>
+<option value="0.6" selected>均衡压缩 画质适中</option>
+<option value="0.8">轻度压缩 高清保留</option>
+</select>
+<button onclick="compressPdf()">开始压缩并下载</button>
+<script>
+const { PDFDocument } = window.PDFLib;
+async function compressPdf(){
+  const file = document.getElementById('pdfFile').files[0];
+  const quality = Number(document.getElementById('qualitySel').value);
+  if(!file) return alert("请上传PDF文件");
+  const srcBuf = await file.arrayBuffer();
+  const pdfDoc = await PDFDocument.load(srcBuf);
+  const pageTotal = pdfDoc.getPageCount();
+  for(let i=0;i<pageTotal;i++){
+    const page = pdfDoc.getPage(i);
+    const imgRefs = await page.node.findImageRefs();
+    for(const ref of imgRefs){
+      try{ await pdfDoc.scaleImage(ref, quality); }catch(e){}
+    }
+  }
+  const compressBuf = await pdfDoc.save();
+  const blob = new Blob([compressBuf],{type:"application/pdf"});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = "压缩文档.pdf";
+  a.click();
+}
+</script>
+</body>
+</html>

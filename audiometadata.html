@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>修改MP3歌曲信息 标题/歌手/专辑</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+.meta-row{display:grid;grid-template-columns:100px 1fr;gap:10px;margin:10px 0;align-items:center}
+input{padding:12px;border:1px solid #ddd;border-radius:6px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin-top:10px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>编辑MP3元数据：歌曲名、歌手、专辑</h2>
+<div class="upload-box">
+<input type="file" accept=".mp3" id="audioFile">
+</div>
+<div class="meta-row">
+<label>歌曲标题：</label>
+<input id="metaTitle" placeholder="填写歌曲名称">
+</div>
+<div class="meta-row">
+<label>歌手：</label>
+<input id="metaArtist" placeholder="歌手/演唱者">
+</div>
+<div class="meta-row">
+<label>专辑：</label>
+<input id="metaAlbum" placeholder="专辑名称">
+</div>
+<button onclick="editAudioMeta()">保存修改导出</button>
+<script>
+const { FFmpeg } = FFmpegWASM;
+let ffmpeg = null;
+let mp3File = null;
+document.getElementById('audioFile').onchange = e=>mp3File = e.target.files[0];
+async function loadFFmpeg(){
+  if(!ffmpeg){
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load();
+  }
+}
+async function editAudioMeta(){
+  if(!mp3File) return alert("上传mp3文件");
+  const title = metaTitle.value.trim();
+  const artist = metaArtist.value.trim();
+  const album = metaAlbum.value.trim();
+  await loadFFmpeg();
+  const buf = new Uint8Array(await mp3File.arrayBuffer());
+  ffmpeg.writeFile("src.mp3", buf);
+  let cmd = ["-i","src.mp3"];
+  if(title) cmd.push("-metadata",`title=${title}`);
+  if(artist) cmd.push("-metadata",`artist=${artist}`);
+  if(album) cmd.push("-metadata",`album=${album}`);
+  cmd.push("-c","copy","meta_out.mp3");
+  await ffmpeg.exec(cmd);
+  const outBuf = ffmpeg.readFile("meta_out.mp3");
+  const blob = new Blob([outBuf],{type:"audio/mpeg"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "修改信息歌曲.mp3";
+  a.click();
+}
+</script>
+</body>
+</html>s

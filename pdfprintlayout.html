@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF打印排版 多页合一打印工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+select{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>PDF打印排版（2页/4页合并到单张打印）</h2>
+<div class="upload-box">
+<input type="file" accept=".pdf" id="pdfFile">
+</div>
+<select id="layoutSel">
+<option value="2">1张纸打印2页</option>
+<option value="4">1张纸打印4页</option>
+</select>
+<button onclick="printLayoutPdf()">生成打印排版PDF</button>
+<script>
+const { PDFDocument } = window.PDFLib;
+async function printLayoutPdf(){
+  const file = document.getElementById('pdfFile').files[0];
+  const perSheet = Number(layoutSel.value);
+  if(!file) return alert("上传PDF");
+  const srcBuf = await file.arrayBuffer();
+  const srcPdf = await PDFDocument.load(srcBuf);
+  const srcPages = srcPdf.getPages();
+  const printPdf = await PDFDocument.create();
+  const pageW = 595;
+  const pageH = 842;
+  const col = perSheet===2 ? 2 : 2;
+  const row = perSheet===2 ? 1 : 2;
+  const cellW = pageW / col;
+  const cellH = pageH / row;
+  let sheetPage = await printPdf.addPage([pageW, pageH]);
+  let posIdx = 0;
+  for(let p of srcPages){
+    const [w,h] = p.getSize();
+    const copy = await printPdf.copyPages(srcPdf,[srcPages.indexOf(p)]);
+    const x = (posIdx % col) * cellW;
+    const y = pageH - Math.floor(posIdx / col) * cellH - cellH;
+    sheetPage.drawPage(copy[0],{x,y,width:cellW,height:cellH});
+    posIdx++;
+    if(posIdx >= perSheet){
+      sheetPage = await printPdf.addPage([pageW, pageH]);
+      posIdx = 0;
+    }
+  }
+  const outBuf = await printPdf.save();
+  const blob = new Blob([outBuf],{type:"application/pdf"});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = "打印排版文档.pdf";
+  a.click();
+}
+</script>
+</body>
+</html>

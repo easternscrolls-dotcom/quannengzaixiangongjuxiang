@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小红书标题字数检测</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+textarea{width:100%;height:140px;padding:12px;border:1px solid #ddd;border-radius:6px;font-family:monospace}
+#tip{margin-top:12px;padding:12px;border-radius:8px;font-size:16px}
+.ok{background:#e6f9e6;color:#086608}
+.warn{background:#fff9e6;color:#995c00}
+.err{background:#ffe6e6;color:#b30000}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>小红书标题实时字数检测（推荐18-24字，上限30字）</h2>
+<textarea id="titleInput" oninput="checkTitle()" placeholder="输入小红书标题"></textarea>
+<div id="tip"></div>
+<script>
+function checkTitle(){
+  const txt = document.getElementById("titleInput").value;
+  const len = txt.length;
+  const tipBox = document.getElementById("tip");
+  tipBox.className = "";
+  if(len === 0){
+    tipBox.innerText = "请输入标题";
+    return;
+  }else if(len < 18){
+    tipBox.innerText = `当前：${len}字｜建议扩充至18~24字，利于流量推荐`;
+    tipBox.className = "warn";
+  }else if(len <=24){
+    tipBox.innerText = `当前：${len}字 ✅ 最佳标题长度`;
+    tipBox.className = "ok";
+  }else if(len <=30){
+    tipBox.innerText = `当前：${len}字｜接近上限，过长容易展示不全`;
+    tipBox.className = "warn";
+  }else{
+    tipBox.innerText = `当前：${len}字 ❌ 超出30字符上限，移动端截断`;
+    tipBox.className = "err";
+  }
+}
+</script>
+</body>
+</html>

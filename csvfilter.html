@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSV数据筛选过滤</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1300px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input{padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>CSV按字段关键词筛选导出</h2>
+<div class="upload-box">
+<input type="file" accept=".csv" id="csvFile">
+</div>
+<div class="row">
+<input id="filterCol" placeholder="筛选列名称">
+<input id="filterKey" placeholder="包含关键词">
+</div>
+<button onclick="filterCsv()">筛选并下载结果</button>
+<script>
+document.getElementById('csvFile').onchange = e=>window.csvFileObj = e.target.files[0];
+async function filterCsv(){
+  const col = document.getElementById('filterCol').value.trim();
+  const key = document.getElementById('filterKey').value.trim();
+  if(!window.csvFileObj||!col||!key) return alert("填写完整筛选条件");
+  const text = await window.csvFileObj.text();
+  const res = Papa.parse(text,{header:true,skipEmptyLines:true});
+  const result = res.data.filter(row=>{
+    const val = String(row[col]??"");
+    return val.includes(key);
+  })
+  const csvTxt = Papa.unparse({fields:res.meta.fields,data:result});
+  const blob = new Blob([csvTxt],{type:"text/csv;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "筛选结果.csv";
+  a.click();
+}
+</script>
+</body>
+</html>

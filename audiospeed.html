@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>音频倍速快慢放工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>音频倍速调速（0.5慢放~3倍快放）</h2>
+<div class="upload-box">
+<input type="file" accept="audio/*" id="audioFile">
+</div>
+<input id="speedMul" placeholder="倍速，0.8/1.2/2" value="1.3">
+<button onclick="speedAudio()">生成调速音频</button>
+<script>
+const { FFmpeg } = FFmpegWASM;
+let ffmpeg = null;
+let audBlob = null;
+document.getElementById('audioFile').onchange = e=>audBlob = e.target.files[0];
+async function loadFFmpeg(){
+  if(!ffmpeg){
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load();
+  }
+}
+async function speedAudio(){
+  if(!audBlob) return alert("上传音频");
+  const mul = speedMul.value.trim();
+  await loadFFmpeg();
+  const buf = new Uint8Array(await audBlob.arrayBuffer());
+  ffmpeg.writeFile("in.mp3", buf);
+  await ffmpeg.exec(["-i","in.mp3","-filter:a",`atempo=${mul}`,"speed_out.mp3"]);
+  const outBuf = ffmpeg.readFile("speed_out.mp3");
+  const blob = new Blob([outBuf],{type:"audio/mpeg"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `${mul}倍速音频.mp3`;
+  a.click();
+}
+</script>
+</body>
+</html>

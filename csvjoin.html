@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>两个CSV数据表关联合并</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1300px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.box{border:2px dashed #ccd6e0;padding:40px;text-align:center;margin:12px 0;border-radius:8px}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>两表按关键字左连接合并（主表保留全部）</h2>
+<div class="box">
+<input type="file" accept=".csv" id="mainCsv">
+<p>主表格（保留所有行）</p>
+</div>
+<div class="box">
+<input type="file" accept=".csv" id="subCsv">
+<p>附表（用于匹配补充字段）</p>
+</div>
+<input id="joinKey" placeholder="关联匹配列名称（两表列名一致）">
+<button onclick="joinTwoCsv()">关联合并导出CSV</button>
+<script>
+let mainData = null, subData = null;
+document.getElementById('mainCsv').onchange = async e=>{
+  const txt = await e.target.files[0].text();
+  mainData = Papa.parse(txt,{header:true,skipEmptyLines:true});
+}
+document.getElementById('subCsv').onchange = async e=>{
+  const txt = await e.target.files[0].text();
+  subData = Papa.parse(txt,{header:true,skipEmptyLines:true});
+}
+async function joinTwoCsv(){
+  const key = document.getElementById('joinKey').value.trim();
+  if(!mainData || !subData || !key) return alert("上传两个表格并填写关联键");
+  const map = {};
+  subData.data.forEach(row=>{
+    const k = String(row[key]);
+    map[k] = row;
+  })
+  const newData = mainData.data.map(mainRow=>{
+    const mk = String(mainRow[key]);
+    const subRow = map[mk] || {};
+    return {...subRow,...mainRow};
+  })
+  const allFields = [...new Set([...mainData.meta.fields,...subData.meta.fields])];
+  const csvTxt = Papa.unparse({fields:allFields,data:newData});
+  const blob = new Blob([csvTxt],{type:"text/csv;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "关联合并表格.csv";
+  a.click();
+}
+</script>
+</body>
+</html>

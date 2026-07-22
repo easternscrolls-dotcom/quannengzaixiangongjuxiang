@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSV表格行列转置互换</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1300px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>表格行列互换（行变列，列变行）</h2>
+<div class="upload-box">
+<input type="file" accept=".csv" id="csvFile">
+</div>
+<button onclick="transposeTable()">行列转置并下载</button>
+<script>
+document.getElementById('csvFile').onchange = e=>window.csvFileObj = e.target.files[0];
+async function transposeTable(){
+  if(!window.csvFileObj) return alert("上传CSV文件");
+  const text = await window.csvFileObj.text();
+  const res = Papa.parse(text,{header:true,skipEmptyLines:true});
+  const fields = res.meta.fields;
+  const rows = res.data;
+  const newData = [];
+  fields.forEach(field=>{
+    const line = {"字段":field};
+    rows.forEach((r,i)=>line[`第${i+1}行`] = r[field]??"");
+    newData.push(line);
+  })
+  const csvTxt = Papa.unparse(newData);
+  const blob = new Blob([csvTxt],{type:"text/csv;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "行列转置表格.csv";
+  a.click();
+}
+</script>
+</body>
+</html>

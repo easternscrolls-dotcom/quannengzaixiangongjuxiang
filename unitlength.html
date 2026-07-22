@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>长度单位换算｜米 公里 英寸 里 英尺</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+input,select{padding:12px;border:1px solid #ddd;border-radius:6px;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:10px 0}
+#resultOut{padding:12px;border:1px solid #ddd;border-radius:6px;white-space:pre-line}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>长度单位换算（米、公里、里、英寸、英尺、海里）</h2>
+<div class="row">
+<input id="valInput" placeholder="输入数值" type="number" step="any">
+<select id="unitFrom">
+<option value="m">米(m)</option>
+<option value="km">公里(km)</option>
+<option value="li">里</option>
+<option value="inch">英寸(inch)</option>
+<option value="ft">英尺(ft)</option>
+<option value="mile">英里</option>
+<option value="nmile">海里</option>
+</select>
+</div>
+<button onclick="calcLength()">换算</button>
+<div id="resultOut"></div>
+<script>
+const rate = {
+    m:1,
+    km:1000,
+    li:500,
+    inch:0.0254,
+    ft:0.3048,
+    mile:1609.344,
+    nmile:1852
+};
+function calcLength(){
+    const v = parseFloat(document.getElementById('valInput').value);
+    const from = document.getElementById('unitFrom').value;
+    if(isNaN(v)){alert("请输入数字");return;}
+    const meter = v * rate[from];
+    let txt = `米：${(meter/rate.m).toFixed(4)}\n`;
+    txt += `公里：${(meter/rate.km).toFixed(4)}\n`;
+    txt += `里：${(meter/rate.li).toFixed(4)}\n`;
+    txt += `英寸：${(meter/rate.inch).toFixed(4)}\n`;
+    txt += `英尺：${(meter/rate.ft).toFixed(4)}\n`;
+    txt += `英里：${(meter/rate.mile).toFixed(4)}\n`;
+    txt += `海里：${(meter/rate.nmile).toFixed(4)}`;
+    document.getElementById('resultOut').innerText = txt;
+}
+</script>
+</body>
+</html>

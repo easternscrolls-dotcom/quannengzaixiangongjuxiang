@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RGB HEX颜色互相转换</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+#preview{height:60px;border:1px solid #aaa;border-radius:6px;margin:12px 0}
+<textarea id="colorOut" readonly></textarea>
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>HEX ↔ RGB 颜色转换（#ffffff / rgb(255,255,255)）</h2>
+<input id="colorInput" placeholder="输入#十六进制或rgb(,,)">
+<button onclick="convertColor()">转换颜色</button>
+<div id="preview"></div>
+<textarea id="colorOut" readonly></textarea>
+<script>
+function hexToRgb(hex){
+    hex = hex.replace("#","");
+    const r = parseInt(hex.substring(0,2),16);
+    const g = parseInt(hex.substring(2,4),16);
+    const b = parseInt(hex.substring(4,6),16);
+    return {r,g,b};
+}
+function rgbToHex(r,g,b){
+    const toHex = n=>n.toString(16).padStart(2,"0");
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
+}
+function convertColor(){
+    let txt = document.getElementById('colorInput').value.trim();
+    const preview = document.getElementById('preview');
+    const outBox = document.getElementById('colorOut');
+    try{
+        if(txt.startsWith("#")){
+            const rgb = hexToRgb(txt);
+            const rgbStr = `rgb(${rgb.r},${rgb.g},${rgb.b})`;
+            preview.style.backgroundColor = txt;
+            outBox.value = `HEX：${txt.toUpperCase()}\nRGB：${rgbStr}`;
+        }else if(txt.startsWith("rgb")){
+            const nums = txt.match(/\d+/g).map(Number);
+            const hex = rgbToHex(nums[0],nums[1],nums[2]);
+            preview.style.backgroundColor = hex;
+            outBox.value = `RGB：rgb(${nums[0]},${nums[1]},${nums[2]})\nHEX：${hex}`;
+        }else{
+            outBox.value = "格式错误，请输入 #xxxxxx 或者 rgb(r,g,b)";
+        }
+    }catch(e){
+        outBox.value = "颜色解析失败";
+    }
+}
+</script>
+</body>
+</html>

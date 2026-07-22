@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>重量换算 千克 斤 吨 磅 盎司</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+input,select{padding:12px;border:1px solid #ddd;border-radius:6px;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:10px 0}
+#resultOut{padding:12px;border:1px solid #ddd;border-radius:6px;white-space:pre-line}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>重量单位换算：千克、斤、吨、克、磅、盎司</h2>
+<div class="row">
+<input id="valInput" placeholder="输入数值" type="number" step="any">
+<select id="unitFrom">
+<option value="kg">千克(kg)</option>
+<option value="g">克(g)</option>
+<option value="ton">吨(t)</option>
+<option value="jin">斤</option>
+<option value="lb">磅(lb)</option>
+<option value="oz">盎司(oz)</option>
+</select>
+</div>
+<button onclick="calcWeight()">换算</button>
+<div id="resultOut"></div>
+<script>
+const rate = {
+    kg:1,
+    g:0.001,
+    ton:1000,
+    jin:0.5,
+    lb:0.45359237,
+    oz:0.0283495231
+};
+function calcWeight(){
+    const v = parseFloat(document.getElementById('valInput').value);
+    const from = document.getElementById('unitFrom').value;
+    if(isNaN(v)){alert("请输入数字");return;}
+    const kg = v * rate[from];
+    let txt = `千克：${(kg/rate.kg).toFixed(4)}\n`;
+    txt += `克：${(kg/rate.g).toFixed(4)}\n`;
+    txt += `吨：${(kg/rate.ton).toFixed(4)}\n`;
+    txt += `斤：${(kg/rate.jin).toFixed(4)}\n`;
+    txt += `磅：${(kg/rate.lb).toFixed(4)}\n`;
+    txt += `盎司：${(kg/rate.oz).toFixed(4)}`;
+    document.getElementById('resultOut').innerText = txt;
+}
+</script>
+</body>
+</html>

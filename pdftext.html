@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF提取全部文字内容工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+button{padding:12px 24px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin-bottom:15px}
+textarea{width:100%;height:320px;border:1px solid #ddd;border-radius:6px;padding:12px;font-size:15px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>PDF一键提取全部文字</h2>
+<div class="upload-box">
+<input type="file" accept=".pdf" id="pdfFile">
+</div>
+<button onclick="extractAllText()">提取文档文字</button>
+<textarea id="textOut" readonly placeholder="提取的全文会展示在这里"></textarea>
+<script>
+const pdfjsLib = window.pdfjsLib;
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.worker.min.js";
+async function extractAllText(){
+  const file = document.getElementById('pdfFile').files[0];
+  if(!file) return alert("请上传PDF文件");
+  const arrayBuf = await file.arrayBuffer();
+  const pdfDoc = await pdfjsLib.getDocument(arrayBuf).promise;
+  let fullText = "";
+  const total = pdfDoc.numPages;
+  for(let i=1;i<=total;i++){
+    const page = await pdfDoc.getPage(i);
+    const textContent = await page.getTextContent();
+    const pageStr = textContent.items.map(item=>item.str).join(" ");
+    fullText += `=====第${i}页=====\n${pageStr}\n\n`;
+  }
+  document.getElementById('textOut').value = fullText;
+}
+</script>
+</body>
+</html>

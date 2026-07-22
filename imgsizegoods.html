@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商品图片尺寸换算裁剪参考</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<input id="srcW" placeholder="原图宽度" type="number">
+<input id="srcH" placeholder="原图高度" type="number">
+</div>
+<select id="targetSize" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0">
+<option value="800-800">800×800（淘宝主图）</option>
+<option value="750-1000">750×1000 3:4</option>
+<option value="1080-1080">1080×1080 正方形</option>
+<option value="1200-1200">1200×1200 高清主图</option>
+</select>
+<button onclick="calcGoodsImg()" style="width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:10px 0">计算缩放尺寸</button>
+<textarea id="imgOut" readonly style="width:100%;height:140px;padding:12px;border:1px solid #ddd;border-radius:6px;font-family:monospace"></textarea>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>商品图片缩放尺寸计算，等比例适配目标画布</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<input id="srcW" placeholder="原图宽度" type="number">
+<input id="srcH" placeholder="原图高度" type="number">
+</div>
+<select id="targetSize">
+<option value="800-800">800×800（淘宝主图）</option>
+<option value="750-1000">750×1000 3:4</option>
+<option value="1080-1080">1080×1080 正方形</option>
+<option value="1200-1200">1200×1200 高清主图</option>
+</select>
+<button onclick="calcGoodsImg()">计算缩放尺寸</button>
+<textarea id="imgOut" readonly></textarea>
+<script>
+function calcGoodsImg(){
+    const sw = parseFloat(document.getElementById('srcW').value);
+    const sh = parseFloat(document.getElementById('srcH').value);
+    const tStr = document.getElementById('targetSize').value;
+    const [tw,th] = tStr.split("-").map(Number);
+    const scaleW = tw/sw;
+    const scaleH = th/sh;
+    const scale = Math.min(scaleW,scaleH);
+    const outW = Math.round(sw*scale);
+    const outH = Math.round(sh*scale);
+    let txt = `目标画布：${tw} × ${th}
+等比例缩放后图片尺寸：${outW} × ${outH}
+建议居中放置，空白区域填充白底`;
+    document.getElementById('imgOut').value = txt;
+}
+</script>
+</body>
+</html>

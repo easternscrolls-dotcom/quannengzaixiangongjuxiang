@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word DOCX转PDF在线工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1.4.21/mammoth.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>Word DOCX转PDF</h2>
+<div class="upload-box">
+<input type="file" accept=".docx" id="docFile">
+<p style="margin-top:10px;color:#666">仅支持docx格式文档</p>
+</div>
+<button onclick="wordToPdf()">转换生成PDF</button>
+<script>
+const { jsPDF } = window.jspdf;
+async function wordToPdf(){
+  const file = document.getElementById('docFile').files[0];
+  if(!file) return alert("请上传docx文档");
+  const arrayBuf = await file.arrayBuffer();
+  const result = await mammoth.extractRawText({arrayBuffer:arrayBuf});
+  const text = result.value;
+  const doc = new jsPDF('p','mm','a4');
+  doc.setFont("simhei");
+  doc.text(text,12,15,{maxWidth:185});
+  doc.save("word转pdf文档.pdf");
+}
+</script>
+</body>
+</html>

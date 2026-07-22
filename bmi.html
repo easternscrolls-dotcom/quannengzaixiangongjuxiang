@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI体重指数计算器</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:10px 0}
+#resultOut{padding:12px;border:1px solid #ddd;border-radius:6px;white-space:pre-line}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>BMI身体质量指数计算器（身高cm，体重kg）</h2>
+<input id="height" placeholder="身高（厘米 cm）" type="number" step="0.1">
+<input id="weight" placeholder="体重（千克 kg）" type="number" step="0.1">
+<button onclick="calcBMI()">计算BMI</button>
+<div id="resultOut"></div>
+<script>
+function calcBMI(){
+    const h = parseFloat(document.getElementById('height').value)/100;
+    const w = parseFloat(document.getElementById('weight').value);
+    if(isNaN(h)||isNaN(w)||h<=0||w<=0){alert("请输入有效身高体重");return;}
+    const bmi = w/(h*h);
+    let level,tip;
+    if(bmi<18.5){
+        level = "偏瘦";tip="建议适当增加营养";
+    }else if(bmi<24){
+        level = "正常";tip="体重标准，继续保持";
+    }else if(bmi<28){
+        level = "超重";tip="建议控制饮食+运动";
+    }else{
+        level = "肥胖";tip="需要科学减重";
+    }
+    let txt = `BMI指数：${bmi.toFixed(2)}
+评价：${level}
+参考标准：<18.5偏瘦｜18.5~24正常｜24~28超重｜≥28肥胖
+建议：${tip}`;
+    document.getElementById('resultOut').innerText = txt;
+}
+</script>
+</body>
+</html>

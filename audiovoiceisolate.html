@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人声背景音乐分离工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+p.tip{color:#e64340;margin:8px 0}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>歌曲分离人声与伴奏背景音乐</h2>
+<p class="tip">简易频段分离，复杂歌曲分离效果有限</p>
+<div class="upload-box">
+<input type="file" accept="audio/*" id="audioFile">
+</div>
+<button onclick="isolateVoice()">分离人声&伴奏</button>
+<script>
+const { FFmpeg } = FFmpegWASM;
+let ffmpeg = null;
+let audBlob = null;
+document.getElementById('audioFile').onchange = e=>audBlob = e.target.files[0];
+async function loadFFmpeg(){
+  if(!ffmpeg){
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load();
+  }
+}
+async function isolateVoice(){
+  if(!audBlob) return alert("上传歌曲音频");
+  await loadFFmpeg();
+  const buf = new Uint8Array(await audBlob.arrayBuffer());
+  ffmpeg.writeFile("song.mp3", buf);
+  // 提取伴奏（消除人声频段）
+  await ffmpeg.exec(["-i","song.mp3","-af","highpass=f=250,lowpass=f=12000","accompany.mp3"]);
+  // 提取人声（中频）
+  await ffmpeg.exec(["-i","song.mp3","-af","highpass=f=800,lowpass=f=6000","voice.mp3"]);
+  // 打包两个文件
+  const zip = new JSZip();
+  zip.file("伴奏背景音乐.mp3", ffmpeg.readFile("accompany.mp3"));
+  zip.file("人声干声.mp3", ffmpeg.readFile("voice.mp3"));
+  const zipBuf = await zip.generateAsync({type:"uint8array"});
+  const blob = new Blob([zipBuf],{type:"application/zip"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "人声伴奏分离包.zip";
+  a.click();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>批量多个视频统一缩放分辨率</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+.size-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input{padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+#fileList{margin:10px 0;line-height:1.8}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>批量多文件统一视频宽高分辨率</h2>
+<div class="upload-box">
+<input type="file" accept="video/*" multiple id="videoInput">
+<p style="margin-top:8px;color:#666">多选多个视频批量处理</p>
+</div>
+<div class="size-row">
+<input id="batchW" placeholder="统一宽度" value="720">
+<input id="batchH" placeholder="统一高度" value="1280">
+</div>
+<div id="fileList"></div>
+<button onclick="batchResizeVid()">批量缩放打包下载</button>
+<script>
+const { FFmpeg } = FFmpegWASM;
+let ffmpeg = null;
+let fileArr = [];
+document.getElementById('videoInput').onchange = e=>{
+  fileArr = Array.from(e.target.files);
+  let html = "待处理文件：<br/>";
+  fileArr.forEach((f,i)=>html += `${i+1}. ${f.name}<br/>`);
+  document.getElementById("fileList").innerHTML = html;
+}
+async function loadFFmpeg(){
+  if(!ffmpeg){
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load();
+  }
+}
+async function batchResizeVid(){
+  if(fileArr.length===0) return alert("选择视频文件");
+  const w = batchW.value;
+  const h = batchH.value;
+  await loadFFmpeg();
+  const zip = new JSZip();
+  for(let i=0;i<fileArr.length;i++){
+    const f = fileArr[i];
+    const buf = new Uint8Array(await f.arrayBuffer());
+    ffmpeg.writeFile(`src${i}.mp4`, buf);
+    await ffmpeg.exec(["-i",`src${i}.mp4`,"-vf",`scale=${w}:${h}`,`out${i}.mp4`]);
+    const outData = ffmpeg.readFile(`out${i}.mp4`);
+    const saveName = f.name.replace(/\.\w+$/,"_统一尺寸.mp4");
+    zip.file(saveName, outData);
+  }
+  const zipBuf = await zip.generateAsync({type:"uint8array"});
+  const blob = new Blob([zipBuf],{type:"application/zip"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "批量统一尺寸视频.zip";
+  a.click();
+}
+</script>
+</body>
+</html>

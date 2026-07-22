@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>时间戳 日期互转工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0;font-family:monospace}
+.btn-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:10px 0}
+button{padding:12px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:15px;cursor:pointer}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>时间戳 ↔ 北京时间转换（秒/毫秒）</h2>
+<input id="tsInput" placeholder="输入时间戳或日期 如 1750000000 或 2026-01-01 12:00:00">
+<div class="btn-row">
+<button onclick="getNowTs()">获取当前时间戳</button>
+<button onclick="tsToDate()">时间戳转日期</button>
+<button onclick="dateToTs()">日期转时间戳</button>
+</div>
+<input id="tsOutput" readonly>
+<script>
+function pad(n){return n<10?"0"+n:n}
+function formatDate(d){
+  const y=d.getFullYear(),m=pad(d.getMonth()+1),day=pad(d.getDate());
+  const h=pad(d.getHours()),mi=pad(d.getMinutes()),s=pad(d.getSeconds());
+  return `${y}-${m}-${day} ${h}:${mi}:${s}`;
+}
+function getNowTs(){
+  document.getElementById('tsInput').value = Math.floor(Date.now()/1000);
+}
+function tsToDate(){
+  let num = document.getElementById('tsInput').value.trim();
+  let t = Number(num);
+  if(num.length>=13) t = new Date(t);
+  else t = new Date(t*1000);
+  if(isNaN(t.getTime())){alert("非法时间戳");return;}
+  document.getElementById('tsOutput').value = formatDate(t);
+}
+function dateToTs(){
+  const s = document.getElementById('tsInput').value.trim();
+  const t = new Date(s);
+  if(isNaN(t.getTime())){alert("日期格式错误");return;}
+  document.getElementById('tsOutput').value = Math.floor(t.getTime()/1000);
+}
+</script>
+</body>
+</html>

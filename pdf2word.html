@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF转Word DOCX在线转换工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+p.tip{color:#666;margin-top:10px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docxtemplater@3.37.12/build/docxtemplater.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.4/dist/pizzip.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.4/dist/pizzip-utils.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>PDF转Word DOCX文档</h2>
+<div class="upload-box">
+<input type="file" accept=".pdf" id="pdfFile">
+<p class="tip">提取PDF文字生成可编辑Word文档，复杂排版会简化</p>
+</div>
+<button onclick="pdfToDocx()">转换并下载DOCX</button>
+<script>
+const pdfjsLib = window.pdfjsLib;
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.worker.min.js";
+async function pdfToDocx(){
+  const file = document.getElementById('pdfFile').files[0];
+  if(!file) return alert("上传PDF文件");
+  const buf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument(buf).promise;
+  let fullText = "";
+  const total = pdf.numPages;
+  for(let i=1;i<=total;i++){
+    const page = await pdf.getPage(i);
+    const textObj = await page.getTextContent();
+    fullText += textObj.items.map(t=>t.str).join(" ") + "\n\n";
+  }
+  // 基础docx生成
+  const zip = new PizZip();
+  const xmlContent = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+<w:body>
+<w:p><w:r><w:t>${fullText.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}</w:t></w:r></w:p>
+</w:body></w:document>`;
+  zip.file("word/document.xml", xmlContent);
+  zip.file("[Content_Types].xml",`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+<Default Extension="xml" ContentType="application/xml"/>
+<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+</Types>`);
+  zip.file("_rels/.rels",`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+</Relationships>`);
+  const outBuf = await zip.generateAsync({type:"uint8array"});
+  const blob = new Blob([outBuf],{type:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = "转换文档.docx";
+  a.click();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>速度换算 km/h m/s 节 knot 英里每小时</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+input,select{padding:12px;border:1px solid #ddd;border-radius:6px;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:10px 0}
+#resultOut{padding:12px;border:1px solid #ddd;border-radius:6px;white-space:pre-line}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>速度换算：km/h、m/s、节(knot)、mph</h2>
+<div class="row">
+<input id="valInput" placeholder="输入数值" type="number" step="any">
+<select id="unitFrom">
+<option value="kmh">公里/小时(km/h)</option>
+<option value="ms">米/秒(m/s)</option>
+<option value="knot">节(knot)</option>
+<option value="mph">英里/小时(mph)</option>
+</select>
+</div>
+<button onclick="calcSpeed()">换算</button>
+<div id="resultOut"></div>
+<script>
+//基准 m/s
+const rate = {
+    ms:1,
+    kmh:1000/3600,
+    knot:1852/3600,
+    mph:1609.344/3600
+};
+function calcSpeed(){
+    const v = parseFloat(document.getElementById('valInput').value);
+    const from = document.getElementById('unitFrom').value;
+    if(isNaN(v)){alert("请输入数字");return;}
+    const ms = v * rate[from];
+    let txt = `m/s：${(ms/rate.ms).toFixed(4)}\n`;
+    txt += `km/h：${(ms/rate.kmh).toFixed(4)}\n`;
+    txt += `节(knot)：${(ms/rate.knot).toFixed(4)}\n`;
+    txt += `mph：${(ms/rate.mph).toFixed(4)}`;
+    document.getElementById('resultOut').innerText = txt;
+}
+</script>
+</body>
+</html>

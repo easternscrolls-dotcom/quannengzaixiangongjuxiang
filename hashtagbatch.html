@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>批量生成短视频话题标签</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0}
+textarea{width:100%;height:220px;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>输入关键词，批量生成#话题标签</h2>
+<input id="tagKeyword" placeholder="主关键词，例如穿搭、美食、摄影">
+<button onclick="buildHashTag()">生成话题标签</button>
+<textarea id="hashOut" readonly></textarea>
+<script>
+function buildHashTag(){
+  const kw = document.getElementById("tagKeyword").value.trim();
+  if(!kw){alert("请输入关键词");return;}
+  const base = [`#${kw}`,`#${kw}分享`,`#${kw}日常`,`#好看的${kw}`];
+  document.getElementById("hashOut").value = base.join(" ");
+}
+</script>
+</body>
+</html>

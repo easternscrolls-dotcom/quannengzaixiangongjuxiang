@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSV表格转Markdown表格</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1300px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:10px 0}
+textarea{width:100%;height:360px;padding:12px;border:1px solid #ddd;border-radius:6px;font-family:monospace}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>CSV 转换 Markdown 表格文本</h2>
+<div class="upload-box">
+<input type="file" accept=".csv" id="csvFile">
+</div>
+<button onclick="toMarkdownTable()">生成MD表格</button>
+<textarea id="mdOut" readonly></textarea>
+<script>
+document.getElementById('csvFile').onchange = e=>window.csvFileObj = e.target.files[0];
+async function toMarkdownTable(){
+  if(!window.csvFileObj) return alert("上传CSV文件");
+  const text = await window.csvFileObj.text();
+  const res = Papa.parse(text,{header:true,skipEmptyLines:true});
+  const fields = res.meta.fields;
+  let md = "| "+fields.join(" | ")+" |\n";
+  md += "| "+fields.map(()=>"---").join(" | ")+" |\n";
+  res.data.forEach(row=>{
+    const line = fields.map(f=>String(row[f]??""));
+    md += "| "+line.join(" | ")+" |\n";
+  })
+  document.getElementById('mdOut').value = md;
+}
+</script>
+</body>
+</html>

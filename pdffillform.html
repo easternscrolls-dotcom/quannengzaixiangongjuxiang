@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF在线表单填写工具</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+.form-row{display:grid;grid-template-columns:1fr 2fr;gap:10px;margin:8px 0;align-items:center}
+input{padding:12px;border:1px solid #ddd;border-radius:6px;font-size:15px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin-top:12px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>PDF表单文字填写（自定义坐标插入文本）</h2>
+<div class="upload-box">
+<input type="file" accept=".pdf" id="pdfFile">
+</div>
+<div class="form-row">
+<span>填写文本：</span>
+<input id="fillText" placeholder="输入需要填入表单的文字">
+</div>
+<div class="form-row">
+<span>X坐标：</span>
+<input id="posX" value="50">
+</div>
+<div class="form-row">
+<span>Y坐标：</span>
+<input id="posY" value="500">
+</div>
+<div class="form-row">
+<span>字号：</span>
+<input id="fontSize" value="14">
+</div>
+<div class="form-row">
+<span>填写页码：</span>
+<input id="targetPage" value="1">
+</div>
+<button onclick="fillPdfForm()">写入表单并导出PDF</button>
+<script>
+const { PDFDocument, rgb } = window.PDFLib;
+async function fillPdfForm(){
+  const file = document.getElementById('pdfFile').files[0];
+  const text = document.getElementById('fillText').value.trim();
+  const x = Number(posX.value);
+  const y = Number(posY.value);
+  const fs = Number(fontSize.value);
+  const pageNum = Number(targetPage.value)-1;
+  if(!file || !text) return alert("上传PDF并输入填写内容");
+  const buf = await file.arrayBuffer();
+  const pdf = await PDFDocument.load(buf);
+  const font = await pdf.embedFont(PDFDocument.Fonts.Helvetica);
+  const page = pdf.getPage(pageNum);
+  page.drawText(text, {x, y, size: fs, font, color: rgb(0,0,0)});
+  const outBuf = await pdf.save();
+  const blob = new Blob([outBuf],{type:"application/pdf"});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = "填写完成表单.pdf";
+  a.click();
+}
+</script>
+</body>
+</html>

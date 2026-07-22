@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视频分辨率缩放修改尺寸</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+.size-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input{padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>自定义缩放视频分辨率宽高</h2>
+<div class="upload-box">
+<input type="file" accept="video/*" id="videoFile">
+</div>
+<div class="size-row">
+<input id="vidW" placeholder="宽度，例 1080" value="720">
+<input id="vidH" placeholder="高度，例 720" value="1280">
+</div>
+<button onclick="resizeVideo()">修改尺寸导出</button>
+<script>
+const { FFmpeg } = FFmpegWASM;
+let ffmpeg = null;
+let fileObj = null;
+document.getElementById('videoFile').onchange = e=>fileObj = e.target.files[0];
+async function loadFFmpeg(){
+  if(!ffmpeg){
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load();
+  }
+}
+async function resizeVideo(){
+  if(!fileObj) return alert("上传视频");
+  const w = vidW.value;
+  const h = vidH.value;
+  await loadFFmpeg();
+  const buf = new Uint8Array(await fileObj.arrayBuffer());
+  ffmpeg.writeFile("source.mp4", buf);
+  await ffmpeg.exec(["-i", "source.mp4", "-vf", `scale=${w}:${h}`, "resize_out.mp4"]);
+  const outBuf = ffmpeg.readFile("resize_out.mp4");
+  const blob = new Blob([outBuf], {type:"video/mp4"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `${w}x${h}视频.mp4`;
+  a.click();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工具箱后台管理</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}
+body{background:#f5f7fa;color:#222;padding:20}
+.container{max-width:1200px;margin:0 auto}
+h1,h2{margin-bottom:16px}
+a{color:#2478f5}
+.box{background:#fff;border-radius:10px;padding:20px;margin-bottom:20px;box-shadow:0 2px 8px #00000f10}
+.flex{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+input,textarea,select{padding:8px 12px;border:1px #ddd solid;border-radius:6px;flex:1;min-width:220px}
+textarea{width:100%;min-height:120px;margin:10px 0}
+button{padding:9px 18px;border:none;border-radius:6px;background:#2478f5;color:#fff;cursor-pointer}
+.del{background:#e53e3e}
+pre{background:#111;color:#fff;padding:16px;overflow:auto;max-height:400px;border-radius:8;white-space:pre-wrap}
+.item-card{border:1px #e2e8f0 solid;padding:12px;border-radius:8;margin:8px 0;display:flex;justify-content:space-between;align-items:center}
+.cat-item{border:2px #cbd5e1 solid;padding:14px;border-radius:10;margin-bottom:16}
+#batchLog{background:#f5f55512;padding:10;border-radius:6;white-space:pre-wrap;min-height:80px}
+.warn{background:#ffe6e6;border:1px solid #f88;padding:14px;border-radius:8;margin-bottom:16px}
+.ok{background:#e6ffe6;border:1px solid #69d083;padding:14px;border-radius:8;margin-bottom:16px}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>工具箱可视化后台管理</h1>
+    <a href="index.html">← 返回工具箱首页</a>
+
+    <!-- 新增分类区域 -->
+    <div class="box">
+        <h2>新增分类</h2>
+        <div class="flex">
+            <input id="catName" placeholder="分类名称，例：AI工具">
+            <input id="catIcon" placeholder="分类图标emoji，例：🤖">
+            <button onclick="addCategory()">添加分类</button>
+        </div>
+    </div>
+
+    <!-- 单工具添加 -->
+    <div class="box">
+        <h2>手动添加单个工具</h2>
+        <div class="flex">
+            <select id="targetCat"></select>
+            <input id="toolName" placeholder="工具名称">
+            <input id="toolDesc" placeholder="工具描述">
+            <input id="toolHref" placeholder="工具文件名 xxx.html">
+            <input id="toolIcon" placeholder="工具图标emoji">
+            <button onclick="addTool()">添加到分类</button>
+        </div>
+        <p>工具源码记录（仅存档，不参与生成）</p>
+        <textarea id="toolCode" placeholder="粘贴工具完整HTML源码"></textarea>
+    </div>
+
+    <!-- 批量上传导入模块 -->
+    <div class="box">
+        <h2>批量上传HTML自动导入工具</h2>
+        <input type="file" id="fileBatch" multiple accept=".html">
+        <div class="flex">
+            <span>导入目标分类：</span>
+            <select id="batchCat"></select>
+            <button onclick="batchImport()">开始批量导入并自动查重</button>
+        </div>
+        <div id="batchLog"></div>
+    </div>
+
+    <!-- 全部分类&工具列表（带重复检测） -->
+    <div class="box">
+        <h2>当前全部分类与工具（自动查重）</h2>
+        <div id="listWrap"></div>
+    </div>
+
+    <!-- 一键生成新版index完整源码 -->
+    <div class="box">
+        <h2>一键生成更新后的 index.html 完整源码</h2>
+        <p>导出前自动检测重复，存在重复将禁止生成</p>
+        <button onclick="generateIndexCode()">生成代码</button>
+        <pre id="codeOut"></pre>
+        <p>操作：复制下方全部代码，覆盖根目录 index.html 文件即可生效</p>
+    </div>
+</div>
+
+<script>
+// 原始完整工具数据（和你首页保持一致）
+let toolData = [
+    {
+        catId:1,
+        catName:"文本 / 程序员开发工具",
+        catIcon:"💻",
+        catTotal:30,
+        tools:[
+            {name:"JSON格式化",desc:"JSON格式化、校验、压缩",href:"json.html",icon:"{}"},
+            {name:"URL编解码",desc:"URL编码解码",href:"urlcode.html",icon:"🔗"},
+            {name:"Base64",desc:"Base64文本加解密",href:"base64.html",icon:"🔐"},
+            {name:"时间戳",desc:"时间戳与日期互转",href:"timestamp.html",icon:"⏱"},
+            {name:"进制转换",desc:"2/8/10/16进制互转",href:"hex.html",icon:"🔢"},
+            {name:"哈希加密",desc:"MD5 SHA256哈希加密",href:"hash.html",icon:"#"},
+            {name:"正则测试",desc:"正则表达式在线测试",href:"regex.html",icon:".*"},
+            {name:"URL解析",desc:"解析URL参数",href:"urlparse.html",icon:"📎"},
+            {name:"文本清理",desc:"清除多余空格空行",href:"textclear.html",icon:"🧹"},
+            {name:"简繁转换",desc:"简体繁体互相转换",href:"zhconvert.html",icon:"中"},
+            {name:"大写金额",desc:"数字转财务大写金额",href:"money.html",icon:"💰"},
+            {name:"文本对比",desc:"两段文本差异对比",href:"textcompare.html",icon:"⇔"},
+            {name:"字数统计",desc:"字符汉字行数统计",href:"textcount.html",icon:"#️⃣"},
+            {name:"批量替换",desc:"批量查找替换",href:"textreplace.html",icon:"🔁"},
+            {name:"行操作",desc:"行去重、逆序、清空行",href:"textlineop.html",icon:"≡"},
+            {name:"XML格式化",desc:"XML格式化压缩",href:"xmlformat.html",icon:"<>"},
+            {name:"JSON/XML互转",desc:"JSON XML双向转换",href:"jsonxml.html",icon:"⇄"},
+            {name:"UUID",desc:"批量生成UUID",href:"uuid.html",icon:"🆔"},
+            {name:"IP换算",desc:"IP地址与数字互转",href:"ipnum.html",icon:"🌐"},
+            {name:"编码转换",desc:"UTF8 GBK编码转换",href:"charsetconv.html",icon:"𓀀"},
+            {name:"缩进转换",desc:"Tab空格缩进统一",href:"textindent.html",icon:"⇥"},
+            {name:"随机端口",desc:"随机端口生成",href:"randomport.html",icon:"🔌"},
+            {name:"Cookie解析",desc:"Cookie字符串解析",href:"cookieparse.html",icon:"🍪"},
+            {name:"时区转换",desc:"UTC北京时间转换",href:"timezone.html",icon:"🌍"},
+            {name:"JSON去重",desc:"JSON数组对象去重",href:"jsonunique.html",icon:"🗑"},
+            {name:"行打乱",desc:"文本行随机打乱",href:"textrandomsort.html",icon:"🔀"},
+            {name:"文字倒序",desc:"文字倒序翻转",href:"textreverse.html",icon:"↩"},
+            {name:"AES加密",desc:"AES加盐加密解密",href:"textencipher.html",icon:"🔒"},
+            {name:"Cron解析",desc:"Cron表达式解析预览",href:"crontab.html",icon:"🕒"},
+            {name:"SQL格式化",desc:"SQL美化压缩",href:"sqlformat.html",icon:"🗄"}
+        ]
+    },
+    {
+        catId:2,
+        catName:"站长SEO运营工具",
+        catIcon:"📈",
+        catTotal:18,
+        tools:[
+            {name:"Sitemap生成",desc:"站点地图生成",href:"sitemap.html",icon:"🗺"},
+            {name:"Robots.txt",desc:"爬虫规则生成",href:"robotstxt.html",icon:"🤖"},
+            {name:"Meta检测",desc:"页面Meta标签检测",href:"metacheck.html",icon:"📋"},
+            {name:"Nofollow标签",desc:"nofollow批量添加",href:"nofollow.html",icon:"🚫"},
+            {name:"对比度检测",desc:"网页色彩对比度",href:"colorcontrast.html",icon:"🎨"},
+            {name:"SEO友好URL",desc:"URL标准化处理",href:"urlencode-seo.html",icon:"🔗"},
+            {name:"HTTP状态码",desc:"状态码查询说明",href:"httpcode.html",icon:"📡"},
+            {name:"域名倒计时",desc:"域名到期倒计时",href:"domainexpire.html",icon:"📅"},
+            {name:"图片ALT",desc:"ALT文案生成",href:"altgen.html",icon:"🖼"},
+            {name:"301防盗链",desc:"htaccess规则生成",href:"htaccess.html",icon:"🔒"},
+            {name:"本地短链",desc:"本地短链接生成",href:"shorturl.html",icon:"✂️"},
+            {name:"正则模板",desc:"常用正则模板",href:"regtemplate.html",icon:"📝"},
+            {name:"标签提取",desc:"页面HTML标签提取",href:"tagextract.html",icon:"<>"},
+            {name:"Sitemap校验",desc:"站点地图合法性校验",href:"sitemapcheck.html",icon:"✅"},
+            {name:"关键词密度",desc:"页面关键词密度计算",href:"keyworddensity.html",icon:"🔍"},
+            {name:"Canonical",desc:"标准化链接生成",href:"canonical.html",icon:"🔗"},
+            {name:"拆分Sitemap",desc:"大Sitemap分割",href:"sitemapsplit.html",icon:"✂️"},
+            {name:"规则检测",desc:"robots规则校验",href:"robotscheck.html",icon:"🔎"}
+        ]
+    },
+    {
+        catId:3,
+        catName:"短视频新媒体文案",
+        catIcon:"🎬",
+        catTotal:12,
+        tools:[
+            {name:"网红花体字",desc:"花式特殊艺术字体",href:"fancyfont.html",icon:"𝓐"},
+            {name:"特殊符号",desc:"小众装饰符号大全",href:"symbol.html",icon:"✦"},
+            {name:"Emoji大全",desc:"全品类emoji复制",href:"emojiall.html",icon:"😀"},
+            {name:"小红书标题检测",desc:"标题长度合规检测",href:"titlenum.html",icon:"📕"},
+            {name:"话题提取",desc:"批量提取#话题",href:"tagextract.html",icon:"#️⃣"},
+            {name:"清理换行",desc:"批量清除多余换行",href:"textlineclean.html",icon:"↵"},
+            {name:"清除空格",desc:"清理全文多余空格",href:"copyspace.html",icon:"␣"},
+            {name:"文案查重",desc:"文本相似度对比",href:"textrepeat.html",icon:"🔍"},
+            {name:"中文艺术字",desc:"简约中文装饰字体",href:"fontcn.html",icon:"字"},
+            {name:"评论生成",desc:"短视频评论文案",href:"commentgen.html",icon:"💬"},
+            {name:"批量话题",desc:"批量生成热门标签",href:"hashtagbatch.html",icon:"#"},
+            {name:"MD排版",desc:"Markdown快速排版",href:"textindentmd.html",icon:"📄"}
+        ]
+    },
+    {
+        catId:4,
+        catName:"单位换算 & 便民计算器",
+        catIcon:"🧮",
+        catTotal:26,
+        tools:[
+            {name:"长度换算",desc:"米/厘米/英尺/英里",href:"unitlength.html",icon:"📏"},
+            {name:"重量换算",desc:"千克/斤/磅/吨",href:"unitweight.html",icon:"⚖️"},
+            {name:"面积换算",desc:"平米/亩/公顷",href:"unitarea.html",icon:"🟩"},
+            {name:"体积容量",desc:"升/毫升/立方",href:"unitvolume.html",icon:"🧴"},
+            {name:"时分秒换算",desc:"小时分钟秒互转",href:"unittime.html",icon:"⏰"},
+            {name:"能量换算",desc:"焦耳/卡路里转换",href:"unitenergy.html",icon:"⚡"},
+            {name:"压强换算",desc:"帕/大气压转换",href:"unitpressure.html",icon:"🌡"},
+            {name:"速度换算",desc:"km/h m/s 转换",href:"unitspeed.html",icon:"🚗"},
+            {name:"文件大小",desc:"B/KB/GB换算",href:"unitbyte.html",icon:"💾"},
+            {name:"摄氏华氏",desc:"温度单位互转",href:"unittemp.html",icon:"🌡️"},
+            {name:"角度弧度",desc:"角度弧度换算",href:"unitangle.html",icon:"📐"},
+            {name:"功率换算",desc:"瓦/千瓦/马力",href:"unitpower.html",icon:"🔋"},
+            {name:"密度换算",desc:"各类物质密度转换",href:"unitdensity.html",icon:"🧪"},
+            {name:"简易汇率",desc:"常用货币换算",href:"unitmoney.html",icon:"💴"},
+            {name:"房贷计算",desc:"等额本息/本金",href:"loan.html",icon:"🏠"},
+            {name:"BMI体重",desc:"身体质量指数",href:"bmi.html",icon:"🧍"},
+            {name:"周岁虚岁",desc:"年龄精准计算",href:"agecalc.html",icon:"🎂"},
+            {name:"百公里油耗",desc:"车辆油耗测算",href:"fuel.html",icon:"⛽"},
+            {name:"月度油费",desc:"每月用车成本",href:"fuelmonth.html",icon:"💸"},
+            {name:"生日倒计时",desc:"生日天数倒数",href:"birthday.html",icon:"🎁"},
+            {name:"日期间隔",desc:"两个日期相差天数",href:"datediff.html",icon:"🗓"},
+            {name:"自定义倒计时",desc:"任意时间倒计时",href:"countdown.html",icon:"⏳"},
+            {name:"个税计算",desc:"个人所得税测算",href:"tax.html",icon:"💳"},
+            {name:"随机抽签",desc:"摇号抽签工具",href:"randomdraw.html",icon:"🎲"},
+            {name:"涨跌比例",desc:"百分比涨跌计算",href:"percent.html",icon:"📊"},
+            {name:"公历农历",desc:"阳历阴历互转",href:"lunar.html",icon:"🏮"}
+        ]
+    },
+    {
+        catId:5,
+        catName:"电商运营专用工具",
+        catIcon:"🛒",
+        catTotal:12,
+        tools:[
+            {name:"单件利润",desc:"商品毛利净利计算",href:"profitcalc.html",icon:"💰"},
+            {name:"运费计算",desc:"快递运费模板测算",href:"freightcalc.html",icon:"📦"},
+            {name:"标题清洗",desc:"清理标题冗余符号",href:"titleclean.html",icon:"🧹"},
+            {name:"批量SKU",desc:"批量生成商品SKU",href:"skugen.html",icon:"🏷"},
+            {name:"主图比例",desc:"商品主图尺寸比例",href:"coverratio.html",icon:"🖼"},
+            {name:"直通车出价",desc:"广告出价利润测算",href:"adbidcalc.html",icon:"📈"},
+            {name:"批量定价",desc:"批量加价降价",href:"batchprice.html",icon:"💵"},
+            {name:"库存周转",desc:"库存周转天数计算",href:"stockcalc.html",icon:"📦"},
+            {name:"满减折扣",desc:"满减活动到手价",href:"discountcalc.html",icon:"🏷️"},
+            {name:"标题60字",desc:"电商标题字数限制",href:"titlelength.html",icon:"📝"},
+            {name:"商品图尺寸",desc:"商品图片缩放尺寸",href:"imgsizegoods.html",icon:"🖼️"},
+            {name:"订单求和",desc:"多订单金额汇总",href:"orderstat.html",icon:"🧾"}
+        ]
+    },
+    {
+        catId:6,
+        catName:"随机数据/加密测试",
+        catIcon:"🎲",
+        catTotal:14,
+        tools:[
+            {name:"高强度密码",desc:"随机高强度密码生成",href:"pwdgen.html",icon:"🔐"},
+            {name:"密码强度",desc:"密码安全等级检测",href:"pwdsafe.html",icon:"🛡"},
+            {name:"虚拟手机号",desc:"测试用虚拟号码",href:"randomphone.html",icon:"📱"},
+            {name:"姓名地址",desc:"模拟人名地址生成",href:"randomname.html",icon:"👤"},
+            {name:"测试银行卡",desc:"合规测试卡号",href:"banktest.html",icon:"💳"},
+            {name:"加密盐值",desc:"随机salt密钥生成",href:"saltgen.html",icon:"#"},
+            {name:"区间随机数",desc:"自定义范围随机数字",href:"randomnum.html",icon:"🔢"},
+            {name:"测试身份证",desc:"合规测试身份证号",href:"randomid.html",icon:"🆔"},
+            {name:"随机颜色",desc:"HEX/RGB随机色",href:"randomcolor.html",icon:"🎨"},
+            {name:"序列号",desc:"自定义流水序列号",href:"randomserial.html",icon:"🔢"},
+            {name:"字母串",desc:"随机大小写字母",href:"randomletter.html",icon:"ABC"},
+            {name:"校验串",desc:"文件随机校验码",href:"randomfilecode.html",icon:"🧬"},
+            {name:"省市地址",desc:"随机省市街道地址",href:"randomaddr.html",icon:"🏘"},
+            {name:"网名昵称",desc:"随机文艺网名",href:"randomnick.html",icon:"✍️"}
+        ]
+    },
+    {
+        catId:7,
+        catName:"数学学习图表",
+        catIcon:"📐",
+        catTotal:10,
+        tools:[
+            {name:"分数运算",desc:"分数加减乘除计算",href:"fractioncalc.html",icon:"⅓"},
+            {name:"开方计算",desc:"平方根立方根运算",href:"sqrtcalc.html",icon:"√"},
+            {name:"一元一次方程",desc:"简易方程求解",href:"equation.html",icon:"x="},
+            {name:"涨跌百分比",desc:"增长率跌幅计算",href:"percentrise.html",icon:"📉"},
+            {name:"角度弧度",desc:"三角单位换算",href:"radian.html",icon:"∠"},
+            {name:"练习题",desc:"随机数学口算题",href:"mathrandom.html",icon:"✏️"},
+            {name:"柱状图",desc:"数据生成柱状图表",href:"chartbar.html",icon:"📊"},
+            {name:"饼图",desc:"占比饼图在线生成",href:"chartpie.html",icon:"🥧"},
+            {name:"折线图",desc:"趋势折线图表",href:"chartline.html",icon:"📈"},
+            {name:"雷达图",desc:"多维数据雷达图",href:"chartradar.html",icon:"🕸️"}
+        ]
+    },
+    {
+        catId:8,
+        catName:"PDF & 文档工具",
+        catIcon:"📕",
+        catTotal:12,
+        tools:[
+            {name:"PDF排序",desc:"拖拽调整PDF页面顺序",href:"pdfreorder.html",icon:"🔀"},
+            {name:"PDF旋转",desc:"批量旋转PDF页面",href:"pdfrotate.html",icon:"🔄"},
+            {name:"PDF拆分",desc:"单页分割PDF文件",href:"pdfsplit.html",icon:"✂️"},
+            {name:"按范围拆分",desc:"指定页码分割PDF",href:"pdfsplitbyrange.html",icon:"📑"},
+            {name:"提取文字",desc:"PDF文本提取导出",href:"pdftext.html",icon:"📄"},
+            {name:"解锁PDF",desc:"移除PDF打开密码",href:"pdfunlock.html",icon:"🔓"},
+            {name:"PDF水印",desc:"批量添加文字水印",href:"pdfwatermark.html",icon:"💧"},
+            {name:"PPT转PDF",desc:"PPT文件转PDF",href:"ppt2.html",icon:"📽"},
+            {name:"Word转PDF",desc:"Word文档转PDF",href:"word2pdf.html",icon:"📘"},
+            {name:"表格转MD",desc:"Excel表格转MD",href:"table2md.html",icon:"📋"},
+            {name:"文本转表格",desc:"纯文本转表格",href:"texttotable.html",icon:"▦"},
+            {name:"字幕转换",desc:"SRT ASS字幕互转",href:"srt2ass.html",icon:"🎬"}
+        ]
+    },
+    {
+        catId:9,
+        catName:"图片处理工具",
+        catIcon:"🖼️",
+        catTotal:33,
+        tools:[
+            {name:"取色器",desc:"图片取色HEX/RGB",href:"rgbhex.html",icon:"🎨"},
+            {name:"横向拼接",desc:"多张图片左右合并",href:"imgmerge.html",icon:"⇔"},
+            {name:"纵向拼接",desc:"多张图片上下合并",href:"imgmergev.html",icon:"⇓"},
+            {name:"镜像翻转",desc:"图片水平垂直翻转",href:"imgmirror.html",icon:"↔️"},
+            {name:"图片水印",desc:"图片添加文字水印",href:"imgoverlay.html",icon:"💧"},
+            {name:"比例换算",desc:"图片宽高比例计算",href:"coverratio.html",icon:"📐"},
+            {name:"商品缩放",desc:"电商图尺寸缩放裁剪",href:"imgsizegoods.html",icon:"✂️"},
+            {name:"对比度",desc:"图片色彩对比度",href:"colorcontrast.html",icon:"🌗"},
+            {name:"图片压缩",desc:"无损有损压缩图片",href:"imgcompress.html",icon:"🗜️"},
+            {name:"图片裁剪",desc:"自由裁剪图片",href:"imgcrop.html",icon:"✂️"},
+            {name:"图片旋转",desc:"批量旋转图片",href:"imgrotate.html",icon:"🔄"},
+            {name:"格式转换",desc:"JPG PNG WebP互转",href:"imgconvert.html",icon:"🔁"},
+            {name:"图片滤镜",desc:"复古胶片滤镜",href:"imgfilter.html",icon:"🌫️"},
+            {name:"圆角图片",desc:"一键圆角",href:"imgradius.html",icon:"⭕"},
+            {name:"黑白图片",desc:"转灰度图",href:"imggray.html",icon:"⬛"},
+            {name:"图片调色",desc:"亮度饱和度调节",href:"imgadjust.html",icon:"🎛️"},
+            {name:"二维码生成",desc:"文本生成二维码",href:"qrcodegen.html",icon:"📱"},
+            {name:"二维码解析",desc:"识别二维码",href:"qrcoderead.html",icon:"🔍"},
+            {name:"GIF合成",desc:"多图动图",href:"gifmake.html",icon:"🎞️"},
+            {name:"GIF拆分",desc:"GIF逐帧导出",href:"gifsplit.html",icon:"📸"},
+            {name:"图片去底色",desc:"一键抠透明",href:"imgremovebg.html",icon:"🧽"},
+            {name:"图片边框",desc:"添加边框",href:"imgborder.html",icon:"🖼"},
+            {name:"图片马赛克",desc:"局部模糊",href:"imgblur.html",icon:"🌫"},
+            {name:"长图拼接",desc:"竖向长图",href:"imglongmerge.html",icon:"📜"},
+            {name:"图标制作",desc:"生成ICO",href:"icogen.html",icon:"🖥️"},
+            {name:"图片加文字",desc:"文字水印",href:"imgtext.html",icon:"✍️"},
+            {name:"像素画板",desc:"简易绘图",href:"pixeldraw.html",icon:"🖌️"},
+            {name:"图片翻转",desc:"上下镜像",href:"imgflip.html",icon:"↕️"},
+            {name:"批量重命名图",desc:"批量改名",href:"imgrename.html",icon:"🏷️"},
+            {name:"图片降噪",desc:"去除噪点",href:"imgdenoise.html",icon:"✨"},
+            {name:"图片锐化",desc:"提高清晰度",href:"imgsharp.html",icon:"🔍"},
+            {name:"图片尺寸批量",desc:"统一尺寸",href:"imgbatchsize.html",icon:"📐"},
+            {name:"透明画布",desc:"透明底图",href:"imgcanvas.html",icon:"⬜"}
+        ]
+    },
+    {
+        catId:10,
+        catName:"CSV Excel表格",
+        catIcon:"📊",
+        catTotal:28,
+        tools:[
+            {name:"多表合并",desc:"多个CSV合并",href:"csvmerge.html",icon:"➕"},
+            {name:"列合并",desc:"多列拼接",href:"csvmergecol.html",icon:"▬"},
+            {name:"在线预览",desc:"CSV查看",href:"csvpreview.html",icon:"👁"},
+            {name:"批量替换",desc:"表格替换",href:"csvreplace.html",icon:"🔁"},
+            {name:"表格排序",desc:"升降序",href:"csvsort.html",icon:"🔃"},
+            {name:"拆分打包",desc:"分割CSV",href:"csvsplit.html",icon:"✂️"},
+            {name:"测试表格",desc:"模拟数据",href:"randomtable.html",icon:"🧪"},
+            {name:"行列转置",desc:"行列互换",href:"tabletranspose.html",icon:"🔄"},
+            {name:"表格去重",desc:"删除重复行",href:"csvdedup.html",icon:"🗑️"},
+            {name:"筛选导出",desc:"条件导出",href:"csvfilter.html",icon:"🔎"},
+            {name:"CSV转JSON",desc:"表格转JSON",href:"csv2json.html",icon:"{}"},
+            {name:"JSON转CSV",desc:"JSON导出表格",href:"json2csv.html",icon:"📋"},
+            {name:"表头编辑",desc:"修改表头",href:"csvheader.html",icon:"🏷️"},
+            {name:"空白行清理",desc:"清空空行",href:"csvclearblank.html",icon:"🧹"},
+            {name:"数值求和",desc:"单列求和",href:"csvsum.html",icon:"➕"},
+            {name:"平均值计算",desc:"求平均",href:"csvaverage.html",icon:"📉"},
+            {name:"CSV编码转换",desc:"转码",href:"csvcharset.html",icon:"𓀀"},
+            {name:"分隔符切换",desc:"逗号/制表符",href:"csvsep.html",icon:"|"},
+            {name:"数据填充",desc:"空白填充",href:"csvfill.html",icon:"🖊️"},
+            {name:"行插入删除",desc:"增删行",href:"csvrowop.html",icon:"≡"},
+            {name:"列插入删除",desc:"增删列",href:"csvcolop.html",icon:"▬"},
+            {name:"表格对比",desc:"两份CSV差异",href:"csvdiff.html",icon:"⇔"},
+            {name:"导出Markdown表",desc:"CSV转MD",href:"csv2md.html",icon:"📄"},
+            {name:"导出HTML表格",desc:"生成HTML table",href:"csv2html.html",icon:"<table>"},
+            {name:"随机抽样",desc:"抽取数据",href:"csvsample.html",icon:"🎲"},
+            {name:"数据转大写",desc:"金额大写",href:"csvmoney.html",icon:"💰"},
+            {name:"CSV压缩导出",desc:"打包ZIP",href:"csvzip.html",icon:"📦"},
+            {name:"批量编码校验",desc:"检测乱码",href:"csvcheckcode.html",icon:"🔍"}
+        ]
+    },
+    {
+        catId:11,
+        catName:"FFmpeg视频工具",
+        catIcon:"🎥",
+        catTotal:24,
+        tools:[
+            {name:"视频马赛克",desc:"画面打码",href:"videoblur.html",icon:"🌫"},
+            {name:"视频压缩",desc:"压缩体积",href:"videocompress.html",icon:"📉"},
+            {name:"格式转换",desc:"MP4/GIF互转",href:"videoconvert.html",icon:"🔄"},
+            {name:"画面裁剪",desc:"裁剪画面",href:"videocropframe.html",icon:"✂️"},
+            {name:"截取片段",desc:"截取视频",href:"videocut.html",icon:"✂"},
+            {name:"提取音频",desc:"分离音轨",href:"videoextractaudio.html",icon:"🎵"},
+            {name:"视频滤镜",desc:"调色滤镜",href:"videofilter.html",icon:"🎨"},
+            {name:"倍速调节",desc:"变速播放",href:"videospeed.html",icon:"⏩"},
+            {name:"视频旋转",desc:"旋转画面",href:"videorotate.html",icon:"🔄"},
+            {name:"视频水印",desc:"加水印",href:"videowatermark.html",icon:"💧"},
+            {name:"音频降噪",desc:"去除噪音",href:"videodenoise.html",icon:"🔇"},
+            {name:"音量调节",desc:"统一音量",href:"videovolume.html",icon:"🔊"},
+            {name:"视频拼接",desc:"合并视频",href:"videomerge.html",icon:"➕"},
+            {name:"GIF压缩",desc:"动图压缩",href:"gifcompress.html",icon:"🗜️"},
+            {name:"帧提取",desc:"截图批量导出",href:"videoframe.html",icon:"📸"},
+            {name:"音频替换",desc:"替换音轨",href:"videoaudiorep.html",icon:"🎶"},
+            {name:"视频翻转",desc:"镜像翻转",href:"videoflip.html",icon:"↔️"},
+            {name:"视频调色",desc:"亮度调节",href:"videocolor.html",icon:"🎛️"},
+            {name:"码率自定义",desc:"自定义码率",href:"videobitrate.html",icon:"📊"},
+            {name:"分辨率缩放",desc:"改分辨率",href:"videosize.html",icon:"📐"},
+            {name:"字幕嵌入",desc:"硬字幕",href:"videosub.html",icon:"📝"},
+            {name:"视频倒放",desc:"反向播放",href:"videoreverse.html",icon:"⏪"},
+            {name:"循环片段",desc:"循环截取",href:"videoloop.html",icon:"🔁"},
+            {name:"音频分离批量",desc:"批量提音频",href:"videoaudibatch.html",icon:"🎧"}
+        ]
+    },
+    {
+        catId:12,
+        catName:"综合小工具",
+        catIcon:"🔧",
+        catTotal:12,
+        tools:[
+            {name:"比例换算",desc:"等比例计算",href:"proportion.html",icon:"📐"},
+            {name:"数字读法",desc:"中文大写",href:"numbercn.html",icon:"🔊"},
+            {name:"折扣计算",desc:"打折价格",href:"discount.html",icon:"🏷"},
+            {name:"批量求和",desc:"多数字相加",href:"sumbatch.html",icon:"➕"},
+            {name:"域名倒计时",desc:"到期天数",href:"domainexpire.html",icon:"📅"},
+            {name:"正则模板",desc:"常用正则",href:"regtemplate.html",icon:"📝"},
+            {name:"时区转换",desc:"多时区换算",href:"timezone.html",icon:"🌍"},
+            {name:"抽签摇号",desc:"随机抽签",href:"randomdraw.html",icon:"🎟️"},
+            {name:"随机分组",desc:"名单分组",href:"randomgroup.html",icon:"👥"},
+            {name:"倒计时生成",desc:"网页倒计时",href:"countdowngen.html",icon:"⏳"},
+            {name:"进制批量转换",desc:"批量进制",href:"batchhex.html",icon:"🔢"},
+            {name:"色值批量转换",desc:"HEX/RGB批量",href:"colorbatch.html",icon:"🎨"}
+        ]
+    }
+];
+
+let repeatList = [];
+
+// 全局查重
+function checkAllRepeat(){
+    repeatList = [];
+    const nameMap = new Map();
+    const hrefMap = new Map();
+    toolData.forEach(cat=>{
+        cat.tools.forEach(tool=>{
+            const n = tool.name.trim();
+            const h = tool.href.trim();
+            if(nameMap.has(n)) repeatList.push({type:"工具名称重复",cat:cat.catName,name:n,href:h});
+            else nameMap.set(n,1);
+            if(hrefMap.has(h)) repeatList.push({type:"文件链接重复",cat:cat.catName,name:n,href:h});
+            else hrefMap.set(h,1);
+        })
+    })
+    return repeatList;
+}
+
+// 同步两个分类下拉
+function refreshCatSelect(){
+    const sel = document.getElementById("targetCat");
+    const selBatch = document.getElementById("batchCat");
+    sel.innerHTML = "";
+    selBatch.innerHTML = "";
+    toolData.forEach(cat=>{
+        const opt = document.createElement("option");
+        opt.value = cat.catId;
+        opt.innerText = `${cat.catIcon} ${cat.catName}`;
+        sel.appendChild(opt);
+        selBatch.appendChild(opt.cloneNode(true));
+    })
+}
+
+// 新增分类
+function addCategory(){
+    const n = document.getElementById("catName").trim();
+    const i = document.getElementById("catIcon").trim();
+    if(!n||!i) return alert("请填写分类名称和图标");
+    const newId = Math.max(...toolData.map(c=>c.catId)) + 1;
+    toolData.push({catId:newId,catName:n,catIcon:i,catTotal:0,tools:[]});
+    refreshCatSelect();
+    renderList();
+    alert("分类创建成功");
+}
+
+// 单工具添加（前置查重）
+function addTool(){
+    const cid = document.getElementById("targetCat").value;
+    const tName = document.getElementById("toolName").trim();
+    const tDesc = document.getElementById("toolDesc").trim();
+    const tHref = document.getElementById("toolHref").trim();
+    const tIcon = document.getElementById("toolIcon").trim();
+    if(!tName||!tDesc||!tHref||!tIcon) return alert("全部信息必填");
+    const allHref = [], allName = [];
+    toolData.forEach(c=>c.tools.forEach(t=>{allHref.push(t.href);allName.push(t.name);}));
+    if(allName.includes(tName)) return alert("已存在同名工具，禁止重复");
+    if(allHref.includes(tHref)) return alert("该文件名工具已存在");
+    const cat = toolData.find(x=>x.catId == cid);
+    cat.tools.push({name:tName,desc:tDesc,href:tHref,icon:tIcon});
+    renderList();
+    // 清空输入
+    document.getElementById("toolName").value = "";
+    document.getElementById("toolDesc").value = "";
+    document.getElementById("toolHref").value = "";
+    document.getElementById("toolIcon").value = "";
+    document.getElementById("toolCode").value = "";
+    alert("工具添加完成");
+}
+
+// 批量上传导入
+async function batchImport(){
+    const input = document.getElementById("fileBatch");
+    const catSel = document.getElementById("batchCat");
+    const log = document.getElementById("batchLog");
+    log.innerText = "";
+    const files = input.files;
+    if(files.length === 0){log.innerText="请选择html工具文件";return;}
+    const targetCat = toolData.find(c=>c.catId == catSel.value);
+    const existHref = [], existName = [];
+    toolData.forEach(c=>c.tools.forEach(t=>{existHref.push(t.href);existName.push(t.name);}));
+    let add=0,skip=0;
+    for(const file of files){
+        const fname = file.name;
+        if(["index.html","tool-admin.html"].includes(fname)){
+            log.innerText += `跳过系统文件 ${fname}\n`;
+            skip++;
+            continue;
+        }
+        const text = await file.text();
+        // 提取标题
+        let name = fname.replace(".html","");
+        const titleMatch = text.match(/<title>([\s\S]+?)<\/title>/);
+        if(titleMatch) name = titleMatch[1].trim();
+        // 提取描述
+        let desc = "本地在线工具";
+        const descMatch = text.match(/meta name="description" content="([\s\S]+?)"/);
+        if(descMatch) desc = desc[1].trim();
+        const href = fname;
+        if(existHref.includes(href) || existName.includes(name)){
+            log.innerText += `【重复跳过】${fname}(${name})\n`;
+            skip++;
+            continue;
+        }
+        target.tools.push({name,desc,href,icon:"🔧"});
+        existHref.push(href);
+        existName.push(name);
+        add++;
+        log.innerText += `✅导入成功：${name}\n`;
+    }
+    log.innerText += `\n导入完成：新增${add}个，跳过${skip}个`;
+    input.value = "";
+    renderList();
+}
+
+// 渲染全部分类工具列表+重复提示
+function renderList(){
+    const wrap = document.getElementById("listWrap");
+    wrap.innerHTML = "";
+    const repeats = checkAllRepeat();
+    if(repeats.length > 0){
+        let warnHtml = `<div class="warn"><h3>⚠️检测到${repeats}处重复工具</h3>`;
+        repeats.forEach(item=>{
+            warnHtml += `<p>${item.type}｜分类：${item.cat}｜工具名：${item.name}｜文件：${item.href}</p>`;
+        })
+        warnHtml += `</div>`;
+        wrap.innerHTML += warnHtml;
+    }else{
+        wrap.innerHTML += `<div class="ok">✅ 全部工具无重复</div>`;
+    }
+    toolData.forEach(cat=>{
+        const div = document.createElement("div");
+        div.className = "cat-item";
+        let html = `<h3>${cat.catIcon} ${cat.catName} (${cat.tools.length}个) <button class="del" onclick="delCat(${cat.catId})">删除整个分类</button></h3>`;
+        cat.tools.forEach((tool,idx)=>{
+            html += `
+            <div class="item-card">
+                <span>${tool.icon} ${tool.name} | ${tool.desc} | 文件：${tool.href}</span>
+                <button class="del" onclick="delTool(${cat.catId},${idx})">删除</button>
+            </div>`;
+        })
+        div.innerHTML = html;
+        wrap.appendChild(div);
+    })
+}
+
+// 删除分类
+function delCat(id){
+    if(!confirm("确定删除该分类及所有工具？")) return;
+    toolData = toolData.filter(c=>c.catId != id);
+    refreshCatSelect();
+    renderList();
+}
+
+// 删除单个工具
+function delCat(catId){
+    if(!confirm("确定删除整个分类及所有工具？")) return;
+    toolData = toolData.filter(c=>c.catId != catId);
+    refreshCatSelect();
+    renderList();
+}
+function delTool(catId, idx){
+    const cat = toolData.find(c=>c.catId == catId);
+    cat.tools.splice(idx,1);
+    renderList();
+}
+
+// 生成完整index.html源码
+function generateIndexCode(){
+    const repeats = checkAllRepeat();
+    if(repeats.length > 0) return alert(`存在${repeats}条重复工具，请删除后再生成`);
+    // index固定模板
+    const tpl = `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="在线工具箱,JSON格式化,视频压缩,单位换算,SEO工具,电商计算器,随机密码生成,PDF处理,图片工具,前端本地工具">
+<meta name="description" content="251款纯前端离线在线工具箱，包含文本处理、FFmpeg视频工具、图片转换、PDF、CSV表格、站长SEO、电商运营、生活换算、加密随机数据、数学图表，所有运算本地浏览器不上传文件，保护隐私。">
+<title>全品类在线工具箱｜251款免费离线转换工具</title>
+<style>
+:root{
+    --primary:#9b78e8;
+    --sidebar-bg:#f4f1fc;
+    --page-bg:#f7f8fa;
+    --card-bg:#ffffff;
+    --text-main:#1f2937;
+    --text-second:#6b7280;
+    --border:#e5e7eb;
+    --radius:10px;
+    --shadow:0 1px 3px rgba(0,0,0.06);
+    --main-blue:#2478f5;
+    --main-light:#e8f0ff;
+}
+.dark{
+    --primary:#b89cf0;
+    --sidebar-bg:#2a2438;
+    --page-bg:#0f172a;
+    --card-bg:#1e293b;
+    --text-main:#f1f5f9;
+    --text-second:#94a3b8;
+    --border:#334155;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,Microsoft Yahei,sans-serif;}
+html{scroll-behavior: smooth;}
+body{background:var(--page);color:var(--text-main);height:100vh;display:flex;flex-direction:column;overflow:hidden;transition:0.3s;}
+/* 顶部导航栏 */
+.top-bar{
+    height:64px;
+    background:var(--card-bg);
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    padding:0 24px;
+    gap:16px;
+}
+.top-bar .logo{
+    font-weight:700;
+    font-size:20px;
+    width:180px;
+    color:var(--main-blue);
+}
+.search-wrap{
+    flex:1;
+    max-width:750px;
+}
+#searchInput{
+    width:100%;
+    height:40px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:0 16px;
+    font-size:14px;
+    background:var(--card-bg);
+    color:var(--text-main);
+}
+#searchInput:focus{
+    outline:none;
+    border-color:var(--primary);
+}
+.top-right{
+    display:flex;
+    gap:16px;
+    align-items:center;
+}
+.themeBtn{
+    padding:8px 14px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    background:var(--card-bg);
+    color:var(--text-main);
+    cursor:pointer;
+}
+/* 主体容器：侧边栏+内容区 */
+.main-wrap{
+    display:flex;
+    flex:1;
+    overflow:hidden;
+}
+/* 左侧侧边分类导航 */
+.sidebar{
+    width:200px;
+    background:var(--card-bg);
+    border-right:1px solid var(--border);
+    padding:16px 10px;
+    overflow-y:auto;
+}
+.sidebar-menu .item{
+    display:flex;
+    align-items:center;
+    padding:10px 12px;
+    border-radius:var(--radius);
+    cursor:pointer;
+    font-size:14px;
+    margin-bottom:6px;
+    gap:8px;
+    transition:0.2s;
+}
+.sidebar-menu .item.active{
+    background:var(--sidebar-bg);
+    color:var(--primary);
+    font-weight:500;
+}
+.sidebar-menu .item:hover:not(.active){
+    background:var(--page-bg);
+}
+.sidebar .split{
+    height:1px;
+    background:var(--border);
+    margin:18px 6px;
+}
+.item .cat-num{
+    margin-left:auto;
+    font-size:12px;
+    color:var(--text-second);
+}
+/* 右侧主内容区域 */
+.content{
+    flex:1;
+    padding:24px;
+    overflow-y:auto;
+}
+.content-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:24px;
+}
+.content-title h2{
+    font-size:22px;
+    font-weight:600;
+}
+.tool-count-tag{
+    padding:5px 12px;
+    background:var(--sidebar-bg);
+    color:var(--primary);
+    border-radius:16px;
+    font-size:13px;
+}
+/* 工具网格 宽屏10列 自适应 */
+.tool-grid{
+    display:grid;
+    grid-template-columns:repeat(10, minmax(140px, 1fr));
+    gap:14px;
+}
+.tool-card{
+    background:var(--card-bg);
+    border-radius:var(--radius);
+    padding:14px 12px;
+    border:1px solid var(--border);
+    cursor:pointer;
+    transition:0.2s;
+    display:flex;
+    gap:10px;
+    text-decoration:none;
+    color:inherit;
+    align-items:flex-start;
+    min-width:140px;
+}
+.tool-card:hover{
+    box-shadow:var(--shadow);
+    border-color:var(--primary);
+    transform:translateY(-2px);
+}
+.tool-icon{
+    width:32px;
+    height:32px;
+    flex-shrink:0;
+    border-radius:6;
+    background:var(--main-light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+    color:var(--main-blue);
+}
+.tool-info{
+    flex:1;
+    min-width: 0;
+}
+.tool-name{
+    font-size:13px;
+    font-weight:500;
+    line-height:1.4;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.tool-desc{
+    font-size:11px;
+    line-height:1.4;
+    color:var(--text-second);
+    margin-top:2px;
+}
+/* 回到顶部悬浮按钮 */
+.backTop{
+    position:fixed;
+    right:28px;
+    bottom:28px;
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    background:var(--primary);
+    color:#fff;
+    border:none;
+    font-size:20px;
+    cursor:pointer;
+    display:none;
+    box-shadow:var(--shadow);
+}
+/* 多尺寸自适应 */
+@media (max-width:1800px){.tool-grid{grid-template-columns:repeat(8, minmax(140px, 1fr));}}
+@media (max-width:1440px){.tool-grid{grid-template-columns:repeat(6, minmax(140px, 1fr));}}
+@media (max-width:1200px){.tool-grid{grid-template-columns:repeat(5, minmax(140px, 1fr));}}
+@media (max-width:992px){.tool-grid{grid-template-columns:repeat(4, minmax(140px, 1fr));}}
+@media (max-width:768px){.sidebar{width:16px}.tool-grid{grid-template-columns:repeat(3, minmax(140px));}}
+@media (max-width:640px){.main-wrap{flex-direction:column}.sidebar{width:100%;border-right:none;border-bottom:1px solid var(--border)}.tool-grid{grid-template-columns:repeat(2, minmax(140px));}}
+@media (max-width:400px){.tool-grid{grid-template-columns:repeat(1, minmax(140px));}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+    <div class="logo">在线工具箱</div>
+    <div class="search-wrap">
+        <input id="searchInput" placeholder="搜索工具名称，如视频压缩、JSON格式化、房贷计算">
+    </div>
+    <div class="top-right">
+        <span class="tool-count">共\${allTools.length}款工具</span>
+        <button class="themeBtn" onclick="toggleDark()">切换深色/浅色</button>
+    </div>
+</div>
+<div class="main-wrap">
+    <div class="sidebar">
+        <div class="sidebar-menu">
+            <div class="item active" data-catid="all">
+                <span>📦</span>
+                <span>全部工具</span>
+                <span class="cat-num">\${allTools.length}</span>
+            </div>
+        </div>
+        <div class="split"></div>
+        <div class="sidebar-menu" id="sidebarCatList"></div>
+    </div>
+    <div class="content">
+        <div class="content-header">
+            <div class="content-title"><h2 id="currentCatName">全部工具</h2></div>
+            <div class="tool-count-tag" id="showCatCount">251 个工具</div>
+        </div>
+        <div class="tool-grid" id="toolGrid"></div>
+    </div>
+</div>
+<button class="backTop" id="backTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+const toolData = \${JSON.stringify(toolData,null,4)};
+let currentCatId = "all";
+let allTools = [];
+toolData.forEach(cat=>{
+    cat.tools.forEach(t=>{
+        t.catId = cat.catId;
+        t.catName = cat.catName;
+        allTools.push(t);
+    })
+})
+function renderSidebarCat(){
+    const wrap = document.getElementById("sidebarCatList");
+    wrap.innerHTML = "";
+    toolData.forEach(cat=>{
+        const realCount = cat.tools.length;
+        const div = document.createElement("div");
+        div.className = "item";
+        div.dataset.catid = cat.catId;
+        div.innerHTML = \`<span>\${cat.catIcon}</span><span>\${cat.catName}</span><span class="cat-num">\${realCount}</span>\`;
+        div.onclick = ()=>switchCat(cat.catId);
+        wrap.appendChild(div);
+    })
+    document.querySelector('.sidebar-menu .item[data-catid="all"]').onclick = ()=>switchCat("all");
+}
+function switchCat(catId){
+    currentCatId = catId;
+    document.querySelectorAll('.sidebar-menu .item').forEach(i=>i.classList.remove("active"));
+    document.querySelector(\`.sidebar-menu .item[data-catid="\${catId}"]\`).classList.add("active");
+    const titleDom = document.getElementById("currentCatName");
+    const countDom = document.getElementById("showCatCount");
+    let list;
+    if(catId === "all"){
+        titleDom.innerText = "全部工具";
+        list = allTools;
+    }else{
+        const c = toolData.find(x=>x.catId == catId);
+        titleDom.innerText = c.catName;
+        list = c.tools;
+    }
+    countDom.innerText = \`\${list.length} 个工具\`;
+    renderTools(list);
+}
+function renderTools(list){
+    const grid = document.getElementById("toolGrid");
+    grid.innerHTML = "";
+    list.forEach(tool=>{
+        const a = document.createElement("a");
+        a.className = "tool-card";
+        a.href = tool.href;
+        a.title = tool.desc;
+        a.innerHTML = \`
+            <div class="tool-icon">\${tool.icon}</div>
+            <div class="tool-info">
+                <div class="tool-name">\${tool.name}</div>
+                <div class="tool-desc">\${tool.desc}</div>
+        \`;
+        grid.appendChild(a);
+    })
+}
+let searchTimer = null;
+document.getElementById("searchInput").oninput = ()=>{
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(searchFilter, 200);
+}
+function searchFilter(){
+    const kw = document.getElementById("searchInput").value.trim().toLowerCase();
+    if(!kw) return switchCat(currentCatId);
+    const source = currentCatId === "all" ? allTools : toolData.find(c=>c.catId).tools;
+    const res = source.filter(t=>t.name.toLowerCase().includes(kw) || t.desc.toLowerCase().includes(kw));
+    document.getElementById("showCatCount").innerText = \`搜索结果：\${res.length} 个\`;
+    renderTools(res);
+}
+function toggleDark(){
+    document.documentElement.classList.toggle("dark");
+}
+window.onscroll = ()=>{
+    const btn = document.getElementById("backTopBtn");
+    btn.style.display = window.scrollY > 400 ? "block" : "none";
+}
+window.onload = ()=>{
+    renderSidebarCat();
+    switchCat("all");
+    console.log("总工具数：", allTools.length);
+}
+</script>
+</body>
+</html>`;
+    let final = tpl.replaceAll("\\${allTools.length}", allTools.length);
+    document.getElementById("codeOut").innerText = final;
+}
+
+// 页面初始化
+window.onload = function(){
+    refreshCatSelect();
+    renderList();
+}
+</script>
+</body>
+</html>

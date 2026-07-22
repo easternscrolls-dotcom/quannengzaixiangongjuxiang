@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自动裁剪音频末尾静音空白</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/ffmpeg.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>自动去除音频结尾多余静音空白</h2>
+<div class="upload-box">
+<input type="file" accept="audio/*" id="audioFile">
+</div>
+<button onclick="trimEndSilence()">裁剪末尾静音导出</button>
+<script>
+const { FFmpeg } = FFmpegWASM;
+let ffmpeg = null;
+let sourceAud = null;
+document.getElementById('audioFile').onchange = e=>sourceAud = e.target.files[0];
+async function loadFFmpeg(){
+  if(!ffmpeg){
+    ffmpeg = new FFmpeg();
+    await ffmpeg.load();
+  }
+}
+async function trimEndSilence(){
+  if(!sourceAud) return alert("上传音频");
+  await loadFFmpeg();
+  const buf = new Uint8Array(await sourceAud.arrayBuffer());
+  ffmpeg.writeFile("in.mp3", buf);
+  await ffmpeg.exec(["-i","in.mp3","-af","silenceremove=start_periods=0:stop_periods=-1:stop_duration=0.5:stop_threshold=-32dB","trim_end.mp3"]);
+  const outBuf = ffmpeg.readFile("trim_end.mp3");
+  const blob = new Blob([outBuf],{type:"audio/mpeg"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "去除尾部空白音频.mp3";
+  a.click();
+}
+</script>
+</body>
+</html>

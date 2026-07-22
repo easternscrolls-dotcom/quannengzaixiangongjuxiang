@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>短视频评论文案生成器</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+select{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+textarea{width:100%;height:260px;padding:12px;border:1px solid #ddd;border-radius:6px;margin-top:10px;font-family:monospace}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>抖音短视频热门评论文案批量生成</h2>
+<select id="commentType">
+<option value="praise">夸奖赞美评论</option>
+<option value="question">互动提问评论</option>
+<option value="emotion">走心感慨评论</option>
+<option value="funny">搞笑玩梗评论</option>
+</select>
+<button onclick="genComment()">生成评论文案</button>
+<textarea id="commentOut" readonly></textarea>
+<script>
+const commentPool = {
+praise:["太好看了！","博主太厉害了👍","收藏慢慢学习","一眼就爱上","质感绝了"],
+question:["请问链接在哪？","怎么做的呀？","求教程！","这个是什么？","后续还有更新吗"],
+emotion:["深有同感","说到心坎里了","越看越治愈","谁懂啊！","太真实了"],
+funny:["哈哈哈哈笑不活了","允许我反复观看","建议直接封神","狠狠码住","我先冲了"]
+};
+function genComment(){
+  const type = document.getElementById("commentType").value;
+  const arr = commentPool[type];
+  document.getElementById("commentOut").value = arr.join("\n");
+}
+</script>
+</body>
+</html>

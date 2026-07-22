@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSV表格升降序排序</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1300px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input,select{padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>CSV 根据指定列排序（数字/文本）</h2>
+<div class="upload-box">
+<input type="file" accept=".csv" id="csvFile">
+</div>
+<div class="row">
+<input id="sortCol" placeholder="排序列名称">
+<select id="sortMode">
+<option value="asc">升序（从小到大）</option>
+<option value="desc">降序（从大到小）</option>
+</select>
+</div>
+<button onclick="sortCsvData()">排序导出CSV</button>
+<script>
+document.getElementById('csvFile').onchange = e=>window.csvFileObj = e.target.files[0];
+async function sortCsvData(){
+  const col = document.getElementById('sortCol').value.trim();
+  const mode = document.getElementById('sortMode').value;
+  if(!window.csvFileObj || !col) return alert("上传文件并填写排序列");
+  const text = await window.csvFileObj.text();
+  const res = Papa.parse(text,{header:true,skipEmptyLines:true});
+  res.data.sort((a,b)=>{
+    let va = a[col]??"";
+    let vb = b[col]??"";
+    const na = parseFloat(va);
+    const nb = parseFloat(vb);
+    if(!isNaN(na) && !isNaN(nb)){
+      return mode==='asc' ? na - nb : nb - na;
+    }else{
+      if(mode==='asc') return va.localeCompare(vb,"zh-CN");
+      else return vb.localeCompare(va,"zh-CN");
+    }
+  })
+  const csvTxt = Papa.unparse({fields:res.meta.fields,data:res.data});
+  const blob = new Blob([csvTxt],{type:"text/csv;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "排序后表格.csv";
+  a.click();
+}
+</script>
+</body>
+</html>

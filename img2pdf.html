@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>多张图片批量合并生成PDF</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+#preview{display:grid;grid-template-columns:repeat(auto-fill,100px);gap:10px;margin-top:15px}
+img{width:90px;border:1px solid #eee}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>多张图片批量转PDF</h2>
+<div class="upload-box">
+<input type="file" accept="image/*" multiple id="imgInput">
+<p style="margin-top:8px;color:#666">多选图片，按上传顺序生成分页PDF</p>
+</div>
+<button onclick="imgToPdf()">生成PDF下载</button>
+<div id="preview"></div>
+<script>
+const { jsPDF } = window.jspdf;
+let imgList = [];
+document.getElementById('imgInput').onchange = e=>{
+  imgList = Array.from(e.target.files);
+  const preBox = document.getElementById('preview');
+  preBox.innerHTML = "";
+  imgList.forEach(f=>{
+    const url = URL.createObjectURL(f);
+    const img = document.createElement('img');
+    img.src = url;
+    preBox.appendChild(img);
+  })
+}
+async function imgToPdf(){
+  if(imgList.length===0) return alert("请上传图片");
+  const doc = new jsPDF();
+  for(let i=0;i<imgList.length;i++){
+    const url = URL.createObjectURL(imgList[i]);
+    if(i>0) doc.addPage();
+    doc.addImage(url,0,0,210,297);
+  }
+  doc.save("图片合集.pdf");
+}
+</script>
+</body>
+</html>

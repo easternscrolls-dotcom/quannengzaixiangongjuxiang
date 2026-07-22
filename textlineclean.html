@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>朋友圈文案换行清理</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+textarea{width:100%;height:220px;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{padding:12px;background:#2478f5;color:#fff;border:none;border-radius:6px;cursor:pointer}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>朋友圈/小红书文案：清理多余空行、统一换行</h2>
+<textarea id="lineInput"></textarea>
+<div class="btn-row">
+<button onclick="singleLine()">合并为单行</button>
+<button onclick="cleanBlankLine()">删除多余空行（保留一段一行）</button>
+</div>
+<textarea id="lineOutput" readonly></textarea>
+<script>
+function singleLine(){
+  const t = document.getElementById("lineInput").value;
+  document.getElementById("lineOutput").value = t.replace(/\r?\n/g," ");
+}
+function cleanBlankLine(){
+  const lines = document.getElementById("lineInput").value.split(/\r?\n/);
+  const res = [];
+  for(let s of lines){
+    if(s.trim()!=='') res.push(s.trim());
+  }
+  document.getElementById("lineOutput").value = res.join("\n");
+}
+</script>
+</body>
+</html>

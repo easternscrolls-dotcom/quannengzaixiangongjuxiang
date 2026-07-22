@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数字转中文大写金额</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>阿拉伯数字转为财务中文大写金额</h2>
+<input id="moneyInput" placeholder="输入数字，例如：1234.56">
+<button onclick="convertMoney()">转换大写金额</button>
+<input id="moneyOutput" readonly>
+<script>
+function convertMoney(){
+  const digit = document.getElementById('moneyInput').value.trim();
+  if(!/^\d+(\.\d{1,2})?$/.test(digit)){
+    alert("请输入合法金额数字，最多两位小数");
+    return;
+  }
+  const dict = ['零','壹','贰','叁','肆','伍','陆','柒','捌','玖'];
+  const unitInt = ['元','拾','佰','仟','万','拾','佰','仟','亿'];
+  const unitDec = ['角','分'];
+  let [intStr, decStr = "00"] = digit.split('.');
+  decStr = decStr.padEnd(2,"0").substring(0,2);
+  let result = "";
+  let zeroFlag = false;
+  for(let i=0;i<intStr.length;i++){
+    const num = parseInt(intStr[i]);
+    const pos = intStr.length - 1 - i;
+    if(num === 0){
+      zeroFlag = true;
+      if(pos === 0) result += "元";
+    }else{
+      if(zeroFlag) result += "零";
+      result += dict[num] + unitInt[pos];
+      zeroFlag = false;
+    }
+  }
+  if(intStr === "0") result = "零元";
+  const jiao = parseInt(decStr[0]);
+  const fen = parseInt(decStr[1]);
+  if(jiao>0) result += dict[jiao] + "角";
+  if(fen>0) result += dict[fen] + "分";
+  if(jiao===0 && fen===0) result += "整";
+  document.getElementById('moneyOutput').value = result;
+}
+</script>
+</body>
+</html>

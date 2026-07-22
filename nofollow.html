@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nofollow外链代码生成</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+input{width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:8px 0}
+textarea{width:100%;height:180px;padding:12px;border:1px solid #ddd;border-radius:6px;margin-top:10px;font-family:monospace}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← 返回工具箱首页</a>
+<h2>生成 rel="nofollow" 外链A标签代码</h2>
+<div class="row">
+<input id="linkUrl" placeholder="目标链接URL">
+<input id="linkText" placeholder="锚文本">
+</div>
+<label><input type="checkbox" id="openBlank" checked> 新窗口打开 target="_blank"</label>
+<button onclick="buildNofollow()">生成HTML代码</button>
+<textarea id="nofollowOut" readonly></textarea>
+<script>
+function buildNofollow(){
+  const url = document.getElementById('linkUrl').value.trim();
+  const text = document.getElementById('linkText').value.trim();
+  const blank = document.getElementById('openBlank').checked;
+  if(!url||!text){alert("填写链接与锚文本");return;}
+  let attr = 'rel="nofollow"';
+  if(blank) attr += ' target="_blank"';
+  const code = `<a href="${url}" ${attr}>${text}</a>`;
+  document.getElementById('nofollowOut').value = code;
+}
+</script>
+</body>
+</html>
