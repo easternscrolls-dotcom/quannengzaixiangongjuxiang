@@ -657,7 +657,7 @@ function switchCat(catId){
         const targetCat = toolData.find(c=>c.catId === catId);
         if(targetCat){
             catTitle = targetCat.catName;
-            showList = target.tools.filter(item=>typeof item === "object");
+            showList = targetCat.tools.filter(item=>typeof item === "object");
         }else{
             showList = [...allTools];
         }
