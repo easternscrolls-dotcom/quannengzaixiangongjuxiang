@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>字幕时间轴简易对齐工具| 全能在线工具箱</title>
+<meta name="description" content="字幕时间轴简易对齐工具，免费在线工具，浏览器本地处理数据，无需上传文件，保护隐私。">
+<style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+body{
+  padding: 24px;
+  background:#fff;
+}
+#app{
+  max-width: 900px;
+  margin: 0 auto;
+}
+header{
+  margin-bottom: 24px;
+}
+header h1{
+  margin-top:12px;
+  font-size:24px;
+}
+.tool-container{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+textarea{
+  width:100%;
+  min-height:140px;
+  padding:8px;
+  font-size:14px;
+  border:1px solid #ccc;
+  border-radius:4px;
+}
+button{
+  padding:8px 16px;
+  cursor:pointer;
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <a href="/">← 返回工具箱首页</a>
+    <h1>字幕时间轴简易对齐工具</h1>
+  </header>
+  <main class="tool-container">
+    <div class="input-area">
+      <textarea placeholder="输入内容"></textarea>
+      <button id="runBtn">执行转换</button>
+    </div>
+    <div class="output-area">
+      <textarea readonly placeholder="结果输出"></textarea>
+    </div>
+  </main>
+<script src="/js/common.js"></script>
+<script>
+// 当前工具标识
+const toolKey = "subtitle-time-align";
+// 工具逻辑写在这里
+</script>
+</body>
+</html>

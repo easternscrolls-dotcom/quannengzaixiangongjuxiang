@@ -303,8 +303,16 @@ const toolData = [
             {name:".htaccess生成",desc:"301/防盗链规则",page:"htaccess.html",icon:"📜"},
             {name:"HTTP状态码查询",desc:"200/301/404释义",page:"httpcode.html",icon:"🔍"},
             {name:"Canonical标签生成",desc:"重复页面标准链接",page:"canonical.html",icon:"🔗"},
-            {name:"Cookie解析工具",desc:"cookie转JSON键值",page:"cookieparse.html",icon:"🍪"}
-        ]
+            {name:"Cookie解析工具",desc:"cookie转JSON键值",page:"cookieparse.html",icon:"🍪"},
+            {name:"DNS记录查询",desc:"A/AAAA/CNAME/TXT",page:"dns-query.html",icon:"🌐"},
+            {name:"网页Header检测",desc:"响应头分析",page:"http-header-check.html",icon:"🔍"},
+            {name:"移动端适配检测",desc:"网页响应式检测",page:"mobile-view-check.html",icon:"📱"},
+            {name:"网页编码探测",desc:"检测字符编码",page:"page-charset-detect.html",icon:"🔤"},
+            {name:"网页正文提取",desc:"过滤广告导航",page:"page-main-content.html",icon:"📄"},
+            {name:"URL参数拼装",desc:"拼接查询参数",page:"query-builder.html",icon:"🔗"},
+            {name:"UA请求头解析",desc:"解析浏览器信息",page:"user-agent-analyze.html",icon:"🕵️"},
+            {name:"SSL证书查询",desc:"证书到期检测",page:"ssl-checker.html",icon:"🔒"},
+            {name:"批量URL状态码",desc:"批量检测状态",page:"batch-url-status-check.html",icon:"🔍"}]
     },
     {
         catId: "video",
@@ -337,8 +345,12 @@ const toolData = [
             {name:"去除静音片段",desc:"自动裁剪空白音频",page:"videotrimsilent.html",icon:"🔊"},
             {name:"调整视频音量",desc:"放大降低音量",page:"videovolume.html",icon:"🔊"},
             {name:"添加文字水印",desc:"半透明水印",page:"videowatermark.html",icon:"🏷️"},
-            {name:"SRT转ASS字幕",desc:"字幕格式转换",page:"srt2ass.html",icon:"📽️"}
-        ]
+            {name:"SRT转ASS字幕",desc:"字幕格式转换",page:"srt2ass.html",icon:"📽️"},
+            {name:"视频黑边裁剪",desc:"智能去黑边",page:"black-border-auto-crop.html",icon:"✂️"},
+            {name:"视频分屏合并",desc:"多画面拼接",page:"video-split-screen.html",icon:"🖥️"},
+            {name:"视频音量标准化",desc:"统一音量",page:"video-volume-normalize.html",icon:"🔊"},
+            {name:"字幕时间偏移",desc:"整体偏移调整",page:"subtitle-offset-adjust.html",icon:"⏱️"},
+            {name:"字幕时间轴对齐",desc:"逐条对齐",page:"subtitle-time-align.html",icon:"📝"}]
     },
     {
         catId: "audio",
@@ -411,8 +423,16 @@ const toolData = [
             {name:"全局模糊",desc:"整张虚化",page:"imgblurfull.html",icon:"🌫️"},
             {name:"白底去背景",desc:"一键透明PNG",page:"imgremovebg.html",icon:"🧩"},
             {name:"清除EXIF",desc:"删除拍摄信息",page:"imgremoveexif.html",icon:"🔒"},
-            {name:"图片比例换算",desc:"1:1/3:4/9:16",page:"coverratio.html",icon:"📐"}
-        ]
+            {name:"图片比例换算",desc:"1:1/3:4/9:16",page:"coverratio.html",icon:"📐"},
+            {name:"九宫格切图",desc:"小红书长图切分",page:"9-grid-image-cut.html",icon:"✂️"},
+            {name:"圆形头像裁剪",desc:"圆形头像生成",page:"circle-avatar-crop.html",icon:"⭕"},
+            {name:"图片色值提取",desc:"导出色值表格",page:"color-export-table.html",icon:"🎨"},
+            {name:"证件照换底色",desc:"尺寸裁剪换底",page:"id-photo-crop.html",icon:"🪪"},
+            {name:"图片AI高清放大",desc:"Wasm前端放大",page:"image-ai-upscale.html",icon:"✨"},
+            {name:"图片消除物体",desc:"涂抹去物",page:"image-object-remove.html",icon:"🧽"},
+            {name:"倒计时图片生成",desc:"活动倒计时图",page:"countdown-image-gen.html",icon:"⏳"},
+            {name:"电商主图尺寸",desc:"主图尺寸规范",page:"shop-image-size-guide.html",icon:"🛒"},
+            {name:"配色方案生成",desc:"主色生成配色",page:"palette.html",icon:"🎨"}]
     },
     {
         catId: "gif",
@@ -422,7 +442,8 @@ const toolData = [
             {name:"GIF压缩",desc:"缩小体积",page:"gifcompress.html",icon:"🗜️"},
             {name:"GIF缩放",desc:"自定义尺寸",page:"gifresize.html",icon:"📐"},
             {name:"GIF调速",desc:"快慢倍速",page:"gifspeed.html",icon:"⏩"}
-        ]
+        ,
+            {name:"MP4 GIF互转",desc:"视频动图双向",page:"mp4-gif-convert.html",icon:"🎞️"}]
     },
     {
         catId: "pdf",
@@ -457,8 +478,16 @@ const toolData = [
             {name:"打印多页排版",desc:"2/4页合一打印",page:"pdfprintlayout.html",icon:"🖨️"},
             {name:"页面重新排序",desc:"自定义页码顺序",page:"pdfreorder.html",icon:"🔀"},
             {name:"PDF页面旋转",desc:"批量旋转页码",page:"pdfrotate.html",icon:"🔃"},
-            {name:"PDF提取页面",desc:"导出指定页",page:"pdfsplit.html",icon:"📄"}
-        ]
+            {name:"PDF提取页面",desc:"导出指定页",page:"pdfsplit.html",icon:"📄"},
+            {name:"PDF添加页码",desc:"批量插入页码",page:"pdf-add-page-number.html",icon:"🔢"},
+            {name:"PDF提取图片",desc:"导出内部图片",page:"pdf-extract-images.html",icon:"🖼️"},
+            {name:"PDF元数据修改",desc:"编辑文档信息",page:"pdf-metadata-edit.html",icon:"📝"},
+            {name:"PDF文本替换",desc:"批量替换文字",page:"pdf-text-replace.html",icon:"✍️"},
+            {name:"PDF文本签章",desc:"加盖文本章",page:"pdf-text-signature.html",icon:"🔏"},
+            {name:"PDF转图片",desc:"页面导出图片",page:"pdfimg.html",icon:"🖼️"},
+            {name:"多张图片合并PDF",desc:"批量图片生成PDF",page:"images-to-pdf.html",icon:"📄"},
+            {name:"图片转PDF",desc:"单/多图转PDF",page:"imgpdf.html",icon:"📄"},
+            {name:"Markdown导出PDF",desc:"MD转PDF文档",page:"markdown-to-pdf.html",icon:"📄"}]
     },
     {
         catId: "csv",
@@ -485,8 +514,12 @@ const toolData = [
             {name:"CSV预览",desc:"网页表格",page:"csvpreview.html",icon:"👀"},
             {name:"全局替换",desc:"批量修改单元格",page:"csvreplace.html",icon:"🔁"},
             {name:"CSV排序",desc:"升降序",page:"csvsort.html",icon:"↕️"},
-            {name:"按列分组拆分",desc:"分组导出",page:"csvsplit.html",icon:"📦"}
-        ]
+            {name:"按列分组拆分",desc:"分组导出",page:"csvsplit.html",icon:"📦"},
+            {name:"表格按列去重",desc:"按列去重复",page:"table-column-dedup.html",icon:"🗂️"},
+            {name:"表格数据脱敏",desc:"批量脱敏",page:"table-data-desensitize.html",icon:"🛡️"},
+            {name:"表格差异对比",desc:"两表对比",page:"table-diff-compare.html",icon:"🔁"},
+            {name:"表格生成SQL",desc:"导出INSERT",page:"table-to-sql-insert.html",icon:"🗄️"},
+            {name:"TXT转CSV",desc:"文本转表格",page:"txt-to-csv.html",icon:"📊"}]
     },
     {
         catId: "text",
@@ -521,8 +554,18 @@ const toolData = [
             {name:"批量话题标签",desc:"批量hashtag",page:"hashtagbatch.html",icon:"#️⃣"},
             {name:"文案空格清理",desc:"清除多余空格",page:"copyspace.html",icon:"🧹"},
             {name:"倒计时生成",desc:"目标日期剩余时间",page:"countdown.html",icon:"⏳"},
-            {name:"短视频评论生成",desc:"热门文案",page:"commentgen.html",icon:"💬"}
-        ]
+            {name:"短视频评论生成",desc:"热门文案",page:"commentgen.html",icon:"💬"},
+            {name:"Emoji智能插入",desc:"文案加表情",page:"emoji-auto-insert.html",icon:"😀"},
+            {name:"商品标题分词",desc:"标题切分",page:"product-title-seg.html",icon:"🏷️"},
+            {name:"随机中文短句",desc:"随机句子",page:"random-chinese-sentence.html",icon:"📝"},
+            {name:"口播时长预估",desc:"字数算时长",page:"script-duration-calc.html",icon:"⏱️"},
+            {name:"敏感词检测",desc:"批量扫描",page:"sensitive-word-scan.html",icon:"🚫"},
+            {name:"文本频次统计",desc:"词频统计",page:"text-frequency-stats.html",icon:"📊"},
+            {name:"标题生成Slug",desc:"URL友好串",page:"text-to-slug.html",icon:"🔤"},
+            {name:"标题长度模拟",desc:"字数长度预览",page:"title-length-simulator.html",icon:"📏"},
+            {name:"乱数假文生成",desc:"中英文占位文",page:"lorem.html",icon:"📝"},
+            {name:"大小写转换",desc:"命名风格互转",page:"caseconvert.html",icon:"🔤"},
+            {name:"全角半角转换",desc:"全半角互转",page:"fullhalf.html",icon:"🔡"}]
     },
     {
         catId: "jsonxml",
@@ -532,8 +575,8 @@ const toolData = [
             {name:"JSON格式化校验",desc:"格式化压缩语法检测",page:"json.html",icon:"{}"},
             {name:"JSON转CSV",desc:"数组导出表格",page:"json2csv.html",icon:"📊"},
             {name:"JSON数组去重",desc:"按字段去重",page:"jsonunique.html",icon:"🧹"},
-            {name:"JSON XML互转",desc:"双向格式化",page:"jsonxml.html",icon:"<>"}
-        ]
+            {name:"JSON XML互转",desc:"双向格式化",page:"jsonxml.html",icon:"<>"},
+            {name:"JSON YAML互转",desc:"双向格式转换",page:"json-yaml-convert.html",icon:"{}"}]
     },
     {
         catId: "seo",
@@ -550,8 +593,9 @@ const toolData = [
             {name:"Nofollow标签",desc:"外链代码",page:"nofollow.html",icon:"🔗"},
             {name:"Markdown转CSV",desc:"表格导出",page:"md2table.html",icon:"📊"},
             {name:"颜色对比度",desc:"WCAG无障碍检测",page:"colorcontrast.html",icon:"🎨"},
-            {name:"图片ALT批量生成",desc:"批量img alt标签",page:"altgen.html",icon:"🖼️"}
-        ]
+            {name:"图片ALT批量生成",desc:"批量img alt标签",page:"altgen.html",icon:"🖼️"},
+            {name:"OG标签生成",desc:"社交分享标签",page:"og-generator.html",icon:"🔗"},
+            {name:"关键词分词",desc:"分词提取",page:"keyword-segment.html",icon:"🔤"}]
     },
     {
         catId: "dev",
@@ -583,8 +627,30 @@ const toolData = [
             {name:"字符编码转换",desc:"GBK/UTF8",page:"charsetconv.html",icon:"🔤"},
             {name:"银行卡测试号",desc:"模拟卡号",page:"banktest.html",icon:"💳"},
             {name:"BMI计算器",desc:"身高体重指数",page:"bmi.html",icon:"⚖️"},
-            {name:"年龄计算器",desc:"周岁虚岁存活天数",page:"agecalc.html",icon:"🎂"}
-        ]
+            {name:"年龄计算器",desc:"周岁虚岁存活天数",page:"agecalc.html",icon:"🎂"},
+            {name:"Code128条形码",desc:"条形码生成",page:"barcode-code128.html",icon:"📊"},
+            {name:"Base32编解码",desc:"文本互转",page:"base32-encode-decode.html",icon:"🔒"},
+            {name:"色值互转",desc:"RGB HSL HSB",page:"color-hsl-convert.html",icon:"🎨"},
+            {name:"CSS美化压缩",desc:"格式化/压缩",page:"css-format-min.html",icon:"🎨"},
+            {name:"函数图像绘制",desc:"在线绘图",page:"function-graph-draw.html",icon:"📈"},
+            {name:"几何面积计算",desc:"图形面积",page:"geometry-area-calc.html",icon:"📐"},
+            {name:"HmacSHA加密",desc:"HMAC签名",page:"hmac-sha-crypto.html",icon:"🔐"},
+            {name:"HTML格式化压缩",desc:"美化/压缩",page:"html-format-min.html",icon:"🌐"},
+            {name:"JWT解析校验",desc:"Token解析",page:"jwt-parser.html",icon:"🔐"},
+            {name:"随机MAC生成",desc:"MAC地址生成",page:"mac-generator.html",icon:"🌐"},
+            {name:"SVG预览格式化",desc:"SVG美化预览",page:"svg-preview-format.html",icon:"🧩"},
+            {name:"Unicode中文互转",desc:"编码互转",page:"unicode-cn-convert.html",icon:"🔤"},
+            {name:"变量命名转换",desc:"命名风格互转",page:"var-name-transform.html",icon:"🔤"},
+            {name:"工作日工期计算",desc:"排除节假日",page:"workday-calculator.html",icon:"📅"},
+            {name:"ZIP预览解压",desc:"前端解压预览",page:"zip-preview-unzip.html",icon:"🗜️"},
+            {name:"方差标准差计算",desc:"统计测算",page:"std-variance-calc.html",icon:"📊"},
+            {name:"批量二维码生成",desc:"多码批量导出",page:"batch-qrcode-generate.html",icon:"📱"},
+            {name:"批量随机日期",desc:"随机日期生成",page:"batch-random-date.html",icon:"📅"},
+            {name:"SKU批量生成",desc:"导出表格",page:"batch-sku-generator.html",icon:"🏷️"},
+            {name:"快递单号校验",desc:"格式校验",page:"express-number-check.html",icon:"📦"},
+            {name:"随机邮箱网址",desc:"批量生成",page:"random-email-url.html",icon:"📧"},
+            {name:"权重随机抽签",desc:"按权重抽取",page:"random-weight-draw.html",icon:"🎲"},
+            {name:"数字统计",desc:"数值统计分析",page:"numberstat.html",icon:"🔢"}]
     },
     {
         catId: "business",
@@ -600,8 +666,12 @@ const toolData = [
             {name:"快递运费",desc:"首重续重",page:"freightcalc.html",icon:"📦"},
             {name:"汽车油耗",desc:"百公里油费",page:"fuelcalc.html",icon:"⛽"},
             {name:"批量定价",desc:"加价打折批量",page:"batchprice.html",icon:"💹"},
-            {name:"直通车保本出价",desc:"广告保本出价测算",page:"adbidcalc.html",icon:"📈"}
-        ]
+            {name:"直通车保本出价",desc:"广告保本出价测算",page:"adbidcalc.html",icon:"📈"},
+            {name:"凑单最优价格",desc:"优惠测算",page:"best-coupon-price.html",icon:"🛒"},
+            {name:"车贷月供计算",desc:"月供测算",page:"car-loan-calc.html",icon:"🚗"},
+            {name:"复利利息计算",desc:"本息测算",page:"compound-interest-calc.html",icon:"💹"},
+            {name:"租房成本测算",desc:"租金总成本",page:"rental-cost-calc.html",icon:"🏠"},
+            {name:"标准体重表",desc:"身高标准体重",page:"weight-standard-table.html",icon:"⚖️"}]
     }
 ];
 

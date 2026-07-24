@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大小写转换| 全能在线工具箱</title>
+<meta name="description" content="英文大小写、标题、驼峰、蛇形、短横线等命名风格互转，免费在线工具。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif;}
+body{padding:24px;background:#fff;} #app{max-width:900px;margin:0 auto;}
+header{margin-bottom:24px;} header h1{margin-top:12px;font-size:24px;}
+.tool-container{display:flex;flex-direction:column;gap:12px;}
+textarea{width:100%;min-height:120px;padding:8px;font-size:14px;border:1px solid #ccc;border-radius:4px;}
+.ops{display:flex;flex-wrap:wrap;gap:8px;}
+button{padding:8px 16px;cursor:pointer;border:1px solid #ccc;background:#f5f5f5;border-radius:4px;}
+button.primary{background:#2563eb;color:#fff;border-color:#2563eb;}
+</style>
+</head>
+<body>
+<div id="app">
+  <header><a href="/">← 返回工具箱首页</a><h1>大小写转换</h1></header>
+  <main class="tool-container">
+    <textarea id="in" placeholder="输入英文文本..."></textarea>
+    <div class="ops">
+      <button onclick="convert('upper')">大写</button>
+      <button onclick="convert('lower')">小写</button>
+      <button onclick="convert('title')">标题大写</button>
+      <button onclick="convert('sentence')">句首大写</button>
+      <button onclick="convert('camel')">camelCase</button>
+      <button onclick="convert('pascal')">PascalCase</button>
+      <button onclick="convert('snake')">snake_case</button>
+      <button onclick="convert('kebab')">kebab-case</button>
+      <button onclick="copy()">复制结果</button>
+    </div>
+    <textarea id="out" readonly placeholder="结果..."></textarea>
+  </main>
+<script src="/js/common.js"></script>
+<script>
+const toolKey = "caseconvert";
+const inp=document.getElementById('in'), out=document.getElementById('out');
+function toWords(){ return inp.value.trim().split(/\s+/).filter(Boolean); }
+function convert(mode){
+  const t=inp.value;
+  if(!t.trim()){ out.value=''; return; }
+  let r='';
+  if(mode==='upper') r=t.toUpperCase();
+  else if(mode==='lower') r=t.toLowerCase();
+  else if(mode==='title') r=toWords().map(w=>w.charAt(0).toUpperCase()+w.slice(1).toLowerCase()).join(' ');
+  else if(mode==='sentence') r=t.replace(/(^\s*|[.!?]\s+)([a-z])/g,(_,a,b)=>a+b.toUpperCase());
+  else {
+    const ws=toWords().map(w=>w.toLowerCase());
+    if(mode==='camel') r=ws.map((w,i)=>i?w.charAt(0).toUpperCase()+w.slice(1):w).join('');
+    else if(mode==='pascal') r=ws.map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join('');
+    else if(mode==='snake') r=ws.join('_');
+    else if(mode==='kebab') r=ws.join('-');
+  }
+  out.value=r;
+}
+function copy(){ if(out.value) navigator.clipboard.writeText(out.value); }
+</script>
+</body>
+</html>
