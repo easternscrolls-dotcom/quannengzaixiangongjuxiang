@@ -999,12 +999,6 @@
 <priority>0.8</priority>
 </url>
 <url>
-<loc>https://72tool.com/numberstat.html</loc>
-<lastmod>2026-07-25</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.8</priority>
-</url>
-<url>
 <loc>https://72tool.com/og-generator.html</loc>
 <lastmod>2026-07-25</lastmod>
 <changefreq>weekly</changefreq>
@@ -1348,12 +1342,6 @@
 </url>
 <url>
 <loc>https://72tool.com/robotstxt.html</loc>
-<lastmod>2026-07-25</lastmod>
-<changefreq>weekly</changefreq>
-<priority>0.8</priority>
-</url>
-<url>
-<loc>https://72tool.com/saltgen.html</loc>
 <lastmod>2026-07-25</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.8</priority>
