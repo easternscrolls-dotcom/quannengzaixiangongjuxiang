@@ -52,5 +52,54 @@ function batchPriceCalc(){
     document.getElementById('priceOut').value = res.join("\n");
 }
 </script>
+
+<!-- Cookie弹窗开始 -->
+<div id="cookieBox" style="position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;padding:16px 24px;z-index:9999;display:none;">
+    <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+        <div style="flex:1;min-width:300px;">
+            <p style="margin:0 0 6px 0;font-size:14px;color:#333;">🍪 Cookie 使用提示</p>
+            <p style="margin:0;font-size:13px;color:#666;">
+                本站使用Cookie优化访问体验，并投放Google联盟广告。继续使用网站即代表您同意我们的Cookie政策，您可查看<a href="/privacy.html" style="color:#0066cc;">隐私政策</a>。
+            </p>
+        </div>
+        <div style="display:flex;gap:10px;">
+            <button id="cookieAccept" style="padding:8px 18px;background:#2563eb;color:#fff;border:none;border-radius:6px;cursor:pointer;">同意</button>
+            <button id="cookieReject" style="padding:8px 18px;background:#eee;color:#333;border:none;border-radius:6px;cursor:pointer;">拒绝</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const cookieBox = document.getElementById('cookieBox');
+const acceptBtn = document.getElementById('cookieAccept');
+const rejectBtn = document.getElementById('cookieReject');
+const cookieStatus = localStorage.getItem('cookieConsent');
+if (!cookieStatus) {
+    cookieBox.style.display = 'block';
+}
+acceptBtn.onclick = function(){
+    localStorage.setItem('cookieConsent','accept');
+    cookieBox.style.display = 'none';
+};
+rejectBtn.onclick = function(){
+    localStorage.setItem('cookieConsent','reject');
+    cookieBox.style.display = 'none';
+};
+</script>
+<!-- Cookie弹窗结束 -->
+
+
+<footer style="margin-top:60px;padding:30px 10px;text-align:center;border-top:1px solid #e5e7eb;color:#666;font-size:14px;">
+    <div style="margin-bottom:10px;">
+        <a href="/about.html" style="margin:0 10px;color:#444;text-decoration:none;">关于我们</a>
+        <span>|</span>
+        <a href="/privacy.html" style="margin:0 10px;color:#444;text-decoration:none;">隐私政策</a>
+        <span>|</span>
+        <a href="/contact.html" style="margin:0 10px;color:#444;text-decoration:none;">联系我们</a>
+    </div>
+    <div>© 2026 72在线工具箱 72tool.com 保留所有权利</div>
+</footer>
+
+
 </body>
 </html>
