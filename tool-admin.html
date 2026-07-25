@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>工具箱后台管理</title>
+<title>工具后台管理页 | 72在线工具箱</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui}
 body{background:#f5f7fa;color:#222;padding:20}
@@ -25,6 +25,8 @@ pre{background:#111;color:#fff;padding:16px;overflow:auto;max-height:400px;borde
 </style>
 </head>
 <body>
+<h1 style="margin:16px 0;font-size:22px;">工具后台管理页</h1>
+
 <div class="container">
     <h1>工具箱可视化后台管理</h1>
     <a href="index.html">← 返回工具箱首页</a>
@@ -507,94 +509,7 @@ async function batchImport(){
         const text = await file.text();
         // 提取标题
         let name = fname.replace(".html","");
-        const titleMatch = text.match(/<title>([\s\S]+?)<\/title>/);
-        if(titleMatch) name = titleMatch[1].trim();
-        // 提取描述
-        let desc = "本地在线工具";
-        const descMatch = text.match(/meta name="description" content="([\s\S]+?)"/);
-        if(descMatch) desc = desc[1].trim();
-        const href = fname;
-        if(existHref.includes(href) || existName.includes(name)){
-            log.innerText += `【重复跳过】${fname}(${name})\n`;
-            skip++;
-            continue;
-        }
-        target.tools.push({name,desc,href,icon:"🔧"});
-        existHref.push(href);
-        existName.push(name);
-        add++;
-        log.innerText += `✅导入成功：${name}\n`;
-    }
-    log.innerText += `\n导入完成：新增${add}个，跳过${skip}个`;
-    input.value = "";
-    renderList();
-}
-
-// 渲染全部分类工具列表+重复提示
-function renderList(){
-    const wrap = document.getElementById("listWrap");
-    wrap.innerHTML = "";
-    const repeats = checkAllRepeat();
-    if(repeats.length > 0){
-        let warnHtml = `<div class="warn"><h3>⚠️检测到${repeats}处重复工具</h3>`;
-        repeats.forEach(item=>{
-            warnHtml += `<p>${item.type}｜分类：${item.cat}｜工具名：${item.name}｜文件：${item.href}</p>`;
-        })
-        warnHtml += `</div>`;
-        wrap.innerHTML += warnHtml;
-    }else{
-        wrap.innerHTML += `<div class="ok">✅ 全部工具无重复</div>`;
-    }
-    toolData.forEach(cat=>{
-        const div = document.createElement("div");
-        div.className = "cat-item";
-        let html = `<h3>${cat.catIcon} ${cat.catName} (${cat.tools.length}个) <button class="del" onclick="delCat(${cat.catId})">删除整个分类</button></h3>`;
-        cat.tools.forEach((tool,idx)=>{
-            html += `
-            <div class="item-card">
-                <span>${tool.icon} ${tool.name} | ${tool.desc} | 文件：${tool.href}</span>
-                <button class="del" onclick="delTool(${cat.catId},${idx})">删除</button>
-            </div>`;
-        })
-        div.innerHTML = html;
-        wrap.appendChild(div);
-    })
-}
-
-// 删除分类
-function delCat(id){
-    if(!confirm("确定删除该分类及所有工具？")) return;
-    toolData = toolData.filter(c=>c.catId != id);
-    refreshCatSelect();
-    renderList();
-}
-
-// 删除单个工具
-function delCat(catId){
-    if(!confirm("确定删除整个分类及所有工具？")) return;
-    toolData = toolData.filter(c=>c.catId != catId);
-    refreshCatSelect();
-    renderList();
-}
-function delTool(catId, idx){
-    const cat = toolData.find(c=>c.catId == catId);
-    cat.tools.splice(idx,1);
-    renderList();
-}
-
-// 生成完整index.html源码
-function generateIndexCode(){
-    const repeats = checkAllRepeat();
-    if(repeats.length > 0) return alert(`存在${repeats}条重复工具，请删除后再生成`);
-    // index固定模板
-    const tpl = `<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="keywords" content="在线工具箱,JSON格式化,视频压缩,单位换算,SEO工具,电商计算器,随机密码生成,PDF处理,图片工具,前端本地工具">
-<meta name="description" content="251款纯前端离线在线工具箱，包含文本处理、FFmpeg视频工具、图片转换、PDF、CSV表格、站长SEO、电商运营、生活换算、加密随机数据、数学图表，所有运算本地浏览器不上传文件，保护隐私。">
-<title>全品类在线工具箱｜251款免费离线转换工具</title>
+        const titleMatch = text.match(/<title>工具后台管理页 | 72在线工具箱</title>
 <style>
 :root{
     --primary:#9b78e8;
@@ -816,6 +731,8 @@ body{background:var(--page);color:var(--text-main);height:100vh;display:flex;fle
 </style>
 </head>
 <body>
+<h1 style="margin:16px 0;font-size:22px;">工具后台管理页</h1>
+
 <div class="top-bar">
     <div class="logo">在线工具箱</div>
     <div class="search-wrap">
