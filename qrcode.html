@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>二维码生成器在线工具 - 免费在线开发调试</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1300px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+textarea{width:100%;height:200px;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace}
+input,select{padding:10px;border:1px solid #ddd;border-radius:6px;margin:6px 6px 6px 0;font-size:14px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:8px 0}
+</style>
+<script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+    <!-- SEO -->
+    <meta name="description" content="二维码生成器在线工具，输入网址或文本一键生成二维码，可选纠错等级与尺寸并下载 PNG，适用于网址分享、名片、活动推广等场景；无需下载、手机可用，浏览器本地处理、数据不上传、即开即用。">
+    <link rel="canonical" href="https://72tool.com/qrcode.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="二维码生成器 | 72在线工具箱">
+    <meta property="og:description" content="二维码生成器，免费在线工具，浏览器本地生成、数据不上传、即开即用。">
+    <meta property="og:url" content="https://72tool.com/qrcode.html">
+    <meta property="og:site_name" content="72在线工具箱">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="二维码生成器 | 72在线工具箱">
+    <meta name="twitter:description" content="二维码生成器，免费在线工具，浏览器本地生成、数据不上传、即开即用。">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"SoftwareApplication","name":"二维码生成器","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"url":"https://72tool.com/qrcode.html"}
+    </script>
+    <!-- adsense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495097009978965" crossorigin="anonymous"></script>
+</head>
+<body>
+<h1 style="margin:16px 0;font-size:22px;">二维码生成器</h1>
+<p class="tool-desc" style="margin:4px 0 18px;color:#6b7280;font-size:14px;line-height:1.7;">二维码生成器 是一款免费在线工具，无需下载安装，打开网页即可直接使用，把网址或文本生成可下载的二维码。</p>
+
+<nav class="crumb" style="margin:18px 0 0;font-size:13px;color:#6b7280;"><a href="index.html" style="color:#2478f5;text-decoration:none;">首页</a> / <a href="dev-tools.html" style="color:#2478f5;text-decoration:none;">开发工具</a></nav>
+<!-- cat-crumb -->
+<!-- tool-tags --><a href="index.html" class="back">← 返回工具箱首页</a>
+<!-- sibling-nav --><div style="margin:12px 0 0;padding:10px 14px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;"><span style="font-size:13px;color:#6b7280;margin-right:6px;">同类工具：</span><span style="display:inline-flex;flex-wrap:wrap;gap:8px;vertical-align:middle;">
+    <a href="wifi-qrcode.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">WiFi二维码生成</a>
+    <a href="txt-encoding.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">TXT编码转换</a>
+    <a href="txt-newline.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">换行符转换</a>
+    <a href="regex.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">正则测试</a>
+    <a href="regtemplate.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">常用正则模板</a>
+    <a href="rgbhex.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">RGB HEX转换</a>
+    <a href="sqlformat.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">SQL格式化</a>
+    <a href="tagextract.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">HTML Meta提取</a>
+    <a href="dev-tools.html" style="display:inline-block;padding:6px 12px;background:#eef4ff;border:1px solid #d6e4ff;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">查看全部开发工具 →</a>
+  </span></div>
+<h2>二维码生成器（网址 / 文本）</h2>
+<input id="txt" placeholder="输入网址或文本，如 https://72tool.com" style="width:100%;">
+<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:6px 0;">
+  <label>纠错等级 <select id="ecl"><option value="L">L 低</option><option value="M" selected>M 中</option><option value="Q">Q 较高</option><option value="H">H 高</option></select></label>
+  <label>尺寸(px) <input id="sz" type="number" value="256" min="128" max="1024" style="width:90px;"></label>
+</div>
+<button onclick="gen()">生成二维码</button>
+<div id="qr" style="display:flex;justify-content:center;margin:16px 0;"></div>
+<button onclick="dl()" style="background:#0ea5a4;">下载 PNG</button>
+<script>
+var qr;
+function gen(){
+  var t=document.getElementById('txt').value.trim();
+  if(!t){alert('请输入网址或文本');return;}
+  document.getElementById('qr').innerHTML='';
+  var s=parseInt(document.getElementById('sz').value)||256;
+  qr=new QRCode(document.getElementById('qr'),{text:t,width:s,height:s,correctLevel:QRCode.CorrectLevel[document.getElementById('ecl').value]});
+}
+function dl(){
+  var img=document.querySelector('#qr img')||document.querySelector('#qr canvas');
+  if(!img){alert('请先生成二维码');return;}
+  var url=img.tagName==='IMG'?img.src:img.toDataURL('image/png');
+  var a=document.createElement('a');a.href=url;a.download='qrcode.png';a.click();
+}
+</script>
+
+<!-- Cookie弹窗开始 -->
+<div id="cookieBox" style="position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;padding:16px 24px;z-index:9999;display:none;">
+    <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+        <div style="flex:1;min-width:300px;">
+            <p style="margin:0 0 6px 0;font-size:14px;color:#333;">🍪 Cookie 使用提示</p>
+            <p style="margin:0;font-size:13px;color:#666;">本站使用Cookie优化访问体验，并投放Google联盟广告。继续使用网站即代表您同意我们的Cookie政策，您可查看<a href="/privacy.html" style="color:#0066cc;">隐私政策</a>。</p>
+        </div>
+        <div style="display:flex;gap:10px;">
+            <button id="cookieAccept" style="padding:8px 18px;background:#2563eb;color:#fff;border:none;border-radius:6px;cursor:pointer;">同意</button>
+            <button id="cookieReject" style="padding:8px 18px;background:#eee;color:#333;border:none;border-radius:6px;cursor:pointer;">拒绝</button>
+        </div>
+    </div>
+</div>
+<script>
+const cookieBox=document.getElementById('cookieBox');const cookieStatus=localStorage.getItem('cookieConsent');
+if(!cookieStatus){cookieBox.style.display='block';}
+document.getElementById('cookieAccept').onclick=function(){localStorage.setItem('cookieConsent','accept');cookieBox.style.display='none';};
+document.getElementById('cookieReject').onclick=function(){localStorage.setItem('cookieConsent','reject');cookieBox.style.display='none';};
+</script>
+<!-- Cookie弹窗结束 -->
+
+<div style="margin:40px 0 0;padding:20px;background:#f7f8fa;border-radius:8px;">
+<!-- longtail-body -->
+<section style="margin:40px 0;padding:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
+  <div style="font-size:16px;font-weight:600;margin-bottom:12px;color:#111;">功能介绍与适用场景</div>
+  <p style="color:#374151;font-size:14px;line-height:1.9;margin:0 0 10px;">二维码生成器是一款免费的在线开发调试工具，无需下载安装、无需注册登录，打开网页即可使用。输入任意网址或文本，即可即时生成二维码，并支持选择 L/M/Q/H 四档纠错等级与自定义像素尺寸，生成后可一键下载 PNG 图片。二维码在浏览器本地生成，内容不上传服务器，安全可靠。</p>
+  <p style="color:#374151;font-size:14px;line-height:1.9;margin:0;">二维码生成器适用于网址分享、电子名片、活动海报、Wi-Fi 或联系方式推广等场景。纠错等级越高，二维码被遮挡或磨损时越容易被识别，适合印刷投放。作为一款轻量在线工具，它随开随用，是运营推广与开发测试中的实用小工具。</p>
+</section>
+<section style="margin:40px 0;padding:20px;background:#f7f8fa;border-radius:8px;">
+  <div style="font-size:16px;font-weight:600;margin-bottom:12px;color:#111;">使用教程</div>
+  <ol style="margin:0;padding-left:20px;color:#374151;font-size:14px;line-height:1.9;">
+    <li>在输入框填写网址或文本内容。</li>
+    <li>按需选择纠错等级与尺寸。</li>
+    <li>点击「生成二维码」即时预览。</li>
+    <li>点击「下载 PNG」保存图片使用。</li>
+  </ol>
+</section>
+<section style="margin:40px 0;padding:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
+  <div style="font-size:16px;font-weight:600;margin-bottom:14px;color:#111;">常见问题</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q1：纠错等级怎么选？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：印刷或可能被遮挡时选 Q/H，普通屏幕展示 M 即可。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q2：内容会上传吗？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：不会，二维码在浏览器本地生成。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q3：能生成多大尺寸？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：支持 128–1024 像素，尺寸越大越清晰、越适合打印。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q4：支持中文吗？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：支持，中文网址与文本均可生成。</div>
+<!-- longtail-faq -->
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q5：二维码能存多少内容？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：文本越长二维码越密集，建议网址较长时先用短链，识别更稳定。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">二维码生成器可以在手机上使用吗？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：可以，本工具基于网页运行，手机、平板、电脑均可直接打开网页使用，无需安装 App。</div>
+</section>
+  <div style="font-size:15px;font-weight:500;color:#111;margin-bottom:14px;">相关工具</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;">
+    <a href="wifi-qrcode.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">WiFi二维码生成</a>
+    <a href="rgbhex.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">RGB HEX转换</a>
+    <a href="regex.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">正则测试</a>
+    <a href="sqlformat.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">SQL格式化</a>
+    <a href="html-entity.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">HTML实体编解码</a>
+  </div>
+</div>
+<footer style="margin-top:60px;padding:30px 10px;text-align:center;border-top:1px solid #e5e7eb;color:#666;font-size:14px;">
+    <div style="margin-bottom:10px;">
+        <a href="/about.html" style="margin:0 10px;color:#444;text-decoration:none;">关于我们</a>
+        <span>|</span>
+        <a href="/privacy.html" style="margin:0 10px;color:#444;text-decoration:none;">隐私政策</a>
+        <span>|</span>
+        <a href="/contact.html" style="margin:0 10px;color:#444;text-decoration:none;">联系我们</a>
+    </div>
+    <div>© 2026 72在线工具箱 72tool.com 保留所有权利</div>
+</footer>
+<script defer src="autopush.js"></script>
+<script src="ux-kit.js"></script>
+<script src="ads.js"></script>
+<script src="tools-index.js"></script>
+<script src="site-search.js"></script>
+</body>
+</html>

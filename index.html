@@ -8,8 +8,8 @@
 <meta name="shenma-site-verification" content="82053baefbc340503e88fb91461dc27d_1784970172">
 <meta name="sogou_site_verification" content="ogIxB7xLU6" />
 <meta name="keywords" content="72在线工具箱,本地前端工具,视频处理,图片工具,PDF工具,单位换算,URL工具,文本工具,开发工具,SEO,电商计算器,财务贷款">
-<meta name="description" content="纯前端离线在线工具箱，本地处理文件不上传，保护隐私。">
-<title>全品类72在线工具箱</title>
+<title>72在线工具箱 - 免费在线工具大全（JSON/图片/PDF/开发/单位换算）</title>
+<meta name="description" content="72在线工具箱提供 340+ 免费在线工具，覆盖 JSON、图片、PDF、音视频、开发、单位换算等场景，浏览器本地处理、数据不上传、即开即用，适合开发调试与日常效率。">
 <style>
 :root{
     --primary:#9b78e8;
@@ -231,7 +231,25 @@ body{background:var(--page-bg);color:var(--text-main);height:100vh;display:flex;
 @media (max-width:768px){.sidebar{width:160px;}.tool-grid{grid-template-columns:repeat(3, minmax(140px, 1fr));}}
 @media (max-width:640px){.main-wrap{flex-direction:column;}.sidebar{width:100%;height:auto;border-right:none;border-bottom:1px solid var(--border);}.tool-grid{grid-template-columns:repeat(2, minmax(140px, 1fr));}}
 @media (max-width:400px){.tool-grid{grid-template-columns:repeat(1, minmax(1fr));}}
+/* 最新上架 */
+.newest-section{margin:0 0 22px;}
+.newest-section h2{font-size:18px;margin-bottom:12px;color:var(--text-main);}
+.newest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;}
+.ncard{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 10px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text-main);font-size:13px;transition:.2s;}
+.ncard:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:var(--shadow);}
+.ncard .icon{font-size:22px;}
+/* 分类折叠展开 */
+.cat-groups{display:flex;flex-direction:column;gap:26px;}
+.cat-group{}
+.cat-group-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.cat-group-title{font-size:16px;font-weight:600;color:var(--text-main);display:flex;align-items:center;gap:6px;}
+.cat-group-count{font-size:12px;color:var(--primary);background:var(--sidebar-bg);border-radius:12px;padding:2px 10px;}
+.cat-group-jump{margin-left:auto;font-size:13px;color:var(--main-blue);text-decoration:none;cursor:pointer;}
+.cat-group-jump:hover{text-decoration:underline;}
+.expand-btn{margin-top:12px;width:100%;padding:10px;background:var(--card-bg);border:1px dashed var(--border);border-radius:var(--radius);color:var(--primary);font-size:13px;cursor:pointer;transition:.2s;}
+.expand-btn:hover{border-color:var(--primary);background:var(--sidebar-bg);}
 </style>
+    <!-- adsense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495097009978965" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="top-bar">
@@ -263,6 +281,24 @@ body{background:var(--page-bg);color:var(--text-main);height:100vh;display:flex;
             </div>
             <div class="tool-count-tag" id="showCatCount">0 个工具</div>
         </div>
+        <div class="newest-section">
+            <h2>🆕 最新上架工具</h2>
+            <div class="newest-grid">
+                <a class="ncard" href="loancalc.html"><span class="icon">🏠</span><span>贷款计算器</span></a>
+                <a class="ncard" href="discount.html"><span class="icon">🏷️</span><span>折扣计算器</span></a>
+                <a class="ncard" href="discountcalc.html"><span class="icon">🛒</span><span>满减测算</span></a>
+                <a class="ncard" href="freightcalc.html"><span class="icon">📦</span><span>快递运费</span></a>
+                <a class="ncard" href="fuelcalc.html"><span class="icon">⛽</span><span>汽车油耗</span></a>
+                <a class="ncard" href="batchprice.html"><span class="icon">💹</span><span>批量定价</span></a>
+                <a class="ncard" href="adbidcalc.html"><span class="icon">📈</span><span>直通车保本出价</span></a>
+                <a class="ncard" href="best-coupon-price.html"><span class="icon">🛒</span><span>凑单最优价格</span></a>
+                <a class="ncard" href="car-loan-calc.html"><span class="icon">🚗</span><span>车贷月供计算</span></a>
+                <a class="ncard" href="compound-interest-calc.html"><span class="icon">💹</span><span>复利利息计算</span></a>
+                <a class="ncard" href="rental-cost-calc.html"><span class="icon">🏠</span><span>租房成本测算</span></a>
+                <a class="ncard" href="weight-standard-table.html"><span class="icon">⚖️</span><span>标准体重表</span></a>
+            </div>
+        </div>
+        <!-- newest-tools -->
         <div class="tool-grid" id="toolGrid"></div>
     </div>
 </div>
@@ -435,7 +471,8 @@ const toolData = [
             {name:"图片消除物体",desc:"涂抹去物",page:"image-object-remove.html",icon:"🧽"},
             {name:"倒计时图片生成",desc:"活动倒计时图",page:"countdown-image-gen.html",icon:"⏳"},
             {name:"电商主图尺寸",desc:"主图尺寸规范",page:"shop-image-size-guide.html",icon:"🛒"},
-            {name:"配色方案生成",desc:"主色生成配色",page:"palette.html",icon:"🎨"}]
+            {name:"配色方案生成",desc:"主色生成配色",page:"palette.html",icon:"🎨"},
+            {name:"在线图片编辑器",desc:"图层滤镜画笔裁剪",page:"img-editor.html",icon:"🎨"}]
     },
     {
         catId: "gif",
@@ -568,7 +605,13 @@ const toolData = [
             {name:"标题长度模拟",desc:"字数长度预览",page:"title-length-simulator.html",icon:"📏"},
             {name:"乱数假文生成",desc:"中英文占位文",page:"lorem.html",icon:"📝"},
             {name:"大小写转换",desc:"命名风格互转",page:"caseconvert.html",icon:"🔤"},
-            {name:"全角半角转换",desc:"全半角互转",page:"fullhalf.html",icon:"🔡"}]
+            {name:"全角半角转换",desc:"全半角互转",page:"fullhalf.html",icon:"🔡"},
+            {name:"摩斯电码编解码",desc:"文字摩斯码互转",page:"morse.html",icon:"📻"},
+            {name:"罗马数字互转",desc:"阿拉伯罗马数字",page:"roman.html",icon:"🏛️"},
+            {name:"TXT文件合并",desc:"多文件合并为一",page:"txt-merge.html",icon:"📚"},
+            {name:"TXT文件拆分",desc:"大文件按行拆分",page:"txt-split.html",icon:"✂️"},
+            {name:"TXT文本去重",desc:"按行去除重复",page:"txt-dedupe.html",icon:"🧹"},
+            {name:"TXT批量处理",desc:"批量处理多个TXT",page:"txt-batch.html",icon:"🗂️"}]
     },
     {
         catId: "jsonxml",
@@ -579,7 +622,12 @@ const toolData = [
             {name:"JSON转CSV",desc:"数组导出表格",page:"json2csv.html",icon:"📊"},
             {name:"JSON数组去重",desc:"按字段去重",page:"jsonunique.html",icon:"🧹"},
             {name:"JSON XML互转",desc:"双向格式化",page:"jsonxml.html",icon:"<>"},
-            {name:"JSON YAML互转",desc:"双向格式转换",page:"json-yaml-convert.html",icon:"{}"}]
+            {name:"JSON YAML互转",desc:"双向格式转换",page:"json-yaml-convert.html",icon:"{}"},
+            {name:"JSON压缩最小化",desc:"压缩去空格换行",page:"json-minify.html",icon:"🗜️"},
+            {name:"JSON转义反转义",desc:"字符串转义还原",page:"json-escape.html",icon:"🔤"},
+            {name:"JSON键名排序",desc:"键名字母排序",page:"json-sort.html",icon:"🔀"},
+            {name:"JSON路径取值",desc:"按路径提取值",page:"json-path.html",icon:"🎯"},
+            {name:"JSON差异对比",desc:"对比两段JSON差异",page:"json-diff.html",icon:"🔍"}]
     },
     {
         catId: "seo",
@@ -652,7 +700,12 @@ const toolData = [
             {name:"SKU批量生成",desc:"导出表格",page:"batch-sku-generator.html",icon:"🏷️"},
             {name:"快递单号校验",desc:"格式校验",page:"express-number-check.html",icon:"📦"},
             {name:"随机邮箱网址",desc:"批量生成",page:"random-email-url.html",icon:"📧"},
-            {name:"权重随机抽签",desc:"按权重抽取",page:"random-weight-draw.html",icon:"🎲"}]
+            {name:"权重随机抽签",desc:"按权重抽取",page:"random-weight-draw.html",icon:"🎲"},
+            {name:"HTML实体编解码",desc:"实体符号转义解码",page:"html-entity.html",icon:"🔣"},
+            {name:"二维码生成器",desc:"文本网址生成二维码",page:"qrcode.html",icon:"📱"},
+            {name:"WiFi二维码生成",desc:"扫码即连WiFi",page:"wifi-qrcode.html",icon:"📶"},
+            {name:"TXT编码转换",desc:"UTF-8/GBK互转",page:"txt-encoding.html",icon:"🈶"},
+            {name:"换行符转换",desc:"CRLF/LF互转",page:"txt-newline.html",icon:"↵"}]
     },
     {
         catId: "business",
@@ -714,12 +767,27 @@ document.querySelector('.sidebar').addEventListener('click', function(e){
     switchCat(cid);
 });
 
+// 分组视图「仅看该类」跳转
+document.getElementById('toolGrid').addEventListener('click', function(e){
+    const jump = e.target.closest('.cat-group-jump');
+    if(!jump) return;
+    switchCat(jump.dataset.catid);
+    window.scrollTo({top:0,behavior:'smooth'});
+});
+
 // 切换分类（修复targetCat缺失.catName）
 function switchCat(catId){
     currentCatId = catId;
     document.querySelectorAll('.sidebar-menu .item').forEach(i=>i.classList.remove("active"));
     const activeDom = document.querySelector(`.sidebar-menu .item[data-catid="${catId}"]`);
     if(activeDom) activeDom.classList.add("active");
+
+    if(catId === "all"){
+        document.getElementById("currentCatName").innerText = "全部工具";
+        document.getElementById("showCatCount").innerText = `${allTools.length} 个工具`;
+        renderGrouped();
+        return;
+    }
 
     let showList = [];
     let catTitle = "全部工具";
@@ -739,27 +807,65 @@ function switchCat(catId){
     renderTools(showList);
 }
 
-// 渲染卡片
-function renderTools(list){
-    const grid = document.getElementById("toolGrid");
-    grid.innerHTML = "";
-    if(list.length === 0){
-        grid.innerHTML = "<p style='grid-column:1/-1;text-align:center;padding:60px;color:#999'>暂无匹配工具，请更换关键词</p>";
-        return;
-    }
-    list.forEach(tool=>{
-        const a = document.createElement("a");
-        a.className = "tool-card";
-        a.href = tool.page;
-        a.innerHTML = `
+// 生成单张卡片
+function makeCard(tool){
+    const a = document.createElement("a");
+    a.className = "tool-card";
+    a.href = tool.page;
+    a.innerHTML = `
             <div class="tool-icon">${tool.icon}</div>
             <div class="tool-info">
                 <div class="tool-name">${tool.name}</div>
                 <div class="tool-desc">${tool.desc}</div>
             </div>
         `;
-        grid.appendChild(a);
-    })
+    return a;
+}
+
+// 渲染卡片（平铺，用于单分类/搜索）
+function renderTools(list){
+    const grid = document.getElementById("toolGrid");
+    grid.className = "tool-grid";
+    grid.innerHTML = "";
+    if(list.length === 0){
+        grid.innerHTML = "<p style='grid-column:1/-1;text-align:center;padding:60px;color:#999'>暂无匹配工具，请更换关键词</p>";
+        return;
+    }
+    list.forEach(tool=>grid.appendChild(makeCard(tool)));
+}
+
+// 渲染分组折叠（用于「全部工具」视图，每类默认前N个，其余点击懒加载）
+const GROUP_PREVIEW = 10;
+function renderGrouped(){
+    const grid = document.getElementById("toolGrid");
+    grid.className = "cat-groups";
+    grid.innerHTML = "";
+    toolData.forEach(cat=>{
+        const tools = cat.tools.filter(t=>typeof t === "object");
+        if(!tools.length) return;
+        const sec = document.createElement("div");
+        sec.className = "cat-group";
+        const head = document.createElement("div");
+        head.className = "cat-group-head";
+        head.innerHTML = `<span class="cat-group-title"><span>${cat.icon}</span> ${cat.catName}</span><span class="cat-group-count">${tools.length}</span><a class="cat-group-jump" data-catid="${cat.catId}">仅看该类 →</a>`;
+        sec.appendChild(head);
+        const g = document.createElement("div");
+        g.className = "tool-grid";
+        tools.slice(0, GROUP_PREVIEW).forEach(t=>g.appendChild(makeCard(t)));
+        sec.appendChild(g);
+        const rest = tools.slice(GROUP_PREVIEW);
+        if(rest.length){
+            const btn = document.createElement("button");
+            btn.className = "expand-btn";
+            btn.textContent = `展开全部 ${tools.length} 个 ↓`;
+            btn.onclick = ()=>{
+                rest.forEach(t=>g.appendChild(makeCard(t)));
+                btn.remove();
+            };
+            sec.appendChild(btn);
+        }
+        grid.appendChild(sec);
+    });
 }
 
 // 搜索函数（修复source → sourceList）
@@ -850,5 +956,8 @@ rejectBtn.onclick = function(){
 
 
 <script defer src="autopush.js"></script>
+
+<script src="ux-kit.js"></script>
+<script src="ads.js"></script>
 </body>
 </html>

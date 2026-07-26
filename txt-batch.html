@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TXT批量处理在线工具 - 免费在线文本处理转换</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1300px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+textarea{width:100%;height:200px;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace}
+input,select{padding:10px;border:1px solid #ddd;border-radius:6px;margin:6px 6px 6px 0;font-size:14px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer;margin:8px 0}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <!-- SEO -->
+    <meta name="description" content="TXT批量处理在线工具，一次上传多个 .txt 文件，批量转 UTF-8 修复乱码、去空行、去首尾空格、按行去重、查找替换、统一换行符、批量重命名，一键打包成 zip 下载，适用于名单清洗、日志整理、词库批处理等场景；无需下载、手机可用，浏览器本地处理、数据不上传、即开即用。">
+    <link rel="canonical" href="https://72tool.com/txt-batch.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="TXT批量处理 | 72在线工具箱">
+    <meta property="og:description" content="TXT批量处理，免费在线工具，多文件批量转码去重替换打包下载，浏览器本地处理、数据不上传。">
+    <meta property="og:url" content="https://72tool.com/txt-batch.html">
+    <meta property="og:site_name" content="72在线工具箱">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="TXT批量处理 | 72在线工具箱">
+    <meta name="twitter:description" content="TXT批量处理，免费在线工具，多文件批量转码去重替换打包下载，浏览器本地处理、数据不上传。">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"SoftwareApplication","name":"TXT批量处理","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"url":"https://72tool.com/txt-batch.html"}
+    </script>
+    <!-- adsense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495097009978965" crossorigin="anonymous"></script>
+</head>
+<body>
+<h1 style="margin:16px 0;font-size:22px;">TXT批量处理</h1>
+<p class="tool-desc" style="margin:4px 0 18px;color:#6b7280;font-size:14px;line-height:1.7;">TXT批量处理 是一款免费在线工具，无需下载安装，打开网页即可直接使用，一次对多个 txt 文件批量执行编码转换、去重、替换、换行统一等操作并打包下载。</p>
+
+<nav class="crumb" style="margin:18px 0 0;font-size:13px;color:#6b7280;"><a href="index.html" style="color:#2478f5;text-decoration:none;">首页</a> / <a href="text-tools.html" style="color:#2478f5;text-decoration:none;">文本工具</a></nav>
+<!-- cat-crumb -->
+<!-- tool-tags --><a href="index.html" class="back">← 返回工具箱首页</a>
+<!-- sibling-nav --><div style="margin:12px 0 0;padding:10px 14px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;"><span style="font-size:13px;color:#6b7280;margin-right:6px;">同类工具：</span><span style="display:inline-flex;flex-wrap:wrap;gap:8px;vertical-align:middle;">
+    <a href="xmlformat.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">XML格式化</a>
+    <a href="zhconvert.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">简繁转换</a>
+    <a href="titlelength.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">淘宝标题检测</a>
+    <a href="titlenum.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">小红书标题检测</a>
+    <a href="textclear.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">文本清理</a>
+    <a href="textcount.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">文本字数统计</a>
+    <a href="textencipher.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">AES加解密</a>
+    <a href="textindent.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">代码缩进转换</a>
+    <a href="text-tools.html" style="display:inline-block;padding:6px 12px;background:#eef4ff;border:1px solid #d6e4ff;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">查看全部文本工具 →</a>
+  </span></div>
+<h2>TXT 批量处理（多文件一次搞定 · 打包 zip 下载）</h2>
+<input type="file" id="files" accept=".txt,text/plain" multiple>
+<div style="margin:10px 0;padding:14px;background:#f7f8fa;border-radius:6px;">
+  <div style="font-weight:600;font-size:14px;margin-bottom:8px;color:#111;">勾选要批量执行的操作（可多选，按顺序应用）：</div>
+  <label style="display:block;margin:5px 0;font-weight:normal;"><input type="checkbox" id="op_enc" style="width:auto;" checked> 编码统一转 UTF-8（自动检测，修复记事本乱码）</label>
+  <label style="display:block;margin:5px 0;font-weight:normal;"><input type="checkbox" id="op_trim" style="width:auto;"> 去除每行首尾空格</label>
+  <label style="display:block;margin:5px 0;font-weight:normal;"><input type="checkbox" id="op_empty" style="width:auto;"> 删除空行</label>
+  <label style="display:block;margin:5px 0;font-weight:normal;"><input type="checkbox" id="op_dedupe" style="width:auto;"> 按行去重（保留首次出现）</label>
+  <label style="display:block;margin:5px 0;font-weight:normal;"><input type="checkbox" id="op_replace" style="width:auto;"> 查找替换：
+    <input id="find" placeholder="查找内容" style="width:130px;"> → <input id="rep" placeholder="替换为" style="width:130px;">
+    <label style="font-weight:normal;margin-left:6px;"><input type="checkbox" id="useRe" style="width:auto;"> 正则</label>
+  </label>
+  <div style="margin:8px 0;">换行符统一为
+    <select id="nl"><option value="keep">保持不变</option><option value="lf">LF (Unix/Mac/Linux)</option><option value="crlf">CRLF (Windows)</option><option value="cr">CR (旧Mac)</option></select>
+  </div>
+  <div style="margin:8px 0;">批量重命名：前缀 <input id="pre" placeholder="可留空" style="width:110px;"> 后缀 <input id="suf" placeholder="可留空" style="width:110px;"></div>
+</div>
+<button onclick="run()">批量处理并打包下载 (.zip)</button>
+<div id="log" style="margin-top:10px;"></div>
+<script>
+function dec(buf){
+  try{return new TextDecoder('utf-8',{fatal:true}).decode(buf);}catch(e){}
+  try{return new TextDecoder('gb18030',{fatal:true}).decode(buf);}catch(e){}
+  try{return new TextDecoder('big5',{fatal:true}).decode(buf);}catch(e){}
+  return new TextDecoder('gbk').decode(buf);
+}
+function proc(text){
+  if(document.getElementById('op_replace').checked){
+    var find=document.getElementById('find').value,rep=document.getElementById('rep').value;
+    if(find){
+      if(document.getElementById('useRe').checked){
+        try{text=text.replace(new RegExp(find,'g'),rep);}catch(e){alert('正则表达式错误：'+e.message);}
+      }else{text=text.split(find).join(rep);}
+    }
+  }
+  var nl=document.getElementById('nl').value;
+  var doTrim=document.getElementById('op_trim').checked;
+  var doEmpty=document.getElementById('op_empty').checked;
+  var doDedup=document.getElementById('op_dedupe').checked;
+  if(doTrim||doEmpty||doDedup||nl!=='keep'){
+    var lines=text.split(/\r\n|\r|\n/);
+    if(doTrim)lines=lines.map(function(l){return l.replace(/^[\s\uFEFF]+|[\s]+$/g,'');});
+    if(doEmpty)lines=lines.filter(function(l){return l.trim()!=='';});
+    if(doDedup){var seen=Object.create(null),res=[];lines.forEach(function(l){if(!seen[l]){seen[l]=1;res.push(l);}});lines=res;}
+    var sep = nl==='crlf'?'\r\n':nl==='cr'?'\r':'\n';
+    text=lines.join(sep);
+  }
+  return text;
+}
+function run(){
+  var fs=document.getElementById('files').files;
+  if(!fs.length){alert('请选择 .txt 文件（可多选）');return;}
+  if(typeof JSZip==='undefined'){alert('打包组件仍在加载，请稍候重试');return;}
+  var fixEnc=document.getElementById('op_enc').checked;
+  var pre=document.getElementById('pre').value,suf=document.getElementById('suf').value;
+  var arr=Array.prototype.slice.call(fs);
+  var zip=new JSZip(),done=0;
+  var log=document.getElementById('log');log.innerHTML='<div style="font-size:13px;color:#374151;margin-bottom:6px;">正在处理 '+arr.length+' 个文件…</div>';
+  arr.forEach(function(f){
+    var r=new FileReader();
+    r.onload=function(){
+      var text = fixEnc ? dec(r.result) : new TextDecoder('utf-8').decode(r.result);
+      text=proc(text);
+      var base=f.name.replace(/\.txt$/i,'');
+      var nm=pre+base+suf+'.txt';
+      zip.file(nm,text);
+      done++;
+      var li=document.createElement('div');li.style.cssText='font-size:13px;color:#22863a;margin:2px 0;';li.textContent='\u2713 '+f.name+' \u2192 '+nm;log.appendChild(li);
+      if(done===arr.length){
+        zip.generateAsync({type:'blob'}).then(function(blob){
+          var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='txt-batch.zip';a.click();
+          var d=document.createElement('div');d.style.cssText='font-size:14px;color:#2478f5;margin-top:8px;font-weight:600;';d.textContent='\u2705 已打包 '+arr.length+' 个文件为 txt-batch.zip 并开始下载';log.appendChild(d);
+        });
+      }
+    };
+    r.readAsArrayBuffer(f);
+  });
+}
+</script>
+
+<!-- Cookie弹窗开始 -->
+<div id="cookieBox" style="position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;padding:16px 24px;z-index:9999;display:none;">
+    <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+        <div style="flex:1;min-width:300px;">
+            <p style="margin:0 0 6px 0;font-size:14px;color:#333;">🍪 Cookie 使用提示</p>
+            <p style="margin:0;font-size:13px;color:#666;">本站使用Cookie优化访问体验，并投放Google联盟广告。继续使用网站即代表您同意我们的Cookie政策，您可查看<a href="/privacy.html" style="color:#0066cc;">隐私政策</a>。</p>
+        </div>
+        <div style="display:flex;gap:10px;">
+            <button id="cookieAccept" style="padding:8px 18px;background:#2563eb;color:#fff;border:none;border-radius:6px;cursor:pointer;">同意</button>
+            <button id="cookieReject" style="padding:8px 18px;background:#eee;color:#333;border:none;border-radius:6px;cursor:pointer;">拒绝</button>
+        </div>
+    </div>
+</div>
+<script>
+const cookieBox=document.getElementById('cookieBox');const cookieStatus=localStorage.getItem('cookieConsent');
+if(!cookieStatus){cookieBox.style.display='block';}
+document.getElementById('cookieAccept').onclick=function(){localStorage.setItem('cookieConsent','accept');cookieBox.style.display='none';};
+document.getElementById('cookieReject').onclick=function(){localStorage.setItem('cookieConsent','reject');cookieBox.style.display='none';};
+</script>
+<!-- Cookie弹窗结束 -->
+
+<div style="margin:40px 0 0;padding:20px;background:#f7f8fa;border-radius:8px;">
+<!-- longtail-body -->
+<section style="margin:40px 0;padding:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
+  <div style="font-size:16px;font-weight:600;margin-bottom:12px;color:#111;">功能介绍与适用场景</div>
+  <p style="color:#374151;font-size:14px;line-height:1.9;margin:0 0 10px;">TXT批量处理是一款免费的在线文本处理工具，无需下载安装、无需注册登录，打开网页即可使用。它支持一次上传多个 .txt 文件，对每个文件批量执行相同的操作：编码统一转 UTF-8（自动检测修复记事本乱码）、去除每行首尾空格、删除空行、按行去重、查找替换（支持普通文本与正则）、统一换行符（CRLF/LF/CR）、批量加前后缀重命名。处理完成后所有文件会打包成一个 zip 一键下载。全部读取与处理均在浏览器本地完成，文件不上传服务器，隐私安全。</p>
+  <p style="color:#374151;font-size:14px;line-height:1.9;margin:0;">TXT批量处理适用于把一批 txt 名单/词库统一去重清洗、批量修复整批乱码文件、给多个文件统一做查找替换、统一换行风格后再入库、批量重命名归档等场景。相比逐个文件反复操作，勾选一次即可对整批文件流水线处理并打包下载，大幅提升效率。作为一款轻量在线工具，它随开随用，是数据清洗、内容整理与办公自动化中的实用小工具。</p>
+</section>
+<section style="margin:40px 0;padding:20px;background:#f7f8fa;border-radius:8px;">
+  <div style="font-size:16px;font-weight:600;margin-bottom:12px;color:#111;">使用教程</div>
+  <ol style="margin:0;padding-left:20px;color:#374151;font-size:14px;line-height:1.9;">
+    <li>点击选择框，一次选中多个需要处理的 .txt 文件。</li>
+    <li>勾选要批量执行的操作（编码/去重/替换/换行/重命名等，可多选）。</li>
+    <li>点击「批量处理并打包下载」，浏览器本地流水线处理每个文件。</li>
+    <li>处理完成后自动打包为 txt-batch.zip 下载，解压即得全部结果。</li>
+  </ol>
+</section>
+<section style="margin:40px 0;padding:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
+  <div style="font-size:16px;font-weight:600;margin-bottom:14px;color:#111;">常见问题</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q1：一次能处理多少个文件？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：本地处理无硬性数量限制，文件很多或很大时受浏览器内存影响，建议分批处理超大批量。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q2：多个操作的执行顺序是怎样的？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：先做查找替换，再按「去首尾空格→删空行→按行去重→统一换行」的顺序应用，最后重命名打包。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q3：文件会上传服务器吗？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：不会，所有读取、处理与打包全部在浏览器本地完成。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q4：为什么下载的是 zip？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：批量处理会生成多个文件，打包成一个 zip 便于一次性下载与管理，解压即得全部结果。</div>
+<!-- longtail-faq -->
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q5：正则查找替换支持分组引用吗？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：支持，勾选「正则」后可用标准 JavaScript 正则语法，替换内容中可用 $1、$2 引用捕获组。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">TXT批量处理可以在手机上使用吗？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：可以，本工具基于网页运行，手机、平板、电脑均可直接打开网页使用，无需安装 App。</div>
+</section>
+  <div style="font-size:15px;font-weight:500;color:#111;margin-bottom:14px;">相关工具</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;">
+    <a href="txt-dedupe.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">TXT文本去重</a>
+    <a href="txt-encoding.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">TXT编码转换</a>
+    <a href="txt-newline.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">换行符转换</a>
+    <a href="txt-merge.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">TXT文件合并</a>
+    <a href="txt-split.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">TXT文件拆分</a>
+  </div>
+</div>
+<footer style="margin-top:60px;padding:30px 10px;text-align:center;border-top:1px solid #e5e7eb;color:#666;font-size:14px;">
+    <div style="margin-bottom:10px;">
+        <a href="/about.html" style="margin:0 10px;color:#444;text-decoration:none;">关于我们</a>
+        <span>|</span>
+        <a href="/privacy.html" style="margin:0 10px;color:#444;text-decoration:none;">隐私政策</a>
+        <span>|</span>
+        <a href="/contact.html" style="margin:0 10px;color:#444;text-decoration:none;">联系我们</a>
+    </div>
+    <div>© 2026 72在线工具箱 72tool.com 保留所有权利</div>
+</footer>
+<script defer src="autopush.js"></script>
+<script src="ux-kit.js"></script>
+<script src="ads.js"></script>
+<script src="tools-index.js"></script>
+<script src="site-search.js"></script>
+</body>
+</html>
