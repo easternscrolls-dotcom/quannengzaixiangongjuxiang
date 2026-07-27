@@ -17,7 +17,7 @@
       view_all: '查看全部工具 ›',
       copyright: '© 2026 72在线工具箱 72tool.com 保留所有权利',
       cookie_title: '🍪 Cookie 使用提示',
-      cookie_body: '本站使用 Cookie 优化访问体验，并投放 Google 联盟广告。继续使用网站即代表您同意我们的 Cookie 政策，您可查看',
+      cookie_body: '我们使用 Cookie 记住您的偏好（如语言设置），并在您同意后用于投放 Google 广告。点击「同意」即表示接受广告类 Cookie；点击「拒绝」则仅使用必要 Cookie，不投放广告。查看我们的',
       cookie_suffix: '。',
       accept: '同意',
       decline: '拒绝'
@@ -30,12 +30,40 @@
       view_all: 'All Tools ›',
       copyright: '© 2026 72tool.com. All rights reserved.',
       cookie_title: '🍪 Cookie Notice',
-      cookie_body: 'We use cookies to improve your experience and serve Google ads. By continuing, you agree to our Cookie Policy. View our ',
+      cookie_body: 'We use cookies to remember your preferences (such as language) and, with your consent, to serve Google ads. Click “Accept” to allow advertising cookies, or “Decline” to continue with only essential cookies (no ads). See our ',
       cookie_suffix: '.',
       accept: 'Accept',
       decline: 'Decline'
     }
   };
+  /* ── 海外版（EN 模式）隐藏的中文特化工具 ──
+   * 这些工具功能仅对中文用户有意义（中文书写/中文姓名地址/中国电商或社交平台内容），
+   * 在 EN 模式下从首页网格、分类页、搜索结果、相关工具链接中隐藏。
+   * 注意：工具页本身仍可直接访问，仅不再出现在英文版列表里。
+   */
+  window.I18N_LOCAL_ONLY = [
+    'zhconvert.html',            // 简繁转换
+    'numbercn.html',             // 数字中文读法
+    'money.html',                // 数字转中文金额（财务大写）
+    'fontcn.html',               // 中文艺术字
+    'random-chinese-sentence.html', // 随机中文短句
+    'randomname.html',           // 随机中文姓名地址
+    'randomphone.html',          // 测试手机号（中国）
+    'randomtable.html',          // 随机测试数据（姓名/手机号 CSV）
+    'regtemplate.html',          // 常用正则模板（手机/邮箱/身份证）
+    'unicode-cn-convert.html',   // Unicode 中文互转
+    'keyword-segment.html',      // 关键词中文分词
+    'titlelength.html',          // 淘宝标题检测
+    'titlenum.html',             // 小红书标题检测
+    'symbol.html',               // 特殊符号大全（小红书装饰）
+    'textlineclean.html',        // 文案换行清理（朋友圈）
+    'script-duration-calc.html', // 口播时长预估
+    'product-title-seg.html',    // 商品标题分词
+    '9-grid-image-cut.html',     // 九宫格切图（小红书）
+    'imgsizegoods.html',         // 商品尺寸计算（淘宝主图）
+    'shop-image-size-guide.html' // 电商主图尺寸（淘宝）
+  ];
+
   var TITLE_ORIG = document.title;
 
   /* ── 工具 UI 词典翻译器（EN 模式把页面写死的中文 UI 换成英文，切回 zh 还原） ── */
@@ -178,7 +206,10 @@
       for (var i = 0; i < muts.length; i++) {
         var m = muts[i];
         if (m.type === 'characterData') translateTree(m.target);
-        else for (var j = 0; j < m.addedNodes.length; j++) translateTree(m.addedNodes[j]);
+        else for (var j = 0; j < m.addedNodes.length; j++) {
+          translateTree(m.addedNodes[j]);
+          applyLocalOnly(m.addedNodes[j]); // 动态渲染的卡片也按 EN 模式隐藏中文特化工具
+        }
       }
     });
     uiObserver.observe(document.body || document.documentElement, { childList: true, subtree: true, characterData: true });
@@ -217,6 +248,23 @@
         }
       } else {
         a.setAttribute('href', orig);
+      }
+    }
+  }
+
+  /* 海外版（EN 模式）隐藏中文特化工具：按 <a href="page.html"> 命中 LOCAL_ONLY 列表 */
+  function applyLocalOnly(root) {
+    var list = window.I18N_LOCAL_ONLY;
+    if (!root || !list || !list.length) return;
+    var links = root.querySelectorAll ? root.querySelectorAll('a[href]') : [];
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i];
+      var href = a.getAttribute('href') || '';
+      var clean = href.split('#')[0].split('?')[0];
+      var seg = clean.split('/').pop();
+      if (seg && seg.slice(-5) === '.html' && list.indexOf(seg) !== -1) {
+        if (window.i18nLang === 'en') { a.hidden = true; a.style.display = 'none'; }
+        else { a.hidden = false; a.style.display = ''; }
       }
     }
   }
@@ -276,6 +324,7 @@
 
     try { localStorage.setItem('siteLang', lang); } catch (e) {}
     window.i18nLang = lang;
+    applyLocalOnly(document); // 海外版隐藏中文特化工具（EN 隐藏 / ZH 显示）
 
     // 工具 UI 词典翻译：EN 翻译写死的中文 UI；ZH 还原
     if (lang === 'en') {
@@ -332,7 +381,25 @@
       btns[i].addEventListener('click', function () { apply(this.getAttribute('data-lang')); });
     }
   }
-  function init() { ensureStyle(); apply(detect()); bind(); }
+  // Cookie 同意（opt-in）：仅在用户点击「同意」时派发 cookie:accept，ads.js 据此加载广告
+  function bindCookie() {
+    var box = document.getElementById('cookieBox');
+    if (!box) return;
+    try { if (!localStorage.getItem('cookieConsent')) box.style.display = 'block'; } catch (e) {}
+    var acc = document.getElementById('cookieAccept');
+    var rej = document.getElementById('cookieReject');
+    if (acc) acc.addEventListener('click', function () {
+      try { localStorage.setItem('cookieConsent', 'accept'); } catch (e) {}
+      box.style.display = 'none';
+      try { document.dispatchEvent(new CustomEvent('cookie:accept', { detail: { choice: 'accept' } })); } catch (e) {}
+    });
+    if (rej) rej.addEventListener('click', function () {
+      try { localStorage.setItem('cookieConsent', 'reject'); } catch (e) {}
+      box.style.display = 'none';
+      try { document.dispatchEvent(new CustomEvent('cookie:reject', { detail: { choice: 'reject' } })); } catch (e) {}
+    });
+  }
+  function init() { ensureStyle(); apply(detect()); bind(); bindCookie(); }
   window.i18nApply = function (lang) { apply(lang, true); }; // full apply, NO dispatch (safe inside langchange listeners / dynamic render)
   window.i18nToggle = toggle; // visibility only, NO dispatch
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

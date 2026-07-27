@@ -33,6 +33,23 @@
   // 仅当 client 形如真实 ca-pub- 时才真正调用 AdSense，避免假 ID 触发策略风险
   var isReal = /^ca-pub-\d{16}$/.test(ADS_CLIENT);
 
+  // ── GDPR / CCPA：广告类 Cookie 仅在用户明确「同意」(opt-in) 后加载 ──
+  function consentGiven() {
+    try { return localStorage.getItem('cookieConsent') === 'accept'; } catch (e) { return false; }
+  }
+  var _adsBooted = false;
+  function bootAds() {
+    if (_adsBooted) return;
+    _adsBooted = true;
+    run(); // 投放 Google 广告（含自动广告）
+  }
+  if (consentGiven()) {
+    bootAds();
+  } else {
+    // 用户尚未选择：监听 i18n-runtime.js 在「同意」时派发的 cookie:accept 事件
+    document.addEventListener('cookie:accept', bootAds, { once: true });
+  }
+
   // ---------- 样式（运行时注入，不改动页面 CSS）----------
   var css =
     '.ad-slot{margin:18px 0;min-height:90px;display:flex;align-items:center;justify-content:center;' +
