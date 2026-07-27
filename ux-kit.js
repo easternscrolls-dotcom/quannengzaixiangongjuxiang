@@ -10,6 +10,47 @@
   'use strict';
   var doc = document;
 
+  /* ---------- i18n 辅助 ---------- */
+  function getLang() {
+    if (window.i18nLang === 'en' || window.i18nLang === 'zh') return window.i18nLang;
+    var hl = (doc.documentElement.lang || '').toLowerCase();
+    if (hl.indexOf('en') === 0) return 'en';
+    return 'zh';
+  }
+  var T = {
+    zh: {
+      copy: '复制结果',
+      download: '下载为文件',
+      copied: '已复制到剪贴板',
+      copyFail: '复制失败，请手动选择',
+      downloadStart: '已开始下载',
+      downloadFail: '下载失败',
+      dropHintPrefix: '支持拖拽上传、可多选；单个文件建议 ≤ ',
+      dropHintSuffix: 'MB，超出可能卡顿。',
+      filesOverPrefix: '有 ',
+      filesOverMid: ' 个文件超过 ',
+      filesOverSuffix: 'MB，处理可能较慢或失败'
+    },
+    en: {
+      copy: 'Copy result',
+      download: 'Download as file',
+      copied: 'Copied to clipboard',
+      copyFail: 'Copy failed, please select manually',
+      downloadStart: 'Download started',
+      downloadFail: 'Download failed',
+      dropHintPrefix: 'Drag & drop supported, multiple files allowed; single file recommended ≤ ',
+      dropHintSuffix: ' MB, larger files may be slow or fail.',
+      filesOverPrefix: '',
+      filesOverMid: ' file(s) exceed ',
+      filesOverSuffix: ' MB and may be slow or fail'
+    }
+  };
+  function t(key) {
+    var lang = getLang();
+    var table = T[lang] || T.zh;
+    return table[key] !== undefined ? table[key] : (T.zh[key] || key);
+  }
+
   /* ---------- 1. 注入样式 ---------- */
   var css =
     '.ux-toast{position:fixed;left:50%;top:22px;transform:translateX(-50%);z-index:99999;' +
@@ -117,24 +158,35 @@
       bar.className = 'ux-out-bar';
       var copyBtn = doc.createElement('button');
       copyBtn.type = 'button';
-      copyBtn.textContent = '复制结果';
+      copyBtn.className = 'ux-copy';
+      copyBtn.textContent = t('copy');
       copyBtn.addEventListener('click', function () {
         copyText(ta.value).then(function (ok) {
-          showToast(ok ? '已复制到剪贴板' : '复制失败，请手动选择', ok ? 'ok' : 'err');
+          showToast(ok ? t('copied') : t('copyFail'), ok ? 'ok' : 'err');
         });
       });
       var dlBtn = doc.createElement('button');
       dlBtn.type = 'button';
       dlBtn.className = 'ux-dl';
-      dlBtn.textContent = '下载为文件';
+      dlBtn.textContent = t('download');
       dlBtn.addEventListener('click', function () {
         var name = (doc.title || 'result').split('|')[0].trim() + '.txt';
         var ok = downloadText(ta.value, name);
-        showToast(ok ? '已开始下载' : '下载失败', ok ? 'ok' : 'err');
+        showToast(ok ? t('downloadStart') : t('downloadFail'), ok ? 'ok' : 'err');
       });
       bar.appendChild(copyBtn);
       bar.appendChild(dlBtn);
       if (ta.parentNode) ta.parentNode.insertBefore(bar, ta);
+    });
+  }
+
+  function updateOutputButtonsLang() {
+    var bars = doc.querySelectorAll('.ux-out-bar');
+    Array.prototype.forEach.call(bars, function (bar) {
+      var copyBtn = bar.querySelector('.ux-copy');
+      var dlBtn = bar.querySelector('.ux-dl');
+      if (copyBtn) copyBtn.textContent = t('copy');
+      if (dlBtn) dlBtn.textContent = t('download');
     });
   }
 
@@ -194,7 +246,7 @@
       var hint = doc.createElement('div');
       hint.className = 'ux-size-hint';
       var mb = Math.round(limitFor(inp) / 1048576);
-      hint.textContent = '支持拖拽上传、可多选；单个文件建议 ≤ ' + mb + 'MB，超出可能卡顿。';
+      hint.textContent = t('dropHintPrefix') + mb + t('dropHintSuffix');
       if (inp.parentNode) inp.parentNode.insertBefore(hint, inp.nextSibling);
 
       inp.addEventListener('change', function () {
@@ -206,7 +258,13 @@
           if (files[i].size > limit) big++;
         }
         if (big > 0) {
-          showToast('有 ' + big + ' 个文件超过 ' + mb + 'MB，处理可能较慢或失败', 'err');
+          var msg;
+          if (getLang() === 'en') {
+            msg = big + t('filesOverMid') + mb + t('filesOverSuffix');
+          } else {
+            msg = t('filesOverPrefix') + big + t('filesOverMid') + mb + t('filesOverSuffix');
+          }
+          showToast(msg, 'err');
         }
       });
 
@@ -303,4 +361,9 @@
   } else {
     init();
   }
+
+  // 语言切换后更新 ux-kit 生成的按钮文案
+  doc.addEventListener('i18n:langchange', function () {
+    try { updateOutputButtonsLang(); } catch (e) {}
+  });
 })();

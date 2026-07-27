@@ -2,6 +2,9 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>URL工具在线工具 - 免费无需登录</title>
 <meta name="description" content="在线URL工具集合，支持URL编码解码、SEO友好URL、URL参数解析、UUID生成等，数据本地浏览器处理，不上传服务器，免注册免费使用。">
@@ -26,61 +29,106 @@ h1{font-size:26px;margin:6px 0 10px}
 .chip{padding:7px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:20px;color:#2478f5;text-decoration:none;font-size:13px}
 </style>
     <!-- adsense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495097009978965" crossorigin="anonymous"></script>
+    <!-- i18n-all --><link rel="alternate" hreflang="x-default" href="https://72tool.com/url-tools.html">
+    <link rel="alternate" hreflang="zh" href="https://72tool.com/url-tools.html">
+    <link rel="alternate" hreflang="en" href="https://72tool.com/url-tools.html?lang=en">
+    <meta name="i18n-title-en" content="URL & Encoding - 72 Online Tools">
+    <!-- i18n-runtime --><script src="i18n-runtime.js"></script>
 </head>
 <body>
-<a href="index.html" class="back">← 返回工具箱首页</a>
-<h1>URL工具</h1>
-<p class="intro">URL 编解码与转换工具，支持 URL 编码、解码、参数解析与短链，适用于接口调试、前端开发与链接分享。 浏览器本地处理、数据不上传、即开即用。</p>
-<div class="grid">
-    <a class="card" href="urlcode.html"><span class="ico">🔐</span><span class="nm">URL编码解码</span></a>
-    <a class="card" href="urlencode-seo.html"><span class="ico">🔎</span><span class="nm">SEO友好URL</span></a>
-    <a class="card" href="urlparse.html"><span class="ico">📋</span><span class="nm">URL参数解析</span></a>
-    <a class="card" href="uuid.html"><span class="ico">🆔</span><span class="nm">UUID生成</span></a>
-    <a class="card" href="shorturl.html"><span class="ico">🔗</span><span class="nm">本地短链接</span></a>
-    <a class="card" href="ipnum.html"><span class="ico">🌐</span><span class="nm">IP数字互转</span></a>
-    <a class="card" href="domainexpire.html"><span class="ico">📅</span><span class="nm">域名到期计算</span></a>
-    <a class="card" href="htaccess.html"><span class="ico">📜</span><span class="nm">.htaccess生成</span></a>
-    <a class="card" href="httpcode.html"><span class="ico">🔍</span><span class="nm">HTTP状态码查询</span></a>
-    <a class="card" href="canonical.html"><span class="ico">🔗</span><span class="nm">Canonical标签生成</span></a>
-    <a class="card" href="cookieparse.html"><span class="ico">🍪</span><span class="nm">Cookie解析工具</span></a>
-    <a class="card" href="dns-query.html"><span class="ico">🌐</span><span class="nm">DNS记录查询</span></a>
-    <a class="card" href="http-header-check.html"><span class="ico">🔍</span><span class="nm">网页Header检测</span></a>
-    <a class="card" href="mobile-view-check.html"><span class="ico">📱</span><span class="nm">移动端适配检测</span></a>
-    <a class="card" href="page-charset-detect.html"><span class="ico">🔤</span><span class="nm">网页编码探测</span></a>
-    <a class="card" href="page-main-content.html"><span class="ico">📄</span><span class="nm">网页正文提取</span></a>
-    <a class="card" href="query-builder.html"><span class="ico">🔗</span><span class="nm">URL参数拼装</span></a>
-    <a class="card" href="user-agent-analyze.html"><span class="ico">🕵️</span><span class="nm">UA请求头解析</span></a>
-    <a class="card" href="ssl-checker.html"><span class="ico">🔒</span><span class="nm">SSL证书查询</span></a>
-    <a class="card" href="batch-url-status-check.html"><span class="ico">🔍</span><span class="nm">批量URL状态码</span></a>
+<div id="i18nSwitch" style="max-width:1200px;margin:0 auto;padding:10px 20px;text-align:right;">
+  <button data-lang="zh" style="padding:5px 12px;border:none;border-radius:6px;background:#2478f5;color:#fff;font-size:13px;cursor:pointer;">中文</button>
+  <button data-lang="en" style="padding:5px 12px;border:none;border-radius:6px;background:transparent;color:#374151;font-size:13px;cursor:pointer;">EN</button>
 </div>
-<h2 class="rel">其他分类</h2>
+<!-- i18n-all -->
+
+<a href="index.html" class="back"><span class="i18n-zh">← 返回工具箱首页</span><span class="i18n-en" hidden>Back to All Tools</span></a>
+<h1><span class="i18n-zh">URL工具</span><span class="i18n-en" hidden>URL & Encoding</span></h1>
+<p class="intro"><span class="i18n-zh">URL 编解码与转换工具，支持 URL 编码、解码、参数解析与短链，适用于接口调试、前端开发与链接分享。 浏览器本地处理、数据不上传、即开即用。</span><span class="i18n-en" hidden>A free online collection of URL & Encoding tools. All processing runs in your browser, no upload, no registration.</span></p>
+<div class="grid">
+    <a class="card" href="urlcode.html"><span class="ico">🔐</span><span class="nm"><span class="i18n-zh">URL编码解码</span><span class="i18n-en" hidden>URL Encode / Decode</span></span></a>
+    <a class="card" href="urlencode-seo.html"><span class="ico">🔎</span><span class="nm"><span class="i18n-zh">SEO友好URL</span><span class="i18n-en" hidden>SEO-Friendly URL</span></span></a>
+    <a class="card" href="urlparse.html"><span class="ico">📋</span><span class="nm"><span class="i18n-zh">URL参数解析</span><span class="i18n-en" hidden>URL Parameter Parser</span></span></a>
+    <a class="card" href="uuid.html"><span class="ico">🆔</span><span class="nm"><span class="i18n-zh">UUID生成</span><span class="i18n-en" hidden>UUID Generator</span></span></a>
+    <a class="card" href="shorturl.html"><span class="ico">🔗</span><span class="nm"><span class="i18n-zh">本地短链接</span><span class="i18n-en" hidden>Local URL Shortener</span></span></a>
+    <a class="card" href="ipnum.html"><span class="ico">🌐</span><span class="nm"><span class="i18n-zh">IP数字互转</span><span class="i18n-en" hidden>IP to Number Converter</span></span></a>
+    <a class="card" href="domainexpire.html"><span class="ico">📅</span><span class="nm"><span class="i18n-zh">域名到期计算</span><span class="i18n-en" hidden>Domain Expiry Calculator</span></span></a>
+    <a class="card" href="htaccess.html"><span class="ico">📜</span><span class="nm"><span class="i18n-zh">.htaccess生成</span><span class="i18n-en" hidden>.htaccess Generator</span></span></a>
+    <a class="card" href="httpcode.html"><span class="ico">🔍</span><span class="nm"><span class="i18n-zh">HTTP状态码查询</span><span class="i18n-en" hidden>HTTP Status Code Lookup</span></span></a>
+    <a class="card" href="canonical.html"><span class="ico">🔗</span><span class="nm"><span class="i18n-zh">Canonical标签生成</span><span class="i18n-en" hidden>Canonical Tag Generator</span></span></a>
+    <a class="card" href="cookieparse.html"><span class="ico">🍪</span><span class="nm"><span class="i18n-zh">Cookie解析工具</span><span class="i18n-en" hidden>Cookie Parser</span></span></a>
+    <a class="card" href="dns-query.html"><span class="ico">🌐</span><span class="nm"><span class="i18n-zh">DNS记录查询</span><span class="i18n-en" hidden>DNS Record Lookup</span></span></a>
+    <a class="card" href="http-header-check.html"><span class="ico">🔍</span><span class="nm"><span class="i18n-zh">网页Header检测</span><span class="i18n-en" hidden>HTTP Header Checker</span></span></a>
+    <a class="card" href="mobile-view-check.html"><span class="ico">📱</span><span class="nm"><span class="i18n-zh">移动端适配检测</span><span class="i18n-en" hidden>Mobile-Friendly Checker</span></span></a>
+    <a class="card" href="page-charset-detect.html"><span class="ico">🔤</span><span class="nm"><span class="i18n-zh">网页编码探测</span><span class="i18n-en" hidden>Page Encoding Detector</span></span></a>
+    <a class="card" href="page-main-content.html"><span class="ico">📄</span><span class="nm"><span class="i18n-zh">网页正文提取</span><span class="i18n-en" hidden>Webpage Main Content Extractor</span></span></a>
+    <a class="card" href="query-builder.html"><span class="ico">🔗</span><span class="nm"><span class="i18n-zh">URL参数拼装</span><span class="i18n-en" hidden>URL Query Builder</span></span></a>
+    <a class="card" href="user-agent-analyze.html"><span class="ico">🕵️</span><span class="nm"><span class="i18n-zh">UA请求头解析</span><span class="i18n-en" hidden>User-Agent Analyzer</span></span></a>
+    <a class="card" href="ssl-checker.html"><span class="ico">🔒</span><span class="nm"><span class="i18n-zh">SSL证书查询</span><span class="i18n-en" hidden>SSL Certificate Checker</span></span></a>
+    <a class="card" href="batch-url-status-check.html"><span class="ico">🔍</span><span class="nm"><span class="i18n-zh">批量URL状态码</span><span class="i18n-en" hidden>Batch URL Status Checker</span></span></a>
+</div>
+<h2 class="rel"><span class="i18n-zh">其他分类</span><span class="i18n-en" hidden>Other Categories</span></h2>
 <div class="chips">
-<a class="chip" href="unit-tools.html">单位换算</a>
-<a class="chip" href="video-tools.html">视频工具</a>
-<a class="chip" href="audio-tools.html">音频工具</a>
-<a class="chip" href="gif-tools.html">GIF工具</a>
-<a class="chip" href="csv-tools.html">表格工具</a>
-<a class="chip" href="text-tools.html">文本工具</a>
-<a class="chip" href="json-tools.html">JSON/XML工具</a>
-<a class="chip" href="seo-tools.html">SEO工具</a>
-<a class="chip" href="business-tools.html">计算核算</a>
-<a class="chip" href="pdf-tools.html">PDF工具</a>
-<a class="chip" href="img-tools.html">图片工具</a>
-<a class="chip" href="dev-tools.html">开发工具</a>
+<a class="chip" href="unit-tools.html"><span class="i18n-zh">单位换算</span><span class="i18n-en" hidden>Unit Converters</span></a>
+<a class="chip" href="video-tools.html"><span class="i18n-zh">视频工具</span><span class="i18n-en" hidden>Video Tools</span></a>
+<a class="chip" href="audio-tools.html"><span class="i18n-zh">音频工具</span><span class="i18n-en" hidden>Audio Tools</span></a>
+<a class="chip" href="gif-tools.html"><span class="i18n-zh">GIF工具</span><span class="i18n-en" hidden>GIF Tools</span></a>
+<a class="chip" href="csv-tools.html"><span class="i18n-zh">表格工具</span><span class="i18n-en" hidden>CSV & Data</span></a>
+<a class="chip" href="text-tools.html"><span class="i18n-zh">文本工具</span><span class="i18n-en" hidden>Text Tools</span></a>
+<a class="chip" href="json-tools.html"><span class="i18n-zh">JSON/XML工具</span><span class="i18n-en" hidden>JSON/XML工具</span></a>
+<a class="chip" href="seo-tools.html"><span class="i18n-zh">SEO工具</span><span class="i18n-en" hidden>SEO Tools</span></a>
+<a class="chip" href="business-tools.html"><span class="i18n-zh">计算核算</span><span class="i18n-en" hidden>Business & Finance</span></a>
+<a class="chip" href="pdf-tools.html"><span class="i18n-zh">PDF工具</span><span class="i18n-en" hidden>PDF Tools</span></a>
+<a class="chip" href="img-tools.html"><span class="i18n-zh">图片工具</span><span class="i18n-en" hidden>Image Tools</span></a>
+<a class="chip" href="dev-tools.html"><span class="i18n-zh">开发工具</span><span class="i18n-en" hidden>Developer Tools</span></a>
 </div>
 <footer style="margin-top:60px;padding:30px 10px;text-align:center;border-top:1px solid #e5e7eb;color:#666;font-size:14px;">
     <div style="margin-bottom:10px;">
-        <a href="/about.html" style="margin:0 10px;color:#444;text-decoration:none;">关于我们</a>
+        <a href="/about.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="about">关于我们</a>
         <span>|</span>
-        <a href="/privacy.html" style="margin:0 10px;color:#444;text-decoration:none;">隐私政策</a>
+        <a href="/privacy.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="privacy">隐私政策</a>
         <span>|</span>
-        <a href="/contact.html" style="margin:0 10px;color:#444;text-decoration:none;">联系我们</a>
+        <a href="/contact.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="contact">联系我们</a>
     </div>
-    <div>© 2026 72在线工具箱 72tool.com 保留所有权利</div>
+    <div data-i18n="copyright">© 2026 72在线工具箱 72tool.com 保留所有权利</div>
 </footer>
 <script defer src="autopush.js"></script>
 <script src="ux-kit.js"></script>
 <script src="ads.js"></script>
 <script src="site-search.js"></script>
+<!-- Cookie弹窗开始 -->
+<div id="cookieBox" style="position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;padding:16px 24px;z-index:9999;display:none;">
+    <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+        <div style="flex:1;min-width:300px;">
+            <p style="margin:0 0 6px 0;font-size:14px;color:#333;" data-i18n="cookie_title">🍪 Cookie 使用提示</p>
+            <p style="margin:0;font-size:13px;color:#666;">
+                <span data-i18n="cookie_body">本站使用 Cookie 优化访问体验，并投放 Google 联盟广告。继续使用网站即代表您同意我们的 Cookie 政策，您可查看</span><a href="/privacy.html" style="color:#0066cc;" data-i18n="privacy">隐私政策</a><span data-i18n="cookie_suffix">。</span>
+            </p>
+        </div>
+        <div style="display:flex;gap:10px;">
+            <button id="cookieAccept" style="padding:8px 18px;background:#2563eb;color:#fff;border:none;border-radius:6px;cursor:pointer;" data-i18n="accept">同意</button>
+            <button id="cookieReject" style="padding:8px 18px;background:#eee;color:#333;border:none;border-radius:6px;cursor:pointer;" data-i18n="decline">拒绝</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const cookieBox = document.getElementById('cookieBox');
+const acceptBtn = document.getElementById('cookieAccept');
+const rejectBtn = document.getElementById('cookieReject');
+const cookieStatus = localStorage.getItem('cookieConsent');
+if (!cookieStatus) {
+    cookieBox.style.display = 'block';
+}
+acceptBtn.onclick = function(){
+    localStorage.setItem('cookieConsent','accept');
+    cookieBox.style.display = 'none';
+};
+rejectBtn.onclick = function(){
+    localStorage.setItem('cookieConsent','reject');
+    cookieBox.style.display = 'none';
+};
+</script>
+<!-- Cookie弹窗结束 -->
 </body>
 </html>

@@ -2,6 +2,9 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>视频工具在线工具 - 免费无需登录</title>
 <meta name="description" content="在线视频工具集合，支持视频加背景音乐、批量缩放视频、视频码率计算器、视频马赛克打码等，数据本地浏览器处理，不上传服务器，免注册免费使用。">
@@ -26,73 +29,118 @@ h1{font-size:26px;margin:6px 0 10px}
 .chip{padding:7px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:20px;color:#2478f5;text-decoration:none;font-size:13px}
 </style>
     <!-- adsense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495097009978965" crossorigin="anonymous"></script>
+    <!-- i18n-all --><link rel="alternate" hreflang="x-default" href="https://72tool.com/video-tools.html">
+    <link rel="alternate" hreflang="zh" href="https://72tool.com/video-tools.html">
+    <link rel="alternate" hreflang="en" href="https://72tool.com/video-tools.html?lang=en">
+    <meta name="i18n-title-en" content="Video Tools - 72 Online Tools">
+    <!-- i18n-runtime --><script src="i18n-runtime.js"></script>
 </head>
 <body>
-<a href="index.html" class="back">← 返回工具箱首页</a>
-<h1>视频工具</h1>
-<p class="intro">视频格式转换与处理工具，支持 MP4、MOV、WebM 等格式转换、压缩、剪辑与提取，适用于视频预处理与多端播放。 浏览器本地处理、数据不上传、即开即用。</p>
-<div class="grid">
-    <a class="card" href="videoaddaudio.html"><span class="ico">🎵</span><span class="nm">视频加背景音乐</span></a>
-    <a class="card" href="videobatchresize.html"><span class="ico">📐</span><span class="nm">批量缩放视频</span></a>
-    <a class="card" href="videobitcalc.html"><span class="ico">🧮</span><span class="nm">视频码率计算器</span></a>
-    <a class="card" href="videoblur.html"><span class="ico">🖼️</span><span class="nm">视频马赛克打码</span></a>
-    <a class="card" href="videocompress.html"><span class="ico">🗜️</span><span class="nm">视频压缩</span></a>
-    <a class="card" href="videoconvert.html"><span class="ico">🔄</span><span class="nm">视频格式转换</span></a>
-    <a class="card" href="videocropframe.html"><span class="ico">✂️</span><span class="nm">裁剪视频画面</span></a>
-    <a class="card" href="videocut.html"><span class="ico">✂️</span><span class="nm">视频截取片段</span></a>
-    <a class="card" href="videoextractaudio.html"><span class="ico">🎧</span><span class="nm">视频提取音频</span></a>
-    <a class="card" href="videofilter.html"><span class="ico">🎨</span><span class="nm">视频滤镜调色</span></a>
-    <a class="card" href="videofps.html"><span class="ico">⏱️</span><span class="nm">修改帧率FPS</span></a>
-    <a class="card" href="videoloop.html"><span class="ico">🔁</span><span class="nm">视频循环拼接</span></a>
-    <a class="card" href="videomerge.html"><span class="ico">➕</span><span class="nm">多视频合并</span></a>
-    <a class="card" href="videomirrow.html"><span class="ico">🪞</span><span class="nm">镜像翻转</span></a>
-    <a class="card" href="videoremoveaudio.html"><span class="ico">🔇</span><span class="nm">去除视频原声</span></a>
-    <a class="card" href="videoreverse.html"><span class="ico">⏪</span><span class="nm">视频倒放</span></a>
-    <a class="card" href="videorotate.html"><span class="ico">🔃</span><span class="nm">旋转视频</span></a>
-    <a class="card" href="videosize.html"><span class="ico">📐</span><span class="nm">自定义分辨率</span></a>
-    <a class="card" href="videospeed.html"><span class="ico">⏩</span><span class="nm">视频倍速调整</span></a>
-    <a class="card" href="videosplitframe.html"><span class="ico">📷</span><span class="nm">提取视频帧</span></a>
-    <a class="card" href="videotextsub.html"><span class="ico">📝</span><span class="nm">嵌入硬字幕</span></a>
-    <a class="card" href="videotogif.html"><span class="ico">🖼️</span><span class="nm">视频转GIF</span></a>
-    <a class="card" href="videotrimblack.html"><span class="ico">✂️</span><span class="nm">裁剪首尾黑屏</span></a>
-    <a class="card" href="videotrimsilent.html"><span class="ico">🔊</span><span class="nm">去除静音片段</span></a>
-    <a class="card" href="videovolume.html"><span class="ico">🔊</span><span class="nm">调整视频音量</span></a>
-    <a class="card" href="videowatermark.html"><span class="ico">🏷️</span><span class="nm">添加文字水印</span></a>
-    <a class="card" href="srt2ass.html"><span class="ico">📽️</span><span class="nm">SRT转ASS字幕</span></a>
-    <a class="card" href="black-border-auto-crop.html"><span class="ico">✂️</span><span class="nm">视频黑边裁剪</span></a>
-    <a class="card" href="video-split-screen.html"><span class="ico">🖥️</span><span class="nm">视频分屏合并</span></a>
-    <a class="card" href="video-volume-normalize.html"><span class="ico">🔊</span><span class="nm">视频音量标准化</span></a>
-    <a class="card" href="subtitle-offset-adjust.html"><span class="ico">⏱️</span><span class="nm">字幕时间偏移</span></a>
-    <a class="card" href="subtitle-time-align.html"><span class="ico">📝</span><span class="nm">字幕时间轴对齐</span></a>
+<div id="i18nSwitch" style="max-width:1200px;margin:0 auto;padding:10px 20px;text-align:right;">
+  <button data-lang="zh" style="padding:5px 12px;border:none;border-radius:6px;background:#2478f5;color:#fff;font-size:13px;cursor:pointer;">中文</button>
+  <button data-lang="en" style="padding:5px 12px;border:none;border-radius:6px;background:transparent;color:#374151;font-size:13px;cursor:pointer;">EN</button>
 </div>
-<h2 class="rel">其他分类</h2>
+<!-- i18n-all -->
+
+<a href="index.html" class="back"><span class="i18n-zh">← 返回工具箱首页</span><span class="i18n-en" hidden>Back to All Tools</span></a>
+<h1><span class="i18n-zh">视频工具</span><span class="i18n-en" hidden>Video Tools</span></h1>
+<p class="intro"><span class="i18n-zh">视频格式转换与处理工具，支持 MP4、MOV、WebM 等格式转换、压缩、剪辑与提取，适用于视频预处理与多端播放。 浏览器本地处理、数据不上传、即开即用。</span><span class="i18n-en" hidden>A free online collection of Video Tools tools. All processing runs in your browser, no upload, no registration.</span></p>
+<div class="grid">
+    <a class="card" href="videoaddaudio.html"><span class="ico">🎵</span><span class="nm"><span class="i18n-zh">视频加背景音乐</span><span class="i18n-en" hidden>Add Background Music to Video</span></span></a>
+    <a class="card" href="videobatchresize.html"><span class="ico">📐</span><span class="nm"><span class="i18n-zh">批量缩放视频</span><span class="i18n-en" hidden>Batch Video Resizer</span></span></a>
+    <a class="card" href="videobitcalc.html"><span class="ico">🧮</span><span class="nm"><span class="i18n-zh">视频码率计算器</span><span class="i18n-en" hidden>Video Bitrate Calculator</span></span></a>
+    <a class="card" href="videoblur.html"><span class="ico">🖼️</span><span class="nm"><span class="i18n-zh">视频马赛克打码</span><span class="i18n-en" hidden>Video Mosaic / Blur</span></span></a>
+    <a class="card" href="videocompress.html"><span class="ico">🗜️</span><span class="nm"><span class="i18n-zh">视频压缩</span><span class="i18n-en" hidden>Video Compressor</span></span></a>
+    <a class="card" href="videoconvert.html"><span class="ico">🔄</span><span class="nm"><span class="i18n-zh">视频格式转换</span><span class="i18n-en" hidden>Video Converter</span></span></a>
+    <a class="card" href="videocropframe.html"><span class="ico">✂️</span><span class="nm"><span class="i18n-zh">裁剪视频画面</span><span class="i18n-en" hidden>Crop Video Frame</span></span></a>
+    <a class="card" href="videocut.html"><span class="ico">✂️</span><span class="nm"><span class="i18n-zh">视频截取片段</span><span class="i18n-en" hidden>Cut Video Clip</span></span></a>
+    <a class="card" href="videoextractaudio.html"><span class="ico">🎧</span><span class="nm"><span class="i18n-zh">视频提取音频</span><span class="i18n-en" hidden>Extract Audio from Video</span></span></a>
+    <a class="card" href="videofilter.html"><span class="ico">🎨</span><span class="nm"><span class="i18n-zh">视频滤镜调色</span><span class="i18n-en" hidden>Video Filter & Color</span></span></a>
+    <a class="card" href="videofps.html"><span class="ico">⏱️</span><span class="nm"><span class="i18n-zh">修改帧率FPS</span><span class="i18n-en" hidden>Change Video FPS</span></span></a>
+    <a class="card" href="videoloop.html"><span class="ico">🔁</span><span class="nm"><span class="i18n-zh">视频循环拼接</span><span class="i18n-en" hidden>Loop & Join Video</span></span></a>
+    <a class="card" href="videomerge.html"><span class="ico">➕</span><span class="nm"><span class="i18n-zh">多视频合并</span><span class="i18n-en" hidden>Merge Videos</span></span></a>
+    <a class="card" href="videomirrow.html"><span class="ico">🪞</span><span class="nm"><span class="i18n-zh">镜像翻转</span><span class="i18n-en" hidden>Mirror & Flip Video</span></span></a>
+    <a class="card" href="videoremoveaudio.html"><span class="ico">🔇</span><span class="nm"><span class="i18n-zh">去除视频原声</span><span class="i18n-en" hidden>Remove Audio from Video</span></span></a>
+    <a class="card" href="videoreverse.html"><span class="ico">⏪</span><span class="nm"><span class="i18n-zh">视频倒放</span><span class="i18n-en" hidden>Reverse Video</span></span></a>
+    <a class="card" href="videorotate.html"><span class="ico">🔃</span><span class="nm"><span class="i18n-zh">旋转视频</span><span class="i18n-en" hidden>Rotate Video</span></span></a>
+    <a class="card" href="videosize.html"><span class="ico">📐</span><span class="nm"><span class="i18n-zh">自定义分辨率</span><span class="i18n-en" hidden>Custom Video Resolution</span></span></a>
+    <a class="card" href="videospeed.html"><span class="ico">⏩</span><span class="nm"><span class="i18n-zh">视频倍速调整</span><span class="i18n-en" hidden>Change Video Speed</span></span></a>
+    <a class="card" href="videosplitframe.html"><span class="ico">📷</span><span class="nm"><span class="i18n-zh">提取视频帧</span><span class="i18n-en" hidden>Extract Video Frames</span></span></a>
+    <a class="card" href="videotextsub.html"><span class="ico">📝</span><span class="nm"><span class="i18n-zh">嵌入硬字幕</span><span class="i18n-en" hidden>Embed Hard Subtitles</span></span></a>
+    <a class="card" href="videotogif.html"><span class="ico">🖼️</span><span class="nm"><span class="i18n-zh">视频转GIF</span><span class="i18n-en" hidden>Video to GIF</span></span></a>
+    <a class="card" href="videotrimblack.html"><span class="ico">✂️</span><span class="nm"><span class="i18n-zh">裁剪首尾黑屏</span><span class="i18n-en" hidden>Trim Black Bars</span></span></a>
+    <a class="card" href="videotrimsilent.html"><span class="ico">🔊</span><span class="nm"><span class="i18n-zh">去除静音片段</span><span class="i18n-en" hidden>Remove Silent Segments</span></span></a>
+    <a class="card" href="videovolume.html"><span class="ico">🔊</span><span class="nm"><span class="i18n-zh">调整视频音量</span><span class="i18n-en" hidden>Adjust Video Volume</span></span></a>
+    <a class="card" href="videowatermark.html"><span class="ico">🏷️</span><span class="nm"><span class="i18n-zh">添加文字水印</span><span class="i18n-en" hidden>Add Text Watermark</span></span></a>
+    <a class="card" href="srt2ass.html"><span class="ico">📽️</span><span class="nm"><span class="i18n-zh">SRT转ASS字幕</span><span class="i18n-en" hidden>SRT to ASS Subtitle</span></span></a>
+    <a class="card" href="black-border-auto-crop.html"><span class="ico">✂️</span><span class="nm"><span class="i18n-zh">视频黑边裁剪</span><span class="i18n-en" hidden>Auto-Crop Video Black Bars</span></span></a>
+    <a class="card" href="video-split-screen.html"><span class="ico">🖥️</span><span class="nm"><span class="i18n-zh">视频分屏合并</span><span class="i18n-en" hidden>Split-Screen Video Merge</span></span></a>
+    <a class="card" href="video-volume-normalize.html"><span class="ico">🔊</span><span class="nm"><span class="i18n-zh">视频音量标准化</span><span class="i18n-en" hidden>Normalize Video Volume</span></span></a>
+    <a class="card" href="subtitle-offset-adjust.html"><span class="ico">⏱️</span><span class="nm"><span class="i18n-zh">字幕时间偏移</span><span class="i18n-en" hidden>Subtitle Time Offset</span></span></a>
+    <a class="card" href="subtitle-time-align.html"><span class="ico">📝</span><span class="nm"><span class="i18n-zh">字幕时间轴对齐</span><span class="i18n-en" hidden>Subtitle Timeline Align</span></span></a>
+</div>
+<h2 class="rel"><span class="i18n-zh">其他分类</span><span class="i18n-en" hidden>Other Categories</span></h2>
 <div class="chips">
-<a class="chip" href="unit-tools.html">单位换算</a>
-<a class="chip" href="url-tools.html">URL工具</a>
-<a class="chip" href="audio-tools.html">音频工具</a>
-<a class="chip" href="gif-tools.html">GIF工具</a>
-<a class="chip" href="csv-tools.html">表格工具</a>
-<a class="chip" href="text-tools.html">文本工具</a>
-<a class="chip" href="json-tools.html">JSON/XML工具</a>
-<a class="chip" href="seo-tools.html">SEO工具</a>
-<a class="chip" href="business-tools.html">计算核算</a>
-<a class="chip" href="pdf-tools.html">PDF工具</a>
-<a class="chip" href="img-tools.html">图片工具</a>
-<a class="chip" href="dev-tools.html">开发工具</a>
+<a class="chip" href="unit-tools.html"><span class="i18n-zh">单位换算</span><span class="i18n-en" hidden>Unit Converters</span></a>
+<a class="chip" href="url-tools.html"><span class="i18n-zh">URL工具</span><span class="i18n-en" hidden>URL & Encoding</span></a>
+<a class="chip" href="audio-tools.html"><span class="i18n-zh">音频工具</span><span class="i18n-en" hidden>Audio Tools</span></a>
+<a class="chip" href="gif-tools.html"><span class="i18n-zh">GIF工具</span><span class="i18n-en" hidden>GIF Tools</span></a>
+<a class="chip" href="csv-tools.html"><span class="i18n-zh">表格工具</span><span class="i18n-en" hidden>CSV & Data</span></a>
+<a class="chip" href="text-tools.html"><span class="i18n-zh">文本工具</span><span class="i18n-en" hidden>Text Tools</span></a>
+<a class="chip" href="json-tools.html"><span class="i18n-zh">JSON/XML工具</span><span class="i18n-en" hidden>JSON/XML工具</span></a>
+<a class="chip" href="seo-tools.html"><span class="i18n-zh">SEO工具</span><span class="i18n-en" hidden>SEO Tools</span></a>
+<a class="chip" href="business-tools.html"><span class="i18n-zh">计算核算</span><span class="i18n-en" hidden>Business & Finance</span></a>
+<a class="chip" href="pdf-tools.html"><span class="i18n-zh">PDF工具</span><span class="i18n-en" hidden>PDF Tools</span></a>
+<a class="chip" href="img-tools.html"><span class="i18n-zh">图片工具</span><span class="i18n-en" hidden>Image Tools</span></a>
+<a class="chip" href="dev-tools.html"><span class="i18n-zh">开发工具</span><span class="i18n-en" hidden>Developer Tools</span></a>
 </div>
 <footer style="margin-top:60px;padding:30px 10px;text-align:center;border-top:1px solid #e5e7eb;color:#666;font-size:14px;">
     <div style="margin-bottom:10px;">
-        <a href="/about.html" style="margin:0 10px;color:#444;text-decoration:none;">关于我们</a>
+        <a href="/about.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="about">关于我们</a>
         <span>|</span>
-        <a href="/privacy.html" style="margin:0 10px;color:#444;text-decoration:none;">隐私政策</a>
+        <a href="/privacy.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="privacy">隐私政策</a>
         <span>|</span>
-        <a href="/contact.html" style="margin:0 10px;color:#444;text-decoration:none;">联系我们</a>
+        <a href="/contact.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="contact">联系我们</a>
     </div>
-    <div>© 2026 72在线工具箱 72tool.com 保留所有权利</div>
+    <div data-i18n="copyright">© 2026 72在线工具箱 72tool.com 保留所有权利</div>
 </footer>
 <script defer src="autopush.js"></script>
 <script src="ux-kit.js"></script>
 <script src="ads.js"></script>
 <script src="site-search.js"></script>
+<!-- Cookie弹窗开始 -->
+<div id="cookieBox" style="position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;padding:16px 24px;z-index:9999;display:none;">
+    <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+        <div style="flex:1;min-width:300px;">
+            <p style="margin:0 0 6px 0;font-size:14px;color:#333;" data-i18n="cookie_title">🍪 Cookie 使用提示</p>
+            <p style="margin:0;font-size:13px;color:#666;">
+                <span data-i18n="cookie_body">本站使用 Cookie 优化访问体验，并投放 Google 联盟广告。继续使用网站即代表您同意我们的 Cookie 政策，您可查看</span><a href="/privacy.html" style="color:#0066cc;" data-i18n="privacy">隐私政策</a><span data-i18n="cookie_suffix">。</span>
+            </p>
+        </div>
+        <div style="display:flex;gap:10px;">
+            <button id="cookieAccept" style="padding:8px 18px;background:#2563eb;color:#fff;border:none;border-radius:6px;cursor:pointer;" data-i18n="accept">同意</button>
+            <button id="cookieReject" style="padding:8px 18px;background:#eee;color:#333;border:none;border-radius:6px;cursor:pointer;" data-i18n="decline">拒绝</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const cookieBox = document.getElementById('cookieBox');
+const acceptBtn = document.getElementById('cookieAccept');
+const rejectBtn = document.getElementById('cookieReject');
+const cookieStatus = localStorage.getItem('cookieConsent');
+if (!cookieStatus) {
+    cookieBox.style.display = 'block';
+}
+acceptBtn.onclick = function(){
+    localStorage.setItem('cookieConsent','accept');
+    cookieBox.style.display = 'none';
+};
+rejectBtn.onclick = function(){
+    localStorage.setItem('cookieConsent','reject');
+    cookieBox.style.display = 'none';
+};
+</script>
+<!-- Cookie弹窗结束 -->
 </body>
 </html>

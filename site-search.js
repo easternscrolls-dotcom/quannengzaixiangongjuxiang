@@ -4,7 +4,7 @@
   var bar = document.createElement('div');
   bar.id = 'siteSearch';
   bar.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:999;background:#fff;border-bottom:1px solid #e5e7eb;padding:7px 12px;display:flex;gap:8px;align-items:center;box-shadow:0 1px 5px rgba(0,0,0,.06)';
-  bar.innerHTML = '<input id="ssInput" placeholder="搜索工具，如 PDF合并、图片压缩、贷款计算" style="flex:1;padding:9px 12px;border:1px solid #ddd;border-radius:6px;font-size:14px;outline:none;">';
+  bar.innerHTML = '<input id="ssInput" placeholder="搜索工具，如 PDF合并、图片压缩、贷款计算" data-ph-zh="搜索工具，如 PDF合并、图片压缩、贷款计算" data-ph-en="Search tools, e.g. PDF merge, image compression, loan calculator" style="flex:1;padding:9px 12px;border:1px solid #ddd;border-radius:6px;font-size:14px;outline:none;">';
   document.body.appendChild(bar);
   document.body.style.paddingTop = '46px';
   var dd = document.createElement('div');

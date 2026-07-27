@@ -2,6 +2,9 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>测试手机号在线工具 - 免费在线开发调试</title>
 <style>
@@ -9,8 +12,8 @@
 body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
 .back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
 h2{margin-bottom:24px;color:#111}
-<input id="phoneCount" placeholder="生成数量" type="number" value="10" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace">
-<button onclick="genTestPhone()" style="width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer">生成测试手机号</button>
+<input id="phoneCount" placeholder="生成数量" data-ph-zh="生成数量" data-ph-en="生成数量" type="number" value="10" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;margin:10px 0;font-family:monospace">
+<button onclick="genTestPhone()" style="width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer"><span class="i18n-zh">生成测试手机号</span><span class="i18n-en" hidden>Generate 测试手机号</span></button>
 <textarea id="phoneOut" readonly style="width:100%;height:200px;padding:12px;border:1px solid #ddd;border-radius:6px;font-family:monospace"></textarea>
 <p style="color:#999;margin-top:8px">⚠️仅用于程序开发测试，不可用于短信骚扰、违规用途</p>
 
@@ -29,29 +32,40 @@ h2{margin-bottom:24px;color:#111}
     {"@context":"https://schema.org","@type":"SoftwareApplication","name":"随机手机号生成","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"url":"https://72tool.com/randomphone.html"}
     </script>
     <!-- adsense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495097009978965" crossorigin="anonymous"></script>
+    <!-- i18n-all --><link rel="alternate" hreflang="x-default" href="https://72tool.com/randomphone.html">
+    <link rel="alternate" hreflang="zh" href="https://72tool.com/randomphone.html">
+    <link rel="alternate" hreflang="en" href="https://72tool.com/randomphone.html?lang=en">
+    <meta name="i18n-title-en" content="Test Phone Number - 72 Online Tools">
+    <!-- i18n-runtime --><script src="i18n-runtime.js"></script>
 </head>
 <body>
-<h1 style="margin:16px 0;font-size:22px;">随机手机号生成</h1>
-<p class="tool-desc" style="margin:4px 0 18px;color:#6b7280;font-size:14px;line-height:1.7;">随机手机号生成 是一款免费在线工具，无需下载安装，打开网页即可直接使用。免费、无需注册，打开网页即可使用，操作简单、响应快速。</p>
+<div id="i18nSwitch" style="max-width:1200px;margin:0 auto;padding:10px 20px;text-align:right;">
+  <button data-lang="zh" style="padding:5px 12px;border:none;border-radius:6px;background:#2478f5;color:#fff;font-size:13px;cursor:pointer;">中文</button>
+  <button data-lang="en" style="padding:5px 12px;border:none;border-radius:6px;background:transparent;color:#374151;font-size:13px;cursor:pointer;">EN</button>
+</div>
+<!-- i18n-all -->
 
-<nav class="crumb" style="margin:18px 0 0;font-size:13px;color:#6b7280;"><a href="index.html" style="color:#2478f5;text-decoration:none;">首页</a> / <a href="dev-tools.html" style="color:#2478f5;text-decoration:none;">开发工具</a></nav>
+<h1 style="margin:16px 0;font-size:22px;"><span class="i18n-zh">随机手机号生成</span><span class="i18n-en" hidden>Test Phone Number</span></h1>
+<p class="tool-desc" style="margin:4px 0 18px;color:#6b7280;font-size:14px;line-height:1.7;"><span class="i18n-zh">随机手机号生成 是一款免费在线工具，无需下载安装，打开网页即可直接使用。免费、无需注册，打开网页即可使用，操作简单、响应快速。</span><span class="i18n-en" hidden>Test Phone Number — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.</span></p>
+
+<nav class="crumb" style="margin:18px 0 0;font-size:13px;color:#6b7280;"><a href="index.html" style="color:#2478f5;text-decoration:none;" data-i18n="nav_home">首页</a> / <a href="dev-tools.html" style="color:#2478f5;text-decoration:none;"><span class="i18n-zh">开发工具</span><span class="i18n-en" hidden>Developer Tools</span></a></nav>
 <!-- cat-crumb -->
-<div class="tags" style="margin:8px 0 0;font-size:13px;color:#6b7280;">标签：<a href="tag-generate.html" style="color:#2478f5;text-decoration:none;margin-right:10px;">生成</a></div>
-<!-- tool-tags --><a href="index.html" class="back">← 返回工具箱首页</a>
-<!-- sibling-nav --><div style="margin:12px 0 0;padding:10px 14px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;"><span style="font-size:13px;color:#6b7280;margin-right:6px;">同类工具：</span><span style="display:inline-flex;flex-wrap:wrap;gap:8px;vertical-align:middle;">
-    <a href="skugen.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">SKU编码</a>
-    <a href="squarecalc.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">平方立方</a>
-    <a href="proportion.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">比例换算</a>
-    <a href="hash.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">Hash加密</a>
-    <a href="hex.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">进制转换</a>
-    <a href="crontab.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">Cron表达式</a>
-    <a href="base64.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">Base64编解码</a>
-    <a href="charsetconv.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">字符编码转换</a>
-    <a href="dev-tools.html" style="display:inline-block;padding:6px 12px;background:#eef4ff;border:1px solid #d6e4ff;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">查看全部开发工具 →</a>
+<div class="tags" style="margin:8px 0 0;font-size:13px;color:#6b7280;"><span class="i18n-zh">标签：</span><span class="i18n-en" hidden>Tags: </span><a href="tag-generate.html" style="color:#2478f5;text-decoration:none;margin-right:10px;"><span class="i18n-zh">生成</span><span class="i18n-en" hidden>Generate</span></a></div>
+<!-- tool-tags --><a href="index.html" class="back"><span class="i18n-zh">← 返回工具箱首页</span><span class="i18n-en" hidden>Back to All Tools</span></a>
+<!-- sibling-nav --><div style="margin:12px 0 0;padding:10px 14px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;"><span style="font-size:13px;color:#6b7280;margin-right:6px;"><span class="i18n-zh">同类工具：</span><span class="i18n-en" hidden>Related Tools:</span></span><span style="display:inline-flex;flex-wrap:wrap;gap:8px;vertical-align:middle;">
+    <a href="skugen.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh">SKU编码</span><span class="i18n-en" hidden>SKU Generator</span></a>
+    <a href="squarecalc.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh">平方立方</span><span class="i18n-en" hidden>Square & Cube Calculator</span></a>
+    <a href="proportion.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh">比例换算</span><span class="i18n-en" hidden>Proportion Converter</span></a>
+    <a href="hash.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh">Hash加密</span><span class="i18n-en" hidden>Hash Generator</span></a>
+    <a href="hex.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh">进制转换</span><span class="i18n-en" hidden>Base Converter</span></a>
+    <a href="crontab.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh">Cron表达式</span><span class="i18n-en" hidden>Cron Expression Generator</span></a>
+    <a href="base64.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh">Base64编解码</span><span class="i18n-en" hidden>Base64 Encode / Decode</span></a>
+    <a href="charsetconv.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh">字符编码转换</span><span class="i18n-en" hidden>Character Encoding Converter</span></a>
+    <a href="dev-tools.html" style="display:inline-block;padding:6px 12px;background:#eef4ff;border:1px solid #d6e4ff;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh">开发工具</span><span class="i18n-en" hidden>Developer Tools</span></a>
   </span></div>
-<h2>批量生成测试手机号（仅开发调试使用）</h2>
-<input id="phoneCount" placeholder="生成数量" type="number" value="10">
-<button onclick="genTestPhone()">生成测试手机号</button>
+<h2><span class="i18n-zh">批量生成测试手机号（仅开发调试使用）</span><span class="i18n-en" hidden>Test Phone Number</span></h2>
+<input id="phoneCount" placeholder="生成数量" data-ph-zh="生成数量" data-ph-en="生成数量" type="number" value="10">
+<button onclick="genTestPhone()"><span class="i18n-zh">生成测试手机号</span><span class="i18n-en" hidden>Generate 测试手机号</span></button>
 <textarea id="phoneOut" readonly></textarea>
 <p style="color:#999;margin-top:8px">⚠️仅用于程序开发测试，禁止用于短信骚扰等违规行为</p>
 <script>
@@ -76,14 +90,14 @@ function genTestPhone(){
 <div id="cookieBox" style="position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;padding:16px 24px;z-index:9999;display:none;">
     <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
         <div style="flex:1;min-width:300px;">
-            <p style="margin:0 0 6px 0;font-size:14px;color:#333;">🍪 Cookie 使用提示</p>
+            <p style="margin:0 0 6px 0;font-size:14px;color:#333;" data-i18n="cookie_title">🍪 Cookie 使用提示</p>
             <p style="margin:0;font-size:13px;color:#666;">
-                本站使用Cookie优化访问体验，并投放Google联盟广告。继续使用网站即代表您同意我们的Cookie政策，您可查看<a href="/privacy.html" style="color:#0066cc;">隐私政策</a>。
+                <span data-i18n="cookie_body">本站使用 Cookie 优化访问体验，并投放 Google 联盟广告。继续使用网站即代表您同意我们的 Cookie 政策，您可查看</span><a href="/privacy.html" style="color:#0066cc;" data-i18n="privacy">隐私政策</a><span data-i18n="cookie_suffix">。</span>
             </p>
         </div>
         <div style="display:flex;gap:10px;">
-            <button id="cookieAccept" style="padding:8px 18px;background:#2563eb;color:#fff;border:none;border-radius:6px;cursor:pointer;">同意</button>
-            <button id="cookieReject" style="padding:8px 18px;background:#eee;color:#333;border:none;border-radius:6px;cursor:pointer;">拒绝</button>
+            <button id="cookieAccept" style="padding:8px 18px;background:#2563eb;color:#fff;border:none;border-radius:6px;cursor:pointer;" data-i18n="accept">同意</button>
+            <button id="cookieReject" style="padding:8px 18px;background:#eee;color:#333;border:none;border-radius:6px;cursor:pointer;" data-i18n="decline">拒绝</button>
         </div>
     </div>
 </div>
@@ -110,7 +124,7 @@ rejectBtn.onclick = function(){
 
 
 <div style="margin:40px 0 0;padding:20px;background:#f7f8fa;border-radius:8px;">
-<!-- longtail-body -->
+<!-- longtail-body --><div class="i18n-zh">
 <section style="margin:40px 0;padding:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
   <div style="font-size:16px;font-weight:600;margin-bottom:12px;color:#111;">功能介绍与适用场景</div>
   <p style="color:#374151;font-size:14px;line-height:1.9;margin:0 0 10px;">测试手机号是一款免费的在线开发调试与编码转换工具，无需下载安装、无需注册登录，打开网页即可使用。所有生成操作均在浏览器本地完成，文件不会上传到服务器，充分保护数据隐私。支持一次处理多个文件，效率更高。无论使用电脑、平板还是手机，都能直接在浏览器中打开使用。</p>
@@ -148,23 +162,55 @@ rejectBtn.onclick = function(){
 
   <div style="font-size:15px;font-weight:500;color:#111;margin-bottom:14px;">相关工具</div>
   <div style="display:flex;flex-wrap:wrap;gap:8px;">
-    <a href="random-chinese-sentence.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">随机中文句子生成</a>
-    <a href="random-email-url.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">随机邮箱网址生成</a>
-    <a href="random-weight-draw.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">加权随机抽签工具</a>
-    <a href="randomname.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">随机中文姓名生成</a>
-    <a href="randomport.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">随机端口号生成</a>
-    <a href="randomtable.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;">随机数据表生成工具</a>
+    <a href="random-chinese-sentence.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh">随机中文句子生成</span><span class="i18n-en" hidden>Random Chinese Sentence</span></a>
+    <a href="random-email-url.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh">随机邮箱网址生成</span><span class="i18n-en" hidden>Random Email & URL</span></a>
+    <a href="random-weight-draw.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh">加权随机抽签工具</span><span class="i18n-en" hidden>Weighted Random Draw</span></a>
+    <a href="randomname.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh">随机中文姓名生成</span><span class="i18n-en" hidden>Random Name & Address</span></a>
+    <a href="randomport.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh">随机端口号生成</span><span class="i18n-en" hidden>Random Port</span></a>
+    <a href="randomtable.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh">随机数据表生成工具</span><span class="i18n-en" hidden>Random Test Data</span></a>
   </div>
-</div>
-<footer style="margin-top:60px;padding:30px 10px;text-align:center;border-top:1px solid #e5e7eb;color:#666;font-size:14px;">
+</div><div class="i18n-en" hidden><section class="i18n-en" hidden lang="en" style="margin:40px 0;padding:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
+<div style="font-size:16px;font-weight:600;margin-bottom:12px;color:#111;">Features &amp; Use Cases</div>
+<p style="color:#374151;font-size:14px;line-height:1.9;margin:0;">Test Phone Number is a free online Developer Tools tool. No download or registration is required — just open the page and use it instantly. All processing runs locally in your browser, so your files and data never leave your device, keeping everything private.</p>
+</section>
+<section class="i18n-en" hidden lang="en" style="margin:40px 0;padding:20px;background:#f7f8fa;border-radius:8px;">
+<div style="font-size:16px;font-weight:600;margin-bottom:12px;color:#111;">How to Use</div>
+<ol style="margin:0;padding-left:20px;color:#374151;font-size:14px;line-height:1.9;">
+<li>Enter or paste the content you want to process into the input area.</li>
+<li>Set any options you need (such as units or modes) from the controls on the page.</li>
+<li>Click the action button and let the tool process everything locally in your browser.</li>
+<li>View the result, then copy or download it as needed.</li>
+</ol>
+</section>
+<section class="i18n-en" hidden lang="en" style="margin:40px 0;padding:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
+<div style="font-size:16px;font-weight:600;margin-bottom:14px;color:#111;">FAQ</div>
+<div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q：Is the result accurate?</div>
+<div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：It uses standard algorithms and conversion factors, accurate enough for everyday and work use.</div>
+<div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q：Do I need to install anything?</div>
+<div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：No. It is a pure browser tool — paste your code/text and get the result instantly.</div>
+<div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q：Can I use it on my phone?</div>
+<div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：Yes. It runs in any modern browser on phone, tablet, or desktop — no app install needed.</div>
+<div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q：Is it really free?</div>
+<div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：Yes, this tool is completely free to use, with no login required.</div>
+</section><div style="margin:40px 0 0;padding:20px;background:#f7f8fa;border-radius:8px;">
+  <div style="font-size:15px;font-weight:500;color:#111;margin-bottom:14px;">Related Tools</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;">
+    <a href="random-chinese-sentence.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Random Chinese Sentence</a>
+    <a href="random-email-url.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Random Email & URL</a>
+    <a href="random-weight-draw.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Weighted Random Draw</a>
+    <a href="randomname.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Random Name & Address</a>
+    <a href="randomport.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Random Port</a>
+    <a href="randomtable.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Random Test Data</a>
+  </div>
+</div></div></div><footer style="margin-top:60px;padding:30px 10px;text-align:center;border-top:1px solid #e5e7eb;color:#666;font-size:14px;">
     <div style="margin-bottom:10px;">
-        <a href="/about.html" style="margin:0 10px;color:#444;text-decoration:none;">关于我们</a>
+        <a href="/about.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="about">关于我们</a>
         <span>|</span>
-        <a href="/privacy.html" style="margin:0 10px;color:#444;text-decoration:none;">隐私政策</a>
+        <a href="/privacy.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="privacy">隐私政策</a>
         <span>|</span>
-        <a href="/contact.html" style="margin:0 10px;color:#444;text-decoration:none;">联系我们</a>
+        <a href="/contact.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="contact">联系我们</a>
     </div>
-    <div>© 2026 72在线工具箱 72tool.com 保留所有权利</div>
+    <div data-i18n="copyright">© 2026 72在线工具箱 72tool.com 保留所有权利</div>
 </footer>
 
 

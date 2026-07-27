@@ -2,6 +2,9 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>单位换算在线工具 - 免费无需登录</title>
 <meta name="description" content="在线单位换算集合，支持角度弧度转换、面积换算、文件大小换算、密度换算等，数据本地浏览器处理，不上传服务器，免注册免费使用。">
@@ -26,56 +29,101 @@ h1{font-size:26px;margin:6px 0 10px}
 .chip{padding:7px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:20px;color:#2478f5;text-decoration:none;font-size:13px}
 </style>
     <!-- adsense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495097009978965" crossorigin="anonymous"></script>
+    <!-- i18n-all --><link rel="alternate" hreflang="x-default" href="https://72tool.com/unit-tools.html">
+    <link rel="alternate" hreflang="zh" href="https://72tool.com/unit-tools.html">
+    <link rel="alternate" hreflang="en" href="https://72tool.com/unit-tools.html?lang=en">
+    <meta name="i18n-title-en" content="Unit Converters - 72 Online Tools">
+    <!-- i18n-runtime --><script src="i18n-runtime.js"></script>
 </head>
 <body>
-<a href="index.html" class="back">← 返回工具箱首页</a>
-<h1>单位换算</h1>
-<p class="intro">单位换算在线工具集合，支持长度、面积、体积、重量、温度、角度、汇率等常用单位互换，适用于工程计算、学习作业与日常换算。 浏览器本地处理、数据不上传、即开即用。</p>
-<div class="grid">
-    <a class="card" href="unitangle.html"><span class="ico">📐</span><span class="nm">角度弧度转换</span></a>
-    <a class="card" href="unitarea.html"><span class="ico">🟧</span><span class="nm">面积换算</span></a>
-    <a class="card" href="unitbyte.html"><span class="ico">💾</span><span class="nm">文件大小换算</span></a>
-    <a class="card" href="unitdensity.html"><span class="ico">⚗️</span><span class="nm">密度换算</span></a>
-    <a class="card" href="unitenergy.html"><span class="ico">⚡</span><span class="nm">能量换算</span></a>
-    <a class="card" href="unitlength.html"><span class="ico">📏</span><span class="nm">长度换算</span></a>
-    <a class="card" href="unitmoney.html"><span class="ico">💴</span><span class="nm">简易汇率</span></a>
-    <a class="card" href="unitpower.html"><span class="ico">🔌</span><span class="nm">功率换算</span></a>
-    <a class="card" href="unitpressure.html"><span class="ico">🌡️</span><span class="nm">压强换算</span></a>
-    <a class="card" href="unitspeed.html"><span class="ico">🚗</span><span class="nm">速度换算</span></a>
-    <a class="card" href="unittemp.html"><span class="ico">🌡️</span><span class="nm">温度换算</span></a>
-    <a class="card" href="unittime.html"><span class="ico">⏱️</span><span class="nm">时间换算</span></a>
-    <a class="card" href="unitvolume.html"><span class="ico">🧪</span><span class="nm">体积容量</span></a>
-    <a class="card" href="unitweight.html"><span class="ico">⚖️</span><span class="nm">重量换算</span></a>
-    <a class="card" href="distancewalking.html"><span class="ico">🚶</span><span class="nm">步数距离换算</span></a>
+<div id="i18nSwitch" style="max-width:1200px;margin:0 auto;padding:10px 20px;text-align:right;">
+  <button data-lang="zh" style="padding:5px 12px;border:none;border-radius:6px;background:#2478f5;color:#fff;font-size:13px;cursor:pointer;">中文</button>
+  <button data-lang="en" style="padding:5px 12px;border:none;border-radius:6px;background:transparent;color:#374151;font-size:13px;cursor:pointer;">EN</button>
 </div>
-<h2 class="rel">其他分类</h2>
+<!-- i18n-all -->
+
+<a href="index.html" class="back"><span class="i18n-zh">← 返回工具箱首页</span><span class="i18n-en" hidden>Back to All Tools</span></a>
+<h1><span class="i18n-zh">单位换算</span><span class="i18n-en" hidden>Unit Converters</span></h1>
+<p class="intro"><span class="i18n-zh">单位换算在线工具集合，支持长度、面积、体积、重量、温度、角度、汇率等常用单位互换，适用于工程计算、学习作业与日常换算。 浏览器本地处理、数据不上传、即开即用。</span><span class="i18n-en" hidden>A free online collection of Unit Converters tools. All processing runs in your browser, no upload, no registration.</span></p>
+<div class="grid">
+    <a class="card" href="unitangle.html"><span class="ico">📐</span><span class="nm"><span class="i18n-zh">角度弧度转换</span><span class="i18n-en" hidden>Angle ↔ Radian Converter</span></span></a>
+    <a class="card" href="unitarea.html"><span class="ico">🟧</span><span class="nm"><span class="i18n-zh">面积换算</span><span class="i18n-en" hidden>Area Converter</span></span></a>
+    <a class="card" href="unitbyte.html"><span class="ico">💾</span><span class="nm"><span class="i18n-zh">文件大小换算</span><span class="i18n-en" hidden>File Size Converter</span></span></a>
+    <a class="card" href="unitdensity.html"><span class="ico">⚗️</span><span class="nm"><span class="i18n-zh">密度换算</span><span class="i18n-en" hidden>Density Converter</span></span></a>
+    <a class="card" href="unitenergy.html"><span class="ico">⚡</span><span class="nm"><span class="i18n-zh">能量换算</span><span class="i18n-en" hidden>Energy Converter</span></span></a>
+    <a class="card" href="unitlength.html"><span class="ico">📏</span><span class="nm"><span class="i18n-zh">长度换算</span><span class="i18n-en" hidden>Length Converter</span></span></a>
+    <a class="card" href="unitmoney.html"><span class="ico">💴</span><span class="nm"><span class="i18n-zh">简易汇率</span><span class="i18n-en" hidden>Currency Exchange Rate</span></span></a>
+    <a class="card" href="unitpower.html"><span class="ico">🔌</span><span class="nm"><span class="i18n-zh">功率换算</span><span class="i18n-en" hidden>Power Converter</span></span></a>
+    <a class="card" href="unitpressure.html"><span class="ico">🌡️</span><span class="nm"><span class="i18n-zh">压强换算</span><span class="i18n-en" hidden>Pressure Converter</span></span></a>
+    <a class="card" href="unitspeed.html"><span class="ico">🚗</span><span class="nm"><span class="i18n-zh">速度换算</span><span class="i18n-en" hidden>Speed Converter</span></span></a>
+    <a class="card" href="unittemp.html"><span class="ico">🌡️</span><span class="nm"><span class="i18n-zh">温度换算</span><span class="i18n-en" hidden>Temperature Converter</span></span></a>
+    <a class="card" href="unittime.html"><span class="ico">⏱️</span><span class="nm"><span class="i18n-zh">时间换算</span><span class="i18n-en" hidden>Time Converter</span></span></a>
+    <a class="card" href="unitvolume.html"><span class="ico">🧪</span><span class="nm"><span class="i18n-zh">体积容量</span><span class="i18n-en" hidden>Volume Converter</span></span></a>
+    <a class="card" href="unitweight.html"><span class="ico">⚖️</span><span class="nm"><span class="i18n-zh">重量换算</span><span class="i18n-en" hidden>Weight Converter</span></span></a>
+    <a class="card" href="distancewalking.html"><span class="ico">🚶</span><span class="nm"><span class="i18n-zh">步数距离换算</span><span class="i18n-en" hidden>Steps & Distance Converter</span></span></a>
+</div>
+<h2 class="rel"><span class="i18n-zh">其他分类</span><span class="i18n-en" hidden>Other Categories</span></h2>
 <div class="chips">
-<a class="chip" href="url-tools.html">URL工具</a>
-<a class="chip" href="video-tools.html">视频工具</a>
-<a class="chip" href="audio-tools.html">音频工具</a>
-<a class="chip" href="gif-tools.html">GIF工具</a>
-<a class="chip" href="csv-tools.html">表格工具</a>
-<a class="chip" href="text-tools.html">文本工具</a>
-<a class="chip" href="json-tools.html">JSON/XML工具</a>
-<a class="chip" href="seo-tools.html">SEO工具</a>
-<a class="chip" href="business-tools.html">计算核算</a>
-<a class="chip" href="pdf-tools.html">PDF工具</a>
-<a class="chip" href="img-tools.html">图片工具</a>
-<a class="chip" href="dev-tools.html">开发工具</a>
+<a class="chip" href="url-tools.html"><span class="i18n-zh">URL工具</span><span class="i18n-en" hidden>URL & Encoding</span></a>
+<a class="chip" href="video-tools.html"><span class="i18n-zh">视频工具</span><span class="i18n-en" hidden>Video Tools</span></a>
+<a class="chip" href="audio-tools.html"><span class="i18n-zh">音频工具</span><span class="i18n-en" hidden>Audio Tools</span></a>
+<a class="chip" href="gif-tools.html"><span class="i18n-zh">GIF工具</span><span class="i18n-en" hidden>GIF Tools</span></a>
+<a class="chip" href="csv-tools.html"><span class="i18n-zh">表格工具</span><span class="i18n-en" hidden>CSV & Data</span></a>
+<a class="chip" href="text-tools.html"><span class="i18n-zh">文本工具</span><span class="i18n-en" hidden>Text Tools</span></a>
+<a class="chip" href="json-tools.html"><span class="i18n-zh">JSON/XML工具</span><span class="i18n-en" hidden>JSON/XML工具</span></a>
+<a class="chip" href="seo-tools.html"><span class="i18n-zh">SEO工具</span><span class="i18n-en" hidden>SEO Tools</span></a>
+<a class="chip" href="business-tools.html"><span class="i18n-zh">计算核算</span><span class="i18n-en" hidden>Business & Finance</span></a>
+<a class="chip" href="pdf-tools.html"><span class="i18n-zh">PDF工具</span><span class="i18n-en" hidden>PDF Tools</span></a>
+<a class="chip" href="img-tools.html"><span class="i18n-zh">图片工具</span><span class="i18n-en" hidden>Image Tools</span></a>
+<a class="chip" href="dev-tools.html"><span class="i18n-zh">开发工具</span><span class="i18n-en" hidden>Developer Tools</span></a>
 </div>
 <footer style="margin-top:60px;padding:30px 10px;text-align:center;border-top:1px solid #e5e7eb;color:#666;font-size:14px;">
     <div style="margin-bottom:10px;">
-        <a href="/about.html" style="margin:0 10px;color:#444;text-decoration:none;">关于我们</a>
+        <a href="/about.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="about">关于我们</a>
         <span>|</span>
-        <a href="/privacy.html" style="margin:0 10px;color:#444;text-decoration:none;">隐私政策</a>
+        <a href="/privacy.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="privacy">隐私政策</a>
         <span>|</span>
-        <a href="/contact.html" style="margin:0 10px;color:#444;text-decoration:none;">联系我们</a>
+        <a href="/contact.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="contact">联系我们</a>
     </div>
-    <div>© 2026 72在线工具箱 72tool.com 保留所有权利</div>
+    <div data-i18n="copyright">© 2026 72在线工具箱 72tool.com 保留所有权利</div>
 </footer>
 <script defer src="autopush.js"></script>
 <script src="ux-kit.js"></script>
 <script src="ads.js"></script>
 <script src="site-search.js"></script>
+<!-- Cookie弹窗开始 -->
+<div id="cookieBox" style="position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;padding:16px 24px;z-index:9999;display:none;">
+    <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+        <div style="flex:1;min-width:300px;">
+            <p style="margin:0 0 6px 0;font-size:14px;color:#333;" data-i18n="cookie_title">🍪 Cookie 使用提示</p>
+            <p style="margin:0;font-size:13px;color:#666;">
+                <span data-i18n="cookie_body">本站使用 Cookie 优化访问体验，并投放 Google 联盟广告。继续使用网站即代表您同意我们的 Cookie 政策，您可查看</span><a href="/privacy.html" style="color:#0066cc;" data-i18n="privacy">隐私政策</a><span data-i18n="cookie_suffix">。</span>
+            </p>
+        </div>
+        <div style="display:flex;gap:10px;">
+            <button id="cookieAccept" style="padding:8px 18px;background:#2563eb;color:#fff;border:none;border-radius:6px;cursor:pointer;" data-i18n="accept">同意</button>
+            <button id="cookieReject" style="padding:8px 18px;background:#eee;color:#333;border:none;border-radius:6px;cursor:pointer;" data-i18n="decline">拒绝</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const cookieBox = document.getElementById('cookieBox');
+const acceptBtn = document.getElementById('cookieAccept');
+const rejectBtn = document.getElementById('cookieReject');
+const cookieStatus = localStorage.getItem('cookieConsent');
+if (!cookieStatus) {
+    cookieBox.style.display = 'block';
+}
+acceptBtn.onclick = function(){
+    localStorage.setItem('cookieConsent','accept');
+    cookieBox.style.display = 'none';
+};
+rejectBtn.onclick = function(){
+    localStorage.setItem('cookieConsent','reject');
+    cookieBox.style.display = 'none';
+};
+</script>
+<!-- Cookie弹窗结束 -->
 </body>
 </html>
