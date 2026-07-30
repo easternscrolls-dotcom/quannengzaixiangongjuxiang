@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sort CSV | 72Tool 無料オンラインツール</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1300px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input,select{padding:12px;border:1px solid #ddd;border-radius:6px;margin:8px 0}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script><!-- adsense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495097009978965" crossorigin="anonymous"></script>
+    <!-- i18n-all --><!-- i18n-runtime --><script src="i18n-runtime.js"></script>    <!-- SEO by seo_rewrite.py -->
+    <meta name="description" content="「Sort CSV」は72Toolが提供する無料のオンラインツールです。ダウンロード不要、ブラウザ上でローカルに動作しデータを外部に送信しないためプライバシーを保護します。すぐに使えてPC・スマホ両対応。">
+    <meta name="i18n-desc-en" content="「Sort CSV」は72Toolが提供する無料のオンラインツールです。ダウンロード不要、ブラウザ上でローカルに動作しデータを外部に送信しないためプライバシーを保護します。すぐに使えてPC・スマホ両対応。">>
+    <link rel="canonical" href="https://72tool.com/jp/csvsort.html">
+    <meta name="i18n-title-en" content="Sort CSV | 72Tool 無料オンラインツール">>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sort CSV | 72Tool 無料オンラインツール">>
+    <meta property="og:description" content="「Sort CSV」は72Toolが提供する無料のオンラインツールです。ダウンロード不要、ブラウザ上でローカルに動作しデータを外部に送信しないためプライバシーを保護します。すぐに使えてPC・スマホ両対応。">>
+    <meta property="og:url" content="https://72tool.com/csvsort.html">
+    <meta property="og:site_name" content="72Tool 免费在线工具箱">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Sort CSV | 72Tool 無料オンラインツール">>
+    <meta name="twitter:description" content="「Sort CSV」は72Toolが提供する無料のオンラインツールです。ダウンロード不要、ブラウザ上でローカルに動作しデータを外部に送信しないためプライバシーを保護します。すぐに使えてPC・スマホ両対応。">>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSV数据排序工具","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"url":"https://72tool.com/csvsort.html"}
+    </script>    <link rel="alternate" hreflang="x-default" href="https://72tool.com/">
+    <link rel="alternate" hreflang="zh" href="https://72tool.com/">
+    <link rel="alternate" hreflang="en" href="https://72tool.com/en/">
+    <link rel="alternate" hreflang="ja" href="https://72tool.com/jp/">
+    <link rel="alternate" hreflang="es" href="https://72tool.com/es/">
+</head>
+<body>
+<div id="i18nSwitch" style="max-width:1200px;margin:0 auto;padding:10px 20px;text-align:right;">
+  <button data-lang="zh" style="padding:5px 12px;border:none;border-radius:6px;background:#2478f5;color:#fff;font-size:13px;cursor:pointer;">中文</button>
+  <button data-lang="en" style="padding:5px 12px;border:none;border-radius:6px;background:transparent;color:#374151;font-size:13px;cursor:pointer;">EN</button>
+</div>
+<!-- i18n-all -->
+
+<h1 style="margin:16px 0;font-size:22px;"><span class="i18n-zh" hidden>CSV数据排序工具 | 72Tool 免费在线表格处理工具</span><span class="i18n-en">Sort CSV | 72Tool 無料オンラインツール</span></h1>
+<p class="tool-desc" style="margin:4px 0 18px;color:#6b7280;font-size:14px;line-height:1.7;"><span class="i18n-zh" hidden>CSV数据排序工具 是一款免费在线工具，无需下载安装，打开网页即可直接使用。支持格式化、校验与格式互转，提升数据处理与开发效率。</span><span class="i18n-en">Sort CSV — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.</span></p><p class="tool-intro" style="margin:4px 0 18px;color:#6b7280;font-size:14px;line-height:1.7;">72Toolの「Sort CSV」はブラウザでそのまま使える無料ツールです。インストール不要で、ファイルやデータをサーバーに送信せずローカルで処理するためプライバシーが守られます。PC・スマホ両対応。</p>
+
+<nav class="crumb" style="margin:18px 0 0;font-size:13px;color:#6b7280;"><a href="index.html" style="color:#2478f5;text-decoration:none;" data-i18n="nav_home">首页</a> / <a href="csv-tools.html" style="color:#2478f5;text-decoration:none;"><span class="i18n-zh" hidden>CSV表格工具</span><span class="i18n-en">CSV & Data</span></a></nav>
+<!-- cat-crumb -->
+<!-- tool-tags --><a href="index.html" class="back"><span class="i18n-zh" hidden>← 返回工具箱首页</span><span class="i18n-en">Back to All Tools</span></a>
+<!-- sibling-nav --><div style="margin:12px 0 0;padding:10px 14px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;"><span style="font-size:13px;color:#6b7280;margin-right:6px;"><span class="i18n-zh" hidden>同类工具：</span><span class="i18n-en">Related Tools:</span></span><span style="display:inline-flex;flex-wrap:wrap;gap:8px;vertical-align:middle;">
+    <a href="csvsplit.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>按列分组拆分</span><span class="i18n-en">Split CSV by Group</span></a>
+    <a href="table-column-dedup.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>表格按列去重</span><span class="i18n-en">Dedupe Table by Column</span></a>
+    <a href="table-data-desensitize.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>表格数据脱敏</span><span class="i18n-en">Mask Table Data</span></a>
+    <a href="table-diff-compare.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>表格差异对比</span><span class="i18n-en">Compare Table Diff</span></a>
+    <a href="table-to-sql-insert.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>表格生成SQL</span><span class="i18n-en">Table to SQL INSERT</span></a>
+    <a href="txt-to-csv.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>TXT转CSV</span><span class="i18n-en">TXT to CSV</span></a>
+    <a href="csvsplitbyvalue.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>CSV按字段拆分</span><span class="i18n-en">Split CSV by Field</span></a>
+    <a href="csvsplitcol.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>CSV单列拆分</span><span class="i18n-en">Split CSV Column</span></a>
+    <a href="csv-tools.html" style="display:inline-block;padding:6px 12px;background:#eef4ff;border:1px solid #d6e4ff;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>CSV表格工具</span><span class="i18n-en">CSV & Data</span></a>
+  </span></div>
+<h2><span class="i18n-zh" hidden>CSV 根据指定列排序（数字/文本）</span><span class="i18n-en">Sort CSV</span></h2>
+<div class="upload-box">
+<input type="file" accept=".csv" id="csvFile">
+</div>
+<div class="row">
+<input id="sortCol" placeholder="排序列名称" data-ph-zh="排序列名称" data-ph-en="排序列名称">
+<select id="sortMode">
+<option value="asc">升序（从小到大）</option>
+<option value="desc">降序（从大到小）</option>
+</select>
+</div>
+<button onclick="sortCsvData()"><span class="i18n-zh" hidden>排序导出CSV</span><span class="i18n-en">排序导出CSV</span></button>
+<script>
+document.getElementById('csvFile').onchange = e=>window.csvFileObj = e.target.files[0];
+async function sortCsvData(){
+  const col = document.getElementById('sortCol').value.trim();
+  const mode = document.getElementById('sortMode').value;
+  if(!window.csvFileObj || !col) return alert("上传文件并填写排序列");
+  const text = await window.csvFileObj.text();
+  const res = Papa.parse(text,{header:true,skipEmptyLines:true});
+  res.data.sort((a,b)=>{
+    let va = a[col]??"";
+    let vb = b[col]??"";
+    const na = parseFloat(va);
+    const nb = parseFloat(vb);
+    if(!isNaN(na) && !isNaN(nb)){
+      return mode==='asc' ? na - nb : nb - na;
+    }else{
+      if(mode==='asc') return va.localeCompare(vb,"zh-CN");
+      else return vb.localeCompare(va,"zh-CN");
+    }
+  })
+  const csvTxt = Papa.unparse({fields:res.meta.fields,data:res.data});
+  const blob = new Blob([csvTxt],{type:"text/csv;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "排序后表格.csv";
+  a.click();
+}
+</script>
+
+<!-- Cookie弹窗开始 -->
+<div id="cookieBox" style="position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;padding:16px 24px;z-index:9999;display:none;">
+    <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+        <div style="flex:1;min-width:300px;">
+            <p style="margin:0 0 6px 0;font-size:14px;color:#333;" data-i18n="cookie_title">🍪 Cookie 使用提示</p>
+            <p style="margin:0;font-size:13px;color:#666;">
+                <span data-i18n="cookie_body">本站使用 Cookie 优化访问体验，并投放 Google 联盟广告。继续使用网站即代表您同意我们的 Cookie 政策，您可查看</span><a href="/jp/privacy.html" style="color:#0066cc;" data-i18n="privacy">隐私政策</a><span data-i18n="cookie_suffix">。</span>
+            </p>
+        </div>
+        <div style="display:flex;gap:10px;">
+            <button id="cookieAccept" style="padding:8px 18px;background:#2563eb;color:#fff;border:none;border-radius:6px;cursor:pointer;" data-i18n="accept">同意</button>
+            <button id="cookieReject" style="padding:8px 18px;background:#eee;color:#333;border:none;border-radius:6px;cursor:pointer;" data-i18n="decline">拒绝</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const cookieBox = document.getElementById('cookieBox');
+const acceptBtn = document.getElementById('cookieAccept');
+const rejectBtn = document.getElementById('cookieReject');
+const cookieStatus = localStorage.getItem('cookieConsent');
+if (!cookieStatus) {
+    cookieBox.style.display = 'block';
+}
+acceptBtn.onclick = function(){
+    localStorage.setItem('cookieConsent','accept');
+    cookieBox.style.display = 'none';
+};
+rejectBtn.onclick = function(){
+    localStorage.setItem('cookieConsent','reject');
+    cookieBox.style.display = 'none';
+};
+</script>
+<!-- Cookie弹窗结束 -->
+
+
+
+<div style="margin:40px 0 0;padding:20px;background:#f7f8fa;border-radius:8px;">
+<!-- longtail-body --><div class="i18n-zh" hidden>
+<section style="margin:40px 0;padding:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
+  <div style="font-size:16px;font-weight:600;margin-bottom:12px;color:#111;">功能介绍与适用场景</div>
+  <p style="color:#374151;font-size:14px;line-height:1.9;margin:0 0 10px;">CSV排序是一款免费的在线表格数据清洗与转换工具，无需下载安装、无需注册登录，打开网页即可使用。支持CSV处理，所有处理操作均在浏览器本地完成，文件不会上传到服务器，充分保护数据隐私。无论使用电脑、平板还是手机，都能直接在浏览器中打开使用。</p>
+  <p style="color:#374151;font-size:14px;line-height:1.9;margin:0;">CSV排序适用于数据清洗整理、报表格式转换等场景，适合去重、拆分列、格式互转等表格处理需求。作为一款轻量的在线表格数据清洗与转换工具，它免去了安装专业软件的麻烦，随开随用，是日常数据清洗整理中的实用小工具。</p>
+</section>
+<section style="margin:40px 0;padding:20px;background:#f7f8fa;border-radius:8px;">
+  <div style="font-size:16px;font-weight:600;margin-bottom:12px;color:#111;">使用教程</div>
+  <ol style="margin:0;padding-left:20px;color:#374151;font-size:14px;line-height:1.9;">
+    <li>点击上传区域，选择本地的文件（支持页面提示的格式）。</li>
+    <li>按需设置处理参数：从下拉菜单选择参数（如：升序（从小到大）、降序（从大到小））。</li>
+    <li>点击「排序导出CSV」按钮，等待浏览器在本地完成处理。</li>
+    <li>处理完成后自动下载结果文件，或在本页结果区查看预览。</li>
+  </ol>
+</section>
+
+
+
+<section style="margin:40px 0;padding:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
+  <div style="font-size:16px;font-weight:600;margin-bottom:14px;color:#111;">常见问题</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q1：编码乱码怎么办？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：页面默认按 UTF-8 解析，如乱码请确认源文件编码。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q2：支持多大文件？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：本地处理，常规文件无压力，超大文件可能较慢。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q3：数据会上传吗？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：不会，全部本地。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q4：分隔符能改吗？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：部分工具支持自定义分隔符，以页面选项为准。</div>
+
+<!-- longtail-faq -->
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q5：CSV排序支持CSV格式吗？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：支持，可直接上传CSV文件，在浏览器本地完成处理，文件不会上传到服务器。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q6：CSV排序可以在手机上使用吗？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：可以，本工具基于网页运行，手机、平板、电脑均可直接打开网页使用，无需安装 App。</div>
+</section>
+
+  <div style="font-size:15px;font-weight:500;color:#111;margin-bottom:14px;">相关工具</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;">
+    <a href="csv2excel.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>CSV转Excel表格</span><span class="i18n-en">CSV to Excel</span></a>
+    <a href="csv2json.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>CSV转JSON工具</span><span class="i18n-en">CSV to JSON</span></a>
+    <a href="csvclean.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>CSV脏数据清理工具</span><span class="i18n-en">Clean CSV Empty Rows</span></a>
+    <a href="csvdedup.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>CSV数据去重工具</span><span class="i18n-en">Dedupe CSV by Column</span></a>
+    <a href="csvfillempty.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>CSV空白填充工具</span><span class="i18n-en">Fill CSV Blanks</span></a>
+    <a href="csvfilter.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>CSV数据筛选工具</span><span class="i18n-en">Filter CSV</span></a>
+    <a href="csvjoin.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>CSV多表合并关联</span><span class="i18n-en">Join & Merge CSV</span></a>
+    <a href="csvlinecount.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>CSV行数统计工具</span><span class="i18n-en">CSV Row Counter</span></a>
+  </div>
+</div><div class="i18n-en"><section class="i18n-en" hidden lang="en" style="margin:40px 0;padding:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
+<div style="font-size:16px;font-weight:600;margin-bottom:12px;color:#111;">Features &amp; Use Cases</div>
+<p style="color:#374151;font-size:14px;line-height:1.9;margin:0;">Sort CSV is a free online CSV & Data tool. No download or registration is required — just open the page and use it instantly. All processing runs locally in your browser, so your files and data never leave your device, keeping everything private.</p>
+</section>
+<section class="i18n-en" hidden lang="en" style="margin:40px 0;padding:20px;background:#f7f8fa;border-radius:8px;">
+<div style="font-size:16px;font-weight:600;margin-bottom:12px;color:#111;">How to Use</div>
+<ol style="margin:0;padding-left:20px;color:#374151;font-size:14px;line-height:1.9;">
+<li>Enter or paste the content you want to process into the input area.</li>
+<li>Set any options you need (such as units or modes) from the controls on the page.</li>
+<li>Click the action button and let the tool process everything locally in your browser.</li>
+<li>View the result, then copy or download it as needed.</li>
+</ol>
+</section>
+<section class="i18n-en" hidden lang="en" style="margin:40px 0;padding:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
+<div style="font-size:16px;font-weight:600;margin-bottom:14px;color:#111;">FAQ</div>
+<div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q：Is the result accurate?</div>
+<div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：It uses standard algorithms and conversion factors, accurate enough for everyday and work use.</div>
+<div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q：Do I need to install anything?</div>
+<div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：No. It is a pure browser tool — paste your code/text and get the result instantly.</div>
+<div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q：Can I use it on my phone?</div>
+<div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：Yes. It runs in any modern browser on phone, tablet, or desktop — no app install needed.</div>
+<div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q：Is it really free?</div>
+<div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：Yes, this tool is completely free to use, with no login required.</div>
+</section><div style="margin:40px 0 0;padding:20px;background:#f7f8fa;border-radius:8px;">
+  <div style="font-size:15px;font-weight:500;color:#111;margin-bottom:14px;">Related Tools</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;">
+    <a href="csv2excel.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">CSV to Excel</a>
+    <a href="csv2json.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">CSV to JSON</a>
+    <a href="csvclean.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Clean CSV Empty Rows</a>
+    <a href="csvdedup.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Dedupe CSV by Column</a>
+    <a href="csvfillempty.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Fill CSV Blanks</a>
+    <a href="csvfilter.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Filter CSV</a>
+    <a href="csvjoin.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Join & Merge CSV</a>
+    <a href="csvlinecount.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">CSV Row Counter</a>
+  </div>
+</div></div></div><footer style="margin-top:60px;padding:30px 10px;text-align:center;border-top:1px solid #e5e7eb;color:#666;font-size:14px;">
+    <div style="margin-bottom:10px;">
+        <a href="/jp/about.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="about">关于我们</a>
+        <span>|</span>
+        <a href="/jp/privacy.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="privacy">隐私政策</a>
+        <span>|</span>
+        <a href="/jp/contact.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="contact">联系我们</a>
+    </div>
+    <div data-i18n="copyright">© 2026 72Tool 72tool.com 保留所有权利</div>
+</footer>
+
+
+<script defer src="autopush.js"></script>
+
+<script src="ux-kit.js"></script>
+<script src="ads.js"></script>
+<script src="tools-index.js"></script>
+<script src="site-search.js"></script>
+
+<p class="tool-note" style="margin:24px 0 0;padding-top:14px;border-top:1px solid #e5e7eb;color:#9ca3af;font-size:13px;line-height:1.7;">本ツールはすべてブラウザ内で動作し、入力データは外部に送信されません。72Toolはすべてのツールを無料で提供しています。</p>
+</body>
+</html>

@@ -16,12 +16,15 @@
 <meta name="description" content="72Tool provides hundreds of free browser-based online tools, including image processing, PDF conversion, developer utilities, document editing and business calculators. No registration, no installation, safe &amp; fast worldwide.">
 <meta name="i18n-title-en" content="72Tool | Free All-in-One Online Utility Tools for Global Users">
 <meta name="i18n-desc-en" content="72Tool provides hundreds of free browser-based online tools, including image processing, PDF conversion, developer utilities, document editing and business calculators. No registration, no installation, safe &amp; fast worldwide.">
-<link rel="canonical" href="https://72tool.com/en/index.html">
-<link rel="alternate" hreflang="x-default" href="https://72tool.com/">
-<link rel="alternate" hreflang="zh" href="https://72tool.com/">
-<link rel="alternate" hreflang="en" href="https://72tool.com/en/">
-<link rel="alternate" hreflang="ja" href="https://72tool.com/jp/">
-<link rel="alternate" hreflang="es" href="https://72tool.com/es/">
+<link rel="canonical" href="https://72tool.com/en/index.html"><!-- Open Graph / Twitter（社交分享 SEO） -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="72Tool在线工具箱｜免费图片处理、PDF转换、开发调试、办公计算工具合集">
+<meta property="og:description" content="72Tool是面向全球用户的一站式在线工具平台，提供数百款免费云端工具，涵盖图像创作、文档处理、开发调试、商务换算等场景，无需注册、无需下载、本地运行更安全。">
+<meta property="og:url" content="https://72tool.com/">
+<meta property="og:site_name" content="72Tool">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="72Tool在线工具箱｜免费图片处理、PDF转换、开发调试、办公计算工具合集">
+<meta name="twitter:description" content="72Tool是面向全球用户的一站式在线工具平台，提供数百款免费云端工具，涵盖图像创作、文档处理、开发调试、商务换算等场景，无需注册、无需下载、本地运行更安全。">
 <!-- i18n-runtime（中英切换，无侵入） -->
 <script src="i18n-runtime.js"></script>
 <style>
@@ -158,6 +161,11 @@ footer{margin-top:40px;border-top:1px solid var(--border);background:var(--card)
 @media(max-width:420px){.tool-grid{grid-template-columns:repeat(1,1fr);}}
 </style>
 <!-- adsense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495097009978965" crossorigin="anonymous"></script>
+    <link rel="alternate" hreflang="x-default" href="https://72tool.com/">
+    <link rel="alternate" hreflang="zh" href="https://72tool.com/">
+    <link rel="alternate" hreflang="en" href="https://72tool.com/en/">
+    <link rel="alternate" hreflang="ja" href="https://72tool.com/jp/">
+    <link rel="alternate" hreflang="es" href="https://72tool.com/es/">
 </head>
 <body>
 
@@ -306,6 +314,8 @@ footer{margin-top:40px;border-top:1px solid var(--border);background:var(--card)
             if(lang==='zh'||lang==='en'){
                 if(window.i18nApply) window.i18nApply(lang);
                 try{localStorage.setItem('siteLang',lang);}catch(e){}
+                // i18nApply 是静默的（不派发事件），这里手动派发以重建 JS 渲染的工具卡片/新工具区
+                document.dispatchEvent(new CustomEvent('i18n:langchange',{detail:{lang:lang}}));
             }else{
                 var cur=location.pathname.split('/').pop()||'index.html';
                 var prefix= lang==='jp' ? '/jp/' : '/es/';
@@ -346,7 +356,14 @@ document.addEventListener('click',function(e){
 
 /* ---------- 工具卡片 / 场景分组 ---------- */
 var DATA=window.TOOLS_DATA||[];
-function curLang(){return (window.i18nLang||'zh')==='en'?'en':'zh';}
+function curLang(){
+    var l=(window.i18nLang||'zh');
+    if(l==='en')return 'en';
+    // 日文/西文页面没有对应语言的工具名，回退为英文（比中文更贴近目标读者）
+    var hl=document.documentElement.lang;
+    if(hl==='ja'||hl==='es')return 'en';
+    return 'zh';
+}
 function makeToolCard(t){
     var a=document.createElement('a'); a.className='tcard'; a.href=t.slug;
     var lang=curLang();
@@ -425,7 +442,7 @@ function buildNewTrack(){
 
 /* ---------- 场景标签点击 → 跳转分类页 ---------- */
 document.querySelectorAll('.scenario-tags a').forEach(function(a){
-    a.addEventListener('click',function(){location.href='/'+a.dataset.cat+'-tools.html';});
+    a.addEventListener('click',function(){location.href=a.dataset.cat+'-tools.html';});
 });
 
 /* ---------- 初始化 ---------- */
