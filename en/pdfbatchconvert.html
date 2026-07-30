@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batch to PDF | Free Online Utility - 72Tool</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft Yahei",sans-serif}
+body{max-width:1200px;margin:30px auto;padding:0 20px;color:#222}
+.back{display:block;margin:20px 0;color:#2478f5;text-decoration:none;font-size:15px}
+h2{margin-bottom:24px;color:#111}
+.upload-box{border:2px dashed #ccd6e0;padding:50px;text-align:center;margin:16px 0;border-radius:8px}
+button{width:100%;padding:13px;background:#2478f5;color:#fff;border:none;border-radius:6px;font-size:16px;cursor:pointer}
+p.tip{color:#666;margin-top:10px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1.4.21/mammoth.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script><!-- adsense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495097009978965" crossorigin="anonymous"></script>
+    <!-- i18n-all --><!-- i18n-runtime --><script src="i18n-runtime.js"></script>    <!-- SEO by seo_rewrite.py -->
+    <meta name="description" content="Free online Batch to PDF tool by 72Tool. No download or sign-up needed. Runs locally in your browser, keeps your data private, and works on desktop and mobile.">
+    <meta name="i18n-desc-en" content="Free online Batch to PDF tool by 72Tool. No download or sign-up needed. Runs locally in your browser, keeps your data private, and works on desktop and mobile.">
+    <link rel="canonical" href="https://72tool.com/en/pdfbatchconvert.html">
+    <meta name="i18n-title-en" content="Batch to PDF | Free Online Utility - 72Tool">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PDF批量格式转换 | 72Tool 免费在线工具箱">
+    <meta property="og:description" content="72Tool 提供免费在线PDF批量格式转换工具，无需下载安装，浏览器本地运行、数据不上传、保护隐私，即开即用，适配电脑与手机，全球用户均可访问。">
+    <meta property="og:url" content="https://72tool.com/pdfbatchconvert.html">
+    <meta property="og:site_name" content="72Tool 免费在线工具箱">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="PDF批量格式转换 | 72Tool">
+    <meta name="twitter:description" content="72Tool 提供免费在线PDF批量格式转换工具，无需下载安装，浏览器本地运行、数据不上传、保护隐私，即开即用，适配电脑与手机，全球用户均可访问。">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF批量格式转换","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"url":"https://72tool.com/pdfbatchconvert.html"}
+    </script>
+    <link rel="alternate" hreflang="x-default" href="https://72tool.com/">
+    <link rel="alternate" hreflang="zh" href="https://72tool.com/">
+    <link rel="alternate" hreflang="en" href="https://72tool.com/en/">
+</head>
+<body>
+<div id="i18nSwitch" style="max-width:1200px;margin:0 auto;padding:10px 20px;text-align:right;">
+  <button data-lang="zh" style="padding:5px 12px;border:none;border-radius:6px;background:#2478f5;color:#fff;font-size:13px;cursor:pointer;">中文</button>
+  <button data-lang="en" style="padding:5px 12px;border:none;border-radius:6px;background:transparent;color:#374151;font-size:13px;cursor:pointer;">EN</button>
+</div>
+<!-- i18n-all -->
+
+<h1 style="margin:16px 0;font-size:22px;"><span class="i18n-zh" hidden>PDF批量格式转换 | 72Tool 免费在线PDF处理工具</span><span class="i18n-en">Batch to PDF | 72Tool Free Online PDF Tool</span></h1>
+<p class="tool-desc" style="margin:4px 0 18px;color:#6b7280;font-size:14px;line-height:1.7;"><span class="i18n-zh" hidden>PDF批量格式转换 是一款免费在线工具，无需下载安装，打开网页即可直接使用。在线处理 PDF 与文档，无需安装阅读器，方便快捷。</span><span class="i18n-en">Batch to PDF — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.</span></p><p class="tool-intro" style="margin:4px 0 18px;color:#6b7280;font-size:14px;line-height:1.7;"><span class="i18n-zh" hidden>PDF批量格式转换 是 72Tool 工具箱中的一款免费在线工具，专注于PDF处理场景。输入即可实时本地处理，结果准确，适合办公、开发与日常使用。</span><span class="i18n-en">Batch to PDF is a free online tool in the 72Tool toolbox for PDF tasks. Enter your input to get instant, accurate results — handy for work, development and daily use.</span></p>
+
+<nav class="crumb" style="margin:18px 0 0;font-size:13px;color:#6b7280;"><a href="index.html" style="color:#2478f5;text-decoration:none;" data-i18n="nav_home">首页</a> / <a href="pdf-tools.html" style="color:#2478f5;text-decoration:none;"><span class="i18n-zh" hidden>PDF全套工具</span><span class="i18n-en">PDF Tools</span></a></nav>
+<!-- cat-crumb -->
+<!-- tool-tags --><a href="index.html" class="back"><span class="i18n-zh" hidden>← 返回工具箱首页</span><span class="i18n-en">Back to All Tools</span></a>
+<!-- sibling-nav --><div style="margin:12px 0 0;padding:10px 14px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;"><span style="font-size:13px;color:#6b7280;margin-right:6px;"><span class="i18n-zh" hidden>同类工具：</span><span class="i18n-en">Related Tools:</span></span><span style="display:inline-flex;flex-wrap:wrap;gap:8px;vertical-align:middle;">
+    <a href="pdfblack.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>PDF涂黑遮挡</span><span class="i18n-en">Redact PDF (Blackout)</span></a>
+    <a href="pdfcompare.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>PDF文本对比</span><span class="i18n-en">Compare PDF Text</span></a>
+    <a href="pdf2csv.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>PDF表格转CSV</span><span class="i18n-en">PDF Table to CSV</span></a>
+    <a href="pdf2excel.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>PDF表格转Excel</span><span class="i18n-en">PDF Table to Excel</span></a>
+    <a href="pdfmerge.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>PDF合并</span><span class="i18n-en">Merge PDF</span></a>
+    <a href="pdfmergeimg.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>图片PDF合并</span><span class="i18n-en">Merge Images into PDF</span></a>
+    <a href="pdfmetadata.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>清理PDF元数据</span><span class="i18n-en">Clean PDF Metadata</span></a>
+    <a href="pdfocr.html" style="display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>PDF OCR识别</span><span class="i18n-en">PDF OCR</span></a>
+    <a href="pdf-tools.html" style="display:inline-block;padding:6px 12px;background:#eef4ff;border:1px solid #d6e4ff;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>PDF全套工具</span><span class="i18n-en">PDF Tools</span></a>
+  </span></div>
+<h2><span class="i18n-zh" hidden>批量多文件转PDF（图片/docx/xlsx）</span><span class="i18n-en">Batch to PDF</span></h2>
+<p class="tip">多选多个图片、Word、Excel文件，批量分别生成PDF</p>
+<div class="upload-box">
+<input type="file" accept=".docx,.xlsx,.jpg,.png,.jpeg,.webp" multiple id="batchFile">
+</div>
+<button onclick="batchConvertPdf()"><span class="i18n-zh" hidden>批量转换下载</span><span class="i18n-en">批量转换下载</span></button>
+<script>
+const { jsPDF } = window.jspdf;
+async function batchConvertPdf(){
+  const files = Array.from(document.getElementById('batchFile').files);
+  if(files.length===0) return alert("选择待转换文件");
+  for(let f of files){
+    const name = f.name.toLowerCase();
+    const buf = await f.arrayBuffer();
+    const doc = new jsPDF();
+    if(name.endsWith(".docx")){
+      const res = await mammoth.extractRawText({arrayBuffer:buf});
+      doc.setFont("simhei");
+      doc.text(res.value,12,15,{maxWidth:180});
+    }else if(name.endsWith(".xlsx")){
+      const wb = XLSX.read(buf);
+      const sheet = wb.Sheets[wb.SheetNames[0]];
+      const data = XLSX.utils.sheet_to_json(sheet,{header:1});
+      doc.setFont("simhei");
+      doc.text(data.map(r=>r.join("\t")).join("\n"),10,12);
+    }else{
+      const url = URL.createObjectURL(f);
+      doc.addImage(url,0,0,210,297);
+    }
+    const saveName = f.name.replace(/\.\w+$/,".pdf");
+    doc.save(saveName);
+  }
+}
+</script>
+
+<!-- Cookie弹窗开始 -->
+<div id="cookieBox" style="position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;padding:16px 24px;z-index:9999;display:none;">
+    <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+        <div style="flex:1;min-width:300px;">
+            <p style="margin:0 0 6px 0;font-size:14px;color:#333;" data-i18n="cookie_title">🍪 Cookie 使用提示</p>
+            <p style="margin:0;font-size:13px;color:#666;">
+                <span data-i18n="cookie_body">本站使用 Cookie 优化访问体验，并投放 Google 联盟广告。继续使用网站即代表您同意我们的 Cookie 政策，您可查看</span><a href="/en/privacy.html" style="color:#0066cc;" data-i18n="privacy">隐私政策</a><span data-i18n="cookie_suffix">。</span>
+            </p>
+        </div>
+        <div style="display:flex;gap:10px;">
+            <button id="cookieAccept" style="padding:8px 18px;background:#2563eb;color:#fff;border:none;border-radius:6px;cursor:pointer;" data-i18n="accept">同意</button>
+            <button id="cookieReject" style="padding:8px 18px;background:#eee;color:#333;border:none;border-radius:6px;cursor:pointer;" data-i18n="decline">拒绝</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const cookieBox = document.getElementById('cookieBox');
+const acceptBtn = document.getElementById('cookieAccept');
+const rejectBtn = document.getElementById('cookieReject');
+const cookieStatus = localStorage.getItem('cookieConsent');
+if (!cookieStatus) {
+    cookieBox.style.display = 'block';
+}
+acceptBtn.onclick = function(){
+    localStorage.setItem('cookieConsent','accept');
+    cookieBox.style.display = 'none';
+};
+rejectBtn.onclick = function(){
+    localStorage.setItem('cookieConsent','reject');
+    cookieBox.style.display = 'none';
+};
+</script>
+<!-- Cookie弹窗结束 -->
+
+
+
+<div style="margin:40px 0 0;padding:20px;background:#f7f8fa;border-radius:8px;">
+<!-- longtail-body --><div class="i18n-zh" hidden>
+<section style="margin:40px 0;padding:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
+  <div style="font-size:16px;font-weight:600;margin-bottom:12px;color:#111;">功能介绍与适用场景</div>
+  <p style="color:#374151;font-size:14px;line-height:1.9;margin:0 0 10px;">批量文件转PDF是一款免费的在线PDF 处理与格式转换工具，无需下载安装、无需注册登录，打开网页即可使用。支持XLSX转换、XLS转换、DOCX转换，所有转换操作均在浏览器本地完成，文件不会上传到服务器，充分保护数据隐私。支持一次处理多个文件，效率更高。无论使用电脑、平板还是手机，都能直接在浏览器中打开使用。</p>
+  <p style="color:#374151;font-size:14px;line-height:1.9;margin:0;">批量文件转PDF适用于文档整理归档、合同合并拆分等场景，支持合并、拆分、压缩、格式转换等常见 PDF 处理需求。作为一款轻量的在线PDF 处理与格式转换工具，它免去了安装专业软件的麻烦，随开随用，是日常文档整理归档中的实用小工具。</p>
+</section>
+<section style="margin:40px 0;padding:20px;background:#f7f8fa;border-radius:8px;">
+  <div style="font-size:16px;font-weight:600;margin-bottom:12px;color:#111;">使用教程</div>
+  <ol style="margin:0;padding-left:20px;color:#374151;font-size:14px;line-height:1.9;">
+    <li>点击上传区域，选择本地的文件（支持页面提示的格式）。</li>
+    <li>可一次处理多个文件，结果打包下载。</li>
+    <li>点击「批量转换下载」按钮，等待浏览器在本地完成处理。</li>
+    <li>处理完成后自动下载结果文件，或在本页结果区查看预览。</li>
+  </ol>
+</section>
+
+
+
+<section style="margin:40px 0;padding:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
+  <div style="font-size:16px;font-weight:600;margin-bottom:14px;color:#111;">常见问题</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q1：合并顺序怎么定？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：按你选择文件的顺序合并，注意上传时的先后。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q2：需要至少几个文件？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：多数操作需 2 个及以上，单文件工具另计。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q3：文件安全吗？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：本地处理，不上传服务器。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q4：大文件处理慢？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：PDF 解析依赖本地算力，文件越大越慢。</div>
+
+<!-- longtail-faq -->
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q5：批量文件转PDF支持XLSX格式吗？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：支持，可直接上传XLSX文件，在浏览器本地完成转换，文件不会上传到服务器。</div>
+    <div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q6：批量文件转PDF可以在手机上使用吗？</div>
+    <div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：可以，本工具基于网页运行，手机、平板、电脑均可直接打开网页使用，无需安装 App。</div>
+</section>
+
+  <div style="font-size:15px;font-weight:500;color:#111;margin-bottom:14px;">相关工具</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;">
+    <a href="pdf-add-page-number.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>PDF添加页码工具</span><span class="i18n-en">Add Page Numbers to PDF</span></a>
+    <a href="pdf-extract-images.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>PDF提取内部图片</span><span class="i18n-en">Extract Images from PDF</span></a>
+    <a href="pdf-metadata-edit.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>PDF元数据修改工具</span><span class="i18n-en">Edit PDF Metadata</span></a>
+    <a href="pdf-text-replace.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>PDF全文文字替换</span><span class="i18n-en">Replace PDF Text</span></a>
+    <a href="pdf-text-signature.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>PDF电子文字签名</span><span class="i18n-en">Sign PDF (Text)</span></a>
+    <a href="pdf2csv.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>PDF转CSV表格</span><span class="i18n-en">PDF Table to CSV</span></a>
+    <a href="pdf2excel.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>PDF转Excel表格</span><span class="i18n-en">PDF Table to Excel</span></a>
+    <a href="pdf2img.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;"><span class="i18n-zh" hidden>PDF每页转图片</span><span class="i18n-en">PDF to Image</span></a>
+  </div>
+</div><div class="i18n-en"><section class="i18n-en" hidden lang="en" style="margin:40px 0;padding:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
+<div style="font-size:16px;font-weight:600;margin-bottom:12px;color:#111;">Features &amp; Use Cases</div>
+<p style="color:#374151;font-size:14px;line-height:1.9;margin:0;">Batch to PDF is a free online PDF Tools tool. No download or registration is required — just open the page and use it instantly. All processing runs locally in your browser, so your files and data never leave your device, keeping everything private.</p>
+</section>
+<section class="i18n-en" hidden lang="en" style="margin:40px 0;padding:20px;background:#f7f8fa;border-radius:8px;">
+<div style="font-size:16px;font-weight:600;margin-bottom:12px;color:#111;">How to Use</div>
+<ol style="margin:0;padding-left:20px;color:#374151;font-size:14px;line-height:1.9;">
+<li>Enter or paste the content you want to process into the input area.</li>
+<li>Set any options you need (such as units or modes) from the controls on the page.</li>
+<li>Click the action button and let the tool process everything locally in your browser.</li>
+<li>View the result, then copy or download it as needed.</li>
+</ol>
+</section>
+<section class="i18n-en" hidden lang="en" style="margin:40px 0;padding:20px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
+<div style="font-size:16px;font-weight:600;margin-bottom:14px;color:#111;">FAQ</div>
+<div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q：Is the result accurate?</div>
+<div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：It uses standard algorithms and conversion factors, accurate enough for everyday and work use.</div>
+<div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q：What file formats are supported?</div>
+<div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：Popular formats are supported; check the options and notes on the page.</div>
+<div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q：Can I use it on my phone?</div>
+<div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：Yes. It runs in any modern browser on phone, tablet, or desktop — no app install needed.</div>
+<div style="font-weight:600;color:#111;font-size:14px;margin-top:14px;">Q：Is it really free?</div>
+<div style="color:#4b5563;font-size:14px;line-height:1.8;margin-top:4px;">A：Yes, this tool is completely free to use, with no login required.</div>
+</section><div style="margin:40px 0 0;padding:20px;background:#f7f8fa;border-radius:8px;">
+  <div style="font-size:15px;font-weight:500;color:#111;margin-bottom:14px;">Related Tools</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;">
+    <a href="pdf-add-page-number.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Add Page Numbers to PDF</a>
+    <a href="pdf-extract-images.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Extract Images from PDF</a>
+    <a href="pdf-metadata-edit.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Edit PDF Metadata</a>
+    <a href="pdf-text-replace.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Replace PDF Text</a>
+    <a href="pdf-text-signature.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">Sign PDF (Text)</a>
+    <a href="pdf2csv.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">PDF Table to CSV</a>
+    <a href="pdf2excel.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">PDF Table to Excel</a>
+    <a href="pdf2img.html" style="display:inline-block;padding:7px 13px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;color:#2478f5;text-decoration:none;font-size:13px;margin:0 8px 8px 0;">PDF to Image</a>
+  </div>
+</div></div></div><footer style="margin-top:60px;padding:30px 10px;text-align:center;border-top:1px solid #e5e7eb;color:#666;font-size:14px;">
+    <div style="margin-bottom:10px;">
+        <a href="/en/about.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="about">关于我们</a>
+        <span>|</span>
+        <a href="/en/privacy.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="privacy">隐私政策</a>
+        <span>|</span>
+        <a href="/en/contact.html" style="margin:0 10px;color:#444;text-decoration:none;" data-i18n="contact">联系我们</a>
+    </div>
+    <div data-i18n="copyright">© 2026 72Tool 72tool.com 保留所有权利</div>
+</footer>
+
+
+<script defer src="autopush.js"></script>
+
+<script src="ux-kit.js"></script>
+<script src="ads.js"></script>
+<script src="tools-index.js"></script>
+<script src="site-search.js"></script>
+
+<p class="tool-note" style="margin:24px 0 0;padding-top:14px;border-top:1px solid #e5e7eb;color:#9ca3af;font-size:13px;line-height:1.7;"><span class="i18n-zh" hidden>提示：PDF批量格式转换 完全在您的浏览器本地运行，数据不会上传到服务器，请放心使用。72Tool 更多免费在线工具请访问首页。</span><span class="i18n-en">Note: Batch to PDF runs entirely in your browser; your data is not uploaded to any server. Explore more free online tools on the 72Tool homepage.</span></p>
+</body>
+</html>

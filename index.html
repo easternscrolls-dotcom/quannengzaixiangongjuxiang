@@ -6,1010 +6,467 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 搜索引擎站长验证（务必保留） -->
 <meta name="baidu-site-verification" content="codeva-bIsn2Acphw" />
 <meta name="bytedance-verification-code" content="2NK5y9k9mU8isvX6fjQk" />
 <meta name="shenma-site-verification" content="82053baefbc340503e88fb91461dc27d_1784970172">
-<meta name="sogou_site_verification" content="ogIxB7xLU6" />
-<meta name="keywords" content="72在线工具箱,本地前端工具,视频处理,图片工具,PDF工具,单位换算,URL工具,文本工具,开发工具,SEO,电商计算器,财务贷款">
-<title>72在线工具箱 - 免费在线工具大全（JSON/图片/PDF/开发/单位换算）</title>
-<!-- i18n-all -->
-    <link rel="alternate" hreflang="x-default" href="https://72tool.com/index.html">
-    <link rel="alternate" hreflang="zh" href="https://72tool.com/index.html">
-    <link rel="alternate" hreflang="en" href="https://72tool.com/index.html?lang=en">
-    <meta name="i18n-title-en" content="72 Online Tools - Free Online Toolbox (JSON/Image/PDF/Converter)">
-    <!-- i18n-runtime --><script src="i18n-runtime.js"></script>
-    <meta name="description" content="72在线工具箱提供 340+ 免费在线工具，覆盖 JSON、图片、PDF、音视频、开发、单位换算等场景，浏览器本地处理、数据不上传、即开即用，适合开发调试与日常效率。">
+<meta name="sogou-site-verification" content="ogIxB7xLU6" />
+<!-- 首页唯一标题 / 描述（文档1 双语原创） -->
+<title>72Tool在线工具箱｜免费图片处理、PDF转换、开发调试、办公计算工具合集</title>
+<meta name="description" content="72Tool是面向全球用户的一站式在线工具平台，提供数百款免费云端工具，涵盖图像创作、文档处理、开发调试、商务换算等场景，无需注册、无需下载、本地运行更安全。">
+<meta name="i18n-title-en" content="72Tool | Free All-in-One Online Utility Tools for Global Users">
+<meta name="i18n-desc-en" content="72Tool provides hundreds of free browser-based online tools, including image processing, PDF conversion, developer utilities, document editing and business calculators. No registration, no installation, safe &amp; fast worldwide.">
+<link rel="canonical" href="https://72tool.com/">
+<link rel="alternate" hreflang="x-default" href="https://72tool.com/">
+<link rel="alternate" hreflang="zh" href="https://72tool.com/">
+<link rel="alternate" hreflang="en" href="https://72tool.com/en/">
+<link rel="alternate" hreflang="ja" href="https://72tool.com/jp/">
+<link rel="alternate" hreflang="es" href="https://72tool.com/es/">
+<!-- i18n-runtime（中英切换，无侵入） -->
+<script src="i18n-runtime.js"></script>
 <style>
 :root{
-    --primary:#9b78e8;
-    --sidebar-bg:#f4f1fc;
-    --page-bg:#f7f8fa;
-    --card-bg:#ffffff;
-    --text-main:#1f2937;
-    --text-second:#6b7280;
-    --border:#e5e7eb;
-    --radius:10px;
-    --shadow:0 1px 3px rgba(0,0.06);
-    --main-blue:#2478f5;
-    --main-light:#e8f0ff;
+    --primary:#2563eb;
+    --primary-2:#1d4ed8;
+    --accent:#8b5cf6;
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --text:#334155;
+    --muted:#64748b;
+    --border:#e2e8f0;
+    --radius-card:12px;
+    --radius-btn:8px;
+    --shadow:0 1px 3px rgba(15,23,42,.06);
+    --shadow-hover:0 10px 24px rgba(37,99,235,.14);
+    --maxw:1180px;
+    --grad:linear-gradient(120deg,#2563eb,#8b5cf6);
 }
-.dark{
-    --primary:#b89cf0;
-    --sidebar-bg:#2a2438;
-    --page-bg:#0f172a;
-    --card-bg:#1e293b;
-    --text-main:#f1f5f9;
-    --text-second:#94a3b8;
+[data-theme="dark"]{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --text:#e2e8f0;
+    --muted:#94a3b8;
     --border:#334155;
+    --shadow:0 1px 3px rgba(0,0,0,.4);
+    --shadow-hover:0 10px 28px rgba(37,99,235,.28);
 }
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,Microsoft Yahei,sans-serif;}
-html{scroll-behavior: smooth;}
-body{background:var(--page-bg);color:var(--text-main);height:100vh;display:flex;flex-direction:column;overflow:hidden;transition:0.3s;}
-/* 顶部导航栏 */
-.top-bar{
-    height:64px;
-    background:var(--card-bg);
-    border-bottom:1px solid var(--border);
-    display:flex;
-    align-items:center;
-    padding:0 24px;
-    gap:16px;
-}
-.top-bar .logo{
-    font-weight:700;
-    font-size:20px;
-    width:180px;
-    color:var(--main-blue);
-}
-.search-wrap{
-    flex:1;
-    max-width:750px;
-}
-#searchInput{
-    width:100%;
-    height:40px;
-    border:1px solid var(--border);
-    border-radius:8px;
-    padding:0 16px;
-    font-size:14px;
-    background:var(--card-bg);
-    color:var(--text-main);
-}
-#searchInput:focus{
-    outline:none;
-    border-color:var(--primary);
-}
-.top-right{
-    display:flex;
-    gap:16px;
-    align-items:center;
-}
-.themeBtn{
-    padding:8px 14px;
-    border:1px solid var(--border);
-    border-radius:8px;
-    background:var(--card-bg);
-    color:var(--text-main);
-    cursor:pointer;
-}
-/* 主体容器 */
-.main-wrap{
-    display:flex;
-    flex:1;
-    overflow:hidden;
-}
-/* 侧边栏 */
-.sidebar{
-    width:200px;
-    background:var(--card-bg);
-    border-right:1px solid var(--border);
-    padding:16px 10px;
-    overflow-y:auto;
-}
-.sidebar-menu .item{
-    display:flex;
-    align-items:center;
-    padding:10px 12px;
-    border-radius:var(--radius);
-    cursor:pointer;
-    font-size:14px;
-    margin-bottom:6px;
-    gap:8px;
-    transition:0.2s;
-}
-.sidebar-menu .item span{
-    pointer-events:none;
-}
-.sidebar-menu .item.active{
-    background:var(--sidebar-bg);
-    color:var(--primary);
-    font-weight:500;
-}
-.sidebar-menu .item:hover:not(.active){
-    background:var(--page-bg);
-}
-.sidebar .split{
-    height:1px;
-    background:var(--border);
-    margin:18px 6px;
-}
-.item .cat-num{
-    margin-left:auto;
-    font-size:12px;
-    color:var(--text-second);
-}
-/* 内容区 */
-.content{
-    flex:1;
-    padding:24px;
-    overflow-y:auto;
-}
-.content-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:24px;
-}
-.content-title h2{
-    font-size:22px;
-    font-weight:600;
-}
-.tool-count-tag{
-    padding:5px 12px;
-    background:var(--sidebar-bg);
-    color:var(--primary);
-    border-radius:16px;
-    font-size:13px;
-}
-.tool-grid{
-    display:grid;
-    grid-template-columns:repeat(10, minmax(140px, 1fr));
-    gap:14px;
-}
-.tool-card{
-    background:var(--card-bg);
-    border-radius:var(--radius);
-    border:1px solid var(--border);
-    padding:14px 12px;
-    cursor:pointer;
-    transition:0.2s;
-    display:flex;
-    gap:10px;
-    text-decoration:none;
-    color:inherit;
-    align-items:flex-start;
-    min-width:140px;
-}
-.tool-card:hover{
-    box-shadow:var(--shadow);
-    border-color:var(--primary);
-    transform:translateY(-2px);
-}
-.tool-icon{
-    width:32px;
-    height:32px;
-    flex-shrink:0;
-    border-radius:6px;
-    background:var(--main-light);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:16px;
-    color:var(--main-blue);
-}
-.tool-info{
-    flex:1;
-    min-width: 0;
-}
-.tool-name{
-    font-size:13px;
-    font-weight:500;
-    line-height:1.4;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-.tool-desc{
-    font-size:11px;
-    line-height:1.4;
-    color:var(--text-second);
-    margin-top:2px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-.backTop{
-    position:fixed;
-    right:28px;
-    bottom:28px;
-    width:46px;
-    height:46px;
-    border-radius:50%;
-    background:var(--primary);
-    color:#fff;
-    border:none;
-    font-size:20px;
-    cursor:pointer;
-    display:none;
-    box-shadow:var(--shadow);
-}
-@media (max-width:1800px){.tool-grid{grid-template-columns:repeat(8, minmax(140px, 1fr));}}
-@media (max-width:1440px){.tool-grid{grid-template-columns:repeat(6, minmax(140px, 1fr));}}
-@media (max-width:1200px){.tool-grid{grid-template-columns:repeat(5, minmax(140px, 1fr));}}
-@media (max-width:992px){.tool-grid{grid-template-columns:repeat(4, minmax(140px, 1fr));}}
-@media (max-width:768px){.sidebar{width:160px;}.tool-grid{grid-template-columns:repeat(3, minmax(140px, 1fr));}}
-@media (max-width:640px){.main-wrap{flex-direction:column;}.sidebar{width:100%;height:auto;border-right:none;border-bottom:1px solid var(--border);}.tool-grid{grid-template-columns:repeat(2, minmax(140px, 1fr));}}
-@media (max-width:400px){.tool-grid{grid-template-columns:repeat(1, minmax(1fr));}}
-/* 最新上架 */
-.newest-section{margin:0 0 22px;}
-.newest-section h2{font-size:18px;margin-bottom:12px;color:var(--text-main);}
-.newest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;}
-.ncard{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 10px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text-main);font-size:13px;transition:.2s;}
-.ncard:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:var(--shadow);}
-.ncard .icon{font-size:22px;}
-/* 分类折叠展开 */
-.cat-groups{display:flex;flex-direction:column;gap:26px;}
-.cat-group{}
-.cat-group-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
-.cat-group-title{font-size:16px;font-weight:600;color:var(--text-main);display:flex;align-items:center;gap:6px;}
-.cat-group-count{font-size:12px;color:var(--primary);background:var(--sidebar-bg);border-radius:12px;padding:2px 10px;}
-.cat-group-jump{margin-left:auto;font-size:13px;color:var(--main-blue);text-decoration:none;cursor:pointer;}
-.cat-group-jump:hover{text-decoration:underline;}
-.expand-btn{margin-top:12px;width:100%;padding:10px;background:var(--card-bg);border:1px dashed var(--border);border-radius:var(--radius);color:var(--primary);font-size:13px;cursor:pointer;transition:.2s;}
-.expand-btn:hover{border-color:var(--primary);background:var(--sidebar-bg);}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,"Source Han Sans SC","Microsoft Yahei",system-ui,-apple-system,sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);transition:background .3s,color .3s;line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
+
+/* ── 导航栏 ── */
+.navbar{position:sticky;top:0;z-index:50;height:64px;display:flex;align-items:center;gap:18px;
+    padding:0 20px;max-width:var(--maxw);margin:0 auto;
+    background:var(--card);border-bottom:1px solid var(--border);
+    backdrop-filter:saturate(180%) blur(8px);}
+[data-theme="dark"] .navbar{background:rgba(30,41,59,.82);}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:20px;color:var(--primary);white-space:nowrap;}
+.brand .logo-dot{width:26px;height:26px;border-radius:7px;background:var(--grad);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800;}
+.nav-cats{display:flex;gap:4px;margin-left:8px;overflow:hidden;}
+.nav-cats a{font-size:13px;color:var(--muted);padding:7px 11px;border-radius:var(--radius-btn);white-space:nowrap;transition:.2s;}
+.nav-cats a:hover{background:var(--bg);color:var(--primary);}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.lang-switch{position:relative;}
+.lang-btn{display:flex;align-items:center;gap:6px;font-size:13px;padding:7px 12px;border:1px solid var(--border);border-radius:var(--radius-btn);background:var(--card);color:var(--text);cursor:pointer;}
+.lang-menu{position:absolute;right:0;top:46px;min-width:150px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-card);box-shadow:var(--shadow-hover);overflow:hidden;display:none;}
+.lang-menu.open{display:block;}
+.lang-menu button{display:block;width:100%;text-align:left;padding:10px 14px;font-size:13px;background:none;border:none;color:var(--text);cursor:pointer;}
+.lang-menu button:hover{background:var(--bg);color:var(--primary);}
+.icon-btn{width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-btn);background:var(--card);color:var(--text);cursor:pointer;font-size:16px;transition:.2s;}
+.icon-btn:hover{border-color:var(--primary);color:var(--primary);}
+.fav-btn{position:relative;}
+.fav-badge{position:absolute;top:-5px;right:-5px;min-width:16px;height:16px;padding:0 4px;border-radius:9px;background:var(--accent);color:#fff;font-size:10px;line-height:16px;text-align:center;}
+
+/* ── Hero ── */
+.hero{min-height:calc(100vh - 64px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px 30px;}
+.hero h1{font-size:clamp(28px,5vw,46px);font-weight:800;letter-spacing:-.5px;line-height:1.2;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;max-width:880px;}
+.hero .sub{margin:18px auto 0;max-width:680px;font-size:16px;color:var(--muted);}
+.search-box{margin:34px auto 0;width:100%;max-width:680px;position:relative;}
+.search-box input{width:100%;height:56px;padding:0 22px;font-size:16px;border:2px solid var(--border);border-radius:var(--radius-btn);background:var(--card);color:var(--text);transition:.25s;}
+.search-box input:focus{outline:none;border-color:transparent;background:var(--card);box-shadow:0 0 0 3px rgba(37,99,235,.25);transform:scale(1.02);}
+.search-results{position:absolute;top:62px;left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-card);box-shadow:var(--shadow-hover);max-height:360px;overflow:auto;display:none;text-align:left;z-index:30;}
+.search-results.open{display:block;}
+.search-results a{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--border);font-size:14px;}
+.search-results a:last-child{border-bottom:none;}
+.search-results a:hover{background:var(--bg);}
+.search-results .en{color:var(--muted);font-size:12px;margin-left:auto;}
+.scenario-tags{margin:22px auto 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:720px;}
+.scenario-tags a{font-size:13px;padding:8px 15px;border:1px solid var(--border);border-radius:20px;color:var(--text);background:var(--card);transition:.2s;cursor:pointer;}
+.scenario-tags a:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px);}
+.scenario-tags a .em{margin-right:4px;}
+
+/* ── 区块标题 ── */
+.section{padding:54px 0;}
+.section-head{text-align:center;margin-bottom:30px;}
+.section-head h2{font-size:26px;font-weight:700;}
+.section-head p{color:var(--muted);margin-top:8px;font-size:14px;}
+
+/* ── 场景化分组 ── */
+.group{margin-bottom:42px;}
+.group-head{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;}
+.group-head h3{font-size:20px;font-weight:700;}
+.group-head .en{color:var(--muted);font-size:13px;}
+.group-head .more{margin-left:auto;font-size:13px;color:var(--primary);}
+.tool-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
+.tcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-card);padding:16px 14px;transition:.3s;position:relative;display:block;}
+.tcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:transparent;}
+.tcard .ico{font-size:22px;}
+.tcard .nm{font-size:14px;font-weight:600;margin-top:8px;}
+.tcard .ds{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4;height:34px;overflow:hidden;}
+.tcard .star{position:absolute;top:10px;right:10px;font-size:14px;color:var(--muted);cursor:pointer;opacity:.5;transition:.2s;}
+.tcard .star:hover{opacity:1;color:var(--accent);}
+.tcard .star.on{opacity:1;color:var(--accent);}
+
+/* ── 新增工具滚动 ── */
+.new-scroll{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+.new-track{display:flex;gap:14px;width:max-content;animation:scrollx 40s linear infinite;cursor:grab;}
+.new-track:active{cursor:grabbing;animation-play-state:paused;}
+.new-track a{flex:0 0 auto;width:160px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-card);padding:14px;transition:.3s;display:block;}
+.new-track a:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);}
+.new-track .ico{font-size:20px;}
+.new-track .nm{font-size:13px;font-weight:600;margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+@keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── 价值优势 ── */
+.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.value-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-card);padding:28px 24px;transition:.3s;}
+.value-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);}
+.value-card .vic{width:46px;height:46px;border-radius:12px;background:rgba(37,99,235,.1);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;}
+.value-card h3{font-size:18px;font-weight:700;margin-bottom:8px;}
+.value-card p{font-size:14px;color:var(--muted);}
+
+/* ── 收藏面板 ── */
+.fav-panel{position:fixed;top:64px;right:16px;width:300px;max-height:70vh;overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-card);box-shadow:var(--shadow-hover);padding:14px;display:none;z-index:60;}
+.fav-panel.open{display:block;}
+.fav-panel h4{font-size:14px;margin-bottom:10px;}
+.fav-panel a{display:flex;align-items:center;gap:8px;padding:8px 6px;font-size:13px;border-bottom:1px solid var(--border);}
+.fav-panel a:last-child{border-bottom:none;}
+.fav-empty{font-size:13px;color:var(--muted);padding:10px 0;}
+
+/* ── 页脚 ── */
+footer{margin-top:40px;border-top:1px solid var(--border);background:var(--card);padding:36px 0 28px;}
+.foot-links{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin-bottom:14px;}
+.foot-links a{font-size:14px;color:var(--muted);}
+.foot-links a:hover{color:var(--primary);}
+.foot-copy{text-align:center;font-size:13px;color:var(--muted);}
+.foot-lang{text-align:center;font-size:12px;color:var(--muted);margin-top:8px;}
+
+@media(max-width:1080px){.tool-grid{grid-template-columns:repeat(4,1fr);}.value-grid{grid-template-columns:1fr;}}
+@media(max-width:760px){.nav-cats{display:none;}.tool-grid{grid-template-columns:repeat(2,1fr);}.hero h1{font-size:30px;}}
+@media(max-width:420px){.tool-grid{grid-template-columns:repeat(1,1fr);}}
 </style>
-    <!-- adsense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495097009978965" crossorigin="anonymous"></script>
+<!-- adsense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495097009978965" crossorigin="anonymous"></script>
 </head>
 <body>
-<div id="i18nSwitch" style="max-width:1200px;margin:0 auto;padding:10px 20px;text-align:right;">
-  <button data-lang="zh" style="padding:5px 12px;border:none;border-radius:6px;background:#2478f5;color:#fff;font-size:13px;cursor:pointer;">中文</button>
-  <button data-lang="en" style="padding:5px 12px;border:none;border-radius:6px;background:transparent;color:#374151;font-size:13px;cursor:pointer;">EN</button>
-</div>
-<div class="top-bar">
-    <div class="logo"><span class="i18n-zh">72在线工具箱</span><span class="i18n-en" hidden>72 Online Tools</span></div>
-    <div class="search-wrap">
-        <input id="searchInput" placeholder="搜索工具名称，如PDF合并、图片压缩、贷款计算" data-ph-zh="搜索工具名称，如PDF合并、图片压缩、贷款计算" data-ph-en="Search tools, e.g. PDF merge, image compression, loan calculator">
+
+<!-- 导航栏 -->
+<nav class="navbar">
+    <a class="brand" href="/"><span class="logo-dot">72</span><span class="i18n-zh">72Tool</span><span class="i18n-en" hidden>72Tool</span></a>
+    <div class="nav-cats">
+        <a href="/dev-tools.html"><span class="i18n-zh">开发</span><span class="i18n-en" hidden>Dev</span></a>
+        <a href="/img-tools.html"><span class="i18n-zh">图片</span><span class="i18n-en" hidden>Image</span></a>
+        <a href="/pdf-tools.html"><span class="i18n-zh">PDF</span><span class="i18n-en" hidden>PDF</span></a>
+        <a href="/video-tools.html"><span class="i18n-zh">视频</span><span class="i18n-en" hidden>Video</span></a>
+        <a href="/audio-tools.html"><span class="i18n-zh">音频</span><span class="i18n-en" hidden>Audio</span></a>
+        <a href="/business-tools.html"><span class="i18n-zh">商务</span><span class="i18n-en" hidden>Biz</span></a>
     </div>
-    <div class="top-right">
-        <span class="tool-count-tag"><span class="i18n-zh">共</span><span class="i18n-en" hidden>Total</span><span id="totalToolNum">0</span><span class="i18n-zh">款工具</span><span class="i18n-en" hidden> tools</span></span>
-        <button class="themeBtn" onclick="toggleDark()"><span class="i18n-zh">切换深色/浅色</span><span class="i18n-en" hidden>Dark / Light</span></button>
-    </div>
-</div>
-<div class="main-wrap">
-    <div class="sidebar">
-        <div class="sidebar-menu" id="sidebarAllMenu">
-            <div class="item active" data-catid="all">
-                <span>📦</span>
-                <span><span class="i18n-zh">全部工具</span><span class="i18n-en" hidden>All Tools</span></span>
-                <span class="cat-num">0</span>
+    <div class="nav-right">
+        <div class="lang-switch">
+            <button class="lang-btn" id="langBtn">🌐 <span id="langLabel">中文</span> ▾</button>
+            <div class="lang-menu" id="langMenu">
+                <button data-lang="zh">🇨🇳 中文</button>
+                <button data-lang="en">🇬🇧 English</button>
+                <button data-lang="jp">🇯🇵 日本語</button>
+                <button data-lang="es">🇪🇸 Español</button>
             </div>
         </div>
-        <div class="split"></div>
-        <div class="sidebar-menu" id="sidebarCatList"></div>
-        <div class="split"></div>
-        <div class="sidebar-menu" id="sidebarBlogMenu">
-            <a class="item" href="/blog/index.html" style="text-decoration:none;color:inherit;">
-                <span>📖</span>
-                <span><span class="i18n-zh">工具教程博客</span><span class="i18n-en" hidden>Blog</span></span>
-                <span class="cat-num">›</span>
-            </a>
-        </div>
+        <button class="icon-btn" id="themeBtn" title="主题切换">🌞</button>
+        <button class="icon-btn fav-btn" id="favBtn" title="我的收藏">⭐<span class="fav-badge" id="favBadge" style="display:none">0</span></button>
     </div>
-    <div class="content">
-        <div class="content-header">
-            <div class="content-title">
-                <h2 id="currentCatName"><span class="i18n-zh">全部工具</span><span class="i18n-en" hidden>All Tools</span></h2>
-            </div>
-            <div class="tool-count-tag" id="showCatCount">0 个工具</div>
-        </div>
-        <div class="newest-section">
-            <h2><span class="i18n-zh">🆕 最新上架工具</span><span class="i18n-en" hidden>🆕 Newest Tools</span></h2>
-            <div class="newest-grid">
-                <a class="ncard" href="loancalc.html"><span class="icon">🏠</span><span><span class="i18n-zh">贷款计算器</span><span class="i18n-en" hidden>Loan Calculator</span></span></a>
-                <a class="ncard" href="discount.html"><span class="icon">🏷️</span><span><span class="i18n-zh">折扣计算器</span><span class="i18n-en" hidden>Discount Calculator</span></span></a>
-                <a class="ncard" href="discountcalc.html"><span class="icon">🛒</span><span><span class="i18n-zh">满减测算</span><span class="i18n-en" hidden>Threshold Discount Calculator</span></span></a>
-                <a class="ncard" href="freightcalc.html"><span class="icon">📦</span><span><span class="i18n-zh">快递运费</span><span class="i18n-en" hidden>Shipping Fee Calculator</span></span></a>
-                <a class="ncard" href="fuelcalc.html"><span class="icon">⛽</span><span><span class="i18n-zh">汽车油耗</span><span class="i18n-en" hidden>Fuel Consumption Calculator</span></span></a>
-                <a class="ncard" href="batchprice.html"><span class="icon">💹</span><span><span class="i18n-zh">批量定价</span><span class="i18n-en" hidden>Batch Pricing</span></span></a>
-                <a class="ncard" href="adbidcalc.html"><span class="icon">📈</span><span><span class="i18n-zh">直通车保本出价</span><span class="i18n-en" hidden>Breakeven Ad Bid</span></span></a>
-                <a class="ncard" href="best-coupon-price.html"><span class="icon">🛒</span><span><span class="i18n-zh">凑单最优价格</span><span class="i18n-en" hidden>Best Coupon Combo Price</span></span></a>
-                <a class="ncard" href="car-loan-calc.html"><span class="icon">🚗</span><span><span class="i18n-zh">车贷月供计算</span><span class="i18n-en" hidden>Car Loan Payment</span></span></a>
-                <a class="ncard" href="compound-interest-calc.html"><span class="icon">💹</span><span><span class="i18n-zh">复利利息计算</span><span class="i18n-en" hidden>Compound Interest Calculator</span></span></a>
-                <a class="ncard" href="rental-cost-calc.html"><span class="icon">🏠</span><span><span class="i18n-zh">租房成本测算</span><span class="i18n-en" hidden>Rental Cost Calculator</span></span></a>
-                <a class="ncard" href="weight-standard-table.html"><span class="icon">⚖️</span><span><span class="i18n-zh">标准体重表</span><span class="i18n-en" hidden>Ideal Weight Table</span></span></a>
-            </div>
-        </div>
-        <!-- newest-tools -->
-        <div class="tool-grid" id="toolGrid"></div>
-    </div>
+</nav>
+
+<!-- 收藏面板 -->
+<div class="fav-panel" id="favPanel">
+    <h4><span class="i18n-zh">我的收藏工具</span><span class="i18n-en" hidden>My Favorite Tools</span></h4>
+    <div id="favList"></div>
 </div>
-<button class="backTop" id="backTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- Hero -->
+<header class="hero">
+    <h1>
+        <span class="i18n-zh">72Tool在线工具箱 - 免费多功能云端工具平台</span>
+        <span class="i18n-en" hidden>72Tool All-in-One Free Online Utility Hub</span>
+    </h1>
+    <p class="sub">
+        <span class="i18n-zh">一站式浏览器在线工具合集，无需下载、无需注册、全程免费，支持文档处理、图像创作、开发调试、商务计算等全场景需求</span>
+        <span class="i18n-en" hidden>Free web-based tools for creators, developers and business users. No installation, no registration, completely free and safe to use.</span>
+    </p>
+    <div class="search-box">
+        <input id="searchInput" placeholder="搜索任意在线工具（图片压缩、PDF转换、JSON格式化...）" data-ph-zh="搜索任意在线工具（图片压缩、PDF转换、JSON格式化...）" data-ph-en="Search any tool (Image Compressor, PDF Converter, JSON Formatter...)">
+        <div class="search-results" id="searchResults"></div>
+    </div>
+    <div class="scenario-tags">
+        <a data-cat="img"><span class="em">🌆</span><span class="i18n-zh">媒体创作</span><span class="i18n-en" hidden>Media Creation</span></a>
+        <a data-cat="dev"><span class="em">💻</span><span class="i18n-zh">开发调试</span><span class="i18n-en" hidden>Dev Tools</span></a>
+        <a data-cat="pdf"><span class="em">📄</span><span class="i18n-zh">文档办公</span><span class="i18n-en" hidden>Document Office</span></a>
+        <a data-cat="business"><span class="em">💰</span><span class="i18n-zh">商务计算</span><span class="i18n-en" hidden>Business Calc</span></a>
+        <a data-cat="url"><span class="em">🔐</span><span class="i18n-zh">加密转换</span><span class="i18n-en" hidden>Encryption</span></a>
+    </div>
+</header>
+
+<!-- 场景化工具分组 -->
+<section class="section wrap" id="groups"></section>
+
+<!-- 新增工具滚动 -->
+<section class="section wrap">
+    <div class="section-head">
+        <h2><span class="i18n-zh">最新上线工具</span><span class="i18n-en" hidden>Newly Released Tools</span></h2>
+        <p><span class="i18n-zh">持续更新，保持活跃</span><span class="i18n-en" hidden>Constantly updated &amp; active</span></p>
+    </div>
+    <div class="new-scroll"><div class="new-track" id="newTrack"></div></div>
+</section>
+
+<!-- 价值优势 -->
+<section class="section wrap">
+    <div class="value-grid">
+        <div class="value-card">
+            <div class="vic">⚡</div>
+            <h3><span class="i18n-zh">无需安装即用</span><span class="i18n-en" hidden>No Install Needed</span></h3>
+            <p><span class="i18n-zh">所有工具基于浏览器云端运行，无需下载客户端、无需安装插件，打开即可使用，适配电脑、手机、平板全设备</span><span class="i18n-en" hidden>All tools run purely on your browser. No software installation, no plugins required, accessible on PC, mobile and tablet anytime.</span></p>
+        </div>
+        <div class="value-card">
+            <div class="vic">🔒</div>
+            <h3><span class="i18n-zh">本地隐私安全</span><span class="i18n-en" hidden>Local &amp; Private</span></h3>
+            <p><span class="i18n-zh">绝大部分工具支持本地前端运算，文件、数据仅在用户设备处理，不上传服务器，严格保护用户隐私与数据安全</span><span class="i18n-en" hidden>Most tools process data locally on your device. No file uploads to servers, ensuring full privacy and data security for every user.</span></p>
+        </div>
+        <div class="value-card">
+            <div class="vic">🎁</div>
+            <h3><span class="i18n-zh">永久免费无门槛</span><span class="i18n-en" hidden>Free Forever</span></h3>
+            <p><span class="i18n-zh">全站工具永久免费开放，无会员付费、无功能限制、无需注册登录，为全球用户提供极简高效的在线工具服务</span><span class="i18n-en" hidden>100% free for all users worldwide. No premium fees, no function limits, no sign-up required, simple and efficient web utilities.</span></p>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer>
+    <div class="wrap">
+        <div class="foot-links">
+            <a href="/about.html" data-i18n="about">关于我们</a>
+            <a href="/privacy.html" data-i18n="privacy">隐私政策</a>
+            <a href="/terms.html"><span class="i18n-zh">使用条款</span><span class="i18n-en" hidden>Terms</span></a>
+            <a href="/sitemap.html"><span class="i18n-zh">站点地图</span><span class="i18n-en" hidden>Sitemap</span></a>
+            <a href="/contact.html" data-i18n="contact">联系我们</a>
+        </div>
+        <div class="foot-copy" data-i18n="copyright">© 2026 72Tool 72tool.com 保留所有权利</div>
+        <div class="foot-lang"><span class="i18n-zh">72Tool 全球在线工具箱 · 中文 / English / 日本語 / Español</span><span class="i18n-en" hidden>72Tool Global Utility Hub · 中文 / English / 日本語 / Español</span></div>
+    </div>
+</footer>
+
+<script src="tools-data.js"></script>
 <script>
-
-// i18n lookup for index dynamic rendering
-const I18N_LOOKUP = {catEn: {"audio": "Audio Tools", "business": "Business & Finance", "csv": "CSV & Data", "dev": "Developer Tools", "gif": "GIF Tools", "img": "Image Tools", "jsonxml": "JSON & XML", "pdf": "PDF Tools", "seo": "SEO Tools", "text": "Text Tools", "unit": "Unit Converters", "url": "URL & Encoding", "video": "Video Tools"}, toolEn: {"9-grid-image-cut.html": "9-Grid Image Slicer", "adbidcalc.html": "Breakeven Ad Bid", "agecalc.html": "Age Calculator", "altgen.html": "Batch Image ALT Generator", "audiobatchconvert.html": "Batch Audio Converter", "audiobatchsum.html": "Batch Audio Duration Counter", "audiobitrate.html": "Change Audio Bitrate", "audiochannel.html": "Audio Channel Converter", "audioconvert.html": "Audio Converter", "audiocutendblank.html": "Trim Trailing Silence", "audiocutsilent.html": "Remove Silent Parts", "audiodenoise.html": "Audio Denoise", "audioecho.html": "Add Echo to Audio", "audioeq.html": "Audio Equalizer", "audioextract.html": "Extract Audio (from Video)", "audiofade.html": "Audio Fade In/Out", "audiolengthcalc.html": "Audio Duration Viewer", "audioloop.html": "Loop & Join Audio", "audiomerge.html": "Merge Audio", "audiometadata.html": "Edit MP3 Metadata", "audiomix.html": "Mix Two Audios", "audioreverse.html": "Reverse Audio", "audiosample.html": "Audio Sample Rate Converter", "audiospeed.html": "Change Audio Speed", "audiosplitbytime.html": "Split Audio by Duration", "audiototext.html": "Audio to Text", "audiotrim.html": "Trim Audio", "audiovoiceisolate.html": "Vocal & Backing Split", "audiovolume.html": "Adjust Audio Volume", "banktest.html": "Test Bank Card Number", "barcode-code128.html": "Code128 Barcode", "base32-encode-decode.html": "Base32 Encode / Decode", "base64.html": "Base64 Encode / Decode", "batch-qrcode-generate.html": "Batch QR Code Generator", "batch-random-date.html": "Batch Random Date", "batch-sku-generator.html": "Batch SKU Generator", "batch-url-status-check.html": "Batch URL Status Checker", "batchprice.html": "Batch Pricing", "best-coupon-price.html": "Best Coupon Combo Price", "black-border-auto-crop.html": "Auto-Crop Video Black Bars", "bmi.html": "BMI Calculator", "canonical.html": "Canonical Tag Generator", "car-loan-calc.html": "Car Loan Payment", "caseconvert.html": "Case Converter", "charsetconv.html": "Character Encoding Converter", "circle-avatar-crop.html": "Circle Avatar Cropper", "color-export-table.html": "Image Color Extractor", "color-hsl-convert.html": "Color HSL Converter", "colorcontrast.html": "Color Contrast", "commentgen.html": "Short-video Comment Generator", "compound-interest-calc.html": "Compound Interest Calculator", "cookieparse.html": "Cookie Parser", "copyspace.html": "Clean Text Spaces", "countdown-image-gen.html": "Countdown Image Generator", "countdown.html": "Countdown Generator", "coverratio.html": "Image Ratio Converter", "crontab.html": "Cron Expression Generator", "css-format-min.html": "CSS Beautify & Minify", "csv2excel.html": "CSV to Excel", "csv2json.html": "CSV to JSON", "csvclean.html": "Clean CSV Empty Rows", "csvdedup.html": "Dedupe CSV by Column", "csvfillempty.html": "Fill CSV Blanks", "csvfilter.html": "Filter CSV", "csvjoin.html": "Join & Merge CSV", "csvlinecount.html": "CSV Row Counter", "csvmerge.html": "Merge CSV Files", "csvmergecol.html": "Merge CSV Columns", "csvpreview.html": "CSV Preview", "csvreplace.html": "Replace in CSV", "csvsort.html": "Sort CSV", "csvsplit.html": "Split CSV by Group", "csvsplitbyvalue.html": "Split CSV by Field", "csvsplitcol.html": "Split CSV Column", "csvsplitfixed.html": "Split CSV by Fixed Rows", "csvstat.html": "CSV Statistics", "csvutf8.html": "CSV Encoding Converter", "discount.html": "Discount Calculator", "discountcalc.html": "Threshold Discount Calculator", "distancewalking.html": "Steps & Distance Converter", "dns-query.html": "DNS Record Lookup", "domainexpire.html": "Domain Expiry Calculator", "emoji-auto-insert.html": "Smart Emoji Insert", "emojiall.html": "Emoji", "excel2csv.html": "Excel to CSV", "excel2pdf.html": "Excel to PDF", "express-number-check.html": "Tracking Number Validator", "fancyfont.html": "Fancy Font (English)", "fontcn.html": "Chinese Artistic Font", "freightcalc.html": "Shipping Fee Calculator", "fuelcalc.html": "Fuel Consumption Calculator", "fullhalf.html": "Full-width ↔ Half-width Converter", "function-graph-draw.html": "Function Graph Plotter", "geometry-area-calc.html": "Geometry Area Calculator", "gifcompress.html": "GIF Compressor", "gifresize.html": "GIF Resizer", "gifspeed.html": "GIF Speed Adjuster", "hash.html": "Hash Generator", "hashtagbatch.html": "Batch Hashtag Generator", "hex.html": "Base Converter", "hmac-sha-crypto.html": "HMAC-SHA Crypto", "htaccess.html": ".htaccess Generator", "html-entity.html": "HTML Entity Encode / Decode", "html-format-min.html": "HTML Beautify & Minify", "http-header-check.html": "HTTP Header Checker", "httpcode.html": "HTTP Status Code Lookup", "id-photo-crop.html": "ID Photo Background Change", "image-ai-upscale.html": "AI Image Upscaler", "image-object-remove.html": "Remove Object from Image", "images-to-pdf.html": "Images to PDF", "img-editor.html": "Online Image Editor", "img2icon.html": "Icon (ICO) Generator", "img2pdf.html": "Image to PDF", "imgarc43.html": "Fixed Ratio Fill", "imgbatchconvert.html": "Batch Image Converter", "imgbatchresize.html": "Batch Image Resizer", "imgblur.html": "Partial Mosaic Blur", "imgblurfull.html": "Full Blur", "imgcompress.html": "Image Compressor", "imgconvert.html": "Image Converter", "imgcrop.html": "Image Cropper", "imgdenoise.html": "Image Denoise", "imgexif.html": "Read EXIF Info", "imgfilter.html": "Image Filter & Color", "imgfliprotate.html": "Free-angle Rotate", "imgframe.html": "Add Photo Frame", "imggifcreate.html": "Images to GIF", "imgmerge.html": "Join Images Horizontally", "imgmergev.html": "Join Images Vertically", "imgmirror.html": "Mirror & Flip Image", "imgoverlay.html": "Image Overlay Sticker", "imgpalette.html": "Color Quantization", "imgpdf.html": "Image to PDF", "imgremovebg.html": "Remove White Background", "imgremoveexif.html": "Clear EXIF", "imgresize.html": "Image Resizer", "imgrotate.html": "Image Rotator", "imgsaturate.html": "Image Color Adjustment", "imgscreenshot.html": "Blank Canvas", "imgsharpen.html": "Image Sharpener", "imgsizegoods.html": "Product Size Calculator", "imgslice.html": "Image Slice (Equal Parts)", "imgtextdraw.html": "Add Text to Image", "imgwaterrepeat.html": "Tiled Watermark", "imgwatertext.html": "Simple Text Watermark", "ipnum.html": "IP to Number Converter", "json-diff.html": "JSON Diff", "json-escape.html": "JSON Escape / Unescape", "json-minify.html": "JSON Minifier", "json-path.html": "JSON Path Extractor", "json-sort.html": "Sort JSON Keys", "json-yaml-convert.html": "JSON ↔ YAML Converter", "json.html": "JSON Formatter & Validator", "json2csv.html": "JSON to CSV", "jsonunique.html": "Dedupe JSON Array", "jsonxml.html": "JSON ↔ XML Converter", "jwt-parser.html": "JWT Parser & Validator", "keyword-segment.html": "Keyword Segmenter", "keyworddensity.html": "Keyword Density", "loancalc.html": "Loan Calculator", "lorem.html": "Lorem Ipsum Generator", "mac-generator.html": "Random MAC Generator", "markdown-to-pdf.html": "Markdown to PDF", "md2table.html": "Markdown to CSV", "metacheck.html": "Meta Tag Checker", "mobile-view-check.html": "Mobile-Friendly Checker", "money.html": "Number to Chinese Amount", "morse.html": "Morse Code Encode / Decode", "mp3cut.html": "Cut Audio", "mp4-gif-convert.html": "MP4 ↔ GIF Converter", "nofollow.html": "Nofollow Tag", "numbercn.html": "Number to Chinese (Reading)", "og-generator.html": "Open Graph Tag Generator", "orderstat.html": "Batch Order Statistics", "page-charset-detect.html": "Page Encoding Detector", "page-main-content.html": "Webpage Main Content Extractor", "palette.html": "Color Palette Generator", "pdf-add-page-number.html": "Add Page Numbers to PDF", "pdf-extract-images.html": "Extract Images from PDF", "pdf-metadata-edit.html": "Edit PDF Metadata", "pdf-text-replace.html": "Replace PDF Text", "pdf-text-signature.html": "Sign PDF (Text)", "pdf2csv.html": "PDF Table to CSV", "pdf2excel.html": "PDF Table to Excel", "pdf2img.html": "PDF to Image", "pdf2ppt.html": "PDF to PPT", "pdf2txt.html": "PDF to TXT", "pdf2word.html": "PDF to Word", "pdfbatchconvert.html": "Batch to PDF", "pdfblack.html": "Redact PDF (Blackout)", "pdfcompare.html": "Compare PDF Text", "pdfcompress.html": "PDF Compressor", "pdfcrop.html": "Crop PDF White Margins", "pdfdelete.html": "Delete PDF Pages", "pdfencrypt.html": "Encrypt PDF", "pdffillform.html": "Fill PDF Form", "pdfimg.html": "PDF to Image", "pdfmerge.html": "Merge PDF", "pdfmergeimg.html": "Merge Images into PDF", "pdfmetadata.html": "Clean PDF Metadata", "pdfocr.html": "PDF OCR", "pdfpagecount.html": "PDF Page Counter", "pdfprintlayout.html": "Print Layout", "pdfreorder.html": "Reorder PDF Pages", "pdfrotate.html": "Rotate PDF Pages", "pdfsplit.html": "Extract PDF Pages", "pdfsplitbyrange.html": "Split PDF by Range", "pdftext.html": "Extract Text from PDF", "pdfunlock.html": "Unlock PDF", "pdfwatermark.html": "Add Watermark to PDF", "ppt2pdf.html": "PPTX to PDF", "product-title-seg.html": "Product Title Segmenter", "profitcalc.html": "Unit Profit Calculator", "proportion.html": "Proportion Converter", "pwdgen.html": "Random Password", "pwdsafe.html": "Password Strength", "qrcode.html": "QR Code Generator", "query-builder.html": "URL Query Builder", "random-chinese-sentence.html": "Random Chinese Sentence", "random-email-url.html": "Random Email & URL", "random-weight-draw.html": "Weighted Random Draw", "randomname.html": "Random Name & Address", "randomphone.html": "Test Phone Number", "randomport.html": "Random Port", "randomtable.html": "Random Test Data", "regex.html": "Regex Tester", "regtemplate.html": "Regex Templates", "rental-cost-calc.html": "Rental Cost Calculator", "rgbhex.html": "RGB ↔ HEX Converter", "robotscheck.html": "Robots.txt Checker", "robotstxt.html": "Robots.txt Generator", "roman.html": "Roman Numeral Converter", "script-duration-calc.html": "Script Duration Estimator", "sensitive-word-scan.html": "Sensitive Word Scanner", "shop-image-size-guide.html": "E-commerce Image Size Guide", "shorturl.html": "Local URL Shortener", "sitemap.html": "Sitemap Generator", "sitemapcheck.html": "Sitemap Link Extractor", "sitemapsplit.html": "Split Sitemap Index", "skugen.html": "SKU Generator", "sqlformat.html": "SQL Formatter", "squarecalc.html": "Square & Cube Calculator", "srt2ass.html": "SRT to ASS Subtitle", "ssl-checker.html": "SSL Certificate Checker", "std-variance-calc.html": "Variance & Std Dev Calculator", "stockcalc.html": "Inventory Turnover", "subtitle-offset-adjust.html": "Subtitle Time Offset", "subtitle-time-align.html": "Subtitle Timeline Align", "sumbatch.html": "Batch Sum", "svg-preview-format.html": "SVG Preview & Format", "symbol.html": "Special Symbols", "table-column-dedup.html": "Dedupe Table by Column", "table-data-desensitize.html": "Mask Table Data", "table-diff-compare.html": "Compare Table Diff", "table-to-sql-insert.html": "Table to SQL INSERT", "table2md.html": "CSV to Markdown Table", "tabletranspose.html": "Transpose Table", "tagextract.html": "Extract HTML Meta", "taxcalc.html": "Salary & Income Tax", "text-frequency-stats.html": "Text Frequency Stats", "text-to-slug.html": "Title to Slug", "textclear.html": "Text Cleaner", "textcompare.html": "Compare Two Texts", "textcount.html": "Text Word Counter", "textencipher.html": "AES Encrypt / Decrypt", "textindent.html": "Code Indent Converter", "textindentmd.html": "Markdown Formatter", "textlineclean.html": "Clean Text Line Breaks", "textlineop.html": "Multi-line Text Tool", "textrandomsort.html": "Shuffle Lines", "textrepeat.html": "Text Duplicate Check", "textreverse.html": "Reverse Text", "texttotable.html": "Delimited Text to CSV", "timestamp.html": "Timestamp Converter", "timezone.html": "Time Zone Converter", "title-length-simulator.html": "Title Length Simulator", "titleclean.html": "Clean Product Title", "titlelength.html": "Taobao Title Checker", "titlenum.html": "Xiaohongshu Title Checker", "txt-batch.html": "Batch TXT Processor", "txt-dedupe.html": "Dedupe TXT", "txt-encoding.html": "TXT Encoding Converter", "txt-merge.html": "Merge TXT Files", "txt-newline.html": "Newline Converter", "txt-split.html": "Split TXT Files", "txt-to-csv.html": "TXT to CSV", "unicode-cn-convert.html": "Unicode ↔ Chinese Converter", "unitangle.html": "Angle ↔ Radian Converter", "unitarea.html": "Area Converter", "unitbyte.html": "File Size Converter", "unitdensity.html": "Density Converter", "unitenergy.html": "Energy Converter", "unitlength.html": "Length Converter", "unitmoney.html": "Currency Exchange Rate", "unitpower.html": "Power Converter", "unitpressure.html": "Pressure Converter", "unitspeed.html": "Speed Converter", "unittemp.html": "Temperature Converter", "unittime.html": "Time Converter", "unitvolume.html": "Volume Converter", "unitweight.html": "Weight Converter", "urlcode.html": "URL Encode / Decode", "urlencode-seo.html": "SEO-Friendly URL", "urlparse.html": "URL Parameter Parser", "user-agent-analyze.html": "User-Agent Analyzer", "uuid.html": "UUID Generator", "var-name-transform.html": "Variable Name Converter", "video-split-screen.html": "Split-Screen Video Merge", "video-volume-normalize.html": "Normalize Video Volume", "videoaddaudio.html": "Add Background Music to Video", "videobatchresize.html": "Batch Video Resizer", "videobitcalc.html": "Video Bitrate Calculator", "videoblur.html": "Video Mosaic / Blur", "videocompress.html": "Video Compressor", "videoconvert.html": "Video Converter", "videocropframe.html": "Crop Video Frame", "videocut.html": "Cut Video Clip", "videoextractaudio.html": "Extract Audio from Video", "videofilter.html": "Video Filter & Color", "videofps.html": "Change Video FPS", "videoloop.html": "Loop & Join Video", "videomerge.html": "Merge Videos", "videomirrow.html": "Mirror & Flip Video", "videoremoveaudio.html": "Remove Audio from Video", "videoreverse.html": "Reverse Video", "videorotate.html": "Rotate Video", "videosize.html": "Custom Video Resolution", "videospeed.html": "Change Video Speed", "videosplitframe.html": "Extract Video Frames", "videotextsub.html": "Embed Hard Subtitles", "videotogif.html": "Video to GIF", "videotrimblack.html": "Trim Black Bars", "videotrimsilent.html": "Remove Silent Segments", "videovolume.html": "Adjust Video Volume", "videowatermark.html": "Add Text Watermark", "weight-standard-table.html": "Ideal Weight Table", "wifi-qrcode.html": "WiFi QR Code Generator", "word2pdf.html": "Word to PDF", "workday-calculator.html": "Workday Calculator", "xmlformat.html": "XML Formatter", "zhconvert.html": "Traditional ↔ Simplified Chinese", "zip-preview-unzip.html": "ZIP Preview & Extract"}, descEn: {"9-grid-image-cut.html": "9-Grid Image Slicer — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "adbidcalc.html": "Breakeven Ad Bid — a free online Business & Finance tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "agecalc.html": "Age Calculator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "altgen.html": "Batch Image ALT Generator — a free online SEO Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiobatchconvert.html": "Batch Audio Converter — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiobatchsum.html": "Batch Audio Duration Counter — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiobitrate.html": "Change Audio Bitrate — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiochannel.html": "Audio Channel Converter — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audioconvert.html": "Audio Converter — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiocutendblank.html": "Trim Trailing Silence — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiocutsilent.html": "Remove Silent Parts — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiodenoise.html": "Audio Denoise — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audioecho.html": "Add Echo to Audio — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audioeq.html": "Audio Equalizer — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audioextract.html": "Extract Audio (from Video) — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiofade.html": "Audio Fade In/Out — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiolengthcalc.html": "Audio Duration Viewer — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audioloop.html": "Loop & Join Audio — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiomerge.html": "Merge Audio — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiometadata.html": "Edit MP3 Metadata — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiomix.html": "Mix Two Audios — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audioreverse.html": "Reverse Audio — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiosample.html": "Audio Sample Rate Converter — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiospeed.html": "Change Audio Speed — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiosplitbytime.html": "Split Audio by Duration — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiototext.html": "Audio to Text — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiotrim.html": "Trim Audio — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiovoiceisolate.html": "Vocal & Backing Split — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "audiovolume.html": "Adjust Audio Volume — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "banktest.html": "Test Bank Card Number — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "barcode-code128.html": "Code128 Barcode — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "base32-encode-decode.html": "Base32 Encode / Decode — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "base64.html": "Base64 Encode / Decode — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "batch-qrcode-generate.html": "Batch QR Code Generator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "batch-random-date.html": "Batch Random Date — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "batch-sku-generator.html": "Batch SKU Generator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "batch-url-status-check.html": "Batch URL Status Checker — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "batchprice.html": "Batch Pricing — a free online Business & Finance tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "best-coupon-price.html": "Best Coupon Combo Price — a free online Business & Finance tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "black-border-auto-crop.html": "Auto-Crop Video Black Bars — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "bmi.html": "BMI Calculator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "canonical.html": "Canonical Tag Generator — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "car-loan-calc.html": "Car Loan Payment — a free online Business & Finance tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "caseconvert.html": "Case Converter — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "charsetconv.html": "Character Encoding Converter — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "circle-avatar-crop.html": "Circle Avatar Cropper — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "color-export-table.html": "Image Color Extractor — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "color-hsl-convert.html": "Color HSL Converter — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "colorcontrast.html": "Color Contrast — a free online SEO Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "commentgen.html": "Short-video Comment Generator — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "compound-interest-calc.html": "Compound Interest Calculator — a free online Business & Finance tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "cookieparse.html": "Cookie Parser — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "copyspace.html": "Clean Text Spaces — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "countdown-image-gen.html": "Countdown Image Generator — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "countdown.html": "Countdown Generator — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "coverratio.html": "Image Ratio Converter — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "crontab.html": "Cron Expression Generator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "css-format-min.html": "CSS Beautify & Minify — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csv2excel.html": "CSV to Excel — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csv2json.html": "CSV to JSON — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvclean.html": "Clean CSV Empty Rows — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvdedup.html": "Dedupe CSV by Column — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvfillempty.html": "Fill CSV Blanks — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvfilter.html": "Filter CSV — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvjoin.html": "Join & Merge CSV — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvlinecount.html": "CSV Row Counter — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvmerge.html": "Merge CSV Files — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvmergecol.html": "Merge CSV Columns — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvpreview.html": "CSV Preview — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvreplace.html": "Replace in CSV — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvsort.html": "Sort CSV — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvsplit.html": "Split CSV by Group — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvsplitbyvalue.html": "Split CSV by Field — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvsplitcol.html": "Split CSV Column — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvsplitfixed.html": "Split CSV by Fixed Rows — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvstat.html": "CSV Statistics — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "csvutf8.html": "CSV Encoding Converter — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "discount.html": "Discount Calculator — a free online Business & Finance tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "discountcalc.html": "Threshold Discount Calculator — a free online Business & Finance tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "distancewalking.html": "Steps & Distance Converter — a free online Unit Converters tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "dns-query.html": "DNS Record Lookup — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "domainexpire.html": "Domain Expiry Calculator — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "emoji-auto-insert.html": "Smart Emoji Insert — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "emojiall.html": "Emoji — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "excel2csv.html": "Excel to CSV — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "excel2pdf.html": "Excel to PDF — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "express-number-check.html": "Tracking Number Validator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "fancyfont.html": "Fancy Font (English) — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "fontcn.html": "Chinese Artistic Font — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "freightcalc.html": "Shipping Fee Calculator — a free online Business & Finance tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "fuelcalc.html": "Fuel Consumption Calculator — a free online Business & Finance tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "fullhalf.html": "Full-width ↔ Half-width Converter — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "function-graph-draw.html": "Function Graph Plotter — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "geometry-area-calc.html": "Geometry Area Calculator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "gifcompress.html": "GIF Compressor — a free online GIF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "gifresize.html": "GIF Resizer — a free online GIF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "gifspeed.html": "GIF Speed Adjuster — a free online GIF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "hash.html": "Hash Generator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "hashtagbatch.html": "Batch Hashtag Generator — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "hex.html": "Base Converter — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "hmac-sha-crypto.html": "HMAC-SHA Crypto — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "htaccess.html": ".htaccess Generator — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "html-entity.html": "HTML Entity Encode / Decode — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "html-format-min.html": "HTML Beautify & Minify — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "http-header-check.html": "HTTP Header Checker — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "httpcode.html": "HTTP Status Code Lookup — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "id-photo-crop.html": "ID Photo Background Change — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "image-ai-upscale.html": "AI Image Upscaler — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "image-object-remove.html": "Remove Object from Image — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "images-to-pdf.html": "Images to PDF — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "img-editor.html": "Online Image Editor — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "img2icon.html": "Icon (ICO) Generator — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "img2pdf.html": "Image to PDF — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgarc43.html": "Fixed Ratio Fill — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgbatchconvert.html": "Batch Image Converter — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgbatchresize.html": "Batch Image Resizer — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgblur.html": "Partial Mosaic Blur — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgblurfull.html": "Full Blur — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgcompress.html": "Image Compressor — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgconvert.html": "Image Converter — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgcrop.html": "Image Cropper — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgdenoise.html": "Image Denoise — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgexif.html": "Read EXIF Info — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgfilter.html": "Image Filter & Color — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgfliprotate.html": "Free-angle Rotate — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgframe.html": "Add Photo Frame — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imggifcreate.html": "Images to GIF — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgmerge.html": "Join Images Horizontally — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgmergev.html": "Join Images Vertically — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgmirror.html": "Mirror & Flip Image — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgoverlay.html": "Image Overlay Sticker — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgpalette.html": "Color Quantization — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgpdf.html": "Image to PDF — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgremovebg.html": "Remove White Background — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgremoveexif.html": "Clear EXIF — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgresize.html": "Image Resizer — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgrotate.html": "Image Rotator — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgsaturate.html": "Image Color Adjustment — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgscreenshot.html": "Blank Canvas — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgsharpen.html": "Image Sharpener — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgsizegoods.html": "Product Size Calculator — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgslice.html": "Image Slice (Equal Parts) — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgtextdraw.html": "Add Text to Image — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgwaterrepeat.html": "Tiled Watermark — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "imgwatertext.html": "Simple Text Watermark — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "ipnum.html": "IP to Number Converter — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "json-diff.html": "JSON Diff — a free online JSON & XML tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "json-escape.html": "JSON Escape / Unescape — a free online JSON & XML tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "json-minify.html": "JSON Minifier — a free online JSON & XML tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "json-path.html": "JSON Path Extractor — a free online JSON & XML tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "json-sort.html": "Sort JSON Keys — a free online JSON & XML tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "json-yaml-convert.html": "JSON ↔ YAML Converter — a free online JSON & XML tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "json.html": "JSON Formatter & Validator — a free online JSON & XML tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "json2csv.html": "JSON to CSV — a free online JSON & XML tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "jsonunique.html": "Dedupe JSON Array — a free online JSON & XML tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "jsonxml.html": "JSON ↔ XML Converter — a free online JSON & XML tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "jwt-parser.html": "JWT Parser & Validator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "keyword-segment.html": "Keyword Segmenter — a free online SEO Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "keyworddensity.html": "Keyword Density — a free online SEO Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "loancalc.html": "Loan Calculator — a free online Business & Finance tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "lorem.html": "Lorem Ipsum Generator — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "mac-generator.html": "Random MAC Generator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "markdown-to-pdf.html": "Markdown to PDF — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "md2table.html": "Markdown to CSV — a free online SEO Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "metacheck.html": "Meta Tag Checker — a free online SEO Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "mobile-view-check.html": "Mobile-Friendly Checker — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "money.html": "Number to Chinese Amount — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "morse.html": "Morse Code Encode / Decode — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "mp3cut.html": "Cut Audio — a free online Audio Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "mp4-gif-convert.html": "MP4 ↔ GIF Converter — a free online GIF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "nofollow.html": "Nofollow Tag — a free online SEO Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "numbercn.html": "Number to Chinese (Reading) — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "og-generator.html": "Open Graph Tag Generator — a free online SEO Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "orderstat.html": "Batch Order Statistics — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "page-charset-detect.html": "Page Encoding Detector — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "page-main-content.html": "Webpage Main Content Extractor — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "palette.html": "Color Palette Generator — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdf-add-page-number.html": "Add Page Numbers to PDF — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdf-extract-images.html": "Extract Images from PDF — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdf-metadata-edit.html": "Edit PDF Metadata — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdf-text-replace.html": "Replace PDF Text — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdf-text-signature.html": "Sign PDF (Text) — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdf2csv.html": "PDF Table to CSV — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdf2excel.html": "PDF Table to Excel — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdf2img.html": "PDF to Image — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdf2ppt.html": "PDF to PPT — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdf2txt.html": "PDF to TXT — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdf2word.html": "PDF to Word — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfbatchconvert.html": "Batch to PDF — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfblack.html": "Redact PDF (Blackout) — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfcompare.html": "Compare PDF Text — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfcompress.html": "PDF Compressor — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfcrop.html": "Crop PDF White Margins — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfdelete.html": "Delete PDF Pages — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfencrypt.html": "Encrypt PDF — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdffillform.html": "Fill PDF Form — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfimg.html": "PDF to Image — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfmerge.html": "Merge PDF — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfmergeimg.html": "Merge Images into PDF — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfmetadata.html": "Clean PDF Metadata — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfocr.html": "PDF OCR — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfpagecount.html": "PDF Page Counter — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfprintlayout.html": "Print Layout — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfreorder.html": "Reorder PDF Pages — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfrotate.html": "Rotate PDF Pages — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfsplit.html": "Extract PDF Pages — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfsplitbyrange.html": "Split PDF by Range — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdftext.html": "Extract Text from PDF — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfunlock.html": "Unlock PDF — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pdfwatermark.html": "Add Watermark to PDF — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "ppt2pdf.html": "PPTX to PDF — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "product-title-seg.html": "Product Title Segmenter — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "profitcalc.html": "Unit Profit Calculator — a free online Business & Finance tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "proportion.html": "Proportion Converter — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pwdgen.html": "Random Password — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "pwdsafe.html": "Password Strength — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "qrcode.html": "QR Code Generator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "query-builder.html": "URL Query Builder — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "random-chinese-sentence.html": "Random Chinese Sentence — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "random-email-url.html": "Random Email & URL — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "random-weight-draw.html": "Weighted Random Draw — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "randomname.html": "Random Name & Address — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "randomphone.html": "Test Phone Number — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "randomport.html": "Random Port — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "randomtable.html": "Random Test Data — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "regex.html": "Regex Tester — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "regtemplate.html": "Regex Templates — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "rental-cost-calc.html": "Rental Cost Calculator — a free online Business & Finance tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "rgbhex.html": "RGB ↔ HEX Converter — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "robotscheck.html": "Robots.txt Checker — a free online SEO Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "robotstxt.html": "Robots.txt Generator — a free online SEO Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "roman.html": "Roman Numeral Converter — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "script-duration-calc.html": "Script Duration Estimator — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "sensitive-word-scan.html": "Sensitive Word Scanner — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "shop-image-size-guide.html": "E-commerce Image Size Guide — a free online Image Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "shorturl.html": "Local URL Shortener — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "sitemap.html": "Sitemap Generator — a free online SEO Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "sitemapcheck.html": "Sitemap Link Extractor — a free online SEO Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "sitemapsplit.html": "Split Sitemap Index — a free online SEO Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "skugen.html": "SKU Generator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "sqlformat.html": "SQL Formatter — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "squarecalc.html": "Square & Cube Calculator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "srt2ass.html": "SRT to ASS Subtitle — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "ssl-checker.html": "SSL Certificate Checker — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "std-variance-calc.html": "Variance & Std Dev Calculator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "stockcalc.html": "Inventory Turnover — a free online Business & Finance tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "subtitle-offset-adjust.html": "Subtitle Time Offset — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "subtitle-time-align.html": "Subtitle Timeline Align — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "sumbatch.html": "Batch Sum — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "svg-preview-format.html": "SVG Preview & Format — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "symbol.html": "Special Symbols — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "table-column-dedup.html": "Dedupe Table by Column — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "table-data-desensitize.html": "Mask Table Data — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "table-diff-compare.html": "Compare Table Diff — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "table-to-sql-insert.html": "Table to SQL INSERT — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "table2md.html": "CSV to Markdown Table — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "tabletranspose.html": "Transpose Table — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "tagextract.html": "Extract HTML Meta — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "taxcalc.html": "Salary & Income Tax — a free online Business & Finance tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "text-frequency-stats.html": "Text Frequency Stats — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "text-to-slug.html": "Title to Slug — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "textclear.html": "Text Cleaner — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "textcompare.html": "Compare Two Texts — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "textcount.html": "Text Word Counter — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "textencipher.html": "AES Encrypt / Decrypt — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "textindent.html": "Code Indent Converter — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "textindentmd.html": "Markdown Formatter — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "textlineclean.html": "Clean Text Line Breaks — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "textlineop.html": "Multi-line Text Tool — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "textrandomsort.html": "Shuffle Lines — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "textrepeat.html": "Text Duplicate Check — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "textreverse.html": "Reverse Text — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "texttotable.html": "Delimited Text to CSV — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "timestamp.html": "Timestamp Converter — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "timezone.html": "Time Zone Converter — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "title-length-simulator.html": "Title Length Simulator — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "titleclean.html": "Clean Product Title — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "titlelength.html": "Taobao Title Checker — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "titlenum.html": "Xiaohongshu Title Checker — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "txt-batch.html": "Batch TXT Processor — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "txt-dedupe.html": "Dedupe TXT — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "txt-encoding.html": "TXT Encoding Converter — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "txt-merge.html": "Merge TXT Files — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "txt-newline.html": "Newline Converter — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "txt-split.html": "Split TXT Files — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "txt-to-csv.html": "TXT to CSV — a free online CSV & Data tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "unicode-cn-convert.html": "Unicode ↔ Chinese Converter — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "unitangle.html": "Angle ↔ Radian Converter — a free online Unit Converters tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "unitarea.html": "Area Converter — a free online Unit Converters tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "unitbyte.html": "File Size Converter — a free online Unit Converters tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "unitdensity.html": "Density Converter — a free online Unit Converters tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "unitenergy.html": "Energy Converter — a free online Unit Converters tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "unitlength.html": "Length Converter — a free online Unit Converters tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "unitmoney.html": "Currency Exchange Rate — a free online Unit Converters tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "unitpower.html": "Power Converter — a free online Unit Converters tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "unitpressure.html": "Pressure Converter — a free online Unit Converters tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "unitspeed.html": "Speed Converter — a free online Unit Converters tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "unittemp.html": "Temperature Converter — a free online Unit Converters tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "unittime.html": "Time Converter — a free online Unit Converters tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "unitvolume.html": "Volume Converter — a free online Unit Converters tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "unitweight.html": "Weight Converter — a free online Unit Converters tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "urlcode.html": "URL Encode / Decode — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "urlencode-seo.html": "SEO-Friendly URL — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "urlparse.html": "URL Parameter Parser — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "user-agent-analyze.html": "User-Agent Analyzer — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "uuid.html": "UUID Generator — a free online URL & Encoding tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "var-name-transform.html": "Variable Name Converter — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "video-split-screen.html": "Split-Screen Video Merge — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "video-volume-normalize.html": "Normalize Video Volume — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videoaddaudio.html": "Add Background Music to Video — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videobatchresize.html": "Batch Video Resizer — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videobitcalc.html": "Video Bitrate Calculator — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videoblur.html": "Video Mosaic / Blur — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videocompress.html": "Video Compressor — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videoconvert.html": "Video Converter — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videocropframe.html": "Crop Video Frame — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videocut.html": "Cut Video Clip — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videoextractaudio.html": "Extract Audio from Video — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videofilter.html": "Video Filter & Color — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videofps.html": "Change Video FPS — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videoloop.html": "Loop & Join Video — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videomerge.html": "Merge Videos — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videomirrow.html": "Mirror & Flip Video — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videoremoveaudio.html": "Remove Audio from Video — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videoreverse.html": "Reverse Video — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videorotate.html": "Rotate Video — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videosize.html": "Custom Video Resolution — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videospeed.html": "Change Video Speed — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videosplitframe.html": "Extract Video Frames — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videotextsub.html": "Embed Hard Subtitles — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videotogif.html": "Video to GIF — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videotrimblack.html": "Trim Black Bars — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videotrimsilent.html": "Remove Silent Segments — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videovolume.html": "Adjust Video Volume — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "videowatermark.html": "Add Text Watermark — a free online Video Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "weight-standard-table.html": "Ideal Weight Table — a free online Business & Finance tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "wifi-qrcode.html": "WiFi QR Code Generator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "word2pdf.html": "Word to PDF — a free online PDF Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "workday-calculator.html": "Workday Calculator — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "xmlformat.html": "XML Formatter — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "zhconvert.html": "Traditional ↔ Simplified Chinese — a free online Text Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop.", "zip-preview-unzip.html": "ZIP Preview & Extract — a free online Developer Tools tool. Runs entirely in your browser, no upload, no registration, works on phone and desktop."}};
-
-// helpers: generate bilingual spans matching current language (so dynamically added cards render correctly before runtime re-applies)
-function currentLang(){ return (window.i18nLang || document.documentElement.lang || 'zh').toString().toLowerCase().startsWith('en') ? 'en' : 'zh'; }
-function biSpan(zh, en){
-    const lang = currentLang();
-    const zhHidden = lang === 'en' ? ' hidden style="display:none"' : '';
-    const enHidden = lang === 'en' ? '' : ' hidden style="display:none"';
-    return `<span class="i18n-zh"${zhHidden}>${zh}</span><span class="i18n-en"${enHidden}>${en}</span>`;
-}
-function biAttr(zh, en){
-    const lang = currentLang();
-    return lang === 'en' ? en : zh;
-}
-
-const toolData = [
-    {
-        catId: "unit",
-        catName: "单位换算",
-        icon: "⚖️",
-        tools: [
-            {name:"角度弧度转换",desc:"角度/弧度互转",page:"unitangle.html",icon:"📐"},
-            {name:"面积换算",desc:"平方米/亩/公顷",page:"unitarea.html",icon:"🟧"},
-            {name:"文件大小换算",desc:"B/KB/MB/GB/TB",page:"unitbyte.html",icon:"💾"},
-            {name:"密度换算",desc:"kg/m³ g/cm³",page:"unitdensity.html",icon:"⚗️"},
-            {name:"能量换算",desc:"焦耳 千瓦时 千卡",page:"unitenergy.html",icon:"⚡"},
-            {name:"长度换算",desc:"米/公里/英寸/海里",page:"unitlength.html",icon:"📏"},
-            {name:"简易汇率",desc:"人民币美元欧元日元",page:"unitmoney.html",icon:"💴"},
-            {name:"功率换算",desc:"瓦 千瓦 马力",page:"unitpower.html",icon:"🔌"},
-            {name:"压强换算",desc:"Pa kPa MPa PSI atm",page:"unitpressure.html",icon:"🌡️"},
-            {name:"速度换算",desc:"km/h m/s 节 mph",page:"unitspeed.html",icon:"🚗"},
-            {name:"温度换算",desc:"摄氏度华氏度互转",page:"unittemp.html",icon:"🌡️"},
-            {name:"时间换算",desc:"秒 分钟 小时 天",page:"unittime.html",icon:"⏱️"},
-            {name:"体积容量",desc:"升 毫升 立方米",page:"unitvolume.html",icon:"🧪"},
-            {name:"重量换算",desc:"千克 斤 吨 磅 盎司",page:"unitweight.html",icon:"⚖️"},
-            {name:"步数距离换算",desc:"步数公里互算",page:"distancewalking.html",icon:"🚶"}
-        ]
-    },
-    {
-        catId: "url",
-        catName: "URL网络工具",
-        icon: "🔗",
-        tools: [
-            {name:"URL编码解码",desc:"链接编码解密",page:"urlcode.html",icon:"🔐"},
-            {name:"SEO友好URL",desc:"标题转短链接",page:"urlencode-seo.html",icon:"🔎"},
-            {name:"URL参数解析",desc:"提取域名路径参数",page:"urlparse.html",icon:"📋"},
-            {name:"UUID生成",desc:"批量UUID v4",page:"uuid.html",icon:"🆔"},
-            {name:"本地短链接",desc:"前端短码生成",page:"shorturl.html",icon:"🔗"},
-            {name:"IP数字互转",desc:"IPv4与十进制转换",page:"ipnum.html",icon:"🌐"},
-            {name:"域名到期计算",desc:"剩余天数倒计时",page:"domainexpire.html",icon:"📅"},
-            {name:".htaccess生成",desc:"301/防盗链规则",page:"htaccess.html",icon:"📜"},
-            {name:"HTTP状态码查询",desc:"200/301/404释义",page:"httpcode.html",icon:"🔍"},
-            {name:"Canonical标签生成",desc:"重复页面标准链接",page:"canonical.html",icon:"🔗"},
-            {name:"Cookie解析工具",desc:"cookie转JSON键值",page:"cookieparse.html",icon:"🍪"},
-            {name:"DNS记录查询",desc:"A/AAAA/CNAME/TXT",page:"dns-query.html",icon:"🌐"},
-            {name:"网页Header检测",desc:"响应头分析",page:"http-header-check.html",icon:"🔍"},
-            {name:"移动端适配检测",desc:"网页响应式检测",page:"mobile-view-check.html",icon:"📱"},
-            {name:"网页编码探测",desc:"检测字符编码",page:"page-charset-detect.html",icon:"🔤"},
-            {name:"网页正文提取",desc:"过滤广告导航",page:"page-main-content.html",icon:"📄"},
-            {name:"URL参数拼装",desc:"拼接查询参数",page:"query-builder.html",icon:"🔗"},
-            {name:"UA请求头解析",desc:"解析浏览器信息",page:"user-agent-analyze.html",icon:"🕵️"},
-            {name:"SSL证书查询",desc:"证书到期检测",page:"ssl-checker.html",icon:"🔒"},
-            {name:"批量URL状态码",desc:"批量检测状态",page:"batch-url-status-check.html",icon:"🔍"}]
-    },
-    {
-        catId: "video",
-        catName: "视频处理工具",
-        icon: "🎬",
-        tools: [
-            {name:"视频加背景音乐",desc:"叠加BGM混合音频",page:"videoaddaudio.html",icon:"🎵"},
-            {name:"批量缩放视频",desc:"多文件统一分辨率",page:"videobatchresize.html",icon:"📐"},
-            {name:"视频码率计算器",desc:"时长预估文件大小",page:"videobitcalc.html",icon:"🧮"},
-            {name:"视频马赛克打码",desc:"局部模糊遮挡",page:"videoblur.html",icon:"🖼️"},
-            {name:"视频压缩",desc:"降低码率瘦身",page:"videocompress.html",icon:"🗜️"},
-            {name:"视频格式转换",desc:"MP4/MOV/MKV/GIF",page:"videoconvert.html",icon:"🔄"},
-            {name:"裁剪视频画面",desc:"去除黑边边框",page:"videocropframe.html",icon:"✂️"},
-            {name:"视频截取片段",desc:"按时间剪切",page:"videocut.html",icon:"✂️"},
-            {name:"视频提取音频",desc:"导出MP3",page:"videoextractaudio.html",icon:"🎧"},
-            {name:"视频滤镜调色",desc:"复古黑白冷调",page:"videofilter.html",icon:"🎨"},
-            {name:"修改帧率FPS",desc:"24/30/60帧",page:"videofps.html",icon:"⏱️"},
-            {name:"视频循环拼接",desc:"重复N次",page:"videoloop.html",icon:"🔁"},
-            {name:"多视频合并",desc:"按顺序拼接",page:"videomerge.html",icon:"➕"},
-            {name:"镜像翻转",desc:"水平垂直镜像",page:"videomirrow.html",icon:"🪞"},
-            {name:"去除视频原声",desc:"生成无声视频",page:"videoremoveaudio.html",icon:"🔇"},
-            {name:"视频倒放",desc:"画面音频反向",page:"videoreverse.html",icon:"⏪"},
-            {name:"旋转视频",desc:"90/180度旋转",page:"videorotate.html",icon:"🔃"},
-            {name:"自定义分辨率",desc:"缩放宽高",page:"videosize.html",icon:"📐"},
-            {name:"视频倍速调整",desc:"慢放快放",page:"videospeed.html",icon:"⏩"},
-            {name:"提取视频帧",desc:"批量截图打包",page:"videosplitframe.html",icon:"📷"},
-            {name:"嵌入硬字幕",desc:"SRT字幕合成",page:"videotextsub.html",icon:"📝"},
-            {name:"视频转GIF",desc:"片段动图导出",page:"videotogif.html",icon:"🖼️"},
-            {name:"裁剪首尾黑屏",desc:"自动删除空白帧",page:"videotrimblack.html",icon:"✂️"},
-            {name:"去除静音片段",desc:"自动裁剪空白音频",page:"videotrimsilent.html",icon:"🔊"},
-            {name:"调整视频音量",desc:"放大降低音量",page:"videovolume.html",icon:"🔊"},
-            {name:"添加文字水印",desc:"半透明水印",page:"videowatermark.html",icon:"🏷️"},
-            {name:"SRT转ASS字幕",desc:"字幕格式转换",page:"srt2ass.html",icon:"📽️"},
-            {name:"视频黑边裁剪",desc:"智能去黑边",page:"black-border-auto-crop.html",icon:"✂️"},
-            {name:"视频分屏合并",desc:"多画面拼接",page:"video-split-screen.html",icon:"🖥️"},
-            {name:"视频音量标准化",desc:"统一音量",page:"video-volume-normalize.html",icon:"🔊"},
-            {name:"字幕时间偏移",desc:"整体偏移调整",page:"subtitle-offset-adjust.html",icon:"⏱️"},
-            {name:"字幕时间轴对齐",desc:"逐条对齐",page:"subtitle-time-align.html",icon:"📝"}]
-    },
-    {
-        catId: "audio",
-        catName: "音频处理工具",
-        icon: "🎵",
-        tools: [
-            {name:"音频截取",desc:"自定义起止秒裁剪MP3",page:"mp3cut.html",icon:"✂️"},
-            {name:"音频格式转换",desc:"MP3/WAV/FLAC/M4A",page:"audioconvert.html",icon:"🔄"},
-            {name:"自动裁剪尾部静音",desc:"去掉结尾空白",page:"audiocutendblank.html",icon:"✂️"},
-            {name:"全局去除静音",desc:"删除中间空白音频",page:"audiocutsilent.html",icon:"🔇"},
-            {name:"音频降噪",desc:"消除电流环境杂音",page:"audiodenoise.html",icon:"🌫️"},
-            {name:"音频添加回声",desc:"K歌空旷音效",page:"audioecho.html",icon:"🏠"},
-            {name:"音频均衡器",desc:"高低音增益调节",page:"audioeq.html",icon:"🎛️"},
-            {name:"视频提取音频",desc:"视频分离MP3",page:"audioextract.html",icon:"📹"},
-            {name:"音频淡入淡出",desc:"开头渐响结尾渐弱",page:"audiofade.html",icon:"📉"},
-            {name:"音频时长查看",desc:"获取总时分秒",page:"audiolengthcalc.html",icon:"⏱️"},
-            {name:"音频循环拼接",desc:"重复生成背景音乐",page:"audioloop.html",icon:"🔁"},
-            {name:"多音频合并",desc:"按顺序拼接多段音频",page:"audiomerge.html",icon:"➕"},
-            {name:"修改MP3元数据",desc:"歌曲名歌手专辑",page:"audiometadata.html",icon:"🎶"},
-            {name:"双音频混合",desc:"人声叠加BGM",page:"audiomix.html",icon:"🎤"},
-            {name:"音频倒放",desc:"声音反向播放",page:"audioreverse.html",icon:"⏪"},
-            {name:"采样率转换",desc:"8k/16k/44100Hz",page:"audiosample.html",icon:"🎙️"},
-            {name:"音频倍速调速",desc:"0.5~3倍快慢",page:"audiospeed.html",icon:"⏩"},
-            {name:"按时长分割音频",desc:"自动分片打包",page:"audiosplitbytime.html",icon:"📦"},
-            {name:"音频转文字",desc:"语音识别转文案",page:"audiototext.html",icon:"📝"},
-            {name:"裁剪首尾音频",desc:"切除开头结尾时长",page:"audiotrim.html",icon:"✂️"},
-            {name:"人声伴奏分离",desc:"歌曲干声提取",page:"audiovoiceisolate.html",icon:"🎸"},
-            {name:"音量调节",desc:"放大减小音量",page:"audiovolume.html",icon:"🔊"},
-            {name:"批量音频格式转换",desc:"多文件统一导出MP3/WAV",page:"audiobatchconvert.html",icon:"📦"},
-            {name:"批量音频时长统计",desc:"全部文件总时长计算",page:"audiobatchsum.html",icon:"🧮"},
-            {name:"音频比特率修改",desc:"自定义码率压缩",page:"audiobitrate.html",icon:"🗜️"},
-            {name:"音频声道转换",desc:"单声道/立体声互转",page:"audiochannel.html",icon:"🔊"}
-        ]
-    },
-    {
-        catId: "img",
-        catName: "图片处理工具",
-        icon: "🖼️",
-        tools: [
-            {name:"图片缩放",desc:"自定义宽高压缩",page:"imgresize.html",icon:"📐"},
-            {name:"图片旋转",desc:"90/180/270度",page:"imgrotate.html",icon:"🔃"},
-            {name:"调色工具",desc:"亮度对比度饱和度",page:"imgsaturate.html",icon:"🎨"},
-            {name:"空白画布",desc:"生成白底黑底图",page:"imgscreenshot.html",icon:"🖥️"},
-            {name:"图片锐化",desc:"模糊变清晰",page:"imgsharpen.html",icon:"✨"},
-            {name:"商品尺寸计算",desc:"淘宝主图比例",page:"imgsizegoods.html",icon:"🛒"},
-            {name:"图片等分切片",desc:"网格分割打包",page:"imgslice.html",icon:"✂️"},
-            {name:"图片加文字",desc:"自定义坐标文字",page:"imgtextdraw.html",icon:"✍️"},
-            {name:"全屏平铺水印",desc:"防盗重复水印",page:"imgwaterrepeat.html",icon:"🔒"},
-            {name:"简易文字水印",desc:"角落半透明水印",page:"imgwatertext.html",icon:"🏷️"},
-            {name:"图片压缩",desc:"降低画质减小体积",page:"imgcompress.html",icon:"🗜️"},
-            {name:"图片格式转换",desc:"JPG/PNG/WebP/GIF",page:"imgconvert.html",icon:"🔄"},
-            {name:"图片裁剪",desc:"坐标精确裁切",page:"imgcrop.html",icon:"✂️"},
-            {name:"图片降噪",desc:"消除夜景颗粒噪点",page:"imgdenoise.html",icon:"🌫️"},
-            {name:"读取EXIF信息",desc:"相机定位时间参数",page:"imgexif.html",icon:"📸"},
-            {name:"图片滤镜调色",desc:"复古冷调黑白暗角",page:"imgfilter.html",icon:"🎨"},
-            {name:"任意角度旋转",desc:"照片倾斜矫正",page:"imgfliprotate.html",icon:"🔃"},
-            {name:"添加相框",desc:"自定义边框",page:"imgframe.html",icon:"🖼️"},
-            {name:"多张合成GIF",desc:"帧图生成动图",page:"imggifcreate.html",icon:"🎞️"},
-            {name:"横向拼接",desc:"左右长图",page:"imgmerge.html",icon:"➡️"},
-            {name:"纵向拼接",desc:"上下长图",page:"imgmergev.html",icon:"⬇️"},
-            {name:"镜像翻转",desc:"水平垂直翻转",page:"imgmirror.html",icon:"🪞"},
-            {name:"图片叠加贴图",desc:"自定义贴纸",page:"imgoverlay.html",icon:"🏷️"},
-            {name:"色彩量化",desc:"减少颜色",page:"imgpalette.html",icon:"🎨"},
-            {name:"图片转PDF",desc:"批量分页",page:"img2pdf.html",icon:"📄"},
-            {name:"生成ICO",desc:"网站图标",page:"img2icon.html",icon:"🖥️"},
-            {name:"固定比例填充",desc:"1:1/9:16留白",page:"imgarc43.html",icon:"🖼️"},
-            {name:"批量格式转换",desc:"多张统一格式",page:"imgbatchconvert.html",icon:"📦"},
-            {name:"批量统一尺寸",desc:"批量缩放",page:"imgbatchresize.html",icon:"📐"},
-            {name:"局部马赛克",desc:"区域模糊",page:"imgblur.html",icon:"⬛"},
-            {name:"全局模糊",desc:"整张虚化",page:"imgblurfull.html",icon:"🌫️"},
-            {name:"白底去背景",desc:"一键透明PNG",page:"imgremovebg.html",icon:"🧩"},
-            {name:"清除EXIF",desc:"删除拍摄信息",page:"imgremoveexif.html",icon:"🔒"},
-            {name:"图片比例换算",desc:"1:1/3:4/9:16",page:"coverratio.html",icon:"📐"},
-            {name:"九宫格切图",desc:"小红书长图切分",page:"9-grid-image-cut.html",icon:"✂️"},
-            {name:"圆形头像裁剪",desc:"圆形头像生成",page:"circle-avatar-crop.html",icon:"⭕"},
-            {name:"图片色值提取",desc:"导出色值表格",page:"color-export-table.html",icon:"🎨"},
-            {name:"证件照换底色",desc:"尺寸裁剪换底",page:"id-photo-crop.html",icon:"🪪"},
-            {name:"图片AI高清放大",desc:"Wasm前端放大",page:"image-ai-upscale.html",icon:"✨"},
-            {name:"图片消除物体",desc:"涂抹去物",page:"image-object-remove.html",icon:"🧽"},
-            {name:"倒计时图片生成",desc:"活动倒计时图",page:"countdown-image-gen.html",icon:"⏳"},
-            {name:"电商主图尺寸",desc:"主图尺寸规范",page:"shop-image-size-guide.html",icon:"🛒"},
-            {name:"配色方案生成",desc:"主色生成配色",page:"palette.html",icon:"🎨"},
-            {name:"在线图片编辑器",desc:"图层滤镜画笔裁剪",page:"img-editor.html",icon:"🎨"}]
-    },
-    {
-        catId: "gif",
-        catName: "GIF动图工具",
-        icon: "🎞️",
-        tools: [
-            {name:"GIF压缩",desc:"缩小体积",page:"gifcompress.html",icon:"🗜️"},
-            {name:"GIF缩放",desc:"自定义尺寸",page:"gifresize.html",icon:"📐"},
-            {name:"GIF调速",desc:"快慢倍速",page:"gifspeed.html",icon:"⏩"}
-        ,
-            {name:"MP4 GIF互转",desc:"视频动图双向",page:"mp4-gif-convert.html",icon:"🎞️"}]
-    },
-    {
-        catId: "pdf",
-        catName: "PDF全套工具",
-        icon: "📕",
-        tools: [
-            {name:"PDF按区间拆分",desc:"多页码批量拆分",page:"pdfsplitbyrange.html",icon:"✂️"},
-            {name:"PDF提取文字",desc:"全文文本导出",page:"pdftext.html",icon:"📄"},
-            {name:"PDF解锁",desc:"移除打开密码",page:"pdfunlock.html",icon:"🔓"},
-            {name:"PDF添加水印",desc:"透明文字水印",page:"pdfwatermark.html",icon:"🏷️"},
-            {name:"PPTX转PDF",desc:"演示文稿转PDF",page:"ppt2pdf.html",icon:"📑"},
-            {name:"Word转PDF",desc:"docx转PDF",page:"word2pdf.html",icon:"📄"},
-            {name:"PDF压缩",desc:"缩小文件体积",page:"pdfcompress.html",icon:"🗜️"},
-            {name:"PDF裁剪白边",desc:"去除四周留白",page:"pdfcrop.html",icon:"✂️"},
-            {name:"删除PDF页面",desc:"移除指定页码",page:"pdfdelete.html",icon:"🗑️"},
-            {name:"PDF加密",desc:"设置打开密码",page:"pdfencrypt.html",icon:"🔐"},
-            {name:"PDF表单填写",desc:"插入文字内容",page:"pdffillform.html",icon:"📝"},
-            {name:"PDF转图片",desc:"每页导出PNG",page:"pdf2img.html",icon:"🖼️"},
-            {name:"PDF转PPT",desc:"生成PPTX幻灯片",page:"pdf2ppt.html",icon:"📽️"},
-            {name:"PDF转TXT",desc:"纯文本导出",page:"pdf2txt.html",icon:"📃"},
-            {name:"PDF转Word",desc:"可编辑DOCX",page:"pdf2word.html",icon:"📘"},
-            {name:"批量文件转PDF",desc:"图片/Word/Excel",page:"pdfbatchconvert.html",icon:"📦"},
-            {name:"PDF涂黑遮挡",desc:"隐私打码",page:"pdfblack.html",icon:"⬛"},
-            {name:"PDF文本对比",desc:"两份文档差异",page:"pdfcompare.html",icon:"🔍"},
-            {name:"PDF表格转CSV",desc:"提取表格",page:"pdf2csv.html",icon:"📊"},
-            {name:"PDF表格转Excel",desc:"导出XLSX",page:"pdf2excel.html",icon:"📈"},
-            {name:"PDF合并",desc:"多文件合成",page:"pdfmerge.html",icon:"➕"},
-            {name:"图片PDF合并",desc:"图片+PDF合一",page:"pdfmergeimg.html",icon:"🖼️"},
-            {name:"清理PDF元数据",desc:"清除作者信息",page:"pdfmetadata.html",icon:"🧹"},
-            {name:"PDF OCR识别",desc:"扫描件文字提取",page:"pdfocr.html",icon:"🔍"},
-            {name:"PDF页数统计",desc:"快速查总页数",page:"pdfpagecount.html",icon:"🔢"},
-            {name:"打印多页排版",desc:"2/4页合一打印",page:"pdfprintlayout.html",icon:"🖨️"},
-            {name:"页面重新排序",desc:"自定义页码顺序",page:"pdfreorder.html",icon:"🔀"},
-            {name:"PDF页面旋转",desc:"批量旋转页码",page:"pdfrotate.html",icon:"🔃"},
-            {name:"PDF提取页面",desc:"导出指定页",page:"pdfsplit.html",icon:"📄"},
-            {name:"PDF添加页码",desc:"批量插入页码",page:"pdf-add-page-number.html",icon:"🔢"},
-            {name:"PDF提取图片",desc:"导出内部图片",page:"pdf-extract-images.html",icon:"🖼️"},
-            {name:"PDF元数据修改",desc:"编辑文档信息",page:"pdf-metadata-edit.html",icon:"📝"},
-            {name:"PDF文本替换",desc:"批量替换文字",page:"pdf-text-replace.html",icon:"✍️"},
-            {name:"PDF文本签章",desc:"加盖文本章",page:"pdf-text-signature.html",icon:"🔏"},
-            {name:"PDF转图片",desc:"页面导出图片",page:"pdfimg.html",icon:"🖼️"},
-            {name:"多张图片合并PDF",desc:"批量图片生成PDF",page:"images-to-pdf.html",icon:"📄"},
-            {name:"图片转PDF",desc:"单/多图转PDF",page:"imgpdf.html",icon:"📄"},
-            {name:"Markdown导出PDF",desc:"MD转PDF文档",page:"markdown-to-pdf.html",icon:"📄"}]
-    },
-    {
-        catId: "csv",
-        catName: "CSV表格工具",
-        icon: "📊",
-        tools: [
-            {name:"CSV按字段拆分",desc:"按内容分文件",page:"csvsplitbyvalue.html",icon:"✂️"},
-            {name:"CSV单列拆分",desc:"分隔符分列",page:"csvsplitcol.html",icon:"📏"},
-            {name:"CSV固定行拆分",desc:"按行数分片",page:"csvsplitfixed.html",icon:"📦"},
-            {name:"CSV数值统计",desc:"总和均值最大最小",page:"csvstat.html",icon:"🧮"},
-            {name:"CSV编码转换",desc:"UTF8/GBK修复",page:"csvutf8.html",icon:"🔤"},
-            {name:"Excel转CSV",desc:"XLSX导出",page:"excel2csv.html",icon:"📋"},
-            {name:"Excel转PDF",desc:"表格生成PDF",page:"excel2pdf.html",icon:"📄"},
-            {name:"CSV转Excel",desc:"导出xlsx",page:"csv2excel.html",icon:"📈"},
-            {name:"CSV转JSON",desc:"表格转数组",page:"csv2json.html",icon:"{}"},
-            {name:"CSV清理空行",desc:"单元格去空白",page:"csvclean.html",icon:"🧹"},
-            {name:"CSV按列去重",desc:"删除重复行",page:"csvdedup.html",icon:"🚫"},
-            {name:"空白填充",desc:"空单元格赋值",page:"csvfillempty.html",icon:"📝"},
-            {name:"CSV筛选",desc:"关键词过滤",page:"csvfilter.html",icon:"🔍"},
-            {name:"两表关联合并",desc:"左连接匹配",page:"csvjoin.html",icon:"🔗"},
-            {name:"CSV行数统计",desc:"有效行数",page:"csvlinecount.html",icon:"🔢"},
-            {name:"多CSV合并",desc:"多张拼接",page:"csvmerge.html",icon:"➕"},
-            {name:"多列合并",desc:"字段拼接新列",page:"csvmergecol.html",icon:"🔗"},
-            {name:"CSV预览",desc:"网页表格",page:"csvpreview.html",icon:"👀"},
-            {name:"全局替换",desc:"批量修改单元格",page:"csvreplace.html",icon:"🔁"},
-            {name:"CSV排序",desc:"升降序",page:"csvsort.html",icon:"↕️"},
-            {name:"按列分组拆分",desc:"分组导出",page:"csvsplit.html",icon:"📦"},
-            {name:"表格按列去重",desc:"按列去重复",page:"table-column-dedup.html",icon:"🗂️"},
-            {name:"表格数据脱敏",desc:"批量脱敏",page:"table-data-desensitize.html",icon:"🛡️"},
-            {name:"表格差异对比",desc:"两表对比",page:"table-diff-compare.html",icon:"🔁"},
-            {name:"表格生成SQL",desc:"导出INSERT",page:"table-to-sql-insert.html",icon:"🗄️"},
-            {name:"TXT转CSV",desc:"文本转表格",page:"txt-to-csv.html",icon:"📊"}]
-    },
-    {
-        catId: "text",
-        catName: "文本文案工具",
-        icon: "📝",
-        tools: [
-            {name:"XML格式化",desc:"美化/压缩XML",page:"xmlformat.html",icon:"<>"},
-            {name:"简繁转换",desc:"简体繁体互转",page:"zhconvert.html",icon:"漢字"},
-            {name:"淘宝标题检测",desc:"60字符限制校验",page:"titlelength.html",icon:"🛒"},
-            {name:"小红书标题检测",desc:"30字长度提示",page:"titlenum.html",icon:"📕"},
-            {name:"文本清理",desc:"去空行多余空格",page:"textclear.html",icon:"🧹"},
-            {name:"文本字数统计",desc:"中英数字行数",page:"textcount.html",icon:"🔢"},
-            {name:"AES加解密",desc:"文本加盐加密",page:"textencipher.html",icon:"🔐"},
-            {name:"代码缩进转换",desc:"Tab/空格互换",page:"textindent.html",icon:"⌨️"},
-            {name:"Markdown排版",desc:"自媒体文案整理",page:"textindentmd.html",icon:"📋"},
-            {name:"文案换行清理",desc:"朋友圈换行规整",page:"textlineclean.html",icon:"✏️"},
-            {name:"多行文本操作",desc:"去重/逆序/清空白",page:"textlineop.html",icon:"📃"},
-            {name:"行随机打乱",desc:"文本乱序",page:"textrandomsort.html",icon:"🎲"},
-            {name:"文案查重简易",desc:"字符相似度",page:"textrepeat.html",icon:"🔍"},
-            {name:"文字倒序",desc:"字符/行翻转",page:"textreverse.html",icon:"↩️"},
-            {name:"分隔文本转CSV",desc:"导出表格",page:"texttotable.html",icon:"📊"},
-            {name:"两段文本对比",desc:"差异高亮",page:"textcompare.html",icon:"🔎"},
-            {name:"商品标题清洗",desc:"去除杂符号",page:"titleclean.html",icon:"🧹"},
-            {name:"特殊符号大全",desc:"小红书装饰",page:"symbol.html",icon:"✨"},
-            {name:"数字转中文金额",desc:"财务大写",page:"money.html",icon:"💰"},
-            {name:"数字中文读法",desc:"普通中文数字",page:"numbercn.html",icon:"🔢"},
-            {name:"批量订单统计",desc:"金额求和均值",page:"orderstat.html",icon:"📋"},
-            {name:"批量数字求和",desc:"多行数字累加",page:"sumbatch.html",icon:"➕"},
-            {name:"Emoji表情",desc:"全分类表情",page:"emojiall.html",icon:"😀"},
-            {name:"英文花体",desc:"网红昵称字体",page:"fancyfont.html",icon:"𝒜𝒷𝒸"},
-            {name:"中文艺术字",desc:"装饰签名",page:"fontcn.html",icon:"꒰文字꒱"},
-            {name:"批量话题标签",desc:"批量hashtag",page:"hashtagbatch.html",icon:"#️⃣"},
-            {name:"文案空格清理",desc:"清除多余空格",page:"copyspace.html",icon:"🧹"},
-            {name:"倒计时生成",desc:"目标日期剩余时间",page:"countdown.html",icon:"⏳"},
-            {name:"短视频评论生成",desc:"热门文案",page:"commentgen.html",icon:"💬"},
-            {name:"Emoji智能插入",desc:"文案加表情",page:"emoji-auto-insert.html",icon:"😀"},
-            {name:"商品标题分词",desc:"标题切分",page:"product-title-seg.html",icon:"🏷️"},
-            {name:"随机中文短句",desc:"随机句子",page:"random-chinese-sentence.html",icon:"📝"},
-            {name:"口播时长预估",desc:"字数算时长",page:"script-duration-calc.html",icon:"⏱️"},
-            {name:"敏感词检测",desc:"批量扫描",page:"sensitive-word-scan.html",icon:"🚫"},
-            {name:"文本频次统计",desc:"词频统计",page:"text-frequency-stats.html",icon:"📊"},
-            {name:"标题生成Slug",desc:"URL友好串",page:"text-to-slug.html",icon:"🔤"},
-            {name:"标题长度模拟",desc:"字数长度预览",page:"title-length-simulator.html",icon:"📏"},
-            {name:"乱数假文生成",desc:"中英文占位文",page:"lorem.html",icon:"📝"},
-            {name:"大小写转换",desc:"命名风格互转",page:"caseconvert.html",icon:"🔤"},
-            {name:"全角半角转换",desc:"全半角互转",page:"fullhalf.html",icon:"🔡"},
-            {name:"摩斯电码编解码",desc:"文字摩斯码互转",page:"morse.html",icon:"📻"},
-            {name:"罗马数字互转",desc:"阿拉伯罗马数字",page:"roman.html",icon:"🏛️"},
-            {name:"TXT文件合并",desc:"多文件合并为一",page:"txt-merge.html",icon:"📚"},
-            {name:"TXT文件拆分",desc:"大文件按行拆分",page:"txt-split.html",icon:"✂️"},
-            {name:"TXT文本去重",desc:"按行去除重复",page:"txt-dedupe.html",icon:"🧹"},
-            {name:"TXT批量处理",desc:"批量处理多个TXT",page:"txt-batch.html",icon:"🗂️"}]
-    },
-    {
-        catId: "jsonxml",
-        catName: "JSON/XML处理",
-        icon: "{}",
-        tools: [
-            {name:"JSON格式化校验",desc:"格式化压缩语法检测",page:"json.html",icon:"{}"},
-            {name:"JSON转CSV",desc:"数组导出表格",page:"json2csv.html",icon:"📊"},
-            {name:"JSON数组去重",desc:"按字段去重",page:"jsonunique.html",icon:"🧹"},
-            {name:"JSON XML互转",desc:"双向格式化",page:"jsonxml.html",icon:"<>"},
-            {name:"JSON YAML互转",desc:"双向格式转换",page:"json-yaml-convert.html",icon:"{}"},
-            {name:"JSON压缩最小化",desc:"压缩去空格换行",page:"json-minify.html",icon:"🗜️"},
-            {name:"JSON转义反转义",desc:"字符串转义还原",page:"json-escape.html",icon:"🔤"},
-            {name:"JSON键名排序",desc:"键名字母排序",page:"json-sort.html",icon:"🔀"},
-            {name:"JSON路径取值",desc:"按路径提取值",page:"json-path.html",icon:"🎯"},
-            {name:"JSON差异对比",desc:"对比两段JSON差异",page:"json-diff.html",icon:"🔍"}]
-    },
-    {
-        catId: "seo",
-        catName: "SEO爬虫工具",
-        icon: "🤖",
-        tools: [
-            {name:"robots检测",desc:"路径抓取权限",page:"robotscheck.html",icon:"🔎"},
-            {name:"robots生成",desc:"爬虫规则",page:"robotstxt.html",icon:"📄"},
-            {name:"Sitemap生成",desc:"站点地图",page:"sitemap.html",icon:"🗺️"},
-            {name:"Sitemap提取链接",desc:"批量导出URL",page:"sitemapcheck.html",icon:"📋"},
-            {name:"Sitemap索引拆分",desc:"多文件索引",page:"sitemapsplit.html",icon:"📦"},
-            {name:"关键词密度",desc:"文章SEO密度",page:"keyworddensity.html",icon:"📝"},
-            {name:"Meta检测",desc:"标题描述长度",page:"metacheck.html",icon:"📎"},
-            {name:"Nofollow标签",desc:"外链代码",page:"nofollow.html",icon:"🔗"},
-            {name:"Markdown转CSV",desc:"表格导出",page:"md2table.html",icon:"📊"},
-            {name:"颜色对比度",desc:"WCAG无障碍检测",page:"colorcontrast.html",icon:"🎨"},
-            {name:"图片ALT批量生成",desc:"批量img alt标签",page:"altgen.html",icon:"🖼️"},
-            {name:"OG标签生成",desc:"社交分享标签",page:"og-generator.html",icon:"🔗"},
-            {name:"关键词分词",desc:"分词提取",page:"keyword-segment.html",icon:"🔤"}]
-    },
-    {
-        catId: "dev",
-        catName: "开发工具",
-        icon: "💻",
-        tools: [
-            {name:"正则测试",desc:"匹配调试",page:"regex.html",icon:"/ /"},
-            {name:"常用正则模板",desc:"手机邮箱身份证",page:"regtemplate.html",icon:"📋"},
-            {name:"RGB HEX转换",desc:"颜色拾取",page:"rgbhex.html",icon:"🎨"},
-            {name:"SQL格式化",desc:"美化压缩",page:"sqlformat.html",icon:"🗄️"},
-            {name:"HTML Meta提取",desc:"标题关键词",page:"tagextract.html",icon:"🌐"},
-            {name:"CSV转MD表格",desc:"Markdown表格",page:"table2md.html",icon:"📊"},
-            {name:"表格转置",desc:"行列互换",page:"tabletranspose.html",icon:"🔄"},
-            {name:"随机端口",desc:"可用端口批量",page:"randomport.html",icon:"🔌"},
-            {name:"随机测试数据",desc:"姓名手机号CSV",page:"randomtable.html",icon:"📋"},
-            {name:"时间戳转换",desc:"秒毫秒日期",page:"timestamp.html",icon:"⏰"},
-            {name:"多时区转换",desc:"UTC北京时间",page:"timezone.html",icon:"🌍"},
-            {name:"随机密码",desc:"高强度",page:"pwdgen.html",icon:"🔑"},
-            {name:"密码强度",desc:"安全评级",page:"pwdsafe.html",icon:"🛡️"},
-            {name:"随机姓名地址",desc:"模拟数据",page:"randomname.html",icon:"👤"},
-            {name:"测试手机号",desc:"批量生成",page:"randomphone.html",icon:"📱"},
-            {name:"SKU编码",desc:"商品序列号",page:"skugen.html",icon:"🏷️"},
-            {name:"平方立方",desc:"平方根",page:"squarecalc.html",icon:"📐"},
-            {name:"比例换算",desc:"a:b=c:x",page:"proportion.html",icon:"📏"},
-            {name:"Hash加密",desc:"MD5/SHA",page:"hash.html",icon:"🔐"},
-            {name:"进制转换",desc:"2~36进制",page:"hex.html",icon:"🔢"},
-            {name:"Cron表达式",desc:"定时任务解析",page:"crontab.html",icon:"⏰"},
-            {name:"Base64编解码",desc:"文本互转",page:"base64.html",icon:"🔒"},
-            {name:"字符编码转换",desc:"GBK/UTF8",page:"charsetconv.html",icon:"🔤"},
-            {name:"银行卡测试号",desc:"模拟卡号",page:"banktest.html",icon:"💳"},
-            {name:"BMI计算器",desc:"身高体重指数",page:"bmi.html",icon:"⚖️"},
-            {name:"年龄计算器",desc:"周岁虚岁存活天数",page:"agecalc.html",icon:"🎂"},
-            {name:"Code128条形码",desc:"条形码生成",page:"barcode-code128.html",icon:"📊"},
-            {name:"Base32编解码",desc:"文本互转",page:"base32-encode-decode.html",icon:"🔒"},
-            {name:"色值互转",desc:"RGB HSL HSB",page:"color-hsl-convert.html",icon:"🎨"},
-            {name:"CSS美化压缩",desc:"格式化/压缩",page:"css-format-min.html",icon:"🎨"},
-            {name:"函数图像绘制",desc:"在线绘图",page:"function-graph-draw.html",icon:"📈"},
-            {name:"几何面积计算",desc:"图形面积",page:"geometry-area-calc.html",icon:"📐"},
-            {name:"HmacSHA加密",desc:"HMAC签名",page:"hmac-sha-crypto.html",icon:"🔐"},
-            {name:"HTML格式化压缩",desc:"美化/压缩",page:"html-format-min.html",icon:"🌐"},
-            {name:"JWT解析校验",desc:"Token解析",page:"jwt-parser.html",icon:"🔐"},
-            {name:"随机MAC生成",desc:"MAC地址生成",page:"mac-generator.html",icon:"🌐"},
-            {name:"SVG预览格式化",desc:"SVG美化预览",page:"svg-preview-format.html",icon:"🧩"},
-            {name:"Unicode中文互转",desc:"编码互转",page:"unicode-cn-convert.html",icon:"🔤"},
-            {name:"变量命名转换",desc:"命名风格互转",page:"var-name-transform.html",icon:"🔤"},
-            {name:"工作日工期计算",desc:"排除节假日",page:"workday-calculator.html",icon:"📅"},
-            {name:"ZIP预览解压",desc:"前端解压预览",page:"zip-preview-unzip.html",icon:"🗜️"},
-            {name:"方差标准差计算",desc:"统计测算",page:"std-variance-calc.html",icon:"📊"},
-            {name:"批量二维码生成",desc:"多码批量导出",page:"batch-qrcode-generate.html",icon:"📱"},
-            {name:"批量随机日期",desc:"随机日期生成",page:"batch-random-date.html",icon:"📅"},
-            {name:"SKU批量生成",desc:"导出表格",page:"batch-sku-generator.html",icon:"🏷️"},
-            {name:"快递单号校验",desc:"格式校验",page:"express-number-check.html",icon:"📦"},
-            {name:"随机邮箱网址",desc:"批量生成",page:"random-email-url.html",icon:"📧"},
-            {name:"权重随机抽签",desc:"按权重抽取",page:"random-weight-draw.html",icon:"🎲"},
-            {name:"HTML实体编解码",desc:"实体符号转义解码",page:"html-entity.html",icon:"🔣"},
-            {name:"二维码生成器",desc:"文本网址生成二维码",page:"qrcode.html",icon:"📱"},
-            {name:"WiFi二维码生成",desc:"扫码即连WiFi",page:"wifi-qrcode.html",icon:"📶"},
-            {name:"TXT编码转换",desc:"UTF-8/GBK互转",page:"txt-encoding.html",icon:"🈶"},
-            {name:"换行符转换",desc:"CRLF/LF互转",page:"txt-newline.html",icon:"↵"}]
-    },
-    {
-        catId: "business",
-        catName: "财务商业计算器",
-        icon: "💰",
-        tools: [
-            {name:"单件利润",desc:"成本佣金运费",page:"profitcalc.html",icon:"💵"},
-            {name:"库存周转",desc:"库存健康",page:"stockcalc.html",icon:"📦"},
-            {name:"工资个税",desc:"月度估算",page:"taxcalc.html",icon:"🧾"},
-            {name:"贷款计算器",desc:"等额本息/本金",page:"loancalc.html",icon:"🏠"},
-            {name:"折扣计算器",desc:"原价现价",page:"discount.html",icon:"🏷️"},
-            {name:"满减测算",desc:"双优惠规则",page:"discountcalc.html",icon:"🛒"},
-            {name:"快递运费",desc:"首重续重",page:"freightcalc.html",icon:"📦"},
-            {name:"汽车油耗",desc:"百公里油费",page:"fuelcalc.html",icon:"⛽"},
-            {name:"批量定价",desc:"加价打折批量",page:"batchprice.html",icon:"💹"},
-            {name:"直通车保本出价",desc:"广告保本出价测算",page:"adbidcalc.html",icon:"📈"},
-            {name:"凑单最优价格",desc:"优惠测算",page:"best-coupon-price.html",icon:"🛒"},
-            {name:"车贷月供计算",desc:"月供测算",page:"car-loan-calc.html",icon:"🚗"},
-            {name:"复利利息计算",desc:"本息测算",page:"compound-interest-calc.html",icon:"💹"},
-            {name:"租房成本测算",desc:"租金总成本",page:"rental-cost-calc.html",icon:"🏠"},
-            {name:"标准体重表",desc:"身高标准体重",page:"weight-standard-table.html",icon:"⚖️"}]
-    }
-];
-
-let allTools = [];
-let currentCatId = "all";
-
-// 预加载工具
-toolData.forEach(cat=>{
-    cat.tools.forEach(t=>{
-        if(typeof t !== "object") return;
-        t.catId = cat.catId;
-        t.catName = cat.catName;
-        t.catIcon = cat.icon;
-        t.nameEn = I18N_LOOKUP.toolEn[t.page] || t.name;
-        allTools.push(t);
-    })
-})
-
-// 渲染侧边分类
-function renderSidebarCat(){
-    const wrap = document.getElementById("sidebarCatList");
-    wrap.innerHTML = "";
-    toolData.forEach(cat=>{
-        const div = document.createElement("div");
-        div.className = "item";
-        div.dataset.catid = cat.catId;
-        const catEn = I18N_LOOKUP.catEn[cat.catId] || cat.catName;
-        div.innerHTML = `<span>${cat.icon}</span><span>${biSpan(cat.catName, catEn)}</span><span class="cat-num">${cat.tools.length}</span>`;
-        wrap.appendChild(div);
-    })
-    document.querySelector('#sidebarAllMenu .item .cat-num').innerText = allTools.length;
-    document.getElementById("totalToolNum").innerText = allTools.length;
-}
-
-// 侧边栏统一事件委托
-document.querySelector('.sidebar').addEventListener('click', function(e){
-    const item = e.target.closest('.item');
-    if(!item) return;
-    const cid = item.dataset.catid;
-    if(!cid) return; // 博客等静态链接项：走原生 <a> 跳转，不拦截
-    switchCat(cid);
-});
-
-// 分组视图「仅看该类」跳转
-document.getElementById('toolGrid').addEventListener('click', function(e){
-    const jump = e.target.closest('.cat-group-jump');
-    if(!jump) return;
-    switchCat(jump.dataset.catid);
-    window.scrollTo({top:0,behavior:'smooth'});
-});
-
-// 切换分类（修复targetCat缺失.catName）
-function switchCat(catId){
-    currentCatId = catId;
-    document.querySelectorAll('.sidebar-menu .item').forEach(i=>i.classList.remove("active"));
-    const activeDom = document.querySelector(`.sidebar-menu .item[data-catid="${catId}"]`);
-    if(activeDom) activeDom.classList.add("active");
-
-    if(catId === "all"){
-        document.getElementById("currentCatName").innerHTML = biSpan('全部工具', 'All Tools');
-        document.getElementById("showCatCount").innerHTML = biSpan(`${allTools.length} 个工具`, `${allTools.length} tools`);
-        renderGrouped();
-        return;
-    }
-
-    let showList = [];
-    let catTitle = "全部工具";
-    let targetCat = null;
-    if(catId === "all"){
-        showList = [...allTools];
-    }else{
-        targetCat = toolData.find(c=>c.catId === catId);
-        if(targetCat){
-            catTitle = targetCat.catName;
-            showList = targetCat.tools.filter(item=>typeof item === "object");
+/* ---------- 主题：亮色 / 深色 / 跟随系统 三模式 ---------- */
+(function(){
+    var root=document.documentElement;
+    function applyTheme(mode){
+        if(mode==='system'){
+            root.setAttribute('data-theme', window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
         }else{
-            showList = [...allTools];
+            root.setAttribute('data-theme', mode);
         }
+        var btn=document.getElementById('themeBtn');
+        if(btn) btn.textContent = mode==='dark'?'🌙':(mode==='system'?'🖥️':'🌞');
     }
-    const catTitleEn = (targetCat && I18N_LOOKUP.catEn[targetCat.catId]) || catTitle;
-    document.getElementById("currentCatName").innerHTML = biSpan(catTitle, catTitleEn);
-    document.getElementById("showCatCount").innerHTML = biSpan(`${showList.length} 个工具`, `${showList.length} tools`);
-    renderTools(showList);
-}
+    var saved=localStorage.getItem('theme')||'system';
+    applyTheme(saved);
+    try{window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){
+        if((localStorage.getItem('theme')||'system')==='system') applyTheme('system');
+    });}catch(e){}
+    document.getElementById('themeBtn').addEventListener('click',function(){
+        var order=['light','dark','system'];
+        var cur=localStorage.getItem('theme')||'system';
+        var next=order[(order.indexOf(cur)+1)%3];
+        localStorage.setItem('theme',next);
+        applyTheme(next);
+    });
+})();
 
-// 生成单张卡片
-function makeCard(tool){
-    const a = document.createElement("a");
-    a.className = "tool-card";
-    a.href = tool.page;
-    const enName = (I18N_LOOKUP.toolEn[tool.page] || tool.name);
-    const enDesc = (I18N_LOOKUP.descEn[tool.page] || tool.desc);
-    a.innerHTML = `
-            <div class="tool-icon">${tool.icon}</div>
-            <div class="tool-info">
-                <div class="tool-name">${biSpan(tool.name, enName)}</div>
-                <div class="tool-desc">${biSpan(tool.desc, enDesc)}</div>
-            </div>
-        `;
+/* ---------- 语言切换（路径式：中/英/日/西） ---------- */
+(function(){
+    var btn=document.getElementById('langBtn'), menu=document.getElementById('langMenu'), label=document.getElementById('langLabel');
+    var labels={zh:'中文',en:'English',jp:'日本語',es:'Español'};
+    btn.addEventListener('click',function(e){e.stopPropagation();menu.classList.toggle('open');});
+    document.addEventListener('click',function(){menu.classList.remove('open');});
+    menu.querySelectorAll('button').forEach(function(b){
+        b.addEventListener('click',function(){
+            var lang=b.dataset.lang;
+            label.textContent=labels[lang];
+            menu.classList.remove('open');
+            if(lang==='zh'||lang==='en'){
+                if(window.i18nApply) window.i18nApply(lang);
+                try{localStorage.setItem('siteLang',lang);}catch(e){}
+            }else{
+                var cur=location.pathname.split('/').pop()||'index.html';
+                var prefix= lang==='jp' ? '/jp/' : '/es/';
+                location.href=prefix+cur;
+            }
+        });
+    });
+})();
+
+/* ---------- 收藏（localStorage） ---------- */
+var FAV_KEY='favTools';
+function getFav(){try{return JSON.parse(localStorage.getItem(FAV_KEY)||'[]');}catch(e){return[];}}
+function setFav(a){localStorage.setItem(FAV_KEY,JSON.stringify(a));}
+function updateFavBadge(){
+    var n=getFav().length, b=document.getElementById('favBadge');
+    if(n>0){b.style.display='inline-block';b.textContent=n;}else{b.style.display='none';}
+}
+function renderFavPanel(){
+    var list=document.getElementById('favList'); var fav=getFav();
+    if(!fav.length){list.innerHTML='<div class="fav-empty"><span class="i18n-zh">还没有收藏工具，点击卡片右上角☆收藏</span><span class="i18n-en" hidden>No favorites yet. Tap ☆ on any tool.</span></div>';return;}
+    var DATA=window.TOOLS_DATA||[];
+    list.innerHTML='';
+    fav.forEach(function(slug){
+        var t=DATA.find(function(x){return x.slug===slug;}); if(!t)return;
+        var a=document.createElement('a'); a.href=slug;
+        a.innerHTML='<span>🔧</span><span>'+(window.i18nLang==='en'?t.en:t.zh)+'</span>';
+        list.appendChild(a);
+    });
+}
+document.getElementById('favBtn').addEventListener('click',function(e){
+    e.stopPropagation();
+    var p=document.getElementById('favPanel'); p.classList.toggle('open'); renderFavPanel();
+});
+document.addEventListener('click',function(e){
+    var p=document.getElementById('favPanel');
+    if(p.classList.contains('open') && !p.contains(e.target) && e.target.id!=='favBtn') p.classList.remove('open');
+});
+
+/* ---------- 工具卡片 / 场景分组 ---------- */
+var DATA=window.TOOLS_DATA||[];
+function curLang(){return (window.i18nLang||'zh')==='en'?'en':'zh';}
+function makeToolCard(t){
+    var a=document.createElement('a'); a.className='tcard'; a.href=t.slug;
+    var lang=curLang();
+    a.innerHTML='<span class="star" data-slug="'+t.slug+'">☆</span><div class="ico">🔧</div>'+
+        '<div class="nm">'+(lang==='en'?t.en:t.zh)+'</div>'+
+        '<div class="ds">'+(t.type_cn||'')+'</div>';
     return a;
 }
-
-// 渲染卡片（平铺，用于单分类/搜索）
-function renderTools(list){
-    const grid = document.getElementById("toolGrid");
-    grid.className = "tool-grid";
-    grid.innerHTML = "";
-    if(list.length === 0){
-        grid.innerHTML = `<p style='grid-column:1/-1;text-align:center;padding:60px;color:#999'>${biSpan('暂无匹配工具，请更换关键词', 'No matching tools. Try another keyword.')}</p>`;
-        return;
-    }
-    list.forEach(tool=>grid.appendChild(makeCard(tool)));
+function buildGroups(){
+    var map={
+        creator:{title:'创作者工作室',en:'Creator Studio',cats:['img','gif'],more:'img-tools.html'},
+        dev:{title:'开发者工具',en:'Dev Utility',cats:['dev','json'],more:'dev-tools.html'},
+        doc:{title:'办公文档工具',en:'Document Office',cats:['pdf','csv','text'],more:'pdf-tools.html'},
+        biz:{title:'商务计算工具',en:'Business Calculator',cats:['business','unit'],more:'business-tools.html'}
+    };
+    var wrap=document.getElementById('groups');
+    Object.keys(map).forEach(function(k){
+        var g=map[k];
+        var list=[];
+        g.cats.forEach(function(c){ DATA.forEach(function(t){ if(t.cat===c && list.length<6) list.push(t); }); });
+        list=list.slice(0,6);
+        var sec=document.createElement('div'); sec.className='group';
+        var head=document.createElement('div'); head.className='group-head';
+        head.innerHTML='<h3>'+g.title+'</h3><span class="en">'+g.en+'</span>'+
+            '<a class="more" href="/'+(g.cats[0])+'-tools.html"><span class="i18n-zh">查看更多 ›</span><span class="i18n-en" hidden>View More ›</span></a>';
+        var grid=document.createElement('div'); grid.className='tool-grid';
+        list.forEach(function(t){ grid.appendChild(makeToolCard(t)); });
+        sec.appendChild(head); sec.appendChild(grid); wrap.appendChild(sec);
+    });
+    bindStars();
 }
-
-// 渲染分组折叠（用于「全部工具」视图，每类默认前N个，其余点击懒加载）
-const GROUP_PREVIEW = 10;
-function renderGrouped(){
-    const grid = document.getElementById("toolGrid");
-    grid.className = "cat-groups";
-    grid.innerHTML = "";
-    toolData.forEach(cat=>{
-        const tools = cat.tools.filter(t=>typeof t === "object");
-        if(!tools.length) return;
-        const sec = document.createElement("div");
-        sec.className = "cat-group";
-        const head = document.createElement("div");
-        head.className = "cat-group-head";
-        const catNameEn = I18N_LOOKUP.catEn[cat.catId] || cat.catName;
-        head.innerHTML = `<span class="cat-group-title"><span>${cat.icon}</span> ${biSpan(cat.catName, catNameEn)}</span><span class="cat-group-count">${tools.length}</span><a class="cat-group-jump" data-catid="${cat.catId}">${biSpan('仅看该类 →', 'View All →')}</a>`;
-        sec.appendChild(head);
-        const g = document.createElement("div");
-        g.className = "tool-grid";
-        tools.slice(0, GROUP_PREVIEW).forEach(t=>g.appendChild(makeCard(t)));
-        sec.appendChild(g);
-        const rest = tools.slice(GROUP_PREVIEW);
-        if(rest.length){
-            const btn = document.createElement("button");
-            btn.className = "expand-btn";
-            btn.innerHTML = biSpan(`展开全部 ${tools.length} 个 ↓`, `Show all ${tools.length} ↓`);
-            btn.onclick = ()=>{
-                rest.forEach(t=>g.appendChild(makeCard(t)));
-                btn.remove();
-            };
-            sec.appendChild(btn);
-        }
-        grid.appendChild(sec);
+function bindStars(){
+    document.querySelectorAll('.tcard .star').forEach(function(s){
+        var slug=s.dataset.slug;
+        if(getFav().indexOf(slug)>-1){s.textContent='★';s.classList.add('on');}
+        s.addEventListener('click',function(e){
+            e.preventDefault();e.stopPropagation();
+            var fav=getFav();
+            var i=fav.indexOf(slug);
+            if(i>-1){fav.splice(i,1);s.textContent='☆';s.classList.remove('on');}
+            else{fav.push(slug);s.textContent='★';s.classList.add('on');}
+            setFav(fav);updateFavBadge();
+        });
     });
 }
 
-// 搜索函数（修复source → sourceList）
-let searchTimer = null;
-document.getElementById("searchInput").oninput = ()=>{
-    clearTimeout(searchTimer);
-    searchTimer = setTimeout(searchFilter, 200);
+/* ---------- 新增工具滚动 ---------- */
+function buildNewTrack(){
+    var track=document.getElementById('newTrack');
+    var pick=DATA.slice(0,16);
+    var html='';
+    function card(t){return '<a href="'+t.slug+'"><span class="ico">🔧</span><span class="nm">'+(curLang()==='en'?t.en:t.zh)+'</span></a>';}
+    pick.forEach(function(t){html+=card(t);});
+    pick.forEach(function(t){html+=card(t);}); // 复制一份实现无缝循环
+    track.innerHTML=html;
 }
-function searchFilter(){
-    const kw = document.getElementById("searchInput").value.trim().toLowerCase();
-    if(!kw){
-        switchCat(currentCatId);
-        return;
+
+/* ---------- 全局搜索 ---------- */
+(function(){
+    var inp=document.getElementById('searchInput'), box=document.getElementById('searchResults');
+    function go(){
+        var kw=inp.value.trim().toLowerCase();
+        if(!kw){box.classList.remove('open');box.innerHTML='';return;}
+        var res=DATA.filter(function(t){
+            return (t.zh&&t.zh.toLowerCase().indexOf(kw)>-1)||(t.en&&t.en.toLowerCase().indexOf(kw)>-1);
+        }).slice(0,8);
+        if(!res.length){box.innerHTML='<div style="padding:14px 16px;color:var(--muted);font-size:13px;"><span class="i18n-zh">无匹配工具</span><span class="i18n-en" hidden>No results</span></div>';box.classList.add('open');return;}
+        box.innerHTML=res.map(function(t){
+            return '<a href="'+t.slug+'"><span class="ico">🔧</span><span>'+(curLang()==='en'?t.en:t.zh)+'</span><span class="en">'+(curLang()==='en'?t.zh:t.en)+'</span></a>';
+        }).join('');
+        box.classList.add('open');
     }
-    let sourceList = currentCatId === "all" ? allTools : allTools.filter(t=>t.catId === currentCatId);
-    const result = sourceList.filter(t=> t.name.toLowerCase().includes(kw) || (t.nameEn && t.nameEn.toLowerCase().includes(kw)) || t.desc.toLowerCase().includes(kw));
-    document.getElementById("showCatCount").innerHTML = biSpan(`搜索结果：${result.length} 个`, `Search results: ${result.length}`);
-    renderTools(result);
-}
+    inp.addEventListener('input',function(){clearTimeout(inp._t);inp._t=setTimeout(go,180);});
+    document.addEventListener('click',function(e){if(!box.contains(e.target)&&e.target!==inp)box.classList.remove('open');});
+})();
 
-// 深色切换
-function toggleDark(){
-    document.documentElement.classList.toggle("dark");
-}
-
-// 回到顶部
-window.onscroll = ()=>{
-    const btn = document.getElementById("backTopBtn");
-    btn.style.display = window.scrollY > 400 ? "block" : "none";
-}
-
-// 初始化
-window.onload = ()=>{
-    renderSidebarCat();
-    switchCat("all");
-    if (typeof window.i18nApply === 'function') window.i18nApply(window.i18nLang || 'zh');
-}
-document.addEventListener('i18n:langchange', (e)=>{
-    // do NOT re-render categories; just apply language to existing DOM so fold state is preserved
-    if (typeof window.i18nApply === 'function') window.i18nApply(e.detail && e.detail.lang || window.i18nLang || 'zh');
+/* ---------- 场景标签点击 → 跳转分类页 ---------- */
+document.querySelectorAll('.scenario-tags a').forEach(function(a){
+    a.addEventListener('click',function(){location.href='/'+a.dataset.cat+'-tools.html';});
 });
+
+/* ---------- 初始化 ---------- */
+window.addEventListener('i18n:langchange',function(){
+    // 语言切换后重渲染动态内容
+    document.getElementById('groups').innerHTML='';
+    buildGroups();
+    buildNewTrack();
+    renderFavPanel();
+});
+buildGroups();
+buildNewTrack();
+updateFavBadge();
 </script>
 
-<!-- Cookie弹窗开始 -->
-<div id="cookieBox" style="position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;padding:16px 24px;z-index:9999;display:none;">
-    <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+<!-- Cookie 弹窗 -->
+<div id="cookieBox" style="position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);padding:16px 24px;z-index:9999;display:none;">
+    <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
         <div style="flex:1;min-width:300px;">
-            <p style="margin:0 0 6px 0;font-size:14px;color:#333;"><span class="i18n-zh">🍪 Cookie 使用提示</span><span class="i18n-en" hidden>🍪 Cookie Notice</span></p>
-            <p style="margin:0;font-size:13px;color:#666;">
-                <span class="i18n-zh">我们使用 Cookie 记住您的偏好（如语言设置），并在您同意后用于投放 Google 广告。点击「同意」即表示接受广告类 Cookie；点击「拒绝」则仅使用必要 Cookie，不投放广告。查看我们的</span><span class="i18n-en" hidden>We use cookies to remember your preferences (such as language) and, with your consent, to serve Google ads. Click “Accept” to allow advertising cookies, or “Decline” to continue with only essential cookies (no ads). See our </span><a href="/privacy.html" style="color:#0066cc;"><span class="i18n-zh">隐私政策</span><span class="i18n-en" hidden>Privacy Policy</span></a><span class="i18n-zh">。</span><span class="i18n-en" hidden>.</span>
+            <p style="margin:0 0 6px 0;font-size:14px;color:var(--text);"><span class="i18n-zh">🍪 Cookie 使用提示</span><span class="i18n-en" hidden>🍪 Cookie Notice</span></p>
+            <p style="margin:0;font-size:13px;color:var(--muted);">
+                <span class="i18n-zh">我们使用 Cookie 记住您的偏好（如语言设置），并在您同意后用于投放 Google 广告。点击「同意」即表示接受广告类 Cookie；点击「拒绝」则仅使用必要 Cookie，不投放广告。查看我们的</span><span class="i18n-en" hidden>We use cookies to remember your preferences (such as language) and, with your consent, to serve Google ads. Click “Accept” to allow advertising cookies, or “Decline” to continue with only essential cookies (no ads). See our </span><a href="/privacy.html" style="color:var(--primary);"><span class="i18n-zh">隐私政策</span><span class="i18n-en" hidden>Privacy Policy</span></a><span class="i18n-zh">。</span><span class="i18n-en" hidden>.</span>
             </p>
         </div>
         <div style="display:flex;gap:10px;">
-            <button id="cookieAccept" style="padding:8px 18px;background:#2563eb;color:#fff;border:none;border-radius:6px;cursor:pointer;"><span class="i18n-zh">同意</span><span class="i18n-en" hidden>Accept</span></button>
-            <button id="cookieReject" style="padding:8px 18px;background:#eee;color:#333;border:none;border-radius:6px;cursor:pointer;"><span class="i18n-zh">拒绝</span><span class="i18n-en" hidden>Decline</span></button>
+            <button id="cookieAccept" style="padding:8px 18px;background:var(--primary);color:#fff;border:none;border-radius:6px;cursor:pointer;"><span class="i18n-zh">同意</span><span class="i18n-en" hidden>Accept</span></button>
+            <button id="cookieReject" style="padding:8px 18px;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:6px;cursor:pointer;"><span class="i18n-zh">拒绝</span><span class="i18n-en" hidden>Decline</span></button>
         </div>
     </div>
 </div>
-
 <script>
-const cookieBox = document.getElementById('cookieBox');
-const acceptBtn = document.getElementById('cookieAccept');
-const rejectBtn = document.getElementById('cookieReject');
-const cookieStatus = localStorage.getItem('cookieConsent');
-if (!cookieStatus) {
-    cookieBox.style.display = 'block';
-}
-acceptBtn.onclick = function(){
-    localStorage.setItem('cookieConsent','accept');
-    cookieBox.style.display = 'none';
-};
-rejectBtn.onclick = function(){
-    localStorage.setItem('cookieConsent','reject');
-    cookieBox.style.display = 'none';
-};
+(function(){
+    var box=document.getElementById('cookieBox');
+    try{var st=localStorage.getItem('cookieConsent');if(!st)box.style.display='block';}catch(e){}
+    document.getElementById('cookieAccept').onclick=function(){try{localStorage.setItem('cookieConsent','accept');}catch(e){}box.style.display='none';};
+    document.getElementById('cookieReject').onclick=function(){try{localStorage.setItem('cookieConsent','reject');}catch(e){}box.style.display='none';};
+})();
 </script>
-<!-- Cookie弹窗结束 -->
 
-
-<footer style="margin-top:60px;padding:30px 10px;text-align:center;border-top:1px solid #e5e7eb;color:#666;font-size:14px;">
-    <div style="margin-bottom:10px;">
-        <a href="/tools.html" data-i18n="view_all" style="margin:0 10px;color:#2478f5;text-decoration:none;font-weight:600;">查看全部工具 ›</a>
-        <a href="/blog/index.html" style="margin:0 10px;color:#2478f5;text-decoration:none;font-weight:600;">工具教程博客 ›</a>
-    </div>
-    <div style="margin-bottom:10px;">
-        <a href="/about.html" data-i18n="about" style="margin:0 10px;color:#444;text-decoration:none;">关于我们</a>
-        <span>|</span>
-        <a href="/privacy.html" data-i18n="privacy" style="margin:0 10px;color:#444;text-decoration:none;">隐私政策</a>
-        <span>|</span>
-        <a href="/contact.html" data-i18n="contact" style="margin:0 10px;color:#444;text-decoration:none;">联系我们</a>
-    </div>
-    <div data-i18n="copyright">© 2026 72在线工具箱 72tool.com 保留所有权利</div>
-</footer>
-
-
+<!-- IndexNow 主动推送（务必保留） -->
 <script defer src="autopush.js"></script>
-
-<script src="ux-kit.js"></script>
 <script src="ads.js"></script>
 </body>
 </html>

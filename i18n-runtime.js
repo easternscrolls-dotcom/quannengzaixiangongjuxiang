@@ -15,7 +15,7 @@
       privacy: '隐私政策',
       contact: '联系我们',
       view_all: '查看全部工具 ›',
-      copyright: '© 2026 72在线工具箱 72tool.com 保留所有权利',
+      copyright: '© 2026 72Tool 72tool.com 保留所有权利',
       cookie_title: '🍪 Cookie 使用提示',
       cookie_body: '我们使用 Cookie 记住您的偏好（如语言设置），并在您同意后用于投放 Google 广告。点击「同意」即表示接受广告类 Cookie；点击「拒绝」则仅使用必要 Cookie，不投放广告。查看我们的',
       cookie_suffix: '。',
