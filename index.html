@@ -286,6 +286,14 @@ body{background:var(--page-bg);color:var(--text-main);height:100vh;display:flex;
         </div>
         <div class="split"></div>
         <div class="sidebar-menu" id="sidebarCatList"></div>
+        <div class="split"></div>
+        <div class="sidebar-menu" id="sidebarBlogMenu">
+            <a class="item" href="/blog/index.html" style="text-decoration:none;color:inherit;">
+                <span>📖</span>
+                <span><span class="i18n-zh">工具教程博客</span><span class="i18n-en" hidden>Blog</span></span>
+                <span class="cat-num">›</span>
+            </a>
+        </div>
     </div>
     <div class="content">
         <div class="content-header">
@@ -796,6 +804,7 @@ document.querySelector('.sidebar').addEventListener('click', function(e){
     const item = e.target.closest('.item');
     if(!item) return;
     const cid = item.dataset.catid;
+    if(!cid) return; // 博客等静态链接项：走原生 <a> 跳转，不拦截
     switchCat(cid);
 });
 
