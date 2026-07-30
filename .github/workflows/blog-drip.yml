@@ -1,0 +1,57 @@
+name: 72tool 博客滴灌发布
+
+# 每 30 分钟检查一次；是否真的发布由 drip_blog.py 按当天时刻表判定。
+# 每天 5-6 篇、错峰发布、错过的时段自动补发。完全在云端运行，不依赖本机开机。
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: '忽略时刻表，立即发布一篇（测试用）'
+        type: boolean
+        default: false
+
+# 防止两次运行同时提交造成冲突
+concurrency:
+  group: blog-drip
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  drip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 生成并发布文章
+        env:
+          TZ: Asia/Shanghai
+          BLOG_SITE_DIR: ${{ github.workspace }}
+          BLOG_MODE: api
+          BLOG_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
+          BLOG_API_BASE: ${{ vars.BLOG_API_BASE || 'https://open.bigmodel.cn/api/paas/v4' }}
+          BLOG_MODEL: ${{ vars.BLOG_MODEL || 'glm-4-flash' }}
+        run: |
+          cd .github/scripts
+          python drip_blog.py ${{ (github.event_name == 'workflow_dispatch' && inputs.force) && '--now' || '' }}
+
+      - name: 输出当前进度
+        if: always()
+        env:
+          TZ: Asia/Shanghai
+          BLOG_SITE_DIR: ${{ github.workspace }}
+        run: |
+          cd .github/scripts
+          python drip_blog.py --status || true
