@@ -45,6 +45,9 @@ function buildSeoHead(L) {
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta name="author" content="72Tool">
 <meta name="theme-color" content="#16C7B2">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
 <link rel="canonical" href="${url}">
 <!-- hreflang：真实同域路径，x-default 指向英文（海外搜索兜底）-->
 <link rel="alternate" hreflang="x-default" href="${BASE}en/">
