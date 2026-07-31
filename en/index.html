@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-lang="zh-CN">
+<html lang="en" data-site-lang="en" data-theme="light" data-lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -12,7 +12,7 @@
 <meta name="shenma-site-verification" content="82053baefbc340503e88fb91461dc27d_1784970172">
 <meta name="sogou-site-verification" content="ogIxB7xLU6" />
 <!-- 首页唯一标题 / 描述 -->
-<title>72Tool | Free Online Tools, Website Templates & Open-Source Code</title>
+<title>72Tool | Free Online Tools, Website Templates &amp; Open-Source Code</title>
 <meta name="description" content="72Tool is a one-stop platform: hundreds of free online tools, beautiful website templates and open-source code. No registration, no installation.">
 <meta name="i18n-title-en" content="72Tool | Free Online Tools, Website Templates & Open-Source Code">
 <meta name="i18n-desc-en" content="72Tool is a one-stop platform: hundreds of free online tools, beautiful website templates and open-source code. No registration, no installation.">
@@ -24,12 +24,12 @@
 <link rel="alternate" hreflang="es" href="https://72tool.com/es/">
 <!-- Open Graph / Twitter -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="72Tool | Free Online Tools, Website Templates & Open-Source Code">
+<meta property="og:title" content="72Tool | Free Online Tools, Website Templates &amp; Open-Source Code">
 <meta property="og:description" content="72Tool is a one-stop platform: hundreds of free online tools, beautiful website templates and open-source code. No registration, no installation.">
 <meta property="og:url" content="https://72tool.com/en/">
 <meta property="og:site_name" content="72Tool">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="72Tool | Free Online Tools, Website Templates & Open-Source Code">
+<meta name="twitter:title" content="72Tool | Free Online Tools, Website Templates &amp; Open-Source Code">
 <meta name="twitter:description" content="72Tool is a one-stop platform: hundreds of free online tools, beautiful website templates and open-source code. No registration, no installation.">
 <!-- i18n-runtime -->
 <script src="i18n-runtime.js"></script>
@@ -464,7 +464,7 @@
             <p style="margin:0 0 6px 0;font-size:14px;color:var(--text-main);;"><span>🍪 Cookie Notice</span></p>
             <p style="margin:0;font-size:13px;color:var(--text-sub);">
                 <span>We use cookies to remember your preferences (such as language) and, with your consent, to serve Google ads. Click "Accept" or "Decline".</span>
-                <a href="/privacy.html" style="color:var(--nebula-cyan);"><span>Privacy Policy</span></a>
+                <a href="/privacy.html" style="color:var(--nebula-cyan);"><span>Privacy</span></a>
             </p>
         </div>
         <div style="display:flex;gap:10px;">
@@ -603,10 +603,11 @@ const htmlDom = document.documentElement;
 
 // 当前语言
 function curLang(){
+    // 本地化页面（ja/es）通过 data-site-lang 声明：无对应数据，动态内容回退英文
+    var sl = document.documentElement.getAttribute('data-site-lang');
+    if(sl === 'ja' || sl === 'es') return 'en';
     var l = (window.i18nLang || 'zh');
     if(l === 'en') return 'en';
-    var hl = document.documentElement.lang;
-    if(hl === 'ja' || hl === 'es') return 'en';
     return 'zh';
 }
 const LANG = curLang();
@@ -934,7 +935,7 @@ class Particle {
         this.color = htmlDom.dataset.theme==='light'
             ? 'rgba(22,199,178,0.4)' : 'rgba(157,124,242,0.4)';
     }
-    update(){ this.x+=this.speedX; this.y+=this.speedY; if(this.x<0||this.x>w)this.speedX*=-1; if(this.y<0||this.y>this.y>this.h)this.speedY*=-1; }
+    update(){ this.x+=this.speedX; this.y+=this.speedY; if(this.x<0||this.x>w)this.speedX*=-1; if(this.y<0||this.y>this.h)this.speedY*=-1; }
     draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle=this.color; ctx.fill(); }
 }
 function initParticle(){
