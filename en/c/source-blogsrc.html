@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-site-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Language" content="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Blog Source Code — Free Open Source Code Download | 72Tool</title>
+<meta name="description" content="No-database static blog HTML source code. Posts are stored as flat files, with categories, tags, search and archives built in — deploy as-is.">
+<meta name="keywords" content="no database static blog html template source code">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta name="theme-color" content="#16C7B2">
+<link rel="canonical" href="https://72tool.com/en/c/source-blogsrc.html">
+<link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/source-blogsrc.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/source-blogsrc.html">
+<link rel="alternate" hreflang="en" href="https://72tool.com/en/c/source-blogsrc.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blog Source Code — Free Open Source Code Download | 72Tool">
+<meta property="og:description" content="No-database static blog HTML source code. Posts are stored as flat files, with categories, tags, search and archives built in — deploy as-is.">
+<meta property="og:url" content="https://72tool.com/en/c/source-blogsrc.html">
+<meta property="og:site_name" content="72Tool">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://72tool.com/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog Source Code — Free Open Source Code Download | 72Tool">
+<meta name="twitter:description" content="No-database static blog HTML source code. Posts are stored as flat files, with categories, tags, search and archives built in — deploy as-is.">
+<meta name="twitter:image" content="https://72tool.com/og-cover.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Blog Source Code — Free Open Source Code Download | 72Tool","url":"https://72tool.com/en/c/source-blogsrc.html","description":"No-database static blog HTML source code. Posts are stored as flat files, with categories, tags, search and archives built in — deploy as-is.","inLanguage":"en","dateModified":"2026-07-31","isPartOf":{"@type":"WebSite","name":"72Tool","url":"https://72tool.com/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"72Tool","item":"https://72tool.com/en/"},{"@type":"ListItem","position":2,"name":"Open Source Code","item":"https://72tool.com/en/"},{"@type":"ListItem","position":3,"name":"Blog Source Code","item":"https://72tool.com/en/c/source-blogsrc.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Blog Source Code","numberOfItems":2,"itemListElement":[{"@type":"ListItem","position":1,"name":"NexBlog Static Blog Source","url":"https://72tool.com/en/c/source-blogsrc.html"},{"@type":"ListItem","position":2,"name":"Docs Documentation Source","url":"https://72tool.com/en/c/source-blogsrc.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I manage posts without a database?","acceptedAnswer":{"@type":"Answer","text":"Each post is its own file. Adding one means creating the file and registering a line in the index, or running the included script to regenerate the index."}},{"@type":"Question","name":"How does search work?","acceptedAnswer":{"@type":"Answer","text":"A lightweight index is generated at build time and matched in the browser, so no backend API is needed and hundreds of posts still return instantly."}},{"@type":"Question","name":"Is it secure?","acceptedAnswer":{"@type":"Answer","text":"With no backend or database there is no SQL injection or weak admin password to exploit, and static hosts provide HTTPS automatically."}}]}</script>
+<style>*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#F5F7FA;--card:#FFFFFF;--text:#1A2230;--sub:#5A6678;--line:#E3E8EF;--brand:#0E9E8C;--brand2:#16C7B2}
+@media (prefers-color-scheme:dark){:root{--bg:#0E1420;--card:#161E2C;--text:#E8EDF5;--sub:#AAB6C8;--line:#26303F;--brand:#16C7B2;--brand2:#3FE0C8}}
+body{font-family:system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible{outline:2px solid var(--brand2);outline-offset:2px}
+header.top{border-bottom:1px solid var(--line);background:var(--card);position:sticky;top:0;z-index:9}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+.logo{font-weight:800;font-size:19px;color:var(--text);letter-spacing:.3px}
+.logo span{color:var(--brand)}
+.top nav{display:flex;gap:8px;flex-wrap:wrap}
+.top nav a{font-size:14px;padding:8px 12px;border-radius:8px;color:var(--sub)}
+.top nav a:hover{background:var(--bg);text-decoration:none}
+.top nav a.on{color:var(--brand);font-weight:700}
+.crumb{font-size:13px;color:var(--sub);padding:18px 0 4px}
+.crumb a{color:var(--sub)}
+h1{font-size:30px;line-height:1.35;margin:6px 0 12px;letter-spacing:-.2px}
+.intro{font-size:16px;color:var(--sub);max-width:78ch}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 8px}
+.chip{font-size:12px;padding:5px 11px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--sub)}
+h2{font-size:21px;margin:40px 0 14px;padding-top:6px}
+.body-txt{color:var(--sub);max-width:78ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(212px,1fr));gap:12px;margin-top:16px}
+.item{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 15px;color:var(--text);transition:.16s;min-height:48px;overflow-wrap:anywhere}
+.item:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 6px 18px rgba(14,158,140,.13);text-decoration:none}
+.item b{display:block;font-size:14.5px;font-weight:600;margin-bottom:3px}
+.item i{font-style:normal;font-size:12px;color:var(--sub)}
+.res{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:12px}
+.res h3{font-size:16.5px;margin-bottom:6px}
+.res p{font-size:14px;color:var(--sub);margin-bottom:10px}
+.lic{font-size:11.5px;padding:3px 9px;border-radius:6px;background:rgba(22,199,178,.12);color:var(--brand);font-weight:700;letter-spacing:.4px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px}
+.faq summary{cursor:pointer;font-weight:650;font-size:15px;min-height:28px}
+.faq p{margin-top:9px;color:var(--sub);font-size:14.5px}
+.rel{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.rel a{font-size:13.5px;padding:8px 14px;border-radius:9px;background:var(--card);border:1px solid var(--line);color:var(--sub);min-height:40px;display:inline-flex;align-items:center}
+.rel a:hover{border-color:var(--brand);color:var(--brand);text-decoration:none}
+.cta{display:inline-block;margin-top:20px;background:var(--brand);color:#fff;padding:13px 24px;border-radius:11px;font-weight:700;font-size:15px}
+.cta:hover{background:var(--brand2);text-decoration:none}
+footer{margin-top:56px;border-top:1px solid var(--line);background:var(--card);padding:26px 0 34px}
+footer .wrap{font-size:13.5px;color:var(--sub)}
+.flangs{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+@media (max-width:640px){h1{font-size:24px}.grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.top .wrap{height:auto;padding-top:10px;padding-bottom:10px;flex-wrap:wrap}}
+@media (pointer:coarse){.item,.rel a,.top nav a{min-height:48px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="/en/">72<span>Tool</span></a>
+  <nav>
+    <a href="/en/">Home</a>
+    <a href="/en/?main=tool" class="">Online Tools</a>
+    <a href="/en/?main=theme" class="">Templates</a>
+    <a href="/en/?main=source" class="on">Open Source</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <nav class="crumb" aria-label="breadcrumb">
+    <a href="/en/">72Tool</a> › <a href="/en/?main=source">Open Source Code</a> › <span>Blog Source Code</span>
+  </nav>
+  <h1>Free Blog Source Code — Download &amp; Deploy</h1>
+  <p class="intro">No-database static blog HTML source code. Posts are stored as flat files, with categories, tags, search and archives built in — deploy as-is.</p>
+  <div class="meta">
+    <span class="chip">2 resources</span>
+    <span class="chip">100% free</span>
+    <span class="chip">Runs in your browser</span>
+    <span class="chip">No sign-up</span>
+  </div>
+
+  <section>
+    <h2>Resources in this category</h2>
+    <article class="res"><h3>NexBlog Static Blog Source <span class="lic">MIT</span></h3><p>Database-free static blog with category, search, tags &amp; dark mode.</p><a href="/en/?main=source&amp;sub=blogsrc">View & download ›</a></article>
+<article class="res"><h3>Docs Documentation Source <span class="lic">Apache-2.0</span></h3><p>Sidebar docs generator with multi-version and full-text search.</p><a href="/en/?main=source&amp;sub=blogsrc">View & download ›</a></article>
+    <a class="cta" href="/en/?main=source&amp;sub=blogsrc">Browse this category in the toolbox ›</a>
+  </section>
+
+  <section>
+    <h2>About this category</h2>
+    <p class="body-txt">Traditional blog engines mean installing a database, configuring a runtime and patching it forever. This source keeps posts as static files, so the site is just HTML, CSS and a little JavaScript — with no backend there is no injection surface and no login to brute force. Once deployed it needs no maintenance, static hosting costs essentially nothing, and a backup is simply a copy of the directory.</p>
+  </section>
+
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <details><summary>How do I manage posts without a database?</summary><p>Each post is its own file. Adding one means creating the file and registering a line in the index, or running the included script to regenerate the index.</p></details>
+<details><summary>How does search work?</summary><p>A lightweight index is generated at build time and matched in the browser, so no backend API is needed and hundreds of posts still return instantly.</p></details>
+<details><summary>Is it secure?</summary><p>With no backend or database there is no SQL injection or weak admin password to exploit, and static hosts provide HTTPS automatically.</p></details>
+  </section>
+
+  <section>
+    <h2>Related categories</h2>
+    <div class="rel"><a href="/en/c/source-navsrc.html">Navigation Site Source</a>
+<a href="/en/c/source-toolsrc.html">Toolkit Source Code</a>
+<a href="/en/c/source-newsrc.html">News Portal Source</a>
+<a href="/en/unit-tools.html">Unit Converters</a>
+<a href="/en/text-tools.html">Text Tools</a>
+<a href="/en/img-tools.html">Image Tools</a></div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <div class="flangs">
+    <a href="https://72tool.com/c/source-blogsrc.html" hreflang="zh-Hans">简体中文</a>
+    <a href="https://72tool.com/en/c/source-blogsrc.html" hreflang="en">English</a>
+  </div>
+  <div>
+    <a href="/en/">Home</a> ·
+    <a href="/privacy.html">Privacy</a> ·
+    <a href="/terms.html">Terms</a> ·
+    <a href="/sitemap.xml">Sitemap</a>
+  </div>
+  <div style="margin-top:8px">© 2026 72tool.com. All rights reserved.</div>
+</div></footer>
+</body>
+</html>

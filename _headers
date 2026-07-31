@@ -1,0 +1,84 @@
+# ============================================================
+#  72Tool · HTTP Headers  (Cloudflare Pages / Netlify compatible)
+#  作用：Content-Language 语种声明 + 缓存策略 + 安全评分
+# ============================================================
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Vary: Accept-Encoding, Accept-Language
+
+# ---- 首页与各语种入口：短缓存 + 语种声明（爬虫快速识别语言）----
+/
+  Content-Language: zh-CN
+  Cache-Control: public, max-age=1800, stale-while-revalidate=86400
+
+/index.html
+  Content-Language: zh-CN
+  Cache-Control: public, max-age=1800, stale-while-revalidate=86400
+
+/en/*
+  Content-Language: en
+  Cache-Control: public, max-age=1800, stale-while-revalidate=86400
+
+/jp/*
+  Content-Language: ja
+  Cache-Control: public, max-age=1800, stale-while-revalidate=86400
+
+/es/*
+  Content-Language: es
+  Cache-Control: public, max-age=1800, stale-while-revalidate=86400
+
+/de/*
+  Content-Language: de
+  Cache-Control: public, max-age=1800, stale-while-revalidate=86400
+
+/ar/*
+  Content-Language: ar
+  Cache-Control: public, max-age=1800, stale-while-revalidate=86400
+
+# ---- 静态资源：长缓存（速度是核心排名因子）----
+/*.js
+  Cache-Control: public, max-age=604800, immutable
+
+/*.css
+  Cache-Control: public, max-age=604800, immutable
+
+/*.png
+  Cache-Control: public, max-age=2592000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=2592000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=2592000, immutable
+
+/*.svg
+  Cache-Control: public, max-age=2592000, immutable
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# ---- SEO 文件：不长缓存，保证及时更新 ----
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+/sitemap-pages.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+/sitemap-tools.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+/sitemap-resources.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+/robots.txt
+  Cache-Control: public, max-age=3600

@@ -1,4 +1,98 @@
-User-agent: *
+# ============================================================
+#  72Tool · robots.txt  (global / multi-engine)
+#  https://72tool.com/
+# ============================================================
+
+# ---- Google ----
+User-agent: Googlebot
+Allow: /
+Disallow: /*?q=
+Disallow: /*?search=
+Disallow: /*&q=
+Disallow: /*?utm_
+Disallow: /*?ref=
+Disallow: /*?theme=
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.webp$
+Allow: /*.svg$
+
+User-agent: Googlebot-Image
 Allow: /
 
+# ---- Bing ----
+User-agent: Bingbot
+Allow: /
+Disallow: /*?q=
+Disallow: /*?utm_
+Crawl-delay: 1
+
+# ---- Yandex ----
+User-agent: YandexBot
+Allow: /
+Disallow: /*?q=
+Disallow: /*?utm_
+Clean-param: q&utm_source&utm_medium&utm_campaign&ref&lang
+
+# ---- DuckDuckGo ----
+User-agent: DuckDuckBot
+Allow: /
+
+# ---- Naver / Seznam / Baidu ----
+User-agent: Yeti
+Allow: /
+
+User-agent: SeznamBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+Disallow: /*?q=
+
+# ---- AI crawlers (allow: brings referral traffic) ----
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# ---- Bad / aggressive scrapers ----
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# ---- Default ----
+User-agent: *
+Allow: /
+# 无检索价值的参数化 URL（搜索弹窗 / 下拉 / 遮罩状态）不予收录
+Disallow: /*?q=
+Disallow: /*?search=
+Disallow: /*?modal=
+Disallow: /*?panel=
+Disallow: /*?utm_
+Disallow: /*?ref=
+Disallow: /*?fbclid=
+Disallow: /*?gclid=
+Disallow: /_build/
+Disallow: /*.cjs$
+
+# ---- Sitemaps (index + per-language) ----
 Sitemap: https://72tool.com/sitemap.xml
+Sitemap: https://72tool.com/sitemap-pages.xml
+Sitemap: https://72tool.com/sitemap-tools.xml
+Sitemap: https://72tool.com/sitemap-resources.xml
+
+Host: 72tool.com
