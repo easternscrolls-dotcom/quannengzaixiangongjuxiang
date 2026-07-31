@@ -99,6 +99,14 @@ function purifyEn(pagePath) {
   // 8) 清理多余空行
   html = html.replace(/\n{3,}/g, '\n\n');
 
+  // 9) 替换硬编码中文（页脚/返回链接等不在 i18n span 中的文本）
+  const HARDCODED = [
+    ['关于我们', 'About'], ['联系我们', 'Contact'], ['隐私政策', 'Privacy'],
+    ['使用条款', 'Terms'], ['版权 / DMCA', 'DMCA'], ['站点地图', 'Sitemap'],
+    ['© 2026 72Tool 72tool.com 保留所有权利', '© 2026 72Tool 72tool.com. All rights reserved.']
+  ];
+  HARDCODED.forEach(([zh, en]) => { html = html.split(zh).join(en); });
+
   return html;
 }
 
