@@ -239,7 +239,7 @@
         padding:10px 16px; cursor:pointer; font-size:14px; transition:0.2s;
     }
     .lang-option:hover { background:var(--tag-bg); color:var(--nebula-cyan); }
-    .lang-option.active { color:var(--nebula-cyan); font-weight:bold; }
+    .lang-option.active { color:var(--nebula-cyan); font-weight:bold; background:rgba(22,199,178,0.08); pointer-events:none; }
 
     /* ── 二级分类标签栏（与标题同行）── */
     .cate-header {
@@ -378,7 +378,7 @@
     .resource-card:hover .card-title { color:var(--nebula-cyan); }
     .card-desc {
         color:var(--text-sub); font-size:12.5px; line-height:1.55;
-        display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+        display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;
         overflow:hidden; position:relative;z-index:1;
     }
 
@@ -1522,7 +1522,8 @@ function licenseOf(item, kind){
 }
 function licenseBadgeHtml(item, kind){
     var m = LICENSE_META[licenseOf(item, kind)] || LICENSE_META.free;
-    return '<span class="license-badge '+m.cls+'" title="'+m.en+'">'+m.code+'</span>';
+    var label = LANG==='zh' ? m.zh : m.en;
+    return '<span class="license-badge '+m.cls+'" title="'+m.en+'">'+label+'</span>';
 }
 function styleOf(item, kind){
     if(kind==='theme' && item.subCate && item.subCate.indexOf('dark')>-1) return 'dark';
