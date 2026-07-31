@@ -876,11 +876,18 @@
     .card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
     img { max-width: 100%; height: auto; }
 
+    /* ── 语言切换淡入淡出 ── */
+    body.lang-fading { opacity: 0; transition: opacity 0.18s ease; }
+    body { opacity: 0; animation: langFadeIn 0.22s ease forwards; }
+    @keyframes langFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
     /* ── 10. 减少动效偏好（无障碍 + 低配设备）── */
     @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
         #nebula-particles { display: none; }
         .announce-track { animation: none; }
+        body.lang-fading { opacity: 1; }
+        body { opacity: 1; animation: none; }
     }
 </style>
 <!-- adsense -->
@@ -1859,9 +1866,11 @@ langMenu.querySelectorAll('.lang-option').forEach(function(opt){
     if(opt.dataset.lang === SITE_LANG) opt.classList.add('active');
     opt.addEventListener('click',function(e){
         var lang = this.dataset.lang;
-        safeStorage.set('siteLang', lang);
         if(lang === SITE_LANG){ e.preventDefault(); langMenu.classList.remove('open'); return; }
-        // 保留 <a href> 默认跳转行为 → 真实独立页面，浏览器与爬虫一致
+        // 切换前先淡出，避免视觉跳变（完整页面跳转体验更平滑）
+        safeStorage.set('siteLang', lang);
+        try { document.body.classList.add('lang-fading'); } catch(_){}
+        // 浏览器已知道我们要导航（href），直接放行默认行为
     });
 });
 // 首次访问按浏览器语言引导到对应语种站（仅提示，不强制跳转，避免谷歌判定 cloaking）
