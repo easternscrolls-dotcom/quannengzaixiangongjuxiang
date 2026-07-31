@@ -85,6 +85,16 @@ const META = {
   }
 };
 
+// 硬编码中文 → 英文替换（用于不在 i18n span 中的纯文本标签）
+const HARDCODED_EN = [
+  ['关于我们', 'About Us'],
+  ['联系我们', 'Contact Us'],
+  ['隐私政策', 'Privacy Policy'],
+  ['服务条款', 'Terms of Service'],
+  ['← 返回工具箱首页', '← Back to Home'],
+  ['© 2026 72Tool 72tool.com 保留所有权利', '© 2026 72Tool 72tool.com. All rights reserved.']
+];
+
 function run() {
   let total = 0;
   PAGES.forEach(key => {
@@ -96,6 +106,11 @@ function run() {
     // 替换 head 中从 <title> 到 </head> 之前的内容为新的 SEO head
     html = extractEn(html);
     html = fixLinks(html);
+
+    // 替换不在 i18n span 中的硬编码中文
+    HARDCODED_EN.forEach(([zh, en]) => {
+      html = html.split(zh).join(en);
+    });
 
     // 替换 <head>...<style> 区块中的旧 head 为新 SEO head
     // 策略：找到第一个 <meta 或 <title> 到 <style> 之间的内容，替换

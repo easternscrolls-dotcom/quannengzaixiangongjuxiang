@@ -9,6 +9,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https:; frame-src https://pagead2.googlesyndication.com; font-src 'self' data:
   Vary: Accept-Encoding, Accept-Language
 
 # ---- 首页与各语种入口：短缓存 + 语种声明（爬虫快速识别语言）----
@@ -73,6 +74,10 @@
   Cache-Control: public, max-age=3600
 
 /sitemap-tools.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+/sitemap-categories.xml
   Content-Type: application/xml; charset=utf-8
   Cache-Control: public, max-age=3600
 

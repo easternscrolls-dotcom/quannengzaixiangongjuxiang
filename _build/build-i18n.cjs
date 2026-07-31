@@ -166,6 +166,11 @@ function run() {
                .replace(/<meta name="sogou-site-verification"[^>]*>\s*/g, '')
                .replace(/<!-- 搜索引擎站长验证（务必保留） -->\s*/g, '');
 
+    // 5) 海外站去掉 autopush.js（百度自动推送，对 Google/Bing/Yandex 无用）
+    html = html.split('<script defer src="/autopush.js"></script>').join('');
+    html = html.split('<script src="/autopush.js"></script>').join('');
+    html = html.split('<script defer src="autopush.js"></script>').join('');
+
     // 5) 写入目标目录
     const outDir = path.join(ROOT, L.dir.replace(/\/$/, ''));
     if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });

@@ -186,6 +186,7 @@ function buildTools() {
 // ------------------------------------------------------------ resources
 function buildResources() {
   const urls = [];
+  // blog
   const blogDir = path.join(ROOT, 'blog');
   if (fs.existsSync(blogDir)) {
     fs.readdirSync(blogDir).filter(f => f.endsWith('.html')).sort().forEach(f => {
@@ -198,6 +199,23 @@ function buildResources() {
       });
     });
   }
+
+  // tag 页（zh + en）
+  const tagLangs = [{ dir: '', code: 'zh-Hans' }, { dir: 'en', code: 'en' }];
+  fs.readdirSync(ROOT).filter(f => f.startsWith('tag-') && f.endsWith('.html')).sort().forEach(f => {
+    const langs = tagLangs.filter(l => fs.existsSync(path.join(ROOT, l.dir, f)));
+    const a = langs.length > 1 ? alts(langs, f) : null;
+    langs.forEach(l => {
+      urls.push({
+        loc: url(l.dir, f),
+        alt: a,
+        lastmod: mtime(path.join(ROOT, l.dir, f)),
+        freq: 'weekly',
+        pri: '0.65'
+      });
+    });
+  });
+
   return urls;
 }
 

@@ -893,10 +893,9 @@ gtag('consent','default',{
   analytics_storage:'denied', wait_for_update: 500
 });
 </script>
-<!-- Google Analytics 4（海外统计，替代国内统计脚本）：把 G-XXXXXXXXXX 换成你的 GA4 衡量 ID 后取消注释
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>gtag('js', new Date()); gtag('config','G-XXXXXXXXXX',{anonymize_ip:true});</script>
--->
+<!-- Google Analytics 4 — 将 "GA4_ID" 替换为你的衡量 ID（格式：G-XXXXXXXXXX）-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA4_ID"></script>
+<script>gtag('js', new Date()); gtag('config','GA4_ID',{anonymize_ip:true});</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495097009978965" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -2334,7 +2333,7 @@ updateFavBadge();
 // IndexNow
 })();
 </script>
-<script defer src="/autopush.js"></script>
+
 <script defer src="/ads.js"></script>
 </body>
 </html>
