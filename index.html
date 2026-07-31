@@ -2229,49 +2229,11 @@ function injectToolJsonLd(){
     }catch(e){}
 }
 
-// ===================== sitemap.xml 自动生成函数（后台/运维调用）=====================
-// 三类独立 sitemap：pages（多语种入口+聚合页）/ tools（353 工具页）/ resources（模板+源码）
-window.buildSitemapXML = function(kind){
-    var base='https://72tool.com/';
-    var LANGS=[{k:'zh',p:''},{k:'en',p:'en/'},{k:'jp',p:'jp/'},{k:'es',p:'es/'},{k:'de',p:'de/'},{k:'ar',p:'ar/'}];
-    var HREF={zh:'zh-Hans',en:'en',jp:'ja',es:'es',de:'de',ar:'ar'};
-    var today=new Date().toISOString().slice(0,10);
-    var urls=[];
-
-    function altsFor(suffix){
-        return LANGS.map(function(l){
-            return '    <xhtml:link rel="alternate" hreflang="'+HREF[l.k]+'" href="'+base+l.p+suffix+'"/>';
-        }).concat(['    <xhtml:link rel="alternate" hreflang="x-default" href="'+base+'en/'+suffix+'"/>']).join('\n');
-    }
-
-    if(kind==='tools'){
-        (window.TOOLS_DATA||[]).forEach(function(t){
-            if(t.slug) urls.push({loc:base+t.slug, pri:'0.7', freq:'monthly'});
-        });
-    } else if(kind==='resources'){
-        MAIN_KEYS.forEach(function(mk){
-            MAIN_CONFIG[mk].tags.forEach(function(tg){
-                if(tg.key==='all') return;
-                CAT_PAGE_LANGS.forEach(function(lg){
-                    var p = lg==='zh' ? '' : lg+'/';
-                    urls.push({loc:base+p+'c/'+mk+'-'+tg.key+'.html', pri:'0.75', freq:'weekly'});
-                });
-            });
-        });
-    } else {
-        LANGS.forEach(function(l){ urls.push({loc:base+l.p, pri:l.k==='zh'?'1.0':'0.9', freq:'daily', alt:altsFor('')}); });
-        ['about.html','privacy.html','terms.html','contact.html','sitemap.html'].forEach(function(p){
-            urls.push({loc:base+p, pri:'0.5', freq:'monthly'});
-        });
-    }
-    var xml='<?xml version="1.0" encoding="UTF-8"?>\n'+
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n';
-    urls.forEach(function(u){
-        xml+='  <url>\n    <loc>'+u.loc+'</loc>\n'+(u.alt?u.alt+'\n':'')+
-             '    <lastmod>'+today+'</lastmod>\n    <changefreq>'+u.freq+'</changefreq>\n    <priority>'+u.pri+'</priority>\n  </url>\n';
-    });
-    return xml+'</urlset>';
-};
+// ===================== sitemap 生成已迁移至构建期 =====================
+// 原浏览器端 window.buildSitemapXML 已移除：它输出的 /c/tool-*.html 已下线
+// （工具品类以 *-tools.html 为权威页），且无法覆盖 en/jp/es 镜像的 1480 个工具页。
+// 现由 Node 脚本 _build/build-sitemap.cjs 统一生成：
+//   sitemap.xml(索引) + sitemap-pages / -categories / -tools / -resources.xml
 
 // ===================== 点击「数据-jump」锚点：切换分类并滚动 =====================
 document.addEventListener('click',function(e){

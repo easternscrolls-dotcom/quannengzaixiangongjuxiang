@@ -92,6 +92,7 @@ Disallow: /*.cjs$
 # ---- Sitemaps (index + per-language) ----
 Sitemap: https://72tool.com/sitemap.xml
 Sitemap: https://72tool.com/sitemap-pages.xml
+Sitemap: https://72tool.com/sitemap-categories.xml
 Sitemap: https://72tool.com/sitemap-tools.xml
 Sitemap: https://72tool.com/sitemap-resources.xml
 
