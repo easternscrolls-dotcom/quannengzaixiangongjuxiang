@@ -1,0 +1,122 @@
+/* ===========================================================
+   72Tool · 星云 Nebula 主题（首页 / 分类聚合页）
+   仅作用于含 .navbar 的 4 个首页（中/英/日/西）。
+   设计语言来自 preview.html：青(#16C7B2)+紫(#9D7CF2)+粉(#F898F2)+金(#F2D479) 渐变点缀、
+   流动粒子背景、胶囊玻璃导航、圆角卡片+悬浮渐变描边、渐变标题。保留亮/暗双主题。
+   =========================================================== */
+:root{
+    --primary:#16C7B2;
+    --primary-2:#9D7CF2;
+    --accent:#9D7CF2;
+    --gold:#F2D479;
+    --pink:#F898F2;
+    --bg:#F7FAFC;
+    --card:#FFFFFF;
+    --text:#1E293B;
+    --muted:#64748B;
+    --border:rgba(22,199,178,.18);
+    --line:rgba(22,199,178,.15);
+    --tag-bg:rgba(22,199,178,.10);
+    --radius-card:20px;
+    --radius-btn:12px;
+    --grad:linear-gradient(120deg,#16C7B2,#9D7CF2);
+    --grad-3:linear-gradient(90deg,#16C7B2,#9D7CF2,#F898F2);
+    --shadow:0 6px 22px rgba(22,199,178,.10);
+    --shadow-hover:0 14px 42px rgba(22,199,178,.16);
+    --maxw:1180px;
+}
+[data-theme="dark"]{
+    --bg:#0B101C;
+    --card:#172033;
+    --text:#F1F5F9;
+    --muted:#94A3B8;
+    --border:rgba(157,124,242,.22);
+    --line:rgba(157,124,242,.16);
+    --tag-bg:rgba(157,124,242,.15);
+    --shadow:0 6px 22px rgba(0,0,0,.42);
+    --shadow-hover:0 14px 42px rgba(157,124,242,.26);
+}
+
+html{scroll-behavior:smooth;}
+body{background:var(--bg)!important;color:var(--text)!important;transition:background .3s,color .3s!important;}
+
+/* ── 导航栏（玻璃胶囊质感）── */
+.navbar{
+    background:rgba(255,255,255,.72)!important;
+    border:1px solid var(--border)!important;
+    border-bottom:1px solid var(--border)!important;
+    backdrop-filter:blur(16px) saturate(160%)!important;
+    -webkit-backdrop-filter:blur(16px) saturate(160%)!important;
+    box-shadow:0 4px 24px rgba(22,199,178,.10)!important;
+    transition:.3s!important;
+}
+[data-theme="dark"] .navbar{background:rgba(23,32,51,.72)!important;}
+.brand{color:var(--primary)!important;}
+.brand .logo-dot{background:var(--grad)!important;box-shadow:0 4px 14px rgba(22,199,178,.30)!important;}
+.nav-cats a:hover{color:var(--primary)!important;background:var(--tag-bg)!important;}
+.lang-btn,.icon-btn{background:var(--card)!important;border:1px solid var(--border)!important;color:var(--text)!important;transition:.2s!important;}
+.lang-btn:hover,.icon-btn:hover{border-color:var(--primary)!important;color:var(--primary)!important;box-shadow:0 0 0 3px rgba(22,199,178,.14)!important;}
+.lang-menu,.fav-panel{background:var(--card)!important;border:1px solid var(--border)!important;box-shadow:var(--shadow-hover)!important;}
+.lang-menu button:hover,.fav-panel a:hover{background:var(--tag-bg)!important;color:var(--primary)!important;}
+.fav-badge{background:var(--accent)!important;}
+
+/* ── Hero ── */
+.hero h1{background:var(--grad-3)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;}
+.hero .sub{color:var(--muted)!important;}
+.search-box input{border:1px solid rgba(22,199,178,.35)!important;border-radius:999px!important;background:var(--card)!important;}
+.search-box input:focus{border-color:var(--primary-2)!important;box-shadow:0 0 0 3px rgba(157,124,242,.18),0 0 14px rgba(157,124,242,.20)!important;}
+.search-results{background:var(--card)!important;border:1px solid var(--border)!important;box-shadow:var(--shadow-hover)!important;}
+.search-results a:hover{background:var(--tag-bg)!important;color:var(--primary)!important;}
+.scenario-tags a{border:1px solid var(--border)!important;background:var(--card)!important;color:var(--text)!important;}
+.scenario-tags a:hover{border-color:var(--primary)!important;color:var(--primary)!important;}
+
+/* ── 区块标题 ── */
+.section-head h2{color:var(--text)!important;}
+.section-head p{color:var(--muted)!important;}
+.group-head h3{color:var(--text)!important;}
+.group-head .more{color:var(--primary)!important;}
+
+/* ── 工具卡片（圆角 + 悬浮渐变描边 + 渐变叠层）── */
+.tool-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;}
+.tcard{
+    background:var(--card)!important;border:1px solid var(--border)!important;
+    border-radius:var(--radius-card)!important;box-shadow:var(--shadow)!important;
+    position:relative!important;isolation:isolate!important;transition:.35s!important;
+}
+.tcard::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    background:linear-gradient(135deg,rgba(22,199,178,.10),rgba(157,124,242,.10));opacity:0;transition:opacity .4s;z-index:-1;}
+.tcard:hover{transform:translateY(-6px)!important;border-color:var(--primary)!important;box-shadow:var(--shadow-hover)!important;}
+.tcard:hover::before{opacity:1;}
+.tcard .nm{color:var(--text)!important;}
+.tcard .ds{color:var(--muted)!important;}
+.tcard .star{color:var(--muted)!important;}
+.tcard .star:hover,.tcard .star.on{color:var(--primary)!important;}
+
+/* ── 新增工具滚动 ── */
+.new-track a{background:var(--card)!important;border:1px solid var(--border)!important;box-shadow:var(--shadow)!important;}
+.new-track a:hover{transform:translateY(-6px)!important;border-color:var(--primary)!important;box-shadow:var(--shadow-hover)!important;}
+
+/* ── 价值优势卡 ── */
+.value-card{
+    background:var(--card)!important;border:1px solid var(--border)!important;
+    border-radius:var(--radius-card)!important;box-shadow:var(--shadow)!important;
+    position:relative!important;isolation:isolate!important;transition:.35s!important;
+}
+.value-card::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    background:linear-gradient(135deg,rgba(22,199,178,.10),rgba(157,124,242,.10));opacity:0;transition:opacity .4s;z-index:-1;}
+.value-card:hover{transform:translateY(-6px)!important;border-color:var(--primary)!important;box-shadow:var(--shadow-hover)!important;}
+.value-card:hover::before{opacity:1;}
+.value-card .vic{background:var(--tag-bg)!important;color:var(--primary)!important;}
+.value-card h3{color:var(--text)!important;}
+.value-card p{color:var(--muted)!important;}
+
+/* ── 页脚 ── */
+footer{background:transparent!important;border-top:1px solid var(--line)!important;box-shadow:none!important;}
+.foot-links a{color:var(--muted)!important;}
+.foot-links a:hover{color:var(--primary)!important;}
+.foot-copy,.foot-lang{color:var(--muted)!important;}
+
+/* 滚动条星云色 */
+::-webkit-scrollbar{width:8px;height:8px;}
+::-webkit-scrollbar-thumb{background:var(--primary);border-radius:99px;}
+::-webkit-scrollbar-track{background:transparent;}

@@ -1,0 +1,113 @@
+/* ===========================================================
+   72Tool · 星云 Nebula 全局覆盖（工具页 / 分类页 / 内容页）
+   由注入脚本加在每个非首页 HTML 的 </head> 前。
+   亮色星云调色板（青+紫渐变点缀）+ 圆角卡片/胶囊控件 + 流动粒子背景。
+   仅覆盖视觉属性，且避开 checkbox/radio/range/color/file 等功能性控件，避免破坏工具逻辑。
+   =========================================================== */
+:root{
+    --n-bg:#F7FAFC;
+    --n-card:#FFFFFF;
+    --n-text:#1E293B;
+    --n-head:#0F172A;
+    --n-muted:#64748B;
+    --n-primary:#16C7B2;
+    --n-purple:#9D7CF2;
+    --n-line:rgba(22,199,178,.18);
+    --n-tag:rgba(22,199,178,.10);
+    --n-shadow:0 6px 22px rgba(22,199,178,.10);
+    --n-radius:20px;
+}
+
+/* 底色：html 同色避免视口外侧露白；body 作为居中星云卡片面板 */
+html{background:var(--n-bg)!important;}
+body{
+    background:var(--n-card)!important;
+    color:var(--n-text)!important;
+    border:1px solid var(--n-line)!important;
+    border-radius:var(--n-radius)!important;
+    box-shadow:var(--n-shadow)!important;
+}
+
+/* 标题 */
+h1,h2{color:var(--n-head)!important;}
+h3,h4,h5{color:var(--n-text)!important;}
+
+/* 说明文字 */
+.tool-desc,.tool-intro,.intro{color:var(--n-muted)!important;}
+
+/* 返回 / 面包屑链接 */
+a.back,.back,.crumb a{color:var(--n-primary)!important;font-weight:600;}
+
+/* 文本类输入 / 文本域 / 下拉 → 星云描边 */
+input[type="text"],input[type="number"],input[type="password"],input[type="email"],
+input[type="url"],input[type="search"],input:not([type]),textarea,select{
+    background:var(--n-card)!important;
+    border:1px solid var(--n-line)!important;
+    border-radius:12px!important;
+    color:var(--n-text)!important;
+    font-size:15px!important;
+    padding:12px!important;
+    box-shadow:inset 0 1px 2px rgba(15,23,42,.04)!important;
+}
+input:focus,textarea:focus,select:focus{
+    outline:none!important;
+    border-color:var(--n-primary)!important;
+    box-shadow:0 0 0 3px rgba(22,199,178,.16)!important;
+}
+
+/* 结果 / 输出框 */
+#resultOut,.result,.output,.result-box,.res,.preview,.out{
+    background:var(--n-card)!important;
+    border:1px solid var(--n-line)!important;
+    border-radius:12px!important;
+    color:var(--n-text)!important;
+    padding:12px!important;
+    box-shadow:inset 0 1px 2px rgba(15,23,42,.04)!important;
+}
+
+/* 按钮 → 星云青紫描边 */
+button,input[type="submit"],input[type="button"]{
+    background:var(--n-card)!important;
+    color:var(--n-primary)!important;
+    border:1px solid var(--n-line)!important;
+    border-radius:12px!important;
+    box-shadow:0 4px 16px rgba(22,199,178,.12)!important;
+    font-size:15px!important;
+    font-weight:600!important;
+    cursor:pointer!important;
+    transition:.15s!important;
+}
+button:hover,input[type="submit"]:hover,input[type="button"]:hover{
+    border-color:var(--n-primary)!important;
+    box-shadow:0 8px 24px rgba(22,199,178,.22)!important;
+    transform:translateY(-1px)!important;
+}
+button:active,input[type="submit"]:active,input[type="button"]:active{
+    transform:translateY(0)!important;
+    box-shadow:inset 0 2px 6px rgba(15,23,42,.12)!important;
+}
+
+/* 分类页工具卡片 / 标签 */
+.grid .card{
+    background:var(--n-card)!important;
+    border:1px solid var(--n-line)!important;
+    border-radius:var(--n-radius)!important;
+    box-shadow:var(--n-shadow)!important;
+    color:var(--n-text)!important;
+}
+.grid .card:hover{border-color:var(--n-primary)!important;box-shadow:0 14px 40px rgba(22,199,178,.18)!important;transform:translateY(-2px)!important;}
+.chip{
+    background:var(--n-tag)!important;
+    border:1px solid transparent!important;
+    border-radius:20px!important;
+    color:var(--n-primary)!important;
+}
+.chip:hover,.chip.active{background:var(--n-primary)!important;color:#fff!important;border-color:var(--n-primary)!important;}
+
+/* 相关工具标题 */
+.rel{color:var(--n-head)!important;}
+
+/* 滚动条星云色 */
+::-webkit-scrollbar{width:8px;height:8px;}
+::-webkit-scrollbar-thumb{background:var(--n-primary);border-radius:99px;}
+::-webkit-scrollbar-track{background:transparent;}
