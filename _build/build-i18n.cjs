@@ -171,24 +171,21 @@ function run() {
     html = html.split('<script src="/autopush.js"></script>').join('');
     html = html.split('<script defer src="autopush.js"></script>').join('');
 
-    // 6) 翻转 i18n 语言 span：目标语言可见，中文隐藏
-    if (L.key === 'en') {
+    // 6) 翻转 i18n 语言 span：目标语言可见，中文隐藏（所有海外语言统一处理）
+    if (L.key !== 'zh') {
       // 从所有 i18n-en 中移除 hidden（让它可见）
       html = html.split('i18n-en hidden').join('i18n-en');
       // 给没有 hidden 的 i18n-zh 加上 hidden
       html = html.split('i18n-zh">').join('i18n-zh" hidden>');
     }
 
-    // 7) 修正页脚/导航内部链接指回中文站
-    //    href="/about.html" → href="/en/about.html" 等
-    if (L.key === 'en') {
+    // 7) 修正页脚/导航内部链接指回中文站（所有海外语言）
+    if (L.key !== 'zh') {
       const pages = ['index.html', 'about.html', 'privacy.html', 'terms.html', 'contact.html', 'sitemap.html'];
       pages.forEach(p => {
-        html = html.replace(new RegExp('href="/' + p.replace(/\./g, '\\.') + '"', 'g'), 'href="/en/' + p + '"');
+        html = html.replace(new RegExp('href="/' + p.replace(/\./g, '\\.') + '"', 'g'), 'href="/' + L.key + '/' + p + '"');
       });
-      html = html.split('href="/terms.html#dmca"').join('href="/en/terms.html#dmca"');
-      // 页脚中 data-jump 的 SEO-intro 链接也改
-      html = html.replace(/href="#cat-/g, 'href="#en-cat-');
+      html = html.split('href="/terms.html#dmca"').join('href="/' + L.key + '/terms.html#dmca"');
     }
 
     // 5) 写入目标目录

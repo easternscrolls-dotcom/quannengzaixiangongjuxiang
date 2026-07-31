@@ -954,9 +954,9 @@ gtag('consent','default',{
     <h2><span class="i18n-zh" hidden>一个站点，搞定工具、模板与源码</span><span class="i18n-en">One Site for Tools, Templates &amp; Source</span></h2>
     <p>
         <span class="i18n-zh" hidden>72Tool 聚合 <span class="kw">在线 JSON 格式化</span>、<span class="kw">图片压缩工具</span>、<span class="kw">代码美化工具</span>、<span class="kw">PDF 转换</span> 与各类 <span class="kw">多媒体转换器</span>，全部免费、无需注册、浏览器即用。需要建站？这里有 <span class="kw">星云风博客模板</span>、<span class="kw">暗黑静态主页</span>、<span class="kw">自适应个人作品集</span>，以及 <span class="kw">无数据库博客源码</span>、<span class="kw">工具箱静态源码</span>、<span class="kw">导航站 HTML 源码</span>，预览即下载。
-        <a href="#en-cat-tool" data-jump="tool">浏览在线工具</a> · <a href="#en-cat-theme" data-jump="theme">查看网站模板</a> · <a href="#en-cat-source" data-jump="source">获取开源源码</a></span>
+        <a href="#cat-tool" data-jump="tool">浏览在线工具</a> · <a href="#cat-theme" data-jump="theme">查看网站模板</a> · <a href="#cat-source" data-jump="source">获取开源源码</a></span>
         <span class="i18n-en">72Tool gathers <span class="kw">online JSON formatter</span>, <span class="kw">image compressor</span>, <span class="kw">code beautifier</span>, <span class="kw">PDF converter</span> and <span class="kw">media converters</span> — all free, no sign-up. Need a site? Grab a <span class="kw">nebula blog template</span>, <span class="kw">dark static homepage</span>, <span class="kw">responsive portfolio</span>, plus <span class="kw">database-free blog source</span>, <span class="kw">static toolkit source</span> and <span class="kw">navigation site HTML</span>.
-        <a href="#en-cat-tool" data-jump="tool">Browse tools</a> · <a href="#en-cat-theme" data-jump="theme">View templates</a> · <a href="#en-cat-source" data-jump="source">Get source</a></span>
+        <a href="#cat-tool" data-jump="tool">Browse tools</a> · <a href="#cat-theme" data-jump="theme">View templates</a> · <a href="#cat-source" data-jump="source">Get source</a></span>
     </p>
 </section>
 
@@ -2193,7 +2193,7 @@ function renderTagAgg(){
             var url = catPageUrl(mk, t.key);
             html += url
                 ? '<a href="'+url+'" title="'+label+'">'+label+'</a>'
-                : '<a href="#en-cat-'+mk+'" data-jump="'+mk+'" data-sub="'+t.key+'">'+label+'</a>';
+                : '<a href="#cat-'+mk+'" data-jump="'+mk+'" data-sub="'+t.key+'">'+label+'</a>';
         });
     });
     box.innerHTML=html;
