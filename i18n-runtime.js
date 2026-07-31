@@ -223,15 +223,24 @@
     var m = location.search.match(new RegExp('[?&]' + name + '=([^&]+)'));
     return m ? decodeURIComponent(m[1]) : null;
   }
-  function detect() {
+function detect() {
     var p = param('lang');
-    if (p === 'en' || p === 'zh') return p;
-    try { var s = localStorage.getItem('siteLang'); if (s === 'en' || s === 'zh') return s; } catch (e) {}
+    if (p && /^(zh|en|jp|es|de|ar)$/.test(p)) return p;
+    try { var s = localStorage.getItem('siteLang'); if (s && /^(zh|en|jp|es|de|ar)$/.test(s)) return s; } catch (e) {}
+    // 优先读 <html data-site-lang>：每个语言页有独立静态页，此属性决定本语种
+    try {
+      var sl = document.documentElement.getAttribute('data-site-lang');
+      if (sl && /^(zh|en|jp|es|de|ar)$/.test(sl.toLowerCase())) return sl.toLowerCase();
+    } catch (e) {}
     var hl = (document.documentElement.lang || '').toLowerCase();
     if (hl.indexOf('en') === 0) return 'en';
     return 'zh';
-  }
-  function syncLinks(lang) {
+}
+function syncLinks(lang) {
+    // 现在每种语言是独立静态页（/en/, /jp/, /es/...），href 已硬编码到对应语言路径，
+    // 不再需要通过 ?lang=en 切换。保留函数仅为兼容性，实际不做修改。
+    return;
+    /* 以下为旧逻辑（已废弃，保留注释以备回退）
     var links = document.querySelectorAll('a[href]');
     for (var i = 0; i < links.length; i++) {
       var a = links[i];
@@ -250,7 +259,8 @@
         a.setAttribute('href', orig);
       }
     }
-  }
+    */
+}
 
   /* 海外版（EN 模式）隐藏中文特化工具：按 <a href="page.html"> 命中 LOCAL_ONLY 列表 */
   function applyLocalOnly(root) {
@@ -270,21 +280,20 @@
   }
 
   function apply(lang, silent) {
-    document.documentElement.lang = (lang === 'en') ? 'en' : 'zh-CN';
+    document.documentElement.lang = (lang === 'zh') ? 'zh-CN' : lang;
 
     var zh = document.querySelectorAll('.i18n-zh');
     var en = document.querySelectorAll('.i18n-en');
+    // 仅 zh 显示中文；所有海外语言（en/jp/es/de/ar）统一显示英文兜底
+    var isZh = (lang === 'zh');
+    var isEn = !isZh;
     for (var i = 0; i < zh.length; i++) {
-      var z = zh[i];
-      var isZh = (lang === 'zh');
-      z.hidden = !isZh;
-      z.style.display = isZh ? '' : 'none';
+      zh[i].hidden = !isZh;
+      zh[i].style.display = isZh ? '' : 'none';
     }
     for (var j = 0; j < en.length; j++) {
-      var e = en[j];
-      var isEn = (lang === 'en');
-      e.hidden = !isEn;
-      e.style.display = isEn ? '' : 'none';
+      en[j].hidden = !isEn;
+      en[j].style.display = isEn ? '' : 'none';
     }
 
     var dict = I18N[lang] || I18N.zh;
@@ -349,17 +358,16 @@
   function toggle(lang) {
     var zh = document.querySelectorAll('.i18n-zh');
     var en = document.querySelectorAll('.i18n-en');
+    // 与 apply() 一致：仅 zh 显示中文；所有海外语言统一显示英文兜底
+    var isZh = (lang === 'zh');
+    var isEn = !isZh;
     for (var i = 0; i < zh.length; i++) {
-      var z = zh[i];
-      var isZh = (lang === 'zh');
-      z.hidden = !isZh;
-      z.style.display = isZh ? '' : 'none';
+      zh[i].hidden = !isZh;
+      zh[i].style.display = isZh ? '' : 'none';
     }
     for (var j = 0; j < en.length; j++) {
-      var e = en[j];
-      var isEn = (lang === 'en');
-      e.hidden = !isEn;
-      e.style.display = isEn ? '' : 'none';
+      en[j].hidden = !isEn;
+      en[j].style.display = isEn ? '' : 'none';
     }
   }
   function ensureStyle() {
