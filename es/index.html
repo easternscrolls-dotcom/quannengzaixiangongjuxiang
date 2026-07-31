@@ -876,10 +876,8 @@
     .card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
     img { max-width: 100%; height: auto; }
 
-    /* ── 语言切换淡入淡出 ── */
-    body.lang-fading { opacity: 0; transition: opacity 0.18s ease; }
-    body { opacity: 0; animation: langFadeIn 0.22s ease forwards; }
-    @keyframes langFadeIn { from { opacity: 0; } to { opacity: 1; } }
+    /* ── 语言切换淡入淡出（仅淡出，不淡入）── */
+    body.lang-fading { opacity: 0; transition: opacity 0.18s ease; pointer-events:none; }
 
     /* ── 10. 减少动效偏好（无障碍 + 低配设备）── */
     @media (prefers-reduced-motion: reduce) {
@@ -887,7 +885,6 @@
         #nebula-particles { display: none; }
         .announce-track { animation: none; }
         body.lang-fading { opacity: 1; }
-        body { opacity: 1; animation: none; }
     }
 </style>
 <!-- adsense -->
