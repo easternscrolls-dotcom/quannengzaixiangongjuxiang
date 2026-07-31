@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light" data-lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -11,7 +11,7 @@
 <meta name="bytedance-verification-code" content="2NK5y9k9mU8isvX6fjQk" />
 <meta name="shenma-site-verification" content="82053baefbc340503e88fb91461dc27d_1784970172">
 <meta name="sogou-site-verification" content="ogIxB7xLU6" />
-<!-- 首页唯一标题 / 描述（文档1 双语原创） -->
+<!-- 首页唯一标题 / 描述 -->
 <title>72Tool在线工具箱｜免费图片处理、PDF转换、开发调试、办公计算工具合集</title>
 <meta name="description" content="72Tool是面向全球用户的一站式在线工具平台，提供数百款免费云端工具，涵盖图像创作、文档处理、开发调试、商务换算等场景，无需注册、无需下载、本地运行更安全。">
 <meta name="i18n-title-en" content="72Tool | Free All-in-One Online Utility Tools for Global Users">
@@ -22,7 +22,7 @@
 <link rel="alternate" hreflang="en" href="https://72tool.com/en/">
 <link rel="alternate" hreflang="ja" href="https://72tool.com/jp/">
 <link rel="alternate" hreflang="es" href="https://72tool.com/es/">
-<!-- Open Graph / Twitter（社交分享 SEO） -->
+<!-- Open Graph / Twitter -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="72Tool在线工具箱｜免费图片处理、PDF转换、开发调试、办公计算工具合集">
 <meta property="og:description" content="72Tool是面向全球用户的一站式在线工具平台，提供数百款免费云端工具，涵盖图像创作、文档处理、开发调试、商务换算等场景，无需注册、无需下载、本地运行更安全。">
@@ -31,462 +31,712 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="72Tool在线工具箱｜免费图片处理、PDF转换、开发调试、办公计算工具合集">
 <meta name="twitter:description" content="72Tool是面向全球用户的一站式在线工具平台，提供数百款免费云端工具，涵盖图像创作、文档处理、开发调试、商务换算等场景，无需注册、无需下载、本地运行更安全。">
-<!-- i18n-runtime（中英切换，无侵入） -->
+<!-- i18n-runtime -->
 <script src="i18n-runtime.js"></script>
 <style>
-:root{
-    --primary:#2563eb;
-    --primary-2:#1d4ed8;
-    --accent:#8b5cf6;
-    --bg:#f8fafc;
-    --card:#ffffff;
-    --text:#334155;
-    --muted:#64748b;
-    --border:#e2e8f0;
-    --radius-card:12px;
-    --radius-btn:8px;
-    --shadow:0 1px 3px rgba(15,23,42,.06);
-    --shadow-hover:0 10px 24px rgba(37,99,235,.14);
-    --maxw:1180px;
-    --grad:linear-gradient(120deg,#2563eb,#8b5cf6);
-}
-[data-theme="dark"]{
-    --bg:#0f172a;
-    --card:#1e293b;
-    --text:#e2e8f0;
-    --muted:#94a3b8;
-    --border:#334155;
-    --shadow:0 1px 3px rgba(0,0,0,.4);
-    --shadow-hover:0 10px 28px rgba(37,99,235,.28);
-}
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,"Source Han Sans SC","Microsoft Yahei",system-ui,-apple-system,sans-serif;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);transition:background .3s,color .3s;line-height:1.6;-webkit-font-smoothing:antialiased;}
-a{color:inherit;text-decoration:none;}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
+/* ============================================================
+   72Tool · Nebula Cloud 星云主题（完整内联样式）
+   设计语言来自 preview.html：青#16C7B2+紫#9D7CF2+粉#F898F2+金#F2D479
+   ============================================================ */
+    :root {
+        --nebula-cyan: #16C7B2;
+        --nebula-purple: #9D7CF2;
+        --nebula-gold: #F2D479;
+        --nebula-pink: #F898F2;
+        --light-bg: #F7FAFC;
+        --light-card: #FFFFFF;
+        --light-text-main: #1E293B;
+        --light-text-sub: #64748B;
+        --dark-bg: #0B101C;
+        --dark-card: #172033;
+        --dark-text-main: #F1F5F9;
+        --dark-text-sub: #94A3B8;
+    }
+    [data-theme="light"] {
+        --bg: var(--light-bg);
+        --card: var(--light-card);
+        --text-main: var(--light-text-main);
+        --text-sub: var(--light-text-sub);
+        --tag-bg: rgba(22,199,178,0.1);
+        --tag-active: var(--nebula-cyan);
+        --line-color: rgba(22,199,178,0.15);
+    }
+    [data-theme="dark"] {
+        --bg: var(--dark-bg);
+        --card: var(--dark-card);
+        --text-main: var(--dark-text-main);
+        --text-sub: var(--dark-text-sub);
+        --tag-bg: rgba(157,124,242,0.15);
+        --tag-active: var(--nebula-purple);
+        --line-color: rgba(157,124,242,0.15);
+    }
 
-/* ── 导航栏 ── */
-.navbar{position:sticky;top:0;z-index:50;height:64px;display:flex;align-items:center;gap:18px;
-    padding:0 20px;max-width:var(--maxw);margin:0 auto;
-    background:var(--card);border-bottom:1px solid var(--border);
-    backdrop-filter:saturate(180%) blur(8px);}
-[data-theme="dark"] .navbar{background:rgba(30,41,59,.82);}
-.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:20px;color:var(--primary);white-space:nowrap;}
-.brand .logo-dot{width:26px;height:26px;border-radius:7px;background:var(--grad);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800;}
-.nav-cats{display:flex;gap:4px;margin-left:8px;overflow:hidden;}
-.nav-cats a{font-size:13px;color:var(--muted);padding:7px 11px;border-radius:var(--radius-btn);white-space:nowrap;transition:.2s;}
-.nav-cats a:hover{background:var(--bg);color:var(--primary);}
-.nav-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
-.lang-switch{position:relative;}
-.lang-btn{display:flex;align-items:center;gap:6px;font-size:13px;padding:7px 12px;border:1px solid var(--border);border-radius:var(--radius-btn);background:var(--card);color:var(--text);cursor:pointer;}
-.lang-menu{position:absolute;right:0;top:46px;min-width:150px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-card);box-shadow:var(--shadow-hover);overflow:hidden;display:none;}
-.lang-menu.open{display:block;}
-.lang-menu button{display:block;width:100%;text-align:left;padding:10px 14px;font-size:13px;background:none;border:none;color:var(--text);cursor:pointer;}
-.lang-menu button:hover{background:var(--bg);color:var(--primary);}
-.icon-btn{width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-btn);background:var(--card);color:var(--text);cursor:pointer;font-size:16px;transition:.2s;}
-.icon-btn:hover{border-color:var(--primary);color:var(--primary);}
-.fav-btn{position:relative;}
-.fav-badge{position:absolute;top:-5px;right:-5px;min-width:16px;height:16px;padding:0 4px;border-radius:9px;background:var(--accent);color:#fff;font-size:10px;line-height:16px;text-align:center;}
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+        background-color: var(--bg); color: var(--text-main);
+        transition: all 0.5s ease; overflow-x: hidden;
+        line-height: 1.7;
+        font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Microsoft YaHei", PingFang SC, sans-serif;
+    }
+    html[data-lang="en-US"] body { letter-spacing: 0.2px; }
+    html { scroll-behavior: smooth; }
+    a { color:inherit; text-decoration:none; }
 
-/* ── Hero ── */
-.hero{min-height:calc(100vh - 64px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px 30px;}
-.hero h1{font-size:clamp(28px,5vw,46px);font-weight:800;letter-spacing:-.5px;line-height:1.2;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;max-width:880px;}
-.hero .sub{margin:18px auto 0;max-width:680px;font-size:16px;color:var(--muted);}
-.search-box{margin:34px auto 0;width:100%;max-width:680px;position:relative;}
-.search-box input{width:100%;height:56px;padding:0 22px;font-size:16px;border:2px solid var(--border);border-radius:var(--radius-btn);background:var(--card);color:var(--text);transition:.25s;}
-.search-box input:focus{outline:none;border-color:transparent;background:var(--card);box-shadow:0 0 0 3px rgba(37,99,235,.25);transform:scale(1.02);}
-.search-results{position:absolute;top:62px;left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-card);box-shadow:var(--shadow-hover);max-height:360px;overflow:auto;display:none;text-align:left;z-index:30;}
-.search-results.open{display:block;}
-.search-results a{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--border);font-size:14px;}
-.search-results a:last-child{border-bottom:none;}
-.search-results a:hover{background:var(--bg);}
-.search-results .en{color:var(--muted);font-size:12px;margin-left:auto;}
-.scenario-tags{margin:22px auto 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:720px;}
-.scenario-tags a{font-size:13px;padding:8px 15px;border:1px solid var(--border);border-radius:20px;color:var(--text);background:var(--card);transition:.2s;cursor:pointer;}
-.scenario-tags a:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px);}
-.scenario-tags a .em{margin-right:4px;}
+    /* ── 粒子画布 ── */
+    #nebula-particles {
+        position: fixed; top:0; left:0; width:100%; height:100%;
+        z-index: -1; pointer-events: none;
+    }
 
-/* ── 区块标题 ── */
-.section{padding:54px 0;}
-.section-head{text-align:center;margin-bottom:30px;}
-.section-head h2{font-size:26px;font-weight:700;}
-.section-head p{color:var(--muted);margin-top:8px;font-size:14px;}
+    /* ── 悬浮胶囊导航 ── */
+    .nav-capsule {
+        position: fixed; top:24px; left:50%; transform: translateX(-50%);
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        border-radius: 999px; padding:12px 32px; z-index:999;
+        transition: all 0.3s ease; width:92%; max-width:1200px;
+    }
+    [data-theme="light"] .nav-capsule {
+        background: rgba(255,255,255,0.7);
+        border: 1px solid rgba(22,199,178,0.2);
+        box-shadow: 0 4px 20px rgba(22,199,178,0.1);
+    }
+    [data-theme="dark"] .nav-capsule {
+        background: rgba(23,32,51,0.7);
+        border: 1px solid rgba(157,124,242,0.2);
+        box-shadow: 0 4px 20px rgba(157,124,242,0.1);
+    }
+    .nav-wrap { display:flex; align-items:center; width:100%; gap:24px; }
+    .nav-logo {
+        font-size:18px; font-weight:700; color:var(--nebula-cyan);
+        text-decoration:none; white-space:nowrap; display:flex;align-items:center;gap:8px;
+    }
+    .nav-logo .logo-dot {
+        width:26px;height:26px;border-radius:7px;
+        background:linear-gradient(135deg,var(--nebula-cyan),var(--nebula-purple));
+        display:inline-flex;align-items:center;justify-content:center;
+        color:#fff;font-size:13px;font-weight:800;
+    }
+    .main-nav { display:flex; gap:32px; }
+    .nav-item {
+        color:var(--text-sub); text-decoration:none; font-size:15px;
+        transition:0.3s; position:relative; cursor:pointer; white-space:nowrap;
+    }
+    .nav-item.active,.nav-item:hover { color:var(--nebula-cyan); }
+    .nav-item.active::after {
+        content:''; position:absolute; bottom:-4px; left:0; width:100%;
+        height:2px; background:linear-gradient(90deg,var(--nebula-cyan),var(--nebula-purple));
+        border-radius:2px;
+    }
+    .search-wrap { flex:1; max-width:420px; position:relative; }
+    .search-input {
+        width:100%; padding:8px 16px; border-radius:999px;
+        border:1px solid rgba(22,199,178,0.3); background:var(--card);
+        color:var(--text-main); outline:none; transition:0.3s ease;
+    }
+    .search-input:focus {
+        border-color:var(--nebula-purple);
+        box-shadow:0 0 12px rgba(157,124,242,0.2);
+    }
+    .tool-btn-group { display:flex; gap:10px; flex-shrink:0; align-items:center; }
+    .theme-btn,.lang-btn {
+        width:40px;height:40px;border-radius:50%;border:none;
+        background:var(--card);color:var(--text-main);cursor:pointer;
+        transition:0.3s ease;font-size:16px;display:inline-flex;align-items:center;justify-content:center;
+    }
+    .lang-dropdown { position:relative; }
+    .lang-menu {
+        position:absolute; top:calc(100%+8px); right:0; width:140px;
+        background:var(--card);border-radius:12px;border:1px solid var(--line-color);
+        box-shadow:0 8px 24px rgba(0,0,0,0.12); overflow:hidden;
+        display:none; z-index:1001;
+    }
+    .lang-menu.open { display:block; }
+    .lang-option {
+        padding:10px 16px; cursor:pointer; font-size:14px; transition:0.2s;
+    }
+    .lang-option:hover { background:var(--tag-bg); color:var(--nebula-cyan); }
+    .lang-option.active { color:var(--nebula-cyan); font-weight:bold; }
 
-/* ── 场景化分组 ── */
-.group{margin-bottom:42px;}
-.group-head{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;}
-.group-head h3{font-size:20px;font-weight:700;}
-.group-head .en{color:var(--muted);font-size:13px;}
-.group-head .more{margin-left:auto;font-size:13px;color:var(--primary);}
-.tool-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
-.tcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-card);padding:16px 14px;transition:.3s;position:relative;display:block;}
-.tcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:transparent;}
-.tcard .ico{font-size:22px;}
-.tcard .nm{font-size:14px;font-weight:600;margin-top:8px;}
-.tcard .ds{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4;height:34px;overflow:hidden;}
-.tcard .star{position:absolute;top:10px;right:10px;font-size:14px;color:var(--muted);cursor:pointer;opacity:.5;transition:.2s;}
-.tcard .star:hover{opacity:1;color:var(--accent);}
-.tcard .star.on{opacity:1;color:var(--accent);}
+    /* ── 二级分类标签栏 ── */
+    .sub-tag-bar {
+        position:fixed; top:90px; left:50%; transform:translateX(-50%);
+        z-index:998; display:flex; gap:10px; flex-wrap:wrap;
+        justify-content:center; max-width:90%;
+    }
+    .sub-tag-item {
+        padding:6px 18px; border-radius:999px; font-size:13px;
+        background:var(--tag-bg); color:var(--text-sub);
+        border:1px solid transparent; cursor:pointer; transition:0.3s ease; white-space:nowrap;
+    }
+    .sub-tag-item.active {
+        background:var(--tag-active); color:#fff;
+        box-shadow:0 2px 12px rgba(22,199,178,0.25);
+    }
+    .sub-tag-item:hover:not(.active) { border-color:var(--nebula-cyan); color:var(--nebula-cyan); }
 
-/* ── 新增工具滚动 ── */
-.new-scroll{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
-.new-track{display:flex;gap:14px;width:max-content;animation:scrollx 40s linear infinite;cursor:grab;}
-.new-track:active{cursor:grabbing;animation-play-state:paused;}
-.new-track a{flex:0 0 auto;width:160px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-card);padding:14px;transition:.3s;display:block;}
-.new-track a:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);}
-.new-track .ico{font-size:20px;}
-.new-track .nm{font-size:13px;font-weight:600;margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-@keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    /* ── 搜索弹窗 ── */
+    .search-popup {
+        position:fixed; top:140px; left:50%; transform:translateX(-50%);
+        width:520px; max-width:90%; background:var(--card);
+        border-radius:16px; box-shadow:0 8px 30px rgba(0,0,0,0.1);
+        padding:16px; z-index:997; display:none; max-height:380px;
+        overflow-y:auto; border:1px solid var(--line-color);
+    }
+    .search-result-item {
+        padding:12px 14px; border-radius:10px; cursor:pointer; font-size:14px;
+        color:var(--text-main); transition:0.2s; border-bottom:1px solid var(--line-color);
+    }
+    .search-result-item:last-child { border-bottom:none; }
+    .search-result-item:hover { background:var(--tag-bg); color:var(--nebula-cyan); }
+    .search-empty { text-align:center; padding:24px; color:var(--text-sub); font-size:14px; }
 
-/* ── 价值优势 ── */
-.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.value-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-card);padding:28px 24px;transition:.3s;}
-.value-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);}
-.value-card .vic{width:46px;height:46px;border-radius:12px;background:rgba(37,99,235,.1);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px;}
-.value-card h3{font-size:18px;font-weight:700;margin-bottom:8px;}
-.value-card p{font-size:14px;color:var(--muted);}
+    /* ── Banner ── */
+    .site-banner { padding:180px 20px 80px; text-align:center; }
+    .site-banner h1 {
+        font-size:clamp(32px,5vw,48px); font-weight:800; margin-bottom:16px;
+        background:linear-gradient(90deg,var(--nebula-cyan),var(--nebula-purple),var(--nebula-pink));
+        -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .site-banner p { font-size:18px; color:var(--text-sub); max-width:680px; margin:0 auto; }
 
-/* ── 收藏面板 ── */
-.fav-panel{position:fixed;top:64px;right:16px;width:300px;max-height:70vh;overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-card);box-shadow:var(--shadow-hover);padding:14px;display:none;z-index:60;}
-.fav-panel.open{display:block;}
-.fav-panel h4{font-size:14px;margin-bottom:10px;}
-.fav-panel a{display:flex;align-items:center;gap:8px;padding:8px 6px;font-size:13px;border-bottom:1px solid var(--border);}
-.fav-panel a:last-child{border-bottom:none;}
-.fav-empty{font-size:13px;color:var(--muted);padding:10px 0;}
+    /* ── 容器 & 资源网格 ── */
+    .container { max-width:1200px; margin:0 auto 100px; padding:0 20px; }
+    .section-title {
+        font-size:24px; margin-bottom:24px; display:flex; align-items:center; gap:12px;
+    }
+    .section-title span { font-size:26px; }
+    .resource-grid {
+        display:grid; grid-template-columns:repeat(auto-fill,minmax(350px,1fr));
+        gap:24px; margin-bottom:40px;
+    }
 
-/* ── 页脚 ── */
-footer{margin-top:40px;border-top:1px solid var(--border);background:var(--card);padding:36px 0 28px;}
-.foot-links{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin-bottom:14px;}
-.foot-links a{font-size:14px;color:var(--muted);}
-.foot-links a:hover{color:var(--primary);}
-.foot-copy{text-align:center;font-size:13px;color:var(--muted);}
-.foot-lang{text-align:center;font-size:12px;color:var(--muted);margin-top:8px;}
+    /* ── 资源卡片（核心组件）── */
+    .resource-card {
+        border-radius:24px; background:var(--card); padding:28px;
+        transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+        position:relative; overflow:hidden; border:1px solid var(--line-color);
+        cursor:pointer; display:block;
+    }
+    .resource-card::before {
+        content:''; position:absolute; inset:0;
+        background:linear-gradient(135deg,rgba(22,199,178,0.08),rgba(157,124,242,0.08));
+        opacity:0; transition:opacity 0.4s ease; z-index:0;
+    }
+    .resource-card:hover {
+        transform:translateY(-8px); border-color:var(--nebula-cyan);
+        box-shadow:0 12px 40px rgba(22,199,178,0.15);
+    }
+    .resource-card:hover::before { opacity:1; }
+    .card-badge {
+        position:absolute; top:16px; right:20px; padding:3px 10px;
+        font-size:12px; border-radius:8px; color:#fff; white-space:nowrap;z-index:2;
+    }
+    .badge-tool { background:linear-gradient(135deg,var(--nebula-cyan),#22d1ee); }
+    .badge-dev { background:linear-gradient(135deg,#6366f1,#818cf8); }
+    .badge-img { background:linear-gradient(135deg,#f59e0b,#fbbf24); }
+    .badge-pdf { background:linear-gradient(135deg,#ef4444,#f87171); }
+    .badge-video { background:linear-gradient(135deg,#ec4899,#f472b6); }
+    .badge-audio { background:linear-gradient(135deg,#14b8a6,#2dd4bf); }
+    .badge-text { background:linear-gradient(135deg,#8b5cf6,#a78bfa); }
+    .badge-default { background:linear-gradient(135deg,var(--nebula-cyan),var(--nebula-purple)); }
 
-@media(max-width:1080px){.tool-grid{grid-template-columns:repeat(4,1fr);}.value-grid{grid-template-columns:1fr;}}
-@media(max-width:760px){.nav-cats{display:none;}.tool-grid{grid-template-columns:repeat(2,1fr);}.hero h1{font-size:30px;}}
-@media(max-width:420px){.tool-grid{grid-template-columns:repeat(1,1fr);}}
+    .card-title {
+        font-size:20px; font-weight:700; color:var(--text-main);
+        margin-bottom:12px; transition:0.3s; position:relative;z-index:1;
+    }
+    .resource-card:hover .card-title { color:var(--nebula-cyan); }
+    .card-desc {
+        color:var(--text-sub); font-size:14px; margin-bottom:20px;
+        line-height:1.6; position:relative;z-index:1;
+    }
+    .card-tag-list { display:flex; gap:8px; flex-wrap:wrap; position:relative;z-index:1; }
+    .card-tag {
+        padding:4px 12px; background:var(--tag-bg); color:var(--nebula-cyan);
+        border-radius:6px; font-size:12px;
+    }
+
+    /* ── 加载更多按钮 ── */
+    .load-more-wrap { text-align:center; margin:30px 0 50px; }
+    .load-more-btn {
+        padding:12px 40px; border-radius:999px; border:1px solid var(--line-color);
+        background:var(--card); color:var(--nebula-cyan); font-size:15px;
+        cursor:pointer; transition:0.3s; font-weight:600;
+    }
+    .load-more-btn:hover {
+        background:var(--nebula-cyan); color:#fff;
+        box-shadow:0 4px 20px rgba(22,199,178,0.3);
+    }
+
+    /* ── 统计信息 ── */
+    .stats-bar {
+        text-align:center; margin-bottom:24px; font-size:14px; color:var(--text-sub);
+    }
+    .stats-bar strong { color:var(--nebula-cyan); }
+
+    /* ── 收藏面板 ── */
+    .fav-panel {
+        position:fixed;top:90px;right:16px;width:300px;max-height:70vh;overflow:auto;
+        background:var(--card);border:1px solid var(--line-color);border-radius:16px;
+        box-shadow:0 8px 30px rgba(0,0,0,0.1);padding:14px;display:none;z-index:60;
+    }
+    .fav-panel.open { display:block; }
+    .fav-panel h4 { font-size:14px;margin-bottom:10px; }
+    .fav-panel a { display:flex;align-items:center;gap:8px;padding:8px 6px;font-size:13px;border-bottom:1px solid var(--line-color); }
+    .fav-panel a:last-child { border-bottom:none; }
+    .fav-panel a:hover { background:var(--tag-bg); color:var(--nebula-cyan); }
+    .fav-empty { font-size:13px;color:var(--text-sub);padding:10px 0; }
+
+    /* ── 页脚 ── */
+    footer { padding:40px 20px; text-align:center; border-top:1px solid var(--line-color); }
+    footer p { color:var(--text-sub); font-size:14px; }
+    .foot-links { display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin-bottom:14px; }
+    .foot-links a { font-size:14px;color:var(--text-sub);transition:.2s; }
+    .foot-links a:hover { color:var(--nebula-cyan); }
+    .foot-copy { font-size:13px;color:var(--text-sub); }
+    .foot-lang { font-size:12px;color:var(--text-sub);margin-top:8px; }
+
+    /* ── 回到顶部 ── */
+    .back-top {
+        position:fixed; bottom:40px; right:30px; width:50px;height:50px;
+        border-radius:50%; background:linear-gradient(135deg,#16C7B2,#9D7CF2);
+        color:#fff;text-align:center;line-height:50px;font-size:20px;
+        box-shadow:0 4px 20px rgba(22,199,178,0.3);cursor:pointer;
+        opacity:0;transition:0.4s;z-index:998;
+    }
+
+    /* ── Cookie 弹窗 ── */
+    #cookieBox {
+        position:fixed;bottom:0;left:0;right:0;background:var(--card);
+        border-top:1px solid var(--line-color);padding:16px 24px;z-index:9999;display:none;
+    }
+
+    /* ── 滚动条 ── */
+    ::-webkit-scrollbar{width:6px;height:6px;}
+    ::-webkit-scrollbar-thumb{background:var(--nebula-cyan);border-radius:99px;}
+    ::-webkit-scrollbar-track{background:transparent;}
+
+    /* ── 响应式 ── */
+    @media(max-width:768px){
+        .nav-capsule{width:95%;padding:10px 16px;top:16px;}
+        .nav-wrap{flex-wrap:wrap;gap:12px;}
+        .main-nav{gap:16px;}
+        .sub-tag-bar{top:75px;max-width:95%;}
+        .resource-card{padding:20px;border-radius:20px;}
+        .resource-grid{grid-template-columns:1fr;}
+        .site-banner h1{font-size:32px;}
+        .site-banner{padding:160px 20px 60px;}
+        .search-popup{width:95%;}
+        .lang-menu{right:-20px;}
+        .fav-panel{right:10px;width:calc(100vw - 20px);max-width:300px;}
+    }
 </style>
-<link rel="stylesheet" href="/home-nebula.css">
-<!-- adsense --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495097009978965" crossorigin="anonymous"></script>
+<!-- adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1495097009978965" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<!-- 导航栏 -->
-<nav class="navbar">
-    <a class="brand" href="/"><span class="logo-dot">72</span><span class="i18n-zh">72Tool</span><span class="i18n-en" hidden>72Tool</span></a>
-    <div class="nav-cats">
-        <a href="/dev-tools.html"><span class="i18n-zh">开发</span><span class="i18n-en" hidden>Dev</span></a>
-        <a href="/img-tools.html"><span class="i18n-zh">图片</span><span class="i18n-en" hidden>Image</span></a>
-        <a href="/pdf-tools.html"><span class="i18n-zh">PDF</span><span class="i18n-en" hidden>PDF</span></a>
-        <a href="/video-tools.html"><span class="i18n-zh">视频</span><span class="i18n-en" hidden>Video</span></a>
-        <a href="/audio-tools.html"><span class="i18n-zh">音频</span><span class="i18n-en" hidden>Audio</span></a>
-        <a href="/business-tools.html"><span class="i18n-zh">商务</span><span class="i18n-en" hidden>Biz</span></a>
-    </div>
-    <div class="nav-right">
-        <div class="lang-switch">
-            <button class="lang-btn" id="langBtn">🌐 <span id="langLabel">中文</span> ▾</button>
-            <div class="lang-menu" id="langMenu">
-                <button data-lang="zh">🇨🇳 中文</button>
-                <button data-lang="en">🇬🇧 English</button>
-                <button data-lang="jp">🇯🇵 日本語</button>
-                <button data-lang="es">🇪🇸 Español</button>
-            </div>
+<canvas id="nebula-particles"></canvas>
+
+<!-- ═══ 悬浮胶囊导航 ═══ -->
+<nav class="nav-capsule">
+    <div class="nav-wrap">
+        <a href="/" class="nav-logo"><span class="logo-dot">72</span>72Tool</a>
+        <div class="main-nav">
+            <a class="nav-item active" href="/" data-i18n="nav_home">首页 Home</a>
+            <a class="nav-item" href="/dev-tools.html" data-i18n="nav_dev">开发 Dev</a>
+            <a class="nav-item" href="/img-tools.html" data-i18n="nav_img">图片 Image</a>
+            <a class="nav-item" href="/pdf-tools.html" data-i18n="nav_pdf">PDF</a>
+            <a class="nav-item" href="/video-tools.html" data-i18n="nav_video">视频 Video</a>
         </div>
-        <button class="icon-btn" id="themeBtn" title="主题切换">🌞</button>
-        <button class="icon-btn fav-btn" id="favBtn" title="我的收藏">⭐<span class="fav-badge" id="favBadge" style="display:none">0</span></button>
+        <div class="search-wrap">
+            <input type="text" class="search-input" id="searchInput"
+                   data-ph-zh="搜索 353+ 款在线工具..." data-ph-en="Search 353+ tools..."
+                   placeholder="搜索 353+ 款在线工具...">
+        </div>
+        <div class="tool-btn-group">
+            <div class="lang-dropdown">
+                <button class="lang-btn" id="langBtn" title="切换语言">🌐</button>
+                <div class="lang-menu" id="langMenu">
+                    <div class="lang-option active" data-lang="zh">🇨🇳 中文</div>
+                    <div class="lang-option" data-lang="en">🇬🇧 English</div>
+                    <div class="lang-option" data-lang="jp">🇯🇵 日本語</div>
+                    <div class="lang-option" data-lang="es">🇪🇸 Español</div>
+                </div>
+            </div>
+            <button class="theme-btn" id="themeSwitch" title="主题切换">🌓</button>
+            <button class="theme-btn" id="favBtn" title="我的收藏">⭐<span class="fav-badge" id="favBadge" style="display:none">0</span></button>
+        </div>
     </div>
 </nav>
 
-<!-- 收藏面板 -->
+<!-- ═══ 二级分类标签（动态渲染） ═══ -->
+<div class="sub-tag-bar" id="subTagBar"></div>
+
+<!-- ═══ 搜索弹窗 ═══ -->
+<div class="search-popup" id="searchPopup"></div>
+
+<!-- ═══ 收藏面板 ═══ -->
 <div class="fav-panel" id="favPanel">
-    <h4><span class="i18n-zh">我的收藏工具</span><span class="i18n-en" hidden>My Favorite Tools</span></h4>
+    <h4>⭐ 我的收藏工具</h4>
     <div id="favList"></div>
 </div>
 
-<!-- Hero -->
-<header class="hero">
-    <h1>
-        <span class="i18n-zh">72Tool在线工具箱 - 免费多功能云端工具平台</span>
-        <span class="i18n-en" hidden>72Tool All-in-One Free Online Utility Hub</span>
-    </h1>
-    <p class="sub">
-        <span class="i18n-zh">一站式浏览器在线工具合集，无需下载、无需注册、全程免费，支持文档处理、图像创作、开发调试、商务计算等全场景需求</span>
-        <span class="i18n-en" hidden>Free web-based tools for creators, developers and business users. No installation, no registration, completely free and safe to use.</span>
+<!-- ═══ Banner ═══ -->
+<div class="site-banner">
+    <h1><span class="i18n-zh">72Tool · 在线工具箱</span><span class="i18n-en hidden">72Tool · Online Utility Hub</span></h1>
+    <p>
+        <span class="i18n-zh">一站式浏览器在线工具合集，353+ 款免费工具，无需下载、无需注册，覆盖开发调试、图片处理、PDF 文档、音视频、商务计算等全场景</span>
+        <span class="i18n-en hidden">353+ free browser-based tools for developers, creators and business users. No download, no registration, completely free and safe.</span>
     </p>
-    <div class="search-box">
-        <input id="searchInput" placeholder="搜索任意在线工具（图片压缩、PDF转换、JSON格式化...）" data-ph-zh="搜索任意在线工具（图片压缩、PDF转换、JSON格式化...）" data-ph-en="Search any tool (Image Compressor, PDF Converter, JSON Formatter...)">
-        <div class="search-results" id="searchResults"></div>
-    </div>
-    <div class="scenario-tags">
-        <a data-cat="img"><span class="em">🌆</span><span class="i18n-zh">媒体创作</span><span class="i18n-en" hidden>Media Creation</span></a>
-        <a data-cat="dev"><span class="em">💻</span><span class="i18n-zh">开发调试</span><span class="i18n-en" hidden>Dev Tools</span></a>
-        <a data-cat="pdf"><span class="em">📄</span><span class="i18n-zh">文档办公</span><span class="i18n-en" hidden>Document Office</span></a>
-        <a data-cat="business"><span class="em">💰</span><span class="i18n-zh">商务计算</span><span class="i18n-en" hidden>Business Calc</span></a>
-        <a data-cat="url"><span class="em">🔐</span><span class="i18n-zh">加密转换</span><span class="i18n-en" hidden>Encryption</span></a>
-    </div>
-</header>
+</div>
 
-<!-- 场景化工具分组 -->
-<section class="section wrap" id="groups"></section>
-
-<!-- 新增工具滚动 -->
-<section class="section wrap">
-    <div class="section-head">
-        <h2><span class="i18n-zh">最新上线工具</span><span class="i18n-en" hidden>Newly Released Tools</span></h2>
-        <p><span class="i18n-zh">持续更新，保持活跃</span><span class="i18n-en" hidden>Constantly updated &amp; active</span></p>
+<!-- ═══ 工具资源网格 ═══ -->
+<div class="container">
+    <h2 class="section-title"><span>📦</span> <span id="currentCateName"><span class="i18n-zh">全部工具</span><span class="i18n-en hidden">All Tools</span></span></h2>
+    <div class="stats-bar" id="statsBar"></div>
+    <div class="resource-grid" id="resourceContainer"></div>
+    <div class="load-more-wrap" id="loadMoreWrap" style="display:none;">
+        <button class="load-more-btn" id="loadMoreBtn"><span class="i18n-zh">加载更多工具</span><span class="i18n-en hidden">Load More Tools</span></button>
     </div>
-    <div class="new-scroll"><div class="new-track" id="newTrack"></div></div>
-</section>
+</div>
 
-<!-- 价值优势 -->
-<section class="section wrap">
-    <div class="value-grid">
-        <div class="value-card">
-            <div class="vic">⚡</div>
-            <h3><span class="i18n-zh">无需安装即用</span><span class="i18n-en" hidden>No Install Needed</span></h3>
-            <p><span class="i18n-zh">所有工具基于浏览器云端运行，无需下载客户端、无需安装插件，打开即可使用，适配电脑、手机、平板全设备</span><span class="i18n-en" hidden>All tools run purely on your browser. No software installation, no plugins required, accessible on PC, mobile and tablet anytime.</span></p>
-        </div>
-        <div class="value-card">
-            <div class="vic">🔒</div>
-            <h3><span class="i18n-zh">本地隐私安全</span><span class="i18n-en" hidden>Local &amp; Private</span></h3>
-            <p><span class="i18n-zh">绝大部分工具支持本地前端运算，文件、数据仅在用户设备处理，不上传服务器，严格保护用户隐私与数据安全</span><span class="i18n-en" hidden>Most tools process data locally on your device. No file uploads to servers, ensuring full privacy and data security for every user.</span></p>
-        </div>
-        <div class="value-card">
-            <div class="vic">🎁</div>
-            <h3><span class="i18n-zh">永久免费无门槛</span><span class="i18n-en" hidden>Free Forever</span></h3>
-            <p><span class="i18n-zh">全站工具永久免费开放，无会员付费、无功能限制、无需注册登录，为全球用户提供极简高效的在线工具服务</span><span class="i18n-en" hidden>100% free for all users worldwide. No premium fees, no function limits, no sign-up required, simple and efficient web utilities.</span></p>
-        </div>
-    </div>
-</section>
-
-<!-- 页脚 -->
+<!-- ═══ 页脚 ═══ -->
 <footer>
-    <div class="wrap">
-        <div class="foot-links">
-            <a href="/about.html" data-i18n="about">关于我们</a>
-            <a href="/privacy.html" data-i18n="privacy">隐私政策</a>
-            <a href="/terms.html"><span class="i18n-zh">使用条款</span><span class="i18n-en" hidden>Terms</span></a>
-            <a href="/sitemap.html"><span class="i18n-zh">站点地图</span><span class="i18n-en" hidden>Sitemap</span></a>
-            <a href="/contact.html" data-i18n="contact">联系我们</a>
-        </div>
-        <div class="foot-copy" data-i18n="copyright">© 2026 72Tool 72tool.com 保留所有权利</div>
-        <div class="foot-lang"><span class="i18n-zh">72Tool 全球在线工具箱 · 中文 / English / 日本語 / Español</span><span class="i18n-en" hidden>72Tool Global Utility Hub · 中文 / English / 日本語 / Español</span></div>
+    <div class="foot-links">
+        <a href="/about.html" data-i18n="about">关于我们 About</a>
+        <a href="/privacy.html" data-i18n="privacy">隐私政策 Privacy</a>
+        <a href="/terms.html"><span class="i18n-zh">使用条款</span><span class="i18n-en hidden">Terms</span></a>
+        <a href="/sitemap.html"><span class="i18n-zh">站点地图</span><span class="i18n-en hidden">Sitemap</span></a>
+        <a href="/contact.html" data-i18n="contact">联系我们 Contact</a>
     </div>
+    <div class="foot-copy" data-i18n="copyright">© 2026 72Tool 72tool.com 保留所有权利</div>
+    <div class="foot-lang"><span class="i18n-zh">72Tool 全球在线工具箱 · 中文 / English / 日本語 / Español</span><span class="i18n-en hidden">72Tool Global Utility Hub · 中文 / English / 日本語 / Español</span></div>
 </footer>
 
+<div class="back-top" id="backTop">↑</div>
+
+<!-- ═══ Cookie 弹窗 ═══ -->
+<div id="cookieBox">
+    <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+        <div style="flex:1;min-width:300px;">
+            <p style="margin:0 0 6px 0;font-size:14px;color:var(--text-main);"><span class="i18n-zh">🍪 Cookie 使用提示</span><span class="i18n-en hidden">🍪 Cookie Notice</span></p>
+            <p style="margin:0;font-size:13px;color:var(--text-sub);">
+                <span class="i18n-zh">我们使用 Cookie 记住您的偏好（如语言设置），并在您同意后用于投放 Google 广告。点击「同意」即表示接受广告类 Cookie；点击「拒绝」则仅使用必要 Cookie。</span>
+                <span class="i18n-en hidden">We use cookies to remember your preferences (such as language) and, with your consent, to serve Google ads. Click "Accept" or "Decline".</span>
+                <a href="/privacy.html" style="color:var(--nebula-cyan);"><span class="i18n-zh">隐私政策</span><span class="i18n-en hidden">Privacy Policy</span></a>
+            </p>
+        </div>
+        <div style="display:flex;gap:10px;">
+            <button id="cookieAccept" style="padding:8px 18px;background:var(--nebula-cyan);color:#fff;border:none;border-radius:6px;cursor:pointer;"><span class="i18n-zh">同意</span><span class="i18n-en hidden">Accept</span></button>
+            <button id="cookieReject" style="padding:8px 18px;background:transparent;color:var(--text-main);border:1px solid var(--line-color);border-radius:6px;cursor:pointer;"><span class="i18n-zh">拒绝</span><span class="i18n-en hidden">Decline</span></button>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ 数据 & 逻辑 ═══ -->
 <script src="tools-data.js"></script>
 <script>
-/* ---------- 主题：亮色 / 深色 / 跟随系统 三模式 ---------- */
-(function(){
-    var root=document.documentElement;
-    function applyTheme(mode){
-        if(mode==='system'){
-            root.setAttribute('data-theme', window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
-        }else{
-            root.setAttribute('data-theme', mode);
-        }
-        var btn=document.getElementById('themeBtn');
-        if(btn) btn.textContent = mode==='dark'?'🌙':(mode==='system'?'🖥️':'🌞');
-    }
-    var saved=localStorage.getItem('theme')||'system';
-    applyTheme(saved);
-    try{window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){
-        if((localStorage.getItem('theme')||'system')==='system') applyTheme('system');
-    });}catch(e){}
-    document.getElementById('themeBtn').addEventListener('click',function(){
-        var order=['light','dark','system'];
-        var cur=localStorage.getItem('theme')||'system';
-        var next=order[(order.indexOf(cur)+1)%3];
-        localStorage.setItem('theme',next);
-        applyTheme(next);
-    });
-})();
+// ===================== 分类配置 =====================
+const CATE_CONFIG = [
+    {key:'all', zh:'全部', en:'All'},
+    {key:'dev', zh:'开发调试', en:'Dev'},
+    {key:'text', zh:'文本工具', en:'Text'},
+    {key:'img', zh:'图片处理', en:'Image'},
+    {key:'pdf', zh:'PDF 工具', en:'PDF'},
+    {key:'video', zh:'视频处理', en:'Video'},
+    {key:'audio', zh:'音频处理', en:'Audio'},
+    {key:'csv', zh:'CSV 表格', en:'CSV'},
+    {key:'business', zh:'商务计算', en:'Business'},
+    {key:'unit', zh:'单位换算', en:'Unit'},
+    {key:'url', zh:'URL 工具', en:'URL'},
+    {key:'json', zh:'JSON 工具', en:'JSON'},
+    {key:'seo', zh:'SEO 优化', en:'SEO'},
+    {key:'gif', zh:'GIF 动图', en:'GIF'}
+];
 
-/* ---------- 语言切换（路径式：中/英/日/西） ---------- */
-(function(){
-    var btn=document.getElementById('langBtn'), menu=document.getElementById('langMenu'), label=document.getElementById('langLabel');
-    var labels={zh:'中文',en:'English',jp:'日本語',es:'Español'};
-    btn.addEventListener('click',function(e){e.stopPropagation();menu.classList.toggle('open');});
-    document.addEventListener('click',function(){menu.classList.remove('open');});
-    menu.querySelectorAll('button').forEach(function(b){
-        b.addEventListener('click',function(){
-            var lang=b.dataset.lang;
-            label.textContent=labels[lang];
-            menu.classList.remove('open');
-            if(lang==='zh'||lang==='en'){
-                if(window.i18nApply) window.i18nApply(lang);
-                try{localStorage.setItem('siteLang',lang);}catch(e){}
-                // i18nApply 是静默的（不派发事件），这里手动派发以重建 JS 渲染的工具卡片/新工具区
-                document.dispatchEvent(new CustomEvent('i18n:langchange',{detail:{lang:lang}}));
-            }else{
-                var cur=location.pathname.split('/').pop()||'index.html';
-                var prefix= lang==='jp' ? '/jp/' : '/es/';
-                location.href=prefix+cur;
-            }
+const BADGE_MAP = {
+    dev:'badge-dev', text:'badge-text', img:'badge-img', pdf:'badge-pdf',
+    video:'badge-video', audio:'badge-audio', csv:'badge-tool',
+    business:'badge-tool', unit:'badge-tool', url:'badge-tool',
+    json:'badge-tool', seo:'badge-tool', gif:'badge-tool'
+};
+
+const TYPE_CN_MAP = {
+    dev:'开发调试', text:'文本工具', img:'图片处理', pdf:'PDF工具',
+    video:'视频处理', audio:'音频处理', csv:'CSV表格',
+    business:'商务计算', unit:'单位换算', url:'URL工具',
+    json:'JSON工具', seo:'SEO优化', gif:'GIF动图'
+};
+
+// 全局状态
+let activeCat = 'all';
+let currentPage = 0;
+const PAGE_SIZE = 12;
+let filteredData = [];
+const htmlDom = document.documentElement;
+
+// 当前语言
+function curLang(){
+    var l = (window.i18nLang || 'zh');
+    if(l === 'en') return 'en';
+    var hl = document.documentElement.lang;
+    if(hl === 'ja' || hl === 'es') return 'en';
+    return 'zh';
+}
+const LANG = curLang();
+
+// ===================== 渲染分类标签 =====================
+function renderSubTags(){
+    var bar = document.getElementById('subTagBar');
+    var html = '';
+    CATE_CONFIG.forEach(function(c){
+        var label = LANG === 'zh' ? c.zh : c.en;
+        html += '<div class="sub-tag-item'+(activeCat===c.key?' active':'')+'" data-cat="'+c.key+'">'+label+'</div>';
+    });
+    bar.innerHTML = html;
+    bar.querySelectorAll('.sub-tag-item').forEach(function(el){
+        el.addEventListener('click',function(){
+            activeCat = this.dataset.cat;
+            currentPage = 0;
+            renderSubTags();
+            filterAndRender(true);
         });
     });
-})();
+}
 
-/* ---------- 收藏（localStorage） ---------- */
+// ===================== 过滤 & 分页渲染 =====================
+function filterAndRender(reset){
+    var DATA = window.TOOLS_DATA || [];
+    if(activeCat === 'all'){
+        filteredData = DATA.slice();
+    } else {
+        filteredData = DATA.filter(function(t){ return t.cat === activeCat; });
+    }
+    if(reset){
+        document.getElementById('resourceContainer').innerHTML = '';
+        currentPage = 0;
+    }
+    renderPage();
+    updateStats();
+}
+
+function updateStats(){
+    var total = filteredData.length;
+    var shown = Math.min((currentPage+1)*PAGE_SIZE, total);
+    var sb = document.getElementById('statsBar');
+    var txt = LANG==='zh'
+        ? '共 <strong>'+total+'</strong> 款工具，已显示 <strong>'+shown+'</strong> 款'
+        : '<strong>'+total+'</strong> tools total, showing <strong>'+shown+'</strong>';
+    sb.innerHTML = txt;
+}
+
+function renderPage(){
+    var container = document.getElementById('resourceContainer');
+    var start = currentPage * PAGE_SIZE;
+    var end = start + PAGE_SIZE;
+    var pageData = filteredData.slice(start, end);
+
+    pageData.forEach(function(t){
+        container.appendChild(makeCard(t));
+    });
+
+    // 加载更多按钮
+    var wrap = document.getElementById('loadMoreWrap');
+    var btn = document.getElementById('loadMoreBtn');
+    if(end < filteredData.length){
+        wrap.style.display = '';
+    } else {
+        wrap.style.display = 'none';
+    }
+}
+
+function makeCard(t){
+    var a = document.createElement('a');
+    a.className = 'resource-card';
+    a.href = t.slug;
+    var badgeCls = BADGE_MAP[t.cat] || 'badge-default';
+    var typeLabel = (LANG==='zh'?TYPE_CN_MAP[t.cat]:t.type) || t.type || 'Tool';
+    var title = LANG==='zh' ? t.zh : (t.en || t.zh);
+    var desc = LANG==='zh'
+        ? ('免费在线'+title+'，'+(t.type_cn||typeLabel)+'，即开即用')
+        : ('Free online '+title+', '+(t.type||typeLabel)+'. Instant use in browser.');
+
+    a.innerHTML =
+        '<span class="card-badge '+badgeCls+'">'+typeLabel+'</span>'+
+        '<h3 class="card-title">'+title+'</h3>'+
+        '<p class="card-desc">'+desc+'</p>'+
+        '<div class="card-tag-list">'+
+            '<span class="card-tag">'+(LANG==='zh'?'立即使用':'Use Now')+'</span>'+
+        '</div>';
+    return a;
+}
+
+// 加载更多
+document.getElementById('loadMoreBtn').addEventListener('click',function(){
+    currentPage++;
+    renderPage();
+    updateStats();
+});
+
+// ===================== 搜索 =====================
+var searchInput = document.getElementById('searchInput');
+var searchPopup = document.getElementById('searchPopup');
+
+// 设置搜索框 placeholder
+if(LANG !== 'zh'){ searchInput.placeholder = searchInput.dataset.phEn; }
+
+searchInput.addEventListener('input',function(){
+    var kw = this.value.trim().toLowerCase();
+    if(!kw){ searchPopup.style.display='none'; return; }
+    var DATA = window.TOOLS_DATA || [];
+    var results = DATA.filter(function(r){
+        return (r.zh&&r.zh.toLowerCase().indexOf(kw)>-1) ||
+               (r.en&&r.en.toLowerCase().indexOf(kw)>-1);
+    }).slice(0,10);
+    if(results.length===0){
+        searchPopup.innerHTML = '<div class="search-empty">'+(LANG==='zh'?'未找到相关工具':'No matching tools')+'</div>';
+    } else {
+        var html = '';
+        results.forEach(function(item){
+            var name = LANG==='zh'?item.zh:item.en;
+            html += '<div class="search-result-item" data-slug="'+item.slug+'">'+name+'</div>';
+        });
+        searchPopup.innerHTML = html;
+        searchPopup.querySelectorAll('.search-result-item').forEach(function(el){
+            el.addEventListener('click',function(){ location.href = this.dataset.slug; });
+        });
+    }
+    searchPopup.style.display='block';
+});
+document.addEventListener('click',function(e){
+    if(!searchInput.contains(e.target)&&!searchPopup.contains(e.target)){
+        searchPopup.style.display='none';
+    }
+});
+
+// ===================== 语言切换 =====================
+var langBtn = document.getElementById('langBtn'), langMenu = document.getElementById('langMenu');
+langBtn.addEventListener('click',function(e){ e.stopPropagation(); langMenu.classList.toggle('open'); });
+document.addEventListener('click',function(){ langMenu.classList.remove('open'); });
+langMenu.querySelectorAll('.lang-option').forEach(function(opt){
+    opt.addEventListener('click',function(){
+        var lang = this.dataset.lang;
+        if(lang==='zh'||lang==='en'){
+            if(window.i18nApply) window.i18nApply(lang);
+            try{localStorage.setItem('siteLang',lang);}catch(e){}
+            location.reload();
+        } else {
+            location.href = (lang==='/jp/'?'/jp/':'/es/') + 'index.html';
+        }
+    });
+});
+
+// ===================== 主题切换 =====================
+var themeSwitch = document.getElementById('themeSwitch');
+if(localStorage.getItem('nex-theme')){
+    htmlDom.dataset.theme = localStorage.getItem('nex-theme');
+}
+if(localStorage.getItem('theme')){
+    var saved = localStorage.getItem('theme');
+    if(saved==='dark') htmlDom.dataset.theme='dark';
+    else if(saved==='light'||saved==='system') htmlDom.dataset.theme='light';
+}
+themeSwitch.addEventListener('click',function(){
+    var cur = htmlDom.dataset.theme;
+    var next = cur==='light'?'dark':'light';
+    htmlDom.dataset.theme = next;
+    try{
+        localStorage.setItem('nex-theme',next);
+        localStorage.setItem('theme',next);
+    }catch(e){}
+    // 同步粒子颜色
+    if(typeof initParticle === 'function') initParticle();
+});
+// 同步原站三模式
+try{
+    var savedTheme = localStorage.getItem('theme')||'system';
+    if(savedTheme==='system'){
+        htmlDom.dataset.theme = window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+    }else{
+        htmlDom.dataset.theme = savedTheme;
+    }
+}catch(e){}
+
+// ===================== 收藏 =====================
 var FAV_KEY='favTools';
-function getFav(){try{return JSON.parse(localStorage.getItem(FAV_KEY)||'[]');}catch(e){return[];}}
-function setFav(a){localStorage.setItem(FAV_KEY,JSON.stringify(a));}
+function getFav(){ try{return JSON.parse(localStorage.getItem(FAV_KEY)||'[]');}catch(e){return[]} }
+function setFav(a){ localStorage.setItem(FAV_KEY,JSON.stringify(a)); }
 function updateFavBadge(){
-    var n=getFav().length, b=document.getElementById('favBadge');
+    var n=getFav().length,b=document.getElementById('favBadge');
     if(n>0){b.style.display='inline-block';b.textContent=n;}else{b.style.display='none';}
 }
 function renderFavPanel(){
-    var list=document.getElementById('favList'); var fav=getFav();
-    if(!fav.length){list.innerHTML='<div class="fav-empty"><span class="i18n-zh">还没有收藏工具，点击卡片右上角☆收藏</span><span class="i18n-en" hidden>No favorites yet. Tap ☆ on any tool.</span></div>';return;}
-    var DATA=window.TOOLS_DATA||[];
+    var list=document.getElementById('favList'), fav=getFav();
+    if(!fav.length){list.innerHTML='<div class="fav-empty">'+(LANG==='zh'?'还没有收藏工具':'No favorites yet')+'</div>';return;}
     list.innerHTML='';
     fav.forEach(function(slug){
+        var DATA=window.TOOLS_DATA||[];
         var t=DATA.find(function(x){return x.slug===slug;}); if(!t)return;
         var a=document.createElement('a'); a.href=slug;
-        a.innerHTML='<span>🔧</span><span>'+(window.i18nLang==='en'?t.en:t.zh)+'</span>';
+        a.innerHTML='<span>🔧</span><span>'+(LANG==='en'?t.en:t.zh)+'</span>';
         list.appendChild(a);
     });
 }
 document.getElementById('favBtn').addEventListener('click',function(e){
-    e.stopPropagation();
-    var p=document.getElementById('favPanel'); p.classList.toggle('open'); renderFavPanel();
+    e.stopPropagation(); var p=document.getElementById('favPanel'); p.classList.toggle('open'); renderFavPanel();
 });
 document.addEventListener('click',function(e){
     var p=document.getElementById('favPanel');
-    if(p.classList.contains('open') && !p.contains(e.target) && e.target.id!=='favBtn') p.classList.remove('open');
+    if(p.classList.contains('open')&&!p.contains(e.target)&&e.target.id!=='favBtn') p.classList.remove('open');
 });
 
-/* ---------- 工具卡片 / 场景分组 ---------- */
-var DATA=window.TOOLS_DATA||[];
-function curLang(){
-    var l=(window.i18nLang||'zh');
-    if(l==='en')return 'en';
-    // 日文/西文页面没有对应语言的工具名，回退为英文（比中文更贴近目标读者）
-    var hl=document.documentElement.lang;
-    if(hl==='ja'||hl==='es')return 'en';
-    return 'zh';
-}
-function makeToolCard(t){
-    var a=document.createElement('a'); a.className='tcard'; a.href=t.slug;
-    var lang=curLang();
-    a.innerHTML='<span class="star" data-slug="'+t.slug+'">☆</span><div class="ico">🔧</div>'+
-        '<div class="nm">'+(lang==='en'?t.en:t.zh)+'</div>'+
-        '<div class="ds">'+(t.type_cn||'')+'</div>';
-    return a;
-}
-function buildGroups(){
-    var map={
-        creator:{title:'创作者工作室',en:'Creator Studio',cats:['img','gif'],more:'img-tools.html'},
-        dev:{title:'开发者工具',en:'Dev Utility',cats:['dev','json'],more:'dev-tools.html'},
-        doc:{title:'办公文档工具',en:'Document Office',cats:['pdf','csv','text'],more:'pdf-tools.html'},
-        biz:{title:'商务计算工具',en:'Business Calculator',cats:['business','unit'],more:'business-tools.html'}
-    };
-    var wrap=document.getElementById('groups');
-    Object.keys(map).forEach(function(k){
-        var g=map[k];
-        var list=[];
-        g.cats.forEach(function(c){ DATA.forEach(function(t){ if(t.cat===c && list.length<6) list.push(t); }); });
-        list=list.slice(0,6);
-        var sec=document.createElement('div'); sec.className='group';
-        var head=document.createElement('div'); head.className='group-head';
-        head.innerHTML='<h3>'+g.title+'</h3><span class="en">'+g.en+'</span>'+
-            '<a class="more" href="/'+(g.cats[0])+'-tools.html"><span class="i18n-zh">查看更多 ›</span><span class="i18n-en" hidden>View More ›</span></a>';
-        var grid=document.createElement('div'); grid.className='tool-grid';
-        list.forEach(function(t){ grid.appendChild(makeToolCard(t)); });
-        sec.appendChild(head); sec.appendChild(grid); wrap.appendChild(sec);
-    });
-    bindStars();
-}
-function bindStars(){
-    document.querySelectorAll('.tcard .star').forEach(function(s){
-        var slug=s.dataset.slug;
-        if(getFav().indexOf(slug)>-1){s.textContent='★';s.classList.add('on');}
-        s.addEventListener('click',function(e){
-            e.preventDefault();e.stopPropagation();
-            var fav=getFav();
-            var i=fav.indexOf(slug);
-            if(i>-1){fav.splice(i,1);s.textContent='☆';s.classList.remove('on');}
-            else{fav.push(slug);s.textContent='★';s.classList.add('on');}
-            setFav(fav);updateFavBadge();
-        });
-    });
-}
+// ===================== 粒子背景 =====================
+var canvas = document.getElementById('nebula-particles');
+var ctx = canvas.getContext('2d');
+var w,h,particles=[];
+var particleNum = window.innerWidth<768?40:80;
+function resizeCanvas(){ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; }
+resizeCanvas(); window.addEventListener('resize',function(){ resizeCanvas(); particleNum=window.innerWidth<768?40:80; initParticle(); });
 
-/* ---------- 新增工具滚动 ---------- */
-function buildNewTrack(){
-    var track=document.getElementById('newTrack');
-    var pick=DATA.slice(0,16);
-    var html='';
-    function card(t){return '<a href="'+t.slug+'"><span class="ico">🔧</span><span class="nm">'+(curLang()==='en'?t.en:t.zh)+'</span></a>';}
-    pick.forEach(function(t){html+=card(t);});
-    pick.forEach(function(t){html+=card(t);}); // 复制一份实现无缝循环
-    track.innerHTML=html;
-}
-
-/* ---------- 全局搜索 ---------- */
-(function(){
-    var inp=document.getElementById('searchInput'), box=document.getElementById('searchResults');
-    function go(){
-        var kw=inp.value.trim().toLowerCase();
-        if(!kw){box.classList.remove('open');box.innerHTML='';return;}
-        var res=DATA.filter(function(t){
-            return (t.zh&&t.zh.toLowerCase().indexOf(kw)>-1)||(t.en&&t.en.toLowerCase().indexOf(kw)>-1);
-        }).slice(0,8);
-        if(!res.length){box.innerHTML='<div style="padding:14px 16px;color:var(--muted);font-size:13px;"><span class="i18n-zh">无匹配工具</span><span class="i18n-en" hidden>No results</span></div>';box.classList.add('open');return;}
-        box.innerHTML=res.map(function(t){
-            return '<a href="'+t.slug+'"><span class="ico">🔧</span><span>'+(curLang()==='en'?t.en:t.zh)+'</span><span class="en">'+(curLang()==='en'?t.zh:t.en)+'</span></a>';
-        }).join('');
-        box.classList.add('open');
+class Particle {
+    constructor(){
+        this.x=Math.random()*w; this.y=Math.random()*h;
+        this.r=Math.random()*2+0.6;
+        this.speedX=Math.random()*0.4-0.2; this.speedY=Math.random()*0.4-0.2;
+        this.color = htmlDom.dataset.theme==='light'
+            ? 'rgba(22,199,178,0.4)' : 'rgba(157,124,242,0.4)';
     }
-    inp.addEventListener('input',function(){clearTimeout(inp._t);inp._t=setTimeout(go,180);});
-    document.addEventListener('click',function(e){if(!box.contains(e.target)&&e.target!==inp)box.classList.remove('open');});
-})();
+    update(){ this.x+=this.speedX; this.y+=this.speedY; if(this.x<0||this.x>w)this.speedX*=-1; if(this.y<0||this.y>this.y>this.h)this.speedY*=-1; }
+    draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle=this.color; ctx.fill(); }
+}
+function initParticle(){
+    particles=[]; for(var i=0;i<particleNum;i++) particles.push(new Particle());
+}
+initParticle();
+function animate(){ ctx.clearRect(0,0,w,h); particles.forEach(function(p){p.update();p.draw();}); requestAnimationFrame(animate); }
+animate();
 
-/* ---------- 场景标签点击 → 跳转分类页 ---------- */
-document.querySelectorAll('.scenario-tags a').forEach(function(a){
-    a.addEventListener('click',function(){location.href=a.dataset.cat+'-tools.html';});
-});
+// ===================== 回到顶部 =====================
+var backTopBtn=document.getElementById('backTop');
+window.addEventListener('scroll',function(){ backTopBtn.style.opacity=window.scrollY>300?'1':'0'; });
+backTopBtn.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
 
-/* ---------- 初始化 ---------- */
-window.addEventListener('i18n:langchange',function(){
-    // 语言切换后重渲染动态内容
-    document.getElementById('groups').innerHTML='';
-    buildGroups();
-    buildNewTrack();
-    renderFavPanel();
-});
-buildGroups();
-buildNewTrack();
-updateFavBadge();
-</script>
-
-<!-- Cookie 弹窗 -->
-<div id="cookieBox" style="position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);padding:16px 24px;z-index:9999;display:none;">
-    <div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
-        <div style="flex:1;min-width:300px;">
-            <p style="margin:0 0 6px 0;font-size:14px;color:var(--text);"><span class="i18n-zh">🍪 Cookie 使用提示</span><span class="i18n-en" hidden>🍪 Cookie Notice</span></p>
-            <p style="margin:0;font-size:13px;color:var(--muted);">
-                <span class="i18n-zh">我们使用 Cookie 记住您的偏好（如语言设置），并在您同意后用于投放 Google 广告。点击「同意」即表示接受广告类 Cookie；点击「拒绝」则仅使用必要 Cookie，不投放广告。查看我们的</span><span class="i18n-en" hidden>We use cookies to remember your preferences (such as language) and, with your consent, to serve Google ads. Click “Accept” to allow advertising cookies, or “Decline” to continue with only essential cookies (no ads). See our </span><a href="/privacy.html" style="color:var(--primary);"><span class="i18n-zh">隐私政策</span><span class="i18n-en" hidden>Privacy Policy</span></a><span class="i18n-zh">。</span><span class="i18n-en" hidden>.</span>
-            </p>
-        </div>
-        <div style="display:flex;gap:10px;">
-            <button id="cookieAccept" style="padding:8px 18px;background:var(--primary);color:#fff;border:none;border-radius:6px;cursor:pointer;"><span class="i18n-zh">同意</span><span class="i18n-en" hidden>Accept</span></button>
-            <button id="cookieReject" style="padding:8px 18px;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:6px;cursor:pointer;"><span class="i18n-zh">拒绝</span><span class="i18n-en" hidden>Decline</span></button>
-        </div>
-    </div>
-</div>
-<script>
+// ===================== Cookie =====================
 (function(){
     var box=document.getElementById('cookieBox');
     try{var st=localStorage.getItem('cookieConsent');if(!st)box.style.display='block';}catch(e){}
     document.getElementById('cookieAccept').onclick=function(){try{localStorage.setItem('cookieConsent','accept');}catch(e){}box.style.display='none';};
     document.getElementById('cookieReject').onclick=function(){try{localStorage.setItem('cookieConsent','reject');}catch(e){}box.style.display='none';};
 })();
-</script>
 
-<!-- IndexNow 主动推送（务必保留） -->
+// ===================== 初始化 =====================
+renderSubTags();
+filterAndRender(true);
+updateFavBadge();
+
+// IndexNow
+</script>
 <script defer src="autopush.js"></script>
 <script src="ads.js"></script>
-<script src="/nebula-bg.js"></script>
 </body>
 </html>
