@@ -291,10 +291,18 @@ function syncLinks(lang) {
     for (var i = 0; i < zh.length; i++) {
       zh[i].hidden = !isZh;
       zh[i].style.display = isZh ? '' : 'none';
+      if (zh[i].classList) {
+        if (isZh) zh[i].classList.remove('hidden');
+        else zh[i].classList.add('hidden');
+      }
     }
     for (var j = 0; j < en.length; j++) {
       en[j].hidden = !isEn;
       en[j].style.display = isEn ? '' : 'none';
+      if (en[j].classList) {
+        if (isEn) en[j].classList.remove('hidden');
+        else en[j].classList.add('hidden');
+      }
     }
 
     var dict = I18N[lang] || I18N.zh;
@@ -365,10 +373,18 @@ function syncLinks(lang) {
     for (var i = 0; i < zh.length; i++) {
       zh[i].hidden = !isZh;
       zh[i].style.display = isZh ? '' : 'none';
+      if (zh[i].classList) {
+        if (isZh) zh[i].classList.remove('hidden');
+        else zh[i].classList.add('hidden');
+      }
     }
     for (var j = 0; j < en.length; j++) {
       en[j].hidden = !isEn;
       en[j].style.display = isEn ? '' : 'none';
+      if (en[j].classList) {
+        if (isEn) en[j].classList.remove('hidden');
+        else en[j].classList.add('hidden');
+      }
     }
   }
   function ensureStyle() {
