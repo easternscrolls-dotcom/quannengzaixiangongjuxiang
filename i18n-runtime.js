@@ -322,7 +322,7 @@ function syncLinks(lang) {
     if (lang === 'en' && tmeta && tmeta.getAttribute('content')) document.title = tmeta.getAttribute('content');
     else document.title = TITLE_ORIG;
 
-    var btns = document.querySelectorAll('[data-lang]');
+    var btns = document.querySelectorAll('.lang-option[data-lang]');
     for (var b = 0; b < btns.length; b++) {
       if (btns[b].getAttribute('data-lang') === lang) {
         btns[b].style.background = '#2478f5'; btns[b].style.color = '#fff';
@@ -385,9 +385,15 @@ function syncLinks(lang) {
     document.head.appendChild(st);
   }
   function bind() {
-    var btns = document.querySelectorAll('[data-lang]');
+    // 仅给语言切换菜单项绑定，绝不能选到 <html data-lang>（否则 click 冒泡到 <html>
+    // 会再次触发 apply() 把刚切好的语言又切回去，导致"点了没反应"）
+    var btns = document.querySelectorAll('.lang-option[data-lang]');
     for (var i = 0; i < btns.length; i++) {
-      btns[i].addEventListener('click', function () { apply(this.getAttribute('data-lang')); });
+      btns[i].addEventListener('click', function () {
+        // 静默切换（仅切 span 可见性 + localStorage，不派发 langchange 事件）
+        // 每个语种是独立静态页，浏览器导航后加载全新页面，无需 JS 重渲染
+        window.i18nApply(this.getAttribute('data-lang'));
+      });
     }
   }
   // Cookie 同意（opt-in）：仅在用户点击「同意」时派发 cookie:accept，ads.js 据此加载广告

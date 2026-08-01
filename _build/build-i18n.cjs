@@ -145,7 +145,7 @@ function run() {
     // 1) <html> 标签：语种 / 方向 / data-site-lang
     html = html.replace(
       /<html[^>]*>/,
-      `<html lang="${L.htmlLang}" dir="${L.rtl ? 'rtl' : 'ltr'}" data-site-lang="${L.key}" data-theme="light" data-lang="${L.htmlLang}">`
+      `<html lang="${L.htmlLang}" dir="${L.rtl ? 'rtl' : 'ltr'}" data-site-lang="${L.key}" data-theme="light">`
     );
 
     // 2) Content-Language 响应式声明
