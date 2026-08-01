@@ -310,7 +310,7 @@ function renderToolSidebar(container){
     });
     // 未归类
     var others = D.filter(function(x){ return !x.cat; });
-    if(others.length) groups.push({ key:'other', label:isZh()?'其他工具':'Others', items:others });
+    if(others.length) groups.push({ key:'other', label:lbl('others'), items:others });
 
     // 容器重置为普通流（避免 resource-grid 的 display:grid 冲突）
     container.classList.add('has-sidebar');
@@ -326,7 +326,7 @@ function renderToolSidebar(container){
     // 全部工具
     var allItem = document.createElement('div');
     allItem.className = 'cate-sidebar-item active';
-    allItem.innerHTML = '<span>'+(isZh()?'全部工具':'All Tools')+'</span><span class="count">('+formatCount(D.length)+')</span>';
+    allItem.innerHTML = '<span>'+lbl('allTools')+'</span><span class="count">('+formatCount(D.length)+')</span>';
     allItem.dataset.gkey = '__all__';
     allItem.addEventListener('click', function(){
         sidebar.querySelectorAll('.cate-sidebar-item').forEach(function(s){ s.classList.remove('active'); });
@@ -407,7 +407,7 @@ function makeCard(item, kind){
         ? '<div class="card-thumb"><img loading="lazy" decoding="async" width="320" height="180" src="'+item.thumb+'" alt="'+altEn.replace(/"/g,'&quot;')+'"></div>'
         : '';
     var st = mockStats((item.slug||item.en||item.idx||'t'));
-    var viewLbl = isZh() ? '浏览量' : 'views', dlLbl = isZh() ? '下载量' : 'downloads';
+    var viewLbl = lbl('views'), dlLbl = lbl('downloads');
     var metaHtml = '<div class="card-meta">'+
         '<span aria-label="'+formatCount(st.views)+' '+viewLbl+'">👁 '+formatCount(st.views)+'</span>'+
         '<span aria-label="'+formatCount(st.downloads)+' '+dlLbl+'">📥 '+formatCount(st.downloads)+'</span></div>';
@@ -425,8 +425,8 @@ function makeCard(item, kind){
         var typeLabel = (isZh()?TYPE_CN_MAP[cat]:item.type) || item.type || 'Tool';
         var title = isZh() ? item.zh : (item.en || item.zh);
         var desc = isZh()
-            ? ('免费在线'+title+'，'+(TYPE_CN_MAP[cat]||'')+'，即开即用')
-            : ('Free online '+title+', '+(item.type||typeLabel)+'. Instant use in browser.');
+            ? (lbl('freePrefix')+title+'，'+(TYPE_CN_MAP[cat]||'')+lbl('freeSuffix').replace('.',''))
+            : (lbl('enFreePrefix')+title+', '+(item.type||typeLabel)+lbl('enFreeSuffix'));
         a.innerHTML =
             thumbHtml +
             '<div class="card-row">'+
@@ -477,7 +477,7 @@ function renderList(container, list, kind){
         var empty = document.createElement('div');
         empty.className = 'empty-state';
         empty.innerHTML = '<div class="empty-icon">🗂️</div><div class="empty-text">'+
-            (isZh()?'该分类暂无资源':'No resources in this category')+'</div>';
+            (isZh()?lbl('noResources'):lbl('noResources'))+'</div>';
         container.appendChild(empty);
         return;
     }
@@ -570,7 +570,7 @@ document.querySelectorAll('.dp-tab').forEach(function(t){
 (function(){
     var btn = document.getElementById('deployCopy'); if(!btn) return;
     btn.addEventListener('click', function(){
-        copyText(document.getElementById('deployCode').textContent, isZh()?'✅ 命令已复制':'✅ Commands copied');
+        copyText(document.getElementById('deployCode').textContent, isZh()?lbl('cmdCopied'):lbl('cmdCopiedEn'));
     });
 })();
 
@@ -613,10 +613,10 @@ function shareTitleOf(){
                     '_blank','noopener,noreferrer');
     });
     if(d) d.addEventListener('click', function(){
-        copyText('**'+shareTitleOf()+'**\n'+shareUrlOf(), isZh()?'✅ 已复制，可直接粘贴到 Discord':'✅ Copied — paste into Discord');
+        copyText('**'+shareTitleOf()+'**\n'+shareUrlOf(), isZh()?lbl('discordCopy'):lbl('discordCopyEn'));
     });
     if(md) md.addEventListener('click', function(){
-        copyText('['+shareTitleOf()+']('+shareUrlOf()+')', isZh()?'✅ Markdown 链接已复制':'✅ Markdown link copied');
+        copyText('['+shareTitleOf()+']('+shareUrlOf()+')', isZh()?lbl('mdCopy'):lbl('mdCopyEn'));
     });
 })();
 function closeModal(){
@@ -643,7 +643,7 @@ document.getElementById('btnDownload').addEventListener('click', function(){
     var t = isZh() ? currentModal.item.zh : currentModal.item.en;
     var original = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = '<span class="btn-spinner"></span>' + (isZh()?'下载中...':'Downloading...');
+    btn.innerHTML = '<span class="btn-spinner"></span>' + (isZh()?lbl('dlText'):lbl('dlTextEn'));
     // 模拟下载任务（真实场景替换为实际下载逻辑）
     setTimeout(function(){
         btn.disabled = false;
@@ -685,7 +685,7 @@ searchInput.addEventListener('input', function(){
                (r.en&&r.en.toLowerCase().indexOf(kw)>-1);
     }).slice(0,10);
     if(results.length===0){
-        searchPopup.innerHTML = '<div class="search-empty">'+(isZh()?'未找到相关资源':'No matching resources')+'</div>';
+        searchPopup.innerHTML = '<div class="search-empty">'+(isZh()?lbl('noMatch'):lbl('noMatch'))+'</div>';
     } else {
         var html = '';
         results.forEach(function(item){
@@ -791,7 +791,7 @@ function updateFavBadge(){
 }
 function renderFavPanel(){
     var list=document.getElementById('favList'), fav=getFav();
-    if(!fav.length){list.innerHTML='<div class="fav-empty">'+(isZh()?'还没有收藏工具':'No favorites yet')+'</div>';return;}
+    if(!fav.length){list.innerHTML='<div class="fav-empty">'+(isZh()?lbl('noFav'):lbl('noFav'))+'</div>';return;}
     list.innerHTML='';
     fav.forEach(function(slug){
         var DATA=window.TOOLS_DATA||[];
@@ -978,7 +978,7 @@ function recordRecent(item, kind){
 }
 function renderRecent(){
     var box=document.getElementById('recentList'), list=getRecent();
-    if(!list.length){ box.innerHTML='<div class="recent-empty">'+(isZh()?'暂无浏览记录':'No history')+'</div>'; return; }
+    if(!list.length){ box.innerHTML='<div class="recent-empty">'+(isZh()?lbl('noHistory'):lbl('noHistory'))+'</div>'; return; }
     box.innerHTML='';
     list.forEach(function(r){
         var a=document.createElement('a');
@@ -997,26 +997,96 @@ var HOT_WORDS_MAP = {
     zh: ['JSON格式化','图片压缩','PDF转换','年龄计算器','代码美化','二维码生成','时间戳转换','MD5','视频转GIF','单位换算'],
     en: ['json formatter','image compressor','pdf converter','qr code generator','base64 decode',
          'timestamp converter','video to gif','md5 hash','unit converter','css minifier'],
-    jp: ['json 整形','画像 圧縮','pdf 変換','qr コード','base64 デコード','タイムスタンプ 変換'],
-    es: ['formateador json','comprimir imagen','convertir pdf','generador qr','decodificar base64','conversor de unidades'],
-    de: ['json formatierer','bild komprimieren','pdf konverter','qr code generator','base64 dekodieren','einheiten umrechner'],
-    ar: ['منسق json','ضغط الصور','محول pdf','مولد رمز qr','فك base64','محول الوحدات']
+    jp: ['JSON 整形','画像 圧縮','PDF 変換','QR コード作成','Base64 デコード',
+         'タイムスタンプ変換','動画 GIF 変換','MD5 ハッシュ','単位変換','CSS 圧縮'],
+    es: ['formateador JSON','comprimir imagen','convertir PDF','generador QR','decodificar Base64',
+         'conversor timestamp','video a GIF','hash MD5','conversor unidades','minificar CSS'],
+    de: ['JSON Formatierer','Bild komprimieren','PDF Konverter','QR Code Generator','Base64 Dekodieren',
+         'Zeitstempel Umrechner','Video zu GIF','MD5 Hash','Einheiten Umrechner','CSS Minifier'],
+    ar: ('منسق JSON,ضغط الصور,محول PDF,مولد رمز QR,فك تشفير Base64,' +
+         'محول الطوابع الزمنية,فيديو إلى GIF,هاش MD5,محول الوحدات,ضغط CSS').split(',')
 };
 function getHotWords(){
     return HOT_WORDS_MAP[SITE_LANG] || HOT_WORDS_MAP.en;
 }
+
+// ── UI 标签多语言词典（用于动态渲染的界面文字）──
+var UI_LABELS = {
+    zh: { hot: '热门', history: '历史', clear: '清空', allTools: '全部工具', onlineTools: '在线工具',
+          others: '其他工具', views: '浏览量', downloads: '下载量',
+          freePrefix: '免费在线', freeSuffix: '，即开即用', enFreePrefix: 'Free online ', enFreeSuffix: '. Instant use in browser.',
+          noResources: '该分类暂无资源', noMatch: '未找到相关资源', noFav: '还没有收藏工具',
+          noHistory: '暂无浏览记录', noRelated: '暂无相关资源', toolsList: '在线工具列表',
+          validEmail: '请输入有效邮箱', subOk: '✅ 订阅成功，更新将发送至 ', subOkEn: '✅ Subscribed! Updates will go to ',
+          shareCopied: '🔗 分享链接已复制', shareCopiedEn: '🔗 Share link copied',
+          dlText: '下载中...', dlTextEn: 'Downloading...', cmdCopied: '✅ 命令已复制', cmdCopiedEn: '✅ Commands copied',
+          discordCopy: '✅ 已复制，可直接粘贴到 Discord', discordCopyEn: '✅ Copied — paste into Discord',
+          mdCopy: '✅ Markdown 链接已复制', mdCopyEn: '✅ Markdown link copied' },
+    en: { hot: 'Hot', history: 'History', clear: 'Clear', allTools: 'All Tools', onlineTools: 'Online Tools',
+          others: 'Others', views: 'views', downloads: 'downloads',
+          freePrefix: 'Free online ', freeSuffix: '. Instant use in browser.', enFreePrefix: 'Free online ', enFreeSuffix: '. Instant use in browser.',
+          noResources: 'No resources in this category', noMatch: 'No matching resources', noFav: 'No favorites yet',
+          noHistory: 'No history', noRelated: 'No related', toolsList: 'Online Tools',
+          validEmail: 'Enter a valid email', subOk: '✅ Subscribed! Updates will go to ', subOkEn: '✅ Subscribed! Updates will go to ',
+          shareCopied: '🔗 Share link copied', shareCopiedEn: '🔗 Share link copied',
+          dlText: 'Downloading...', dlTextEn: 'Downloading...', cmdCopied: '✅ Commands copied', cmdCopiedEn: '✅ Commands copied',
+          discordCopy: '✅ Copied — paste into Discord', discordCopyEn: '✅ Copied — paste into Discord',
+          mdCopy: '✅ Markdown link copied', mdCopyEn: '✅ Markdown link copied' },
+    jp: { hot: '人気', history: '履歴', clear: 'クリア', allTools: '全ツール', onlineTools: 'オンラインツール',
+          others: 'その他', views: '閲覧数', downloads: 'ダウンロード数',
+          freePrefix: '無料オンライン', freeSuffix: '、すぐに使える', enFreePrefix: 'Free online ', enFreeSuffix: '. Instant use in browser.',
+          noResources: 'このカテゴリにリソースはありません', noMatch: '該当するリソースはありません', noFav: 'お気に入りはまだありません',
+          noHistory: '閲覧履歴はありません', noRelated: '関連リソースはありません', toolsList: 'オンラインツール一覧',
+          validEmail: '有効なメールアドレスを入力してください', subOk: '✅ 登録完了！更新情報を ', subOkEn: '✅ Subscribed! Updates will go to ',
+          shareCopied: '🔗 リンクをコピーしました', shareCopiedEn: '🔗 Link copied',
+          dlText: 'ダウンロード中...', dlTextEn: 'Downloading...', cmdCopied: '✅ コマンドをコピーしました', cmdCopiedEn: '✅ Commands copied',
+          discordCopy: '✅ コピー済み — Discord に貼り付け', discordCopyEn: '✅ Copied — paste into Discord',
+          mdCopy: '✅ Markdown リンクをコピーしました', mdCopyEn: '✅ Markdown link copied' },
+    es: { hot: 'Popular', history: 'Historial', clear: 'Limpiar', allTools: 'Todas', onlineTools: 'Herramientas',
+          others: 'Otros', views: 'vistas', downloads: 'descargas',
+          freePrefix: 'Gratis online', freeSuffix: '. Uso instantáneo.', enFreePrefix: 'Free online ', enFreeSuffix: '. Instant use in browser.',
+          noResources: 'Sin recursos en esta categoría', noMatch: 'Sin resultados', noFav: 'Sin favoritos aún',
+          noHistory: 'Sin historial', noRelated: 'Sin relacionados', toolsList: 'Herramientas en línea',
+          validEmail: 'Introduce un email válido', subOk: '✅ ¡Suscrito! Las actualizaciones irán a ', subOkEn: '✅ Subscribed! Updates will go to ',
+          shareCopied: '🔗 Enlace copiado', shareCopiedEn: '🔗 Link copied',
+          dlText: 'Descargando...', dlTextEn: 'Downloading...', cmdCopied: '✅ Comandos copiados', cmdCopiedEn: '✅ Commands copied',
+          discordCopy: '✅ Copiado — pega en Discord', discordCopyEn: '✅ Copied — paste into Discord',
+          mdCopy: '✅ Enlace Markdown copiado', mdCopyEn: '✅ Markdown link copied' },
+    de: { hot: 'Beliebt', history: 'Verlauf', clear: 'Leeren', allTools: 'Alle', onlineTools: 'Online-Tools',
+          others: 'Sonstige', views: 'Aufrufe', downloads: 'Downloads',
+          freePrefix: 'Kostenlos online', freeSuffix: '. Sofort nutzbar.', enFreePrefix: 'Free online ', enFreeSuffix: '. Instant use in browser.',
+          noResources: 'Keine Ressourcen in dieser Kategorie', noMatch: 'Keine Treffer', noFav: 'Noch keine Favoriten',
+          noHistory: 'Kein Verlauf', noRelated: 'Keine verwandten', toolsList: 'Online-Tools',
+          validEmail: 'Gültige E-Mail eingeben', subOk: '✅ Abonniert! Updates gehen an ', subOkEn: '✅ Subscribed! Updates will go to ',
+          shareCopied: '🔗 Link kopiert', shareCopiedEn: '🔗 Link copied',
+          dlText: 'Wird heruntergeladen...', dlTextEn: 'Downloading...', cmdCopied: '✅ Befehle kopiert', cmdCopiedEn: '✅ Commands copied',
+          discordCopy: '✅ Kopiert — in Discord einfügen', discordCopyEn: '✅ Copied — paste into Discord',
+          mdCopy: '✅ Markdown-Link kopiert', mdCopyEn: '✅ Markdown link copied' },
+    ar: { hot: 'رائج', history: 'السجل', clear: 'مسح', allTools: 'الكل', onlineTools: 'أدوات',
+          others: 'أخرى', views: 'مشاهدات', downloads: 'تحميلات',
+          freePrefix: 'مجاني أونلاين', freeSuffix: '. استخدام فوري.', enFreePrefix: 'Free online ', enFreeSuffix: '. Instant use in browser.',
+          noResources: 'لا توجد موارد في هذه الفئة', noMatch: 'لا توجد نتائج', noFav: 'لا توجد مفضلات بعد',
+          noHistory: 'لا يوجد سجل', noRelated: 'لا توجد نتائج ذات صلة', toolsList: 'أدوات أونلاين',
+          validEmail: 'أدخل بريداً إلكترونياً صالحاً', subOk: '✅ تم الاشتراك! ستصلك التحديثات إلى ', subOkEn: '✅ Subscribed! Updates will go to ',
+          shareCopied: '🔗 تم نسخ الرابط', shareCopiedEn: '🔗 Link copied',
+          dlText: 'جارٍ التحميل...', dlTextEn: 'Downloading...', cmdCopied: '✅ تم نسخ الأوامر', cmdCopiedEn: '✅ Commands copied',
+          discordCopy: '✅ تم النسخ — الصق في Discord', discordCopyEn: '✅ Copied — paste into Discord',
+          mdCopy: '✅ تم نسخ رابط Markdown', mdCopyEn: '✅ Markdown link copied' }
+};
+function lbl(key){ return (UI_LABELS[SITE_LANG] || UI_LABELS.en)[key] || UI_LABELS.en[key] || key; }
+
 var SEARCH_HIST_KEY='searchHistory';
 function getSearchHist(){ return safeStorage.getJSON(SEARCH_HIST_KEY) || []; }
 function pushSearchHist(kw){ kw=(kw||'').trim(); if(!kw) return; var h=getSearchHist().filter(function(x){return x!==kw;}); h.unshift(kw); if(h.length>8) h=h.slice(0,8); safeStorage.setJSON(SEARCH_HIST_KEY,h); }
 function renderHotSearch(){
     var box=document.getElementById('hotSearch'); if(!box) return;
     var hist=getSearchHist();
-    var html='<span class="hs-label">🔥 '+(isZh()?'热门':'Hot')+':</span>';
+    var html='<span class="hs-label">🔥 '+lbl('hot')+':</span>';
     getHotWords().slice(0,6).forEach(function(w){ html+='<span class="hs-chip" data-kw="'+w+'">'+w+'</span>'; });
     if(hist.length){
-        html+='<span class="hs-label" style="margin-left:8px;">🕘 '+(isZh()?'历史':'History')+':</span>';
+        html+='<span class="hs-label" style="margin-left:8px;">🕘 '+lbl('history')+':</span>';
         hist.slice(0,5).forEach(function(w){ html+='<span class="hs-chip history" data-kw="'+w+'">'+w+'</span>'; });
-        html+='<span class="hs-clear" id="hsClear">'+(isZh()?'清空':'Clear')+'</span>';
+        html+='<span class="hs-clear" id="hsClear">'+lbl('clear')+'</span>';
     }
     box.innerHTML=html;
     box.querySelectorAll('.hs-chip').forEach(function(c){ c.addEventListener('click',function(){ searchInput.value=this.dataset.kw; searchInput.dispatchEvent(new Event('input')); searchInput.focus(); pushSearchHist(this.dataset.kw); }); });
@@ -1079,7 +1149,7 @@ function renderRelated(){
     var box=document.getElementById('relatedGrid'); if(!box) return;
     var list = applyFilter(getActiveList(), activeMain).slice(0,6);
     box.innerHTML='';
-    if(!list.length){ box.innerHTML='<div class="empty-state" style="padding:20px;">'+(isZh()?'暂无相关资源':'No related')+'</div>'; return; }
+    if(!list.length){ box.innerHTML='<div class="empty-state" style="padding:20px;">'+(isZh()?lbl('noRelated'):lbl('noRelated'))+'</div>'; return; }
     list.forEach(function(it){ box.appendChild(makeCard(it, activeMain)); });
 }
 
@@ -1097,7 +1167,7 @@ function injectToolJsonLd(){
                 'url':'https://72tool.com/'+(t.slug||'')
             }};
         });
-        var data={ '@context':'https://schema.org','@type':'ItemList','name':(isZh()?'在线工具列表':'Online Tools'),'itemListElement':items };
+        var data={ '@context':'https://schema.org','@type':'ItemList','name':lbl('toolsList'),'itemListElement':items };
         var s=document.getElementById('dyn-jsonld'); if(s) s.remove();
         s=document.createElement('script'); s.type='application/ld+json'; s.id='dyn-jsonld'; s.textContent=JSON.stringify(data);
         document.head.appendChild(s);
@@ -1156,9 +1226,9 @@ if(subBtn){
     subBtn.addEventListener('click',function(){
         var email=document.getElementById('subEmail').value.trim();
         var msg=document.getElementById('subMsg');
-        if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ msg.textContent = isZh()?'请输入有效邮箱':'Enter a valid email'; return; }
+        if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ msg.textContent = lbl('validEmail'); return; }
         safeStorage.set('subEmail', email);
-        msg.textContent = (isZh()?'✅ 订阅成功，更新将发送至 ':'✅ Subscribed! Updates will go to ')+email;
+        msg.textContent = (isZh()?lbl('subOk'):lbl('subOkEn'))+email;
         document.getElementById('subEmail').value='';
     });
     document.getElementById('shareCopy').addEventListener('click',function(){
