@@ -32,54 +32,6 @@ const LANGS = [
     schemaDesc: 'One-stop platform for free online tools, website templates and open source code.',
     crumbs: ['Online Tools', 'Website Templates', 'Open Source Code']
   },
-  {
-    key: 'jp', dir: 'jp/', htmlLang: 'ja', hreflang: 'ja', ogLocale: 'ja_JP',
-    rtl: false, catPages: false,
-    title: '無料オンラインツール・Webテンプレート・オープンソース｜72Tool',
-    desc: 'ブラウザだけで完結する無料オンラインツール353種以上。JSON整形、画像圧縮、PDF変換、コード整形、メディア変換に対応。ダークモード対応のレスポンシブWebテンプレートと、データベース不要の静的ブログHTMLソースコードも無料配布。登録不要・インストール不要。',
-    keywords: '無料オンラインツール, json 整形, 画像 圧縮, pdf 変換, コード整形, ダークモード テンプレート, 静的ブログ ソースコード, 無料 html テンプレート',
-    ogTitle: '72Tool — 無料オンラインツール・Webテンプレート・ソースコード',
-    ogDesc: '登録不要・ブラウザ完結の無料ツール353種以上。テンプレートとソースコードも無料でダウンロード。',
-    schemaName: '72Tool オンラインツール',
-    schemaDesc: '無料オンラインツール・Webテンプレート・オープンソースの総合プラットフォーム',
-    crumbs: ['オンラインツール', 'Webテンプレート', 'オープンソース']
-  },
-  {
-    key: 'es', dir: 'es/', htmlLang: 'es', hreflang: 'es', ogLocale: 'es_ES',
-    rtl: false, catPages: false,
-    title: 'Herramientas Online Gratis, Plantillas Web y Código Abierto — 72Tool',
-    desc: 'Más de 353 herramientas online gratuitas que funcionan 100% en tu navegador: formateador JSON online, compresor de imágenes gratis, conversor de PDF, embellecedor de código y conversores multimedia. Además, plantillas web responsive en modo oscuro y código fuente HTML de blog estático sin base de datos. Sin registro.',
-    keywords: 'herramientas online gratis, formateador json online, comprimir imagenes gratis, convertir pdf online, plantilla web modo oscuro, codigo fuente blog estatico html, plantillas html gratis',
-    ogTitle: '72Tool — Herramientas Online Gratis, Plantillas y Código Abierto',
-    ogDesc: 'Herramientas gratuitas en el navegador, plantillas web y código fuente con licencia MIT. Sin registro ni instalación.',
-    schemaName: '72Tool — Herramientas Online Gratis',
-    schemaDesc: 'Plataforma integral de herramientas online, plantillas web y código abierto.',
-    crumbs: ['Herramientas Online', 'Plantillas Web', 'Código Abierto']
-  },
-  {
-    key: 'de', dir: 'de/', htmlLang: 'de', hreflang: 'de', ogLocale: 'de_DE',
-    rtl: false, catPages: false,
-    title: 'Kostenlose Online-Tools, Web-Vorlagen & Open Source — 72Tool',
-    desc: 'Über 353 kostenlose Online-Tools, die vollständig im Browser laufen: JSON-Formatierer, Bild-Komprimierung, PDF-Konverter, Code-Beautifier und Medien-Konverter. Dazu responsive Website-Vorlagen im Dark Mode und datenbankfreier statischer Blog-HTML-Quellcode. Ohne Anmeldung, DSGVO-konform.',
-    keywords: 'kostenlose online tools, json formatierer online, bilder komprimieren kostenlos, pdf konverter online, dark mode website vorlage, statischer blog quellcode html, html vorlagen kostenlos',
-    ogTitle: '72Tool — Kostenlose Online-Tools, Vorlagen & Open Source',
-    ogDesc: 'Kostenlose Browser-Tools, Website-Vorlagen und MIT-lizenzierter Quellcode. Keine Anmeldung, keine Uploads.',
-    schemaName: '72Tool — Kostenlose Online-Tools',
-    schemaDesc: 'Plattform für kostenlose Online-Tools, Website-Vorlagen und Open-Source-Code.',
-    crumbs: ['Online-Tools', 'Website-Vorlagen', 'Open Source']
-  },
-  {
-    key: 'ar', dir: 'ar/', htmlLang: 'ar', hreflang: 'ar', ogLocale: 'ar_AR',
-    rtl: true, catPages: false,
-    title: 'أدوات أونلاين مجانية وقوالب مواقع وشيفرة مفتوحة المصدر — 72Tool',
-    desc: 'أكثر من 353 أداة أونلاين مجانية تعمل بالكامل داخل متصفحك: منسق JSON، ضغط الصور، تحويل PDF، تجميل الشيفرة ومحولات الوسائط. بالإضافة إلى قوالب مواقع متجاوبة بالوضع الداكن وشيفرة مدونة ثابتة بدون قاعدة بيانات. بدون تسجيل.',
-    keywords: 'أدوات أونلاين مجانية, منسق json, ضغط الصور أونلاين, تحويل pdf, قالب موقع وضع داكن, شيفرة مدونة ثابتة, قوالب html مجانية',
-    ogTitle: '72Tool — أدوات أونلاين مجانية وقوالب وشيفرة مفتوحة',
-    ogDesc: 'أدوات مجانية تعمل في المتصفح، قوالب مواقع وشيفرة برخصة MIT. بدون تسجيل أو رفع ملفات.',
-    schemaName: '72Tool — أدوات أونلاين مجانية',
-    schemaDesc: 'منصة شاملة للأدوات الأونلاين وقوالب المواقع والشيفرة مفتوحة المصدر.',
-    crumbs: ['أدوات أونلاين', 'قوالب المواقع', 'مفتوح المصدر']
-  }
 ];
 
 /* ---------------- 分类矩阵（聚合页 / sitemap / 长尾关键词）----------------

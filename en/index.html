@@ -28,10 +28,6 @@
 <link rel="alternate" hreflang="x-default" href="https://72tool.com/en/">
 <link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/">
 <link rel="alternate" hreflang="en" href="https://72tool.com/en/">
-<link rel="alternate" hreflang="ja" href="https://72tool.com/jp/">
-<link rel="alternate" hreflang="es" href="https://72tool.com/es/">
-<link rel="alternate" hreflang="de" href="https://72tool.com/de/">
-<link rel="alternate" hreflang="ar" href="https://72tool.com/ar/">
 <!-- Open Graph / Twitter（每语种独立文案与封面）-->
 <meta property="og:type" content="website">
 <meta property="og:title" content="72Tool — 353+ Free Online Tools, Templates &amp; Open Source Code">
@@ -40,10 +36,6 @@
 <meta property="og:site_name" content="72Tool">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="zh_CN">
-<meta property="og:locale:alternate" content="ja_JP">
-<meta property="og:locale:alternate" content="es_ES">
-<meta property="og:locale:alternate" content="de_DE">
-<meta property="og:locale:alternate" content="ar_AR">
 <meta property="og:image" content="https://72tool.com/og-cover-en.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -60,7 +52,7 @@
   "name":"72Tool",
   "alternateName":"72Tool — Free Online Toolkit",
   "url":"https://72tool.com/en/",
-  "inLanguage":["zh-Hans","en","ja","es","de","ar"],
+  "inLanguage":["zh-Hans","en"],
   "description":"One-stop platform for free online tools, website templates and open source code.",
   "potentialAction":{"@type":"SearchAction","target":"https://72tool.com/en/?q={search_term_string}","query-input":"required name=search_term_string"}
 }
@@ -106,7 +98,7 @@
   "@type":"WebPage",
   "name":"Free Online Tools, Website Templates & Open Source Code — 72Tool",
   "url":"https://72tool.com/en/",
-  "inLanguage":["zh-Hans","en","ja","es","de","ar"],
+  "inLanguage":["zh-Hans","en"],
   "isFamilyFriendly":true,
   "license":"https://72tool.com/terms.html",
   "dateModified":"2026-08-01",
@@ -647,8 +639,9 @@
     }
     .card-meta span { display:inline-flex; align-items:center; gap:2px; }
     .license-badge {
-        position:absolute; bottom:12px; left:14px; z-index:2;
-        padding:2px 7px; font-size:9.5px; border-radius:5px; color:#fff;
+        display:inline-flex; align-items:center; gap:3px;
+        padding:1px 6px; font-size:9.5px; border-radius:5px; color:#fff;
+        margin-top:6px; align-self:flex-start;
     }
     .license-free { background:linear-gradient(135deg,#10b981,#34d399); }
     .license-com { background:linear-gradient(135deg,#f59e0b,#fbbf24); }
@@ -777,10 +770,10 @@
 
     /* ── 5. 许可证徽章（海外开发者最关心）── */
     .license-badge {
-        position: absolute; right: 12px; bottom: 12px;
-        padding: 2px 8px; border-radius: 6px;
-        font-size: 11px; font-weight: 700; letter-spacing: .3px;
-        border: 1px solid transparent;
+        display:inline-flex; align-items:center; gap:3px;
+        padding:2px 8px; border-radius:6px;
+        font-size:11px; font-weight:700; letter-spacing:.3px;
+        border:1px solid transparent;
     }
     .license-mit    { background: rgba(22,199,178,.14);  color:#0E9C8B; border-color: rgba(22,199,178,.35); }
     .license-apache { background: rgba(157,124,242,.14); color:#7C5BD8; border-color: rgba(157,124,242,.35); }
@@ -867,7 +860,6 @@
     html[dir="rtl"] .foot-links,
     html[dir="rtl"] .hot-search { flex-direction: row-reverse; }
     html[dir="rtl"] .card-badge   { right: auto; left: 14px; }
-    html[dir="rtl"] .license-badge{ right: auto; left: 12px; }
     html[dir="rtl"] .modal-close  { right: auto; left: 20px; }
     html[dir="rtl"] .lang-menu   { right: auto; left: 0; }
     html[dir="rtl"] .site-banner h1 { font-size: clamp(28px,4.5vw,42px); }
@@ -899,6 +891,15 @@
         .announce-track { animation: none; }
         body.lang-fading { opacity: 1; }
     }
+.modal-preview{margin:16px 0 4px;border:1px solid var(--line-color);border-radius:14px;overflow:hidden;background:var(--card)}
+.mp-head{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--bg);border-bottom:1px solid var(--line-color)}
+.mp-label{font-size:13px;color:var(--text-sub)}
+.mp-open{width:30px;height:30px;border:1px solid var(--line-color);background:var(--card);border-radius:8px;cursor:pointer;font-size:15px;line-height:1;color:var(--text-main)}
+.mp-open:hover{background:var(--bg)}
+.mp-frame{width:100%;height:440px;border:0;display:block;background:#fff}
+@media (max-width:640px){ .mp-frame{height:340px} }
+html[dir="rtl"] .mp-head{flex-direction:row-reverse}
+
 </style>
 <!-- adsense -->
 <!-- Google Consent Mode v2 默认值：必须在任何 Google 脚本之前执行（欧盟 GDPR 强制）-->
@@ -944,10 +945,6 @@ gtag('consent','default',{
                 <div class="lang-menu" id="langMenu" role="menu" aria-label="Select language">
                     <a class="lang-option" data-lang="zh" href="/" hreflang="zh-Hans" role="menuitem">🇨🇳 中文</a>
                     <a class="lang-option" data-lang="en" href="/en/" hreflang="en" role="menuitem">🇬🇧 English</a>
-                    <a class="lang-option" data-lang="jp" href="/jp/" hreflang="ja" role="menuitem">🇯🇵 日本語</a>
-                    <a class="lang-option" data-lang="es" href="/es/" hreflang="es" role="menuitem">🇪🇸 Español</a>
-                    <a class="lang-option" data-lang="de" href="/de/" hreflang="de" role="menuitem">🇩🇪 Deutsch</a>
-                    <a class="lang-option" data-lang="ar" href="/ar/" hreflang="ar" role="menuitem">🇸🇦 العربية</a>
                 </div>
             </div>
             <button class="theme-btn" id="themeSwitch" title="主题切换" aria-label="切换明暗主题">🌓</button>
@@ -993,6 +990,14 @@ gtag('consent','default',{
         <div class="modal-btn-group">
             <button class="modal-btn btn-preview" id="btnPreview">🔗 <span class="i18n-zh" hidden>在线预览</span><span class="i18n-en">Live Preview</span></button>
             <button class="modal-btn btn-download" id="btnDownload">📥 <span class="i18n-zh" hidden>下载 .zip</span><span class="i18n-en">Download .zip</span></button>
+        </div>
+
+                <div class="modal-preview" id="modalPreview" style="display:none">
+            <div class="mp-head">
+                <span class="mp-label">🖥 <span class="i18n-zh">模板预览</span><span class="i18n-en hidden">Template Preview</span></span>
+                <button class="mp-open" id="mpOpen" title="新标签页打开">↗</button>
+            </div>
+            <iframe id="previewFrame" class="mp-frame" title="preview"></iframe>
         </div>
 
         <!-- 一键部署指南（Vercel / Netlify / GitHub Pages）-->
@@ -1080,10 +1085,6 @@ gtag('consent','default',{
     <nav class="foot-langs" aria-label="Languages">
         <a href="/" hreflang="zh-Hans">中文</a>
         <a href="/en/" hreflang="en">English</a>
-        <a href="/jp/" hreflang="ja">日本語</a>
-        <a href="/es/" hreflang="es">Español</a>
-        <a href="/de/" hreflang="de">Deutsch</a>
-        <a href="/ar/" hreflang="ar">العربية</a>
     </nav>
     <!-- 页脚锚文本自带站点关键词：外部转载即自动生成高质量内链 -->
     <div class="foot-copy">

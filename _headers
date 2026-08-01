@@ -25,21 +25,6 @@
   Content-Language: en
   Cache-Control: public, max-age=1800, stale-while-revalidate=86400
 
-/jp/*
-  Content-Language: ja
-  Cache-Control: public, max-age=1800, stale-while-revalidate=86400
-
-/es/*
-  Content-Language: es
-  Cache-Control: public, max-age=1800, stale-while-revalidate=86400
-
-/de/*
-  Content-Language: de
-  Cache-Control: public, max-age=1800, stale-while-revalidate=86400
-
-/ar/*
-  Content-Language: ar
-  Cache-Control: public, max-age=1800, stale-while-revalidate=86400
 
 # ---- 静态资源：长缓存（速度是核心排名因子）----
 /*.js

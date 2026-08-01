@@ -24,18 +24,13 @@ const { BASE } = require('./site.config.cjs');
 
 const ROOT = path.resolve(__dirname, '..');
 
-// 拥有完整站点镜像的语言
+// 拥有完整站点镜像的语言（仅保留中文/英文）
 const MIRROR = [
   { dir: '', code: 'zh-Hans' },
-  { dir: 'en', code: 'en' },
-  { dir: 'jp', code: 'ja' },
-  { dir: 'es', code: 'es' }
+  { dir: 'en', code: 'en' }
 ];
-// 仅有首页的语言
-const HOME_ONLY = [
-  { dir: 'de', code: 'de' },
-  { dir: 'ar', code: 'ar' }
-];
+// 仅有首页的语言（本项目仅保留中文/英文，故为空）
+const HOME_ONLY = [];
 
 const STATIC_PAGES = ['about.html', 'privacy.html', 'terms.html', 'contact.html', 'sitemap.html'];
 

@@ -43,26 +43,6 @@
         Header set Content-Language "en"
     </IfModule>
 </Directory>
-<Directory "jp">
-    <IfModule mod_headers.c>
-        Header set Content-Language "ja"
-    </IfModule>
-</Directory>
-<Directory "es">
-    <IfModule mod_headers.c>
-        Header set Content-Language "es"
-    </IfModule>
-</Directory>
-<Directory "de">
-    <IfModule mod_headers.c>
-        Header set Content-Language "de"
-    </IfModule>
-</Directory>
-<Directory "ar">
-    <IfModule mod_headers.c>
-        Header set Content-Language "ar"
-    </IfModule>
-</Directory>
 
 # ---------- 4. 安全 & SEO 头 ----------
 <IfModule mod_headers.c>

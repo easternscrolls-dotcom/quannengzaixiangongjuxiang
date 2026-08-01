@@ -1,0 +1,52 @@
+name: 72tool 每日内容采集
+
+# 每天北京时间 09:00（= UTC 01:00）从 GitHub 采集 1-2 个新工具/主题/源码，
+# 写入数据文件 → 触发「博客页」引流帖+教程自动生成 → 重建 sitemap →
+# git 推送（Cloudflare 自动部署）→ 向谷歌发送 sitemap ping。
+# 全部在云端运行，不依赖本机开机。
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+    inputs:
+      now:
+        description: '忽略时刻表，立即采集一次（测试用）'
+        type: boolean
+        default: false
+
+# 防止两次运行同时提交造成冲突
+concurrency:
+  group: daily-ingest
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 安装 Node（重建 sitemap 用）
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 每日采集并发布
+        env:
+          TZ: Asia/Shanghai
+          NODE: node
+          GH_INGEST_TOKEN: ${{ secrets.GH_INGEST_TOKEN }}
+        run: |
+          cd .github/scripts
+          python daily_ingest.py --commit ${{ (github.event_name == 'workflow_dispatch' && inputs.now) && '--now' || '' }}

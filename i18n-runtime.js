@@ -225,14 +225,14 @@
   }
 function detect() {
     var p = param('lang');
-    if (p && /^(zh|en|jp|es|de|ar)$/.test(p)) return p;
+    if (p && /^(zh|en)$/.test(p)) return p;
     // 优先读 <html data-site-lang>：每个语言页是独立静态页，此属性决定本页语种
     // （比 localStorage 优先级高，避免用户从中文页切到英文页时仍显示中文）
     try {
       var sl = document.documentElement.getAttribute('data-site-lang');
-      if (sl && /^(zh|en|jp|es|de|ar)$/.test(sl.toLowerCase())) return sl.toLowerCase();
+      if (sl && /^(zh|en)$/.test(sl.toLowerCase())) return sl.toLowerCase();
     } catch (e) {}
-    try { var s = localStorage.getItem('siteLang'); if (s && /^(zh|en|jp|es|de|ar)$/.test(s)) return s; } catch (e) {}
+    try { var s = localStorage.getItem('siteLang'); if (s && /^(zh|en)$/.test(s)) return s; } catch (e) {}
     var hl = (document.documentElement.lang || '').toLowerCase();
     if (hl.indexOf('en') === 0) return 'en';
     return 'zh';

@@ -32,12 +32,10 @@ const { BASE } = require('./site.config.cjs');
 
 const ROOT = path.resolve(__dirname, '..');
 
-// 语言目录 -> hreflang 代码
+// 语言目录 -> hreflang 代码（仅保留中文/英文）
 const LOCALES = [
   { dir: '', code: 'zh-Hans' },
-  { dir: 'en', code: 'en' },
-  { dir: 'jp', code: 'ja' },
-  { dir: 'es', code: 'es' }
+  { dir: 'en', code: 'en' }
 ];
 
 // 不参与 hreflang / 不应被索引的页面
@@ -63,9 +61,7 @@ function buildBlock(name) {
   const lines = [
     '<link rel="alternate" hreflang="x-default" href="' + url('en', name) + '">',
     '<link rel="alternate" hreflang="zh-Hans" href="' + url('', name) + '">',
-    '<link rel="alternate" hreflang="en" href="' + url('en', name) + '">',
-    '<link rel="alternate" hreflang="ja" href="' + url('jp', name) + '">',
-    '<link rel="alternate" hreflang="es" href="' + url('es', name) + '">'
+    '<link rel="alternate" hreflang="en" href="' + url('en', name) + '">'
   ];
   return lines.join('\n');
 }

@@ -59,9 +59,7 @@ function buildSeoHead(pageKey, title, desc) {
     '<link rel="canonical" href="' + url + '">',
     '<link rel="alternate" hreflang="x-default" href="' + BASE + 'en/' + pageKey + '.html">',
     '<link rel="alternate" hreflang="zh-Hans" href="' + BASE + pageKey + '.html">',
-    '<link rel="alternate" hreflang="en" href="' + url + '">',
-    '<link rel="alternate" hreflang="ja" href="' + BASE + 'jp/' + pageKey + '.html">',
-    '<link rel="alternate" hreflang="es" href="' + BASE + 'es/' + pageKey + '.html">'
+    '<link rel="alternate" hreflang="en" href="' + url + '">'
   ].join('\n') + '\n';
 }
 
