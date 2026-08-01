@@ -178,7 +178,7 @@ const IS_RTL = RTL_LANGS.indexOf(SITE_LANG) > -1;
 function curLang(){
     return SITE_LANG === 'zh' ? 'zh' : 'en';
 }
-const LANG = curLang();
+let LANG = curLang();
 
 // BCP-47 语言标签（用于 Intl 日期/数字本地化）
 const LOCALE_MAP = { zh:'zh-CN', en:'en-US', jp:'ja-JP', es:'es-ES', de:'de-DE', ar:'ar' };
@@ -1199,6 +1199,18 @@ renderMainNav();
 renderSubTags();
 renderAll();
 updateFavBadge();
+
+// 监听语言切换：i18n-runtime.js 派发 i18n:langchange 时重新渲染动态内容
+//（静态 span 已由 i18n-runtime.js 切换，但侧栏/标签/卡片是 JS 动态生成，需重新渲染）
+document.addEventListener('i18n:langchange', function(e){
+    var newLang = (e.detail && e.detail.lang) || 'zh';
+    var targetLang = (newLang === 'zh') ? 'zh' : 'en';
+    if(targetLang !== LANG){
+        LANG = targetLang;
+        renderAll();
+        updateFavBadge();
+    }
+});
 
 // IndexNow
 })();
