@@ -999,7 +999,9 @@ var HOT_WORDS_MAP = {
     de: ['json formatierer','bild komprimieren','pdf konverter','qr code generator','base64 dekodieren','einheiten umrechner'],
     ar: ['منسق json','ضغط الصور','محول pdf','مولد رمز qr','فك base64','محول الوحدات']
 };
-var HOT_WORDS = HOT_WORDS_MAP[SITE_LANG] || HOT_WORDS_MAP.en;
+function getHotWords(){
+    return HOT_WORDS_MAP[SITE_LANG] || HOT_WORDS_MAP.en;
+}
 var SEARCH_HIST_KEY='searchHistory';
 function getSearchHist(){ return safeStorage.getJSON(SEARCH_HIST_KEY) || []; }
 function pushSearchHist(kw){ kw=(kw||'').trim(); if(!kw) return; var h=getSearchHist().filter(function(x){return x!==kw;}); h.unshift(kw); if(h.length>8) h=h.slice(0,8); safeStorage.setJSON(SEARCH_HIST_KEY,h); }
@@ -1007,7 +1009,7 @@ function renderHotSearch(){
     var box=document.getElementById('hotSearch'); if(!box) return;
     var hist=getSearchHist();
     var html='<span class="hs-label">🔥 '+(LANG==='zh'?'热门':'Hot')+':</span>';
-    HOT_WORDS.slice(0,6).forEach(function(w){ html+='<span class="hs-chip" data-kw="'+w+'">'+w+'</span>'; });
+    getHotWords().slice(0,6).forEach(function(w){ html+='<span class="hs-chip" data-kw="'+w+'">'+w+'</span>'; });
     if(hist.length){
         html+='<span class="hs-label" style="margin-left:8px;">🕘 '+(LANG==='zh'?'历史':'History')+':</span>';
         hist.slice(0,5).forEach(function(w){ html+='<span class="hs-chip history" data-kw="'+w+'">'+w+'</span>'; });
@@ -1201,12 +1203,18 @@ renderAll();
 updateFavBadge();
 
 // 监听语言切换：i18n-runtime.js 派发 i18n:langchange 时重新渲染动态内容
-//（静态 span 已由 i18n-runtime.js 切换，但侧栏/标签/卡片是 JS 动态生成，需重新渲染）
+//（静态 span 已由 i18n-runtime.js 切换，但侧栏/标签/卡片/热门搜索/公告是 JS 动态生成，需重新渲染）
 document.addEventListener('i18n:langchange', function(e){
     var newLang = (e.detail && e.detail.lang) || 'zh';
     var targetLang = (newLang === 'zh') ? 'zh' : 'en';
     if(targetLang !== LANG){
         LANG = targetLang;
+        renderMainNav();
+        renderAnnouncements();
+        renderHotSearch();
+        renderTagAgg();
+        renderRecent();
+        renderSubTags();
         renderAll();
         updateFavBadge();
     }
