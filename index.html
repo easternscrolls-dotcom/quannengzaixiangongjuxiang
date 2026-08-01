@@ -179,6 +179,8 @@
         backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
         border-radius: 999px; padding:12px 32px; z-index:999;
         transition: all 0.3s ease; width:92%; max-width:1200px;
+        /* 创建层叠上下文，确保内部下拉菜单不脱离导航层级 */
+        isolation: isolate;
     }
     [data-theme="light"] .nav-capsule {
         background: rgba(255,255,255,0.7);
@@ -230,14 +232,14 @@
     }
     .lang-dropdown { position:relative; }
     .lang-menu {
-        position:absolute; top:calc(100%+8px); right:0; width:140px;
-        background:var(--card);border-radius:12px;border:1px solid var(--line-color);
-        box-shadow:0 8px 24px rgba(0,0,0,0.12); overflow:hidden;
+        position:absolute; top:calc(100%+6px); right:0; width:130px;
+        background:var(--card);border-radius:10px;border:1px solid var(--line-color);
+        box-shadow:0 6px 20px rgba(0,0,0,0.12); overflow:hidden;
         display:none; z-index:1001;
     }
     .lang-menu.open { display:block; }
     .lang-option {
-        padding:10px 16px; cursor:pointer; font-size:14px; transition:0.2s;
+        padding:8px 14px; cursor:pointer; font-size:13px; transition:0.2s;
     }
     .lang-option:hover { background:var(--tag-bg); color:var(--nebula-cyan); }
     .lang-option.active { color:var(--nebula-cyan); font-weight:bold; background:rgba(22,199,178,0.08); pointer-events:none; }
@@ -279,11 +281,12 @@
     .search-empty { text-align:center; padding:24px; color:var(--text-sub); font-size:14px; }
 
     /* ── Banner ── */
-    .site-banner { padding:120px 20px 40px; text-align:center; }
+    .site-banner { padding:130px 20px 40px; text-align:center; overflow:visible; }
     .site-banner h1 {
         font-size:clamp(32px,5vw,48px); font-weight:800; margin-bottom:16px;
         background:linear-gradient(90deg,var(--nebula-cyan),var(--nebula-purple),var(--nebula-pink));
         -webkit-background-clip:text; background-clip:text; color:transparent;
+        word-break: break-word; max-width: 100%;
     }
     .site-banner p { font-size:18px; color:var(--text-sub); max-width:680px; margin:0 auto; }
 
@@ -548,7 +551,7 @@
         .cate-sidebar-item{font-size:13px; padding:7px 11px;}
         .resource-grid{grid-template-columns:1fr;}
         .site-banner h1{font-size:28px;}
-        .site-banner{padding:100px 16px 30px;}
+        .site-banner{padding:110px 16px 30px;}
         .search-popup{width:95%;}
         .lang-menu{right:-20px;}
         .fav-panel{right:10px;width:calc(100vw - 20px);max-width:300px;}

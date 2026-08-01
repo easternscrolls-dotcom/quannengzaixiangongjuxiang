@@ -306,11 +306,11 @@ function renderToolSidebar(container){
         if(t.key === 'all') return;
         var items = D.filter(function(x){ return x.cat === t.key; });
         if(!items.length) return;
-        groups.push({ key:t.key, label:LANG==='zh'?t.zh:t.en, items:items });
+        groups.push({ key:t.key, label:isZh()?t.zh:t.en, items:items });
     });
     // 未归类
     var others = D.filter(function(x){ return !x.cat; });
-    if(others.length) groups.push({ key:'other', label:LANG==='zh'?'其他工具':'Others', items:others });
+    if(others.length) groups.push({ key:'other', label:isZh()?'其他工具':'Others', items:others });
 
     // 容器重置为普通流（避免 resource-grid 的 display:grid 冲突）
     container.classList.add('has-sidebar');
@@ -326,7 +326,7 @@ function renderToolSidebar(container){
     // 全部工具
     var allItem = document.createElement('div');
     allItem.className = 'cate-sidebar-item active';
-    allItem.innerHTML = '<span>'+(LANG==='zh'?'全部工具':'All Tools')+'</span><span class="count">('+formatCount(D.length)+')</span>';
+    allItem.innerHTML = '<span>'+(isZh()?'全部工具':'All Tools')+'</span><span class="count">('+formatCount(D.length)+')</span>';
     allItem.dataset.gkey = '__all__';
     allItem.addEventListener('click', function(){
         sidebar.querySelectorAll('.cate-sidebar-item').forEach(function(s){ s.classList.remove('active'); });
@@ -387,7 +387,7 @@ function licenseOf(item, kind){
 }
 function licenseBadgeHtml(item, kind){
     var m = LICENSE_META[licenseOf(item, kind)] || LICENSE_META.free;
-    var label = LANG==='zh' ? m.zh : m.en;
+    var label = isZh() ? m.zh : m.en;
     return '<span class="license-badge '+m.cls+'" title="'+m.en+'">'+label+'</span>';
 }
 function styleOf(item, kind){
@@ -397,6 +397,9 @@ function styleOf(item, kind){
 }
 function archOf(item, kind){ return 'static'; } // 当前资源均为静态；后端类资源可标记 'backend'
 
+// 统一语言判断：优先 LANG 运行时变量，兜底 SITE_LANG（防止切换后 LANG 未及时更新）
+function isZh(){ return (LANG === 'zh') || (!LANG && SITE_LANG === 'zh'); }
+
 function makeCard(item, kind){
     // 缩略图 alt 一律使用英文描述 → 打开谷歌图片搜索这个巨大免费流量池
     var altEn = ((item && (item.en || item.zh)) || 'resource') + ' — free online '+(kind==='tool'?'tool':(kind==='theme'?'website template':'open source code'))+' | 72Tool';
@@ -404,7 +407,7 @@ function makeCard(item, kind){
         ? '<div class="card-thumb"><img loading="lazy" decoding="async" width="320" height="180" src="'+item.thumb+'" alt="'+altEn.replace(/"/g,'&quot;')+'"></div>'
         : '';
     var st = mockStats((item.slug||item.en||item.idx||'t'));
-    var viewLbl = LANG==='zh' ? '浏览量' : 'views', dlLbl = LANG==='zh' ? '下载量' : 'downloads';
+    var viewLbl = isZh() ? '浏览量' : 'views', dlLbl = isZh() ? '下载量' : 'downloads';
     var metaHtml = '<div class="card-meta">'+
         '<span aria-label="'+formatCount(st.views)+' '+viewLbl+'">👁 '+formatCount(st.views)+'</span>'+
         '<span aria-label="'+formatCount(st.downloads)+' '+dlLbl+'">📥 '+formatCount(st.downloads)+'</span></div>';
@@ -413,15 +416,15 @@ function makeCard(item, kind){
         var a = document.createElement('a');
         a.className = 'resource-card';
         a.href = toolUrl(item.slug);
-        a.setAttribute('aria-label', (LANG==='zh'?item.zh:item.en) || 'tool');
+        a.setAttribute('aria-label', (isZh()?item.zh:item.en) || 'tool');
         a.setAttribute('itemscope',''); a.setAttribute('itemtype','https://schema.org/SoftwareApplication');
         var cat = item.cat || 'default';
         var emoji = CAT_EMOJI[cat] || '🛠️';
         var grad = CAT_GRAD[cat] || DEFAULT_GRAD;
         var badgeCls = BADGE_MAP[cat] || 'badge-default';
-        var typeLabel = (LANG==='zh'?TYPE_CN_MAP[cat]:item.type) || item.type || 'Tool';
-        var title = LANG==='zh' ? item.zh : (item.en || item.zh);
-        var desc = LANG==='zh'
+        var typeLabel = (isZh()?TYPE_CN_MAP[cat]:item.type) || item.type || 'Tool';
+        var title = isZh() ? item.zh : (item.en || item.zh);
+        var desc = isZh()
             ? ('免费在线'+title+'，'+(TYPE_CN_MAP[cat]||'')+'，即开即用')
             : ('Free online '+title+', '+(item.type||typeLabel)+'. Instant use in browser.');
         a.innerHTML =
@@ -444,13 +447,13 @@ function makeCard(item, kind){
     div.className = 'resource-card';
     div.dataset.idx = item.idx;
     div.setAttribute('role','button'); div.setAttribute('tabindex','0');
-    div.setAttribute('aria-label', (LANG==='zh'?item.zh:item.en) || 'item');
+    div.setAttribute('aria-label', (isZh()?item.zh:item.en) || 'item');
     var grad2 = kind==='theme'
         ? 'linear-gradient(135deg,var(--nebula-purple),#b19cd9)'
         : 'linear-gradient(135deg,var(--nebula-gold),#ffd89b)';
     var emoji2 = kind==='theme' ? '🎨' : '💻';
-    var t2 = LANG==='zh' ? item.zh : item.en;
-    var d2 = LANG==='zh' ? (item.desc_zh || '') : (item.desc_en || '');
+    var t2 = isZh() ? item.zh : item.en;
+    var d2 = isZh() ? (item.desc_zh || '') : (item.desc_en || '');
     div.innerHTML =
         thumbHtml +
         '<div class="card-row">'+
@@ -474,7 +477,7 @@ function renderList(container, list, kind){
         var empty = document.createElement('div');
         empty.className = 'empty-state';
         empty.innerHTML = '<div class="empty-icon">🗂️</div><div class="empty-text">'+
-            (LANG==='zh'?'该分类暂无资源':'No resources in this category')+'</div>';
+            (isZh()?'该分类暂无资源':'No resources in this category')+'</div>';
         container.appendChild(empty);
         return;
     }
@@ -520,9 +523,9 @@ function openModal(kind, idx){
     var item = list.find(function(r){ return r.idx === idx; });
     if(!item) return;
     currentModal = {kind:kind, item:item};
-    modalTitle.textContent = LANG==='zh' ? item.zh : item.en;
-    modalDesc.textContent = LANG==='zh' ? item.desc_zh : item.desc_en;
-    modalTypeTag.textContent = LANG==='zh' ? MAIN_CONFIG[kind].zh : MAIN_CONFIG[kind].en;
+    modalTitle.textContent = isZh() ? item.zh : item.en;
+    modalDesc.textContent = isZh() ? item.desc_zh : item.desc_en;
+    modalTypeTag.textContent = isZh() ? MAIN_CONFIG[kind].zh : MAIN_CONFIG[kind].en;
     modalTypeTag.style.background = kind==='theme'
         ? 'linear-gradient(135deg,#9D7CF2,#b19cd9)'
         : 'linear-gradient(135deg,#F2D479,#ffd89b)';
@@ -541,7 +544,7 @@ function renderModalFacts(kind, item){
     var box = document.getElementById('modalFacts'); if(!box) return;
     var m = LICENSE_META[licenseOf(item, kind)] || LICENSE_META.free;
     var updated = formatDateLocal(new Date(Date.now() - (hashStr(kind+item.idx)%45)*86400000));
-    var L = (LANG==='zh');
+    var L = (isZh());
     box.innerHTML =
         '<span class="fact"><b>'+(L?'许可证':'License')+'</b> <a href="'+m.url+'" target="_blank" rel="noopener noreferrer nofollow">'+m.code+'</a></span>'+
         '<span class="fact"><b>'+(L?'格式':'Format')+'</b> .zip <small>('+(L?'国际通用':'universal')+')</small></span>'+
@@ -567,7 +570,7 @@ document.querySelectorAll('.dp-tab').forEach(function(t){
 (function(){
     var btn = document.getElementById('deployCopy'); if(!btn) return;
     btn.addEventListener('click', function(){
-        copyText(document.getElementById('deployCode').textContent, LANG==='zh'?'✅ 命令已复制':'✅ Commands copied');
+        copyText(document.getElementById('deployCode').textContent, isZh()?'✅ 命令已复制':'✅ Commands copied');
     });
 })();
 
@@ -593,10 +596,10 @@ function shareUrlOf(){
     var base = 'https://72tool.com' + (LANG_PATH_SELF());
     return base + '?utm_source=share&lang=' + SITE_LANG;
 }
-function LANG_PATH_SELF(){ return SITE_LANG==='zh' ? '/' : ('/'+ (SITE_LANG==='jp'?'jp':SITE_LANG) +'/'); }
+function LANG_PATH_SELF(){ return SITE_isZh() ? '/' : ('/'+ (SITE_LANG==='jp'?'jp':SITE_LANG) +'/'); }
 function shareTitleOf(){
     if(!currentModal) return '72Tool — Free Online Tools, Templates & Open Source';
-    return (LANG==='zh'?currentModal.item.zh:currentModal.item.en) + ' — 72Tool';
+    return (isZh()?currentModal.item.zh:currentModal.item.en) + ' — 72Tool';
 }
 (function bindShare(){
     var r=document.getElementById('shReddit'), x=document.getElementById('shX'),
@@ -610,10 +613,10 @@ function shareTitleOf(){
                     '_blank','noopener,noreferrer');
     });
     if(d) d.addEventListener('click', function(){
-        copyText('**'+shareTitleOf()+'**\n'+shareUrlOf(), LANG==='zh'?'✅ 已复制，可直接粘贴到 Discord':'✅ Copied — paste into Discord');
+        copyText('**'+shareTitleOf()+'**\n'+shareUrlOf(), isZh()?'✅ 已复制，可直接粘贴到 Discord':'✅ Copied — paste into Discord');
     });
     if(md) md.addEventListener('click', function(){
-        copyText('['+shareTitleOf()+']('+shareUrlOf()+')', LANG==='zh'?'✅ Markdown 链接已复制':'✅ Markdown link copied');
+        copyText('['+shareTitleOf()+']('+shareUrlOf()+')', isZh()?'✅ Markdown 链接已复制':'✅ Markdown link copied');
     });
 })();
 function closeModal(){
@@ -629,18 +632,18 @@ document.getElementById('btnPreview').addEventListener('click', function(){
     if(currentModal && currentModal.item.previewUrl && currentModal.item.previewUrl !== '#'){
         window.open(currentModal.item.previewUrl, '_blank', 'noopener,noreferrer');
     } else {
-        var t = LANG==='zh' ? currentModal.item.zh : currentModal.item.en;
-        alert(LANG==='zh' ? ('预览地址待配置：'+t) : ('Preview URL pending: '+t));
+        var t = isZh() ? currentModal.item.zh : currentModal.item.en;
+        alert(isZh() ? ('预览地址待配置：'+t) : ('Preview URL pending: '+t));
     }
 });
 document.getElementById('btnDownload').addEventListener('click', function(){
     if(!currentModal) return;
     var btn = this;
     if(btn.disabled) return;
-    var t = LANG==='zh' ? currentModal.item.zh : currentModal.item.en;
+    var t = isZh() ? currentModal.item.zh : currentModal.item.en;
     var original = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = '<span class="btn-spinner"></span>' + (LANG==='zh'?'下载中...':'Downloading...');
+    btn.innerHTML = '<span class="btn-spinner"></span>' + (isZh()?'下载中...':'Downloading...');
     // 模拟下载任务（真实场景替换为实际下载逻辑）
     setTimeout(function(){
         btn.disabled = false;
@@ -648,7 +651,7 @@ document.getElementById('btnDownload').addEventListener('click', function(){
         if(currentModal.item.downloadUrl && currentModal.item.downloadUrl !== '#'){
             window.open(currentModal.item.downloadUrl, '_blank', 'noopener,noreferrer');
         } else {
-            alert(LANG==='zh' ? ('开始下载：'+t) : ('Starting download: '+t));
+            alert(isZh() ? ('开始下载：'+t) : ('Starting download: '+t));
         }
     }, 900);
 });
@@ -656,7 +659,7 @@ document.getElementById('btnDownload').addEventListener('click', function(){
 // ===================== 搜索（跨 工具/模板/源码）=====================
 var searchInput = document.getElementById('searchInput');
 var searchPopup = document.getElementById('searchPopup');
-if(LANG !== 'zh'){ searchInput.placeholder = searchInput.dataset.phEn; }
+if(!isZh()){ searchInput.placeholder = searchInput.dataset.phEn; }
 
 function buildSearchIndex(){
     var idx = [];
@@ -682,11 +685,11 @@ searchInput.addEventListener('input', function(){
                (r.en&&r.en.toLowerCase().indexOf(kw)>-1);
     }).slice(0,10);
     if(results.length===0){
-        searchPopup.innerHTML = '<div class="search-empty">'+(LANG==='zh'?'未找到相关资源':'No matching resources')+'</div>';
+        searchPopup.innerHTML = '<div class="search-empty">'+(isZh()?'未找到相关资源':'No matching resources')+'</div>';
     } else {
         var html = '';
         results.forEach(function(item){
-            var name = LANG==='zh'?item.zh:item.en;
+            var name = isZh()?item.zh:item.en;
             var kindTag = item.kind==='tool'?'🛠️':(item.kind==='theme'?'🎨':'💻');
             html += '<div class="search-result-item" data-kind="'+item.kind+'" data-ref="'+JSON.stringify(item).replace(/"/g,'&quot;')+'">'+kindTag+' '+name+'</div>';
         });
@@ -788,7 +791,7 @@ function updateFavBadge(){
 }
 function renderFavPanel(){
     var list=document.getElementById('favList'), fav=getFav();
-    if(!fav.length){list.innerHTML='<div class="fav-empty">'+(LANG==='zh'?'还没有收藏工具':'No favorites yet')+'</div>';return;}
+    if(!fav.length){list.innerHTML='<div class="fav-empty">'+(isZh()?'还没有收藏工具':'No favorites yet')+'</div>';return;}
     list.innerHTML='';
     fav.forEach(function(slug){
         var DATA=window.TOOLS_DATA||[];
@@ -975,7 +978,7 @@ function recordRecent(item, kind){
 }
 function renderRecent(){
     var box=document.getElementById('recentList'), list=getRecent();
-    if(!list.length){ box.innerHTML='<div class="recent-empty">'+(LANG==='zh'?'暂无浏览记录':'No history')+'</div>'; return; }
+    if(!list.length){ box.innerHTML='<div class="recent-empty">'+(isZh()?'暂无浏览记录':'No history')+'</div>'; return; }
     box.innerHTML='';
     list.forEach(function(r){
         var a=document.createElement('a');
@@ -1008,12 +1011,12 @@ function pushSearchHist(kw){ kw=(kw||'').trim(); if(!kw) return; var h=getSearch
 function renderHotSearch(){
     var box=document.getElementById('hotSearch'); if(!box) return;
     var hist=getSearchHist();
-    var html='<span class="hs-label">🔥 '+(LANG==='zh'?'热门':'Hot')+':</span>';
+    var html='<span class="hs-label">🔥 '+(isZh()?'热门':'Hot')+':</span>';
     getHotWords().slice(0,6).forEach(function(w){ html+='<span class="hs-chip" data-kw="'+w+'">'+w+'</span>'; });
     if(hist.length){
-        html+='<span class="hs-label" style="margin-left:8px;">🕘 '+(LANG==='zh'?'历史':'History')+':</span>';
+        html+='<span class="hs-label" style="margin-left:8px;">🕘 '+(isZh()?'历史':'History')+':</span>';
         hist.slice(0,5).forEach(function(w){ html+='<span class="hs-chip history" data-kw="'+w+'">'+w+'</span>'; });
-        html+='<span class="hs-clear" id="hsClear">'+(LANG==='zh'?'清空':'Clear')+'</span>';
+        html+='<span class="hs-clear" id="hsClear">'+(isZh()?'清空':'Clear')+'</span>';
     }
     box.innerHTML=html;
     box.querySelectorAll('.hs-chip').forEach(function(c){ c.addEventListener('click',function(){ searchInput.value=this.dataset.kw; searchInput.dispatchEvent(new Event('input')); searchInput.focus(); pushSearchHist(this.dataset.kw); }); });
@@ -1032,7 +1035,7 @@ function renderAnnouncements(){
     var track=document.getElementById('announceTrack'); if(!track) return;
     var html='';
     ANNOUNCE.forEach(function(a){
-        var label = LANG==='zh' ? a.zh : a.en;
+        var label = isZh() ? a.zh : a.en;
         html+='<span><span class="dot">●</span> <time datetime="'+a.date+'">'+formatDateLocal(a.date)+'</time> '+label+'</span>';
     });
     track.innerHTML = html + html; // 复制一份实现无缝滚动
@@ -1061,7 +1064,7 @@ function renderTagAgg(){
     MAIN_KEYS.forEach(function(mk){
         MAIN_CONFIG[mk].tags.forEach(function(t){
             if(t.key==='all') return;
-            var label=LANG==='zh'?t.zh:t.en;
+            var label=isZh()?t.zh:t.en;
             var url = catPageUrl(mk, t.key);
             html += url
                 ? '<a href="'+url+'" title="'+label+'">'+label+'</a>'
@@ -1076,7 +1079,7 @@ function renderRelated(){
     var box=document.getElementById('relatedGrid'); if(!box) return;
     var list = applyFilter(getActiveList(), activeMain).slice(0,6);
     box.innerHTML='';
-    if(!list.length){ box.innerHTML='<div class="empty-state" style="padding:20px;">'+(LANG==='zh'?'暂无相关资源':'No related')+'</div>'; return; }
+    if(!list.length){ box.innerHTML='<div class="empty-state" style="padding:20px;">'+(isZh()?'暂无相关资源':'No related')+'</div>'; return; }
     list.forEach(function(it){ box.appendChild(makeCard(it, activeMain)); });
 }
 
@@ -1089,12 +1092,12 @@ function injectToolJsonLd(){
         if(!list.length) return;
         var items = list.slice(0,20).map(function(t,i){
             return { '@type':'ListItem','position':i+1,'item':{
-                '@type':'SoftwareApplication','name':(LANG==='zh'?t.zh:(t.en||t.zh)),
+                '@type':'SoftwareApplication','name':(isZh()?t.zh:(t.en||t.zh)),
                 'applicationCategory':'UtilitiesApplication','operatingSystem':'Web',
                 'url':'https://72tool.com/'+(t.slug||'')
             }};
         });
-        var data={ '@context':'https://schema.org','@type':'ItemList','name':(LANG==='zh'?'在线工具列表':'Online Tools'),'itemListElement':items };
+        var data={ '@context':'https://schema.org','@type':'ItemList','name':(isZh()?'在线工具列表':'Online Tools'),'itemListElement':items };
         var s=document.getElementById('dyn-jsonld'); if(s) s.remove();
         s=document.createElement('script'); s.type='application/ld+json'; s.id='dyn-jsonld'; s.textContent=JSON.stringify(data);
         document.head.appendChild(s);
@@ -1153,15 +1156,15 @@ if(subBtn){
     subBtn.addEventListener('click',function(){
         var email=document.getElementById('subEmail').value.trim();
         var msg=document.getElementById('subMsg');
-        if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ msg.textContent = LANG==='zh'?'请输入有效邮箱':'Enter a valid email'; return; }
+        if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ msg.textContent = isZh()?'请输入有效邮箱':'Enter a valid email'; return; }
         safeStorage.set('subEmail', email);
-        msg.textContent = (LANG==='zh'?'✅ 订阅成功，更新将发送至 ':'✅ Subscribed! Updates will go to ')+email;
+        msg.textContent = (isZh()?'✅ 订阅成功，更新将发送至 ':'✅ Subscribed! Updates will go to ')+email;
         document.getElementById('subEmail').value='';
     });
     document.getElementById('shareCopy').addEventListener('click',function(){
-        var url=location.origin+location.pathname+'?lang='+(LANG==='zh'?'zh':LANG);
+        var url=location.origin+location.pathname+'?lang='+(isZh()?'zh':LANG);
         var msg=document.getElementById('subMsg');
-        if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(function(){ msg.textContent=LANG==='zh'?'🔗 分享链接已复制':'🔗 Share link copied'; }); }
+        if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(function(){ msg.textContent=isZh()?'🔗 分享链接已复制':'🔗 Share link copied'; }); }
         else { location.href=url; }
     });
 }
