@@ -1,0 +1,60 @@
+{
+  "name": "72Tool - Free Online Tools",
+  "short_name": "72Tool",
+  "description": "353+ free online tools, website templates and open-source code. No registration, instant use in browser.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#16C7B2",
+  "background_color": "#0a0e1a",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "categories": ["utilities", "productivity", "developer"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "All Tools",
+      "short_name": "Tools",
+      "url": "/c/tool.html",
+      "icons": [{"src": "/favicon-192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "JSON Formatter",
+      "short_name": "JSON",
+      "url": "/json.html",
+      "icons": [{"src": "/favicon-192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "Image Compressor",
+      "short_name": "Image",
+      "url": "/imgcompress.html",
+      "icons": [{"src": "/favicon-192.png", "sizes": "192x192"}]
+    }
+  ]
+}
