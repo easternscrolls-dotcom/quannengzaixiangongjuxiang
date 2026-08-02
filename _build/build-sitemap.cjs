@@ -20,9 +20,39 @@
 
 const fs = require('fs');
 const path = require('path');
+const vm = require('vm');
 const { BASE } = require('./site.config.cjs');
 
 const ROOT = path.resolve(__dirname, '..');
+
+// 从源文件抽取 JS 数组字面量（兼容未加引号的 key），供「数据驱动」sitemap 使用
+function extractArray(srcText, marker) {
+  const s0 = srcText.indexOf(marker);
+  if (s0 < 0) return [];
+  const s = srcText.indexOf('[', s0);
+  if (s < 0) return [];
+  let depth = 0, j = s;
+  for (; j < srcText.length; j++) {
+    const c = srcText[j];
+    if (c === '[') depth++;
+    else if (c === ']') { depth--; if (depth === 0) { j++; break; } }
+  }
+  const ctx = {};
+  vm.createContext(ctx);
+  try { return vm.runInContext('(' + srcText.slice(s, j) + ')', ctx) || []; }
+  catch (e) { return []; }
+}
+function loadSiteData() {
+  try {
+    const hr = fs.readFileSync(path.join(ROOT, 'home-render.js'), 'utf8');
+    const td = fs.readFileSync(path.join(ROOT, 'tools-data.js'), 'utf8');
+    return {
+      TOOLS: extractArray(td, 'window.TOOLS_DATA ='),
+      THEME: extractArray(hr, 'const THEME_DATA ='),
+      SOURCE: extractArray(hr, 'const SOURCE_DATA =')
+    };
+  } catch (e) { return { TOOLS: [], THEME: [], SOURCE: [] }; }
+}
 
 // 拥有完整站点镜像的语言（仅保留中文/英文）
 const MIRROR = [
@@ -160,10 +190,17 @@ function buildCategories() {
 }
 
 // ---------------------------------------------------------------- tools
+// 数据驱动：优先从 TOOLS_DATA 读取全部工具，逐条发出「slug 页」URL（含 hreflang）；
+// 再扫描仍存在于双语言镜像、但不属于 TOOLS_DATA 的遗留共享页（如旧博客页）补齐。
 function buildTools() {
   const urls = [];
-  const names = sharedPages().filter(n => STATIC_PAGES.indexOf(n) === -1);
-  names.forEach(name => {
+  const seen = {};
+  const D = loadSiteData();
+  const pushTool = (name) => {
+    if (seen[name]) return;
+    if (!fs.existsSync(path.join(ROOT, name))) return;
+    if (!fs.existsSync(path.join(ROOT, 'en', name))) return;
+    seen[name] = 1;
     const a = alts(MIRROR, name);
     MIRROR.forEach(l => {
       urls.push({
@@ -174,26 +211,72 @@ function buildTools() {
         pri: l.dir === '' ? '0.7' : '0.65'
       });
     });
+  };
+  (D.TOOLS || []).forEach(t => { if (t && t.slug) pushTool(t.slug); });
+  // 补齐非 TOOLS_DATA 的遗留共享页（双语言都存在）；
+  // 排除 theme-*/source-* profile 页（由 buildDataEntries 单独处理，避免重复）
+  sharedPages().filter(n => STATIC_PAGES.indexOf(n) === -1)
+    .filter(n => !/^(theme|source)-\d+\.html$/.test(n))
+    .forEach(pushTool);
+  return { urls, count: urls.length / MIRROR.length };
+}
+
+// ----------------------------------------------------- 博客文章（数据驱动）
+// 读取 gen-blog-pages.cjs 产出的 blog/articles.json 清单，发出每篇文章的
+// 中/英双语 URL（带 hreflang 互指）。这些页是真实静态页，可被谷歌抓取。
+function buildBlog() {
+  const urls = [];
+  const manifest = path.join(ROOT, 'blog', 'articles.json');
+  if (!fs.existsSync(manifest)) {
+    console.log('build-sitemap: 未找到 blog/articles.json（请先运行 gen-blog-pages.cjs），跳过博客文章。');
+    return urls;
+  }
+  const list = JSON.parse(fs.readFileSync(manifest, 'utf8'));
+  list.forEach(a => {
+    const a2 = alts(MIRROR, a.file);
+    MIRROR.forEach(l => {
+      urls.push({
+        loc: url(l.dir, a.file),
+        alt: a2,
+        lastmod: mtime(path.join(ROOT, l.dir, a.file)),
+        freq: 'monthly',
+        pri: '0.6'
+      });
+    });
   });
-  return { urls, count: names.length };
+  return urls;
+}
+
+// --------------------------------------- 新条目静态 profile 页（数据驱动）
+// 采集管线 daily_ingest.py 为新增的 theme / source 生成 theme-<idx>.html 与
+// source-<idx>.html（root + en）。此处据 THEME_DATA / SOURCE_DATA 发出这些 URL。
+function buildDataEntries() {
+  const urls = [];
+  const D = loadSiteData();
+  const pushEntry = (fname) => {
+    if (!fs.existsSync(path.join(ROOT, fname))) return;
+    if (!fs.existsSync(path.join(ROOT, 'en', fname))) return;
+    const a = alts(MIRROR, fname);
+    MIRROR.forEach(l => {
+      urls.push({
+        loc: url(l.dir, fname),
+        alt: a,
+        lastmod: mtime(path.join(ROOT, l.dir, fname)),
+        freq: 'monthly',
+        pri: '0.6'
+      });
+    });
+  };
+  (D.THEME || []).forEach(t => { if (t && t.idx != null) pushEntry('theme-' + t.idx + '.html'); });
+  (D.SOURCE || []).forEach(s => { if (s && s.idx != null) pushEntry('source-' + s.idx + '.html'); });
+  return urls;
 }
 
 // ------------------------------------------------------------ resources
 function buildResources() {
   const urls = [];
-  // blog
-  const blogDir = path.join(ROOT, 'blog');
-  if (fs.existsSync(blogDir)) {
-    fs.readdirSync(blogDir).filter(f => f.endsWith('.html')).sort().forEach(f => {
-      urls.push({
-        loc: url('', 'blog/' + f),
-        alt: null,
-        lastmod: mtime(path.join(blogDir, f)),
-        freq: 'monthly',
-        pri: f === 'index.html' ? '0.6' : '0.55'
-      });
-    });
-  }
+  // 注：博客文章页已移至 sitemap-blog.xml（由 buildBlog 数据驱动生成），
+  // 此处不再扫描 blog/，避免同一 URL 出现在两个子 sitemap。
 
   // tag 页（zh + en）
   const tagLangs = [{ dir: '', code: 'zh-Hans' }, { dir: 'en', code: 'en' }];
@@ -222,17 +305,30 @@ function run() {
   const cats = buildCategories();
   const tools = buildTools();
   const res = buildResources();
+  const blog = buildBlog();
+  const data = buildDataEntries();
+
+  // 跨子 sitemap 去重：同一 loc 只归到一个文件（优先级见下方顺序）
+  const seen = new Set();
+  const dedupe = (urls) => urls.filter(u => {
+    if (seen.has(u.loc)) return false;
+    seen.add(u.loc);
+    return true;
+  });
 
   const write = (name, urls) => {
-    fs.writeFileSync(path.join(ROOT, name), urlset(urls), 'utf8');
+    const kept = dedupe(urls);
+    fs.writeFileSync(path.join(ROOT, name), urlset(kept), 'utf8');
     files.push(name);
-    return urls.length;
+    return kept.length;
   };
 
   const nPages = write('sitemap-pages.xml', pages);
   const nCats = write('sitemap-categories.xml', cats);
   const nTools = write('sitemap-tools.xml', tools.urls);
   const nRes = res.length ? write('sitemap-resources.xml', res) : 0;
+  const nBlog = blog.length ? write('sitemap-blog.xml', blog) : 0;
+  const nData = data.length ? write('sitemap-data.xml', data) : 0;
 
   // 索引
   const today = new Date().toISOString().slice(0, 10);
@@ -244,15 +340,17 @@ function run() {
   idx += '</sitemapindex>\n';
   fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), idx, 'utf8');
 
-  const total = nPages + nCats + nTools + nRes;
+  const total = nPages + nCats + nTools + nRes + nBlog + nData;
   console.log('build-sitemap: 索引 + ' + files.length + ' 个子 sitemap，共 ' + total + ' 条 URL');
   console.log('  sitemap-pages.xml      : ' + nPages + ' (6 语言首页 + 静态页)');
   console.log('  sitemap-categories.xml : ' + nCats + ' (品类页 + 聚合页)');
   console.log('  sitemap-tools.xml      : ' + nTools + ' (' + tools.count + ' 页 × 4 语言)');
-  if (nRes) console.log('  sitemap-resources.xml  : ' + nRes + ' (博客)');
+  if (nRes) console.log('  sitemap-resources.xml  : ' + nRes + ' (tag 页)');
+  if (nBlog) console.log('  sitemap-blog.xml       : ' + nBlog + ' (博客文章 ×2 语言)');
+  if (nData) console.log('  sitemap-data.xml       : ' + nData + ' (新条目 profile 页 ×2 语言)');
   return { total, files };
 }
 
 if (require.main === module) run();
 
-module.exports = { run, sharedPages, ROOT, BASE };
+module.exports = { run, sharedPages, loadSiteData, ROOT, BASE };

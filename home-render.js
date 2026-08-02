@@ -651,12 +651,18 @@ function buildArticleHtml(a){
    +'</body></html>';
 }
 function openArticleNewTab(a){
-  var html = buildArticleHtml(a);
-  var blob = new Blob([html], {type:'text/html'});
-  var url = URL.createObjectURL(blob);
+  // 指向真实静态文章页（gen-blog-pages.cjs 生成），可被搜索引擎抓取；
+  // 弹窗被拦截时回退到 blob 渲染，保证可用性。
+  var f = ('' + a.idx).replace(/\./g, '-') + '.html';
+  var url = 'blog/' + f;
   var w = window.open(url, '_blank', 'noopener,noreferrer');
-  if(!w){ openItemPreview(); }
-  setTimeout(function(){ URL.revokeObjectURL(url); }, 60000);
+  if(!w){
+    var html = buildArticleHtml(a);
+    var blob = new Blob([html], {type:'text/html'});
+    var b = URL.createObjectURL(blob);
+    window.open(b, '_blank', 'noopener,noreferrer');
+    setTimeout(function(){ URL.revokeObjectURL(b); }, 60000);
+  }
 }
 
 function makeArticleCard(a){
@@ -2393,4 +2399,4 @@ document.addEventListener('i18n:langchange', function(e){
 });
 
 // IndexNow
-})();
+})();
