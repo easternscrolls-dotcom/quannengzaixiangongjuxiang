@@ -158,7 +158,8 @@ const THEME_DATA = [
     {idx:15, subCate:['light'], zh:'Hugo Docsy 文档主题', en:'Hugo Docsy Theme',
      desc_zh:'Google 开源的技术文档主题，多版本文档、搜索与国际化，适合大型项目。',
      desc_en:'Google’s open docs theme with multi-version, search & i18n for big projects.',
-     previewUrl:'https://www.docsy.dev/', downloadUrl:'https://github.com/google/docsy', repo:'google/docsy'}
+     previewUrl:'https://www.docsy.dev/', downloadUrl:'https://github.com/google/docsy', repo:'google/docsy'},
+    {idx:16, subCate:["blog"], zh:'kit', en:'kit', desc_zh:'🧱 Describe your site, AI builds it, you own it as Markdown. Snap together Tailwind blocks like Lego — landing pages, blogs, portfolios, docs & more. No AI slop. Free to deploy anywhere 👇', desc_en:'🧱 Describe your site, AI builds it, you own it as Markdown. Snap together Tailwind blocks like Lego — landing pages, blogs, portfolios, docs & more. No AI slop. Free to deploy anywhere 👇', previewUrl:'https://hugoblox.com', downloadUrl:'https://github.com/HugoBlox/kit', repo:'HugoBlox/kit'}
 ];
 
 const SOURCE_DATA = [
@@ -217,7 +218,8 @@ const SOURCE_DATA = [
     {idx:13, subCate:['newsrc'], zh:'FreshRSS 资讯聚合器', en:'FreshRSS News Aggregator',
      desc_zh:'免费自托管的 RSS 聚合器，支持多用户、筛选规则与第三方客户端。',
      desc_en:'Free self-hosted RSS aggregator with multi-user, filters & 3rd-party clients.',
-     previewUrl:'#', downloadUrl:'https://github.com/FreshRSS/FreshRSS', repo:'FreshRSS/FreshRSS'}
+     previewUrl:'#', downloadUrl:'https://github.com/FreshRSS/FreshRSS', repo:'FreshRSS/FreshRSS'},
+    {idx:14, subCate:["blogsrc"], zh:'public-apis', en:'public-apis', desc_zh:'A collective list of free APIs', desc_en:'A collective list of free APIs', previewUrl:'#', downloadUrl:'https://github.com/public-apis/public-apis', repo:'public-apis/public-apis'}
 ];
 
 // 全局状态（标签切换：同一时间只显示一个主分类）
