@@ -16,4 +16,12 @@
     <loc>https://72tool.com/sitemap-resources.xml</loc>
     <lastmod>2026-08-02</lastmod>
   </sitemap>
+  <sitemap>
+    <loc>https://72tool.com/sitemap-blog.xml</loc>
+    <lastmod>2026-08-02</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://72tool.com/sitemap-data.xml</loc>
+    <lastmod>2026-08-02</lastmod>
+  </sitemap>
 </sitemapindex>

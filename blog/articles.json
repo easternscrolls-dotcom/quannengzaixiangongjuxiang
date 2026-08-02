@@ -4236,6 +4236,18 @@
   "title_en": "ZIP Preview & Extract Tutorial: From Open to Done"
  },
  {
+  "idx": "a-tool-sherlock-project-sherlock-lead",
+  "file": "blog/a-tool-sherlock-project-sherlock-lead.html",
+  "title_zh": "推荐 sherlock：免费在线 实用工具 工具（附直达入口）",
+  "title_en": "Try sherlock: Free Online Python Tool"
+ },
+ {
+  "idx": "a-tool-sherlock-project-sherlock-tut",
+  "file": "blog/a-tool-sherlock-project-sherlock-tut.html",
+  "title_zh": "sherlock 使用教程：从打开到上手（图文）",
+  "title_en": "sherlock Tutorial: From Open to Done"
+ },
+ {
   "idx": "a-theme-0-lead",
   "file": "blog/a-theme-0-lead.html",
   "title_zh": "推荐 Hugo PaperMod 博客主题：开源博客主题模板（附演示与下载）",
@@ -4428,6 +4440,18 @@
   "title_en": "Hugo Docsy Theme Deploy Guide: From Clone to Live"
  },
  {
+  "idx": "a-theme-16-lead",
+  "file": "blog/a-theme-16-lead.html",
+  "title_zh": "推荐 kit：开源博客主题模板（附演示与下载）",
+  "title_en": "Featured kit: Open-source 博客 Theme"
+ },
+ {
+  "idx": "a-theme-16-tut",
+  "file": "blog/a-theme-16-tut.html",
+  "title_zh": "kit 部署教程：从克隆到上线（图文）",
+  "title_en": "kit Deploy Guide: From Clone to Live"
+ },
+ {
   "idx": "a-source-0-lead",
   "file": "blog/a-source-0-lead.html",
   "title_zh": "推荐 Hugo 静态站点生成器：开源博客项目（附 GitHub 入口）",
@@ -4594,6 +4618,18 @@
   "file": "blog/a-source-13-tut.html",
   "title_zh": "FreshRSS 资讯聚合器 教程：从克隆仓库到本地运行（图文）",
   "title_en": "FreshRSS News Aggregator Guide: Clone to Running Locally"
+ },
+ {
+  "idx": "a-source-14-lead",
+  "file": "blog/a-source-14-lead.html",
+  "title_zh": "推荐 public-apis：开源博客项目（附 GitHub 入口）",
+  "title_en": "Featured public-apis: Open-source 博客 Project"
+ },
+ {
+  "idx": "a-source-14-tut",
+  "file": "blog/a-source-14-tut.html",
+  "title_zh": "public-apis 教程：从克隆仓库到本地运行（图文）",
+  "title_en": "public-apis Guide: Clone to Running Locally"
  },
  {
   "idx": 0,
