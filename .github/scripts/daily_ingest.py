@@ -193,19 +193,22 @@ def render_profile(lang, kind, meta, ctas):
     t = (lang == "zh")
     if kind == "tool":
         kind_zh, kind_en = "免费在线工具", "Free Online Tool"
-        fname = meta["slug"] + ".html"
+        disk_fname = meta["slug"] + ".html"
+        url_fname = meta["slug"]
     elif kind == "theme":
         kind_zh, kind_en = "开源主题模板", "Open-source Theme"
-        fname = "theme-%d.html" % meta["idx"]
+        disk_fname = "theme-%d.html" % meta["idx"]
+        url_fname = "theme-%d" % meta["idx"]
     else:
         kind_zh, kind_en = "开源项目", "Open-source Project"
-        fname = "source-%d.html" % meta["idx"]
+        disk_fname = "source-%d.html" % meta["idx"]
+        url_fname = "source-%d" % meta["idx"]
     name = meta["name"]
     desc = meta["desc"]
     title = (name + " | 72Tool " + kind_zh) if t else (name + " | 72Tool " + kind_en)
     base = "https://72tool.com/"
-    canon_zh = base + fname
-    canon_en = base + "en/" + fname
+    canon_zh = base + url_fname
+    canon_en = base + "en/" + url_fname
     cta_html = "".join(
         '<a class="cta%s" href="%s" target="_blank" rel="noopener">%s</a>' % (
             ("" if i == 0 else " alt"), _esc_xml(u),
@@ -246,23 +249,23 @@ def render_profile(lang, kind, meta, ctas):
 def write_profile_page(kind, meta):
     """为新增条目生成静态 profile 页（root + en），使 URL 真实可抓取。"""
     if kind == "tool":
-        fname = meta["slug"] + ".html"
+        disk_fname = meta["slug"] + ".html"
         ctas = [("在 GitHub 查看", "View on GitHub", meta["html_url"])]
     elif kind == "theme":
-        fname = "theme-%d.html" % meta["idx"]
+        disk_fname = "theme-%d.html" % meta["idx"]
         demo = meta["preview"] if meta["preview"] != "#" else meta["download"]
         ctas = [("查看在线演示", "Live Demo", demo),
                 ("获取主题源码", "Get Source", meta["download"])]
     else:  # source
-        fname = "source-%d.html" % meta["idx"]
+        disk_fname = "source-%d.html" % meta["idx"]
         ctas = [("前往 GitHub", "View on GitHub", meta["download"])]
     for lang, sub in (("zh", ""), ("en", "en/")):
         page = render_profile(lang, kind, meta, ctas)
         out_dir = os.path.join(SITE_DIR, sub) if sub else SITE_DIR
         if not os.path.isdir(out_dir):
             os.makedirs(out_dir, exist_ok=True)
-        open(os.path.join(out_dir, fname), "w", encoding="utf-8").write(page)
-    log("[%s] 生成静态页 %s (+ en/%s)" % (kind, fname, fname))
+        open(os.path.join(out_dir, disk_fname), "w", encoding="utf-8").write(page)
+    log("[%s] 生成静态页 %s (+ en/%s)" % (kind, disk_fname, disk_fname))
 
 
 def append_to_array(path, marker, new_objs):

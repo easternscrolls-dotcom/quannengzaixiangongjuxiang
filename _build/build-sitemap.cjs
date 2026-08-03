@@ -68,7 +68,11 @@ const EXCLUDE = ['standard-page-template.html', 'tool-admin.html'];
 const EXCLUDE_RE = [/^baidu_verify.*\.html$/i];
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const url = (dir, name) => BASE + (dir ? dir + '/' : '') + (name || '');
+// 输出层统一去除 .html（磁盘文件仍叫 xxx.html，Cloudflare 从 /xxx 自动解析）
+const url = (dir, name) => {
+  const n = name ? String(name).replace(/\.html$/, '') : '';
+  return BASE + (dir ? dir + '/' : '') + n;
+};
 
 function mtime(file) {
   try { return fs.statSync(file).mtime.toISOString().slice(0, 10); }

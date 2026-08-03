@@ -187,12 +187,13 @@ function renderArticle(a, lang) {
   const refHtml = a.target ? ('<div class="art-ref">' + (t ? '本文针对：' : 'About: ') + _escXml(a.target.name) + '</div>') : '';
   const ctaHtml = a.cta ? ('<div class="art-cta-wrap"><a class="art-cta" href="' + _escXml(a.cta.url) + '" target="_blank" rel="noopener">' + _escXml(t ? (a.cta.label_zh || '前往') : (a.cta.label_en || 'Open')) + '</a></div>') : '';
   const f = artFile(a);
-  const canon = (lang === 'zh' ? BASE + 'blog/' : BASE + 'en/blog/') + f;
-  const altZh = BASE + 'blog/' + f;
-  const altEn = BASE + 'en/blog/' + f;
+  const fNo = f.replace(/\.html$/, '');
+  const canon = (lang === 'zh' ? BASE + 'blog/' : BASE + 'en/blog/') + fNo;
+  const altZh = BASE + 'blog/' + fNo;
+  const altEn = BASE + 'en/blog/' + fNo;
   const home = lang === 'zh' ? '/' : '/en/';
   const blogIdx = lang === 'zh' ? '/blog/' : '/en/blog/';
-  const about = lang === 'zh' ? '/about.html' : '/en/about.html';
+  const about = lang === 'zh' ? '/about' : '/en/about';
   return '<!DOCTYPE html><html lang="' + (t ? 'zh' : 'en') + '"><head>'
     + '<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
     + '<title>' + _escXml(title) + ' — 72Tool</title>'
@@ -228,8 +229,9 @@ function renderIndex(articles) {
     const t = lang === 'zh';
     const items = articles.map(function (a) {
       const f = artFile(a);
+      const fNo = f.replace(/\.html$/, '');
       const title = t ? (a.title_zh || a.title_en) : (a.title_en || a.title_zh);
-      return '<li><a href="' + (t ? 'blog/' : 'en/blog/') + f + '">' + _escXml(title) + '</a></li>';
+      return '<li><a href="' + (t ? 'blog/' : 'en/blog/') + fNo + '">' + _escXml(title) + '</a></li>';
     }).join('');
     return '<div class="col"><h2>' + (t ? '中文文章' : 'English Articles') + '</h2><ul>' + items + '</ul></div>';
   }

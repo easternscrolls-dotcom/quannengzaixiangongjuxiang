@@ -543,8 +543,8 @@ function mockStats(key){ var h=hashStr(key); return { views: 1200+(h%8800), down
 const LICENSE_META = {
     mit:    { code:'MIT',        zh:'MIT 许可',   en:'MIT License',    url:'https://opensource.org/licenses/MIT',    cls:'license-mit' },
     apache: { code:'Apache-2.0', zh:'Apache 2.0', en:'Apache-2.0',     url:'https://www.apache.org/licenses/LICENSE-2.0', cls:'license-apache' },
-    free:   { code:'Free',       zh:'免费使用',   en:'Free to use',    url:'/terms.html',                            cls:'license-free' },
-    com:    { code:'Commercial', zh:'可商用',     en:'Commercial OK',  url:'/terms.html',                            cls:'license-com' }
+    free:   { code:'Free',       zh:'免费使用',   en:'Free to use',    url:'/terms',                            cls:'license-free' },
+    com:    { code:'Commercial', zh:'可商用',     en:'Commercial OK',  url:'/terms',                            cls:'license-com' }
 };
 // 在线工具 = 免费直接使用；模板/源码 = MIT / Apache（按 idx 稳定分配，接入真实数据后改读 item.license）
 function licenseOf(item, kind){
@@ -655,7 +655,7 @@ function buildArticleHtml(a){
 function openArticleNewTab(a){
   // 指向真实静态文章页（gen-blog-pages.cjs 生成），可被搜索引擎抓取；
   // 弹窗被拦截时回退到 blob 渲染，保证可用性。
-  var f = ('' + a.idx).replace(/\./g, '-') + '.html';
+  var f = ('' + a.idx).replace(/\./g, '-');
   var url = 'blog/' + f;
   var w = window.open(url, '_blank', 'noopener,noreferrer');
   if(!w){
@@ -2065,7 +2065,7 @@ const COOKIE_I18N = {
     var box=document.getElementById('cookieBox'); if(!box) return;
     var T = COOKIE_I18N[SITE_LANG] || COOKIE_I18N.en;
     document.getElementById('ckTitle').textContent = T.t;
-    document.getElementById('ckBody').innerHTML = T.b + ' <a href="/privacy.html" style="color:var(--nebula-cyan);">'+T.p+'</a>';
+    document.getElementById('ckBody').innerHTML = T.b + ' <a href="/privacy" style="color:var(--nebula-cyan);">'+T.p+'</a>';
     document.getElementById('cookieAccept').textContent = T.a;
     document.getElementById('cookieReject').textContent = T.r;
     if(!safeStorage.get('cookieConsent')) box.style.display='block';
@@ -2230,11 +2230,11 @@ function goCategory(main, sub){
 const CAT_PAGE_LANGS = ['zh','en'];   // 已生成 theme / source 聚合页的语种
 function catPageUrl(main, tag){
     if(main === 'tool'){
-        return LANG_PREFIX + tag + '-tools.html';
+        return LANG_PREFIX + tag + '-tools';
     }
     if(CAT_PAGE_LANGS.indexOf(SITE_LANG) === -1) return null;
     var prefix = SITE_LANG === 'zh' ? '/c/' : '/' + SITE_LANG + '/c/';
-    return prefix + main + '-' + tag + '.html';
+    return prefix + main + '-' + tag;
 }
 function renderTagAgg(){
     var box=document.getElementById('tagAggList'); if(!box) return; var html='';
