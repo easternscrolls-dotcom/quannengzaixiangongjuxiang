@@ -38,6 +38,7 @@
     try { return localStorage.getItem('cookieConsent') === 'accept'; } catch (e) { return false; }
   }
   var _adsBooted = false;
+  var _runDone = false;
   function bootAds() {
     if (_adsBooted) return;
     _adsBooted = true;
@@ -141,6 +142,8 @@
   }
 
   function run() {
+    if (_runDone) return;
+    _runDone = true;
     bootAdsense();   // 推送自动广告配置
     // 纯自动广告模式（真实 client 且未配置手动 slot）：不渲染灰色占位框，交给自动广告自动落位；
     // 仅在「本地预览(占位符 client)」或「已配置手动 slot」时才渲染这些广告位
