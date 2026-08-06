@@ -34,7 +34,9 @@ User-agent: YandexBot
 Allow: /
 Disallow: /*?q=
 Disallow: /*?utm_
+# 以下两条为 Yandex 专用指令，其他引擎可忽略
 Clean-param: q&utm_source&utm_medium&utm_campaign&ref&lang
+Host: https://72tool.com
 
 # ---- DuckDuckGo ----
 User-agent: DuckDuckBot
@@ -94,6 +96,3 @@ Sitemap: https://72tool.com/sitemap.xml
 Sitemap: https://72tool.com/sitemap-pages.xml
 Sitemap: https://72tool.com/sitemap-categories.xml
 Sitemap: https://72tool.com/sitemap-tools.xml
-Sitemap: https://72tool.com/sitemap-resources.xml
-
-Host: 72tool.com
