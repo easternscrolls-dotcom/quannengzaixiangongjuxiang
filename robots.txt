@@ -90,6 +90,8 @@ Disallow: /*?fbclid=
 Disallow: /*?gclid=
 Disallow: /_build/
 Disallow: /*.cjs$
+# 验证令牌文件（Baidu 等站长验证令牌，非内容页，不予收录）
+Disallow: /zh/baidu_verify
 
 # ---- Sitemaps (index + per-language) ----
 Sitemap: https://72tool.com/sitemap.xml
