@@ -159,7 +159,8 @@ const THEME_DATA = [
      desc_zh:'Google 开源的技术文档主题，多版本文档、搜索与国际化，适合大型项目。',
      desc_en:'Google’s open docs theme with multi-version, search & i18n for big projects.',
      previewUrl:'https://www.docsy.dev/', downloadUrl:'https://github.com/google/docsy', repo:'google/docsy'},
-    {idx:16, subCate:["blog"], zh:'kit', en:'kit', desc_zh:'🧱 Describe your site, AI builds it, you own it as Markdown. Snap together Tailwind blocks like Lego — landing pages, blogs, portfolios, docs & more. No AI slop. Free to deploy anywhere 👇', desc_en:'🧱 Describe your site, AI builds it, you own it as Markdown. Snap together Tailwind blocks like Lego — landing pages, blogs, portfolios, docs & more. No AI slop. Free to deploy anywhere 👇', previewUrl:'https://hugoblox.com', downloadUrl:'https://github.com/HugoBlox/kit', repo:'HugoBlox/kit'}
+    {idx:16, subCate:["blog"], zh:'kit', en:'kit', desc_zh:'🧱 Describe your site, AI builds it, you own it as Markdown. Snap together Tailwind blocks like Lego — landing pages, blogs, portfolios, docs & more. No AI slop. Free to deploy anywhere 👇', desc_en:'🧱 Describe your site, AI builds it, you own it as Markdown. Snap together Tailwind blocks like Lego — landing pages, blogs, portfolios, docs & more. No AI slop. Free to deploy anywhere 👇', previewUrl:'https://hugoblox.com', downloadUrl:'https://github.com/HugoBlox/kit', repo:'HugoBlox/kit'},
+    {idx:17, subCate:["blog"], zh:'hugo-theme-academic-cv', en:'hugo-theme-academic-cv', desc_zh:'🎓 Academic portfolio that boosts citations. AI generates pages, you own as Markdown. BibTeX auto-import, Jupyter, LaTeX, slides, visual block editor — free to host forever. 学术主页，AI 生成，Markdown 拥有 👇', desc_en:'🎓 Academic portfolio that boosts citations. AI generates pages, you own as Markdown. BibTeX auto-import, Jupyter, LaTeX, slides, visual block editor — free to host forever. 学术主页，AI 生成，Markdown 拥有 👇', previewUrl:'https://hugoblox.com/templates/academic-cv', downloadUrl:'https://github.com/HugoBlox/hugo-theme-academic-cv', repo:'HugoBlox/hugo-theme-academic-cv'}
 ];
 
 const SOURCE_DATA = [
@@ -219,7 +220,8 @@ const SOURCE_DATA = [
      desc_zh:'免费自托管的 RSS 聚合器，支持多用户、筛选规则与第三方客户端。',
      desc_en:'Free self-hosted RSS aggregator with multi-user, filters & 3rd-party clients.',
      previewUrl:'#', downloadUrl:'https://github.com/FreshRSS/FreshRSS', repo:'FreshRSS/FreshRSS'},
-    {idx:14, subCate:["blogsrc"], zh:'public-apis', en:'public-apis', desc_zh:'A collective list of free APIs', desc_en:'A collective list of free APIs', previewUrl:'#', downloadUrl:'https://github.com/public-apis/public-apis', repo:'public-apis/public-apis'}
+    {idx:14, subCate:["blogsrc"], zh:'public-apis', en:'public-apis', desc_zh:'A collective list of free APIs', desc_en:'A collective list of free APIs', previewUrl:'#', downloadUrl:'https://github.com/public-apis/public-apis', repo:'public-apis/public-apis'},
+    {idx:15, subCate:["blogsrc"], zh:'prompts.chat', en:'prompts.chat', desc_zh:'f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete privacy.', desc_en:'f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete privacy.', previewUrl:'#', downloadUrl:'https://github.com/f/prompts.chat', repo:'f/prompts.chat'}
 ];
 
 // 全局状态（标签切换：同一时间只显示一个主分类）

@@ -19,6 +19,24 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://72tool.com/zh/theme-17</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/theme-17"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/theme-17"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/theme-17"/>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://72tool.com/theme-17</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/theme-17"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/theme-17"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/theme-17"/>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://72tool.com/zh/source-14</loc>
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/source-14"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/source-14"/>
@@ -32,6 +50,24 @@
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/source-14"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/source-14"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/source-14"/>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://72tool.com/zh/source-15</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/source-15"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/source-15"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/source-15"/>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://72tool.com/source-15</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/source-15"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/source-15"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/source-15"/>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
