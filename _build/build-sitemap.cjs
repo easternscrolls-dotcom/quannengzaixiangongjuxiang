@@ -54,10 +54,10 @@ function loadSiteData() {
   } catch (e) { return { TOOLS: [], THEME: [], SOURCE: [] }; }
 }
 
-// 拥有完整站点镜像的语言（仅保留中文/英文）
+// 拥有完整站点镜像的语言（翻转后：英文在根，中文在 /zh/）
 const MIRROR = [
-  { dir: '', code: 'zh-Hans' },
-  { dir: 'en', code: 'en' }
+  { dir: 'zh', code: 'zh-Hans' },
+  { dir: '', code: 'en' }
 ];
 // 仅有首页的语言（本项目仅保留中文/英文，故为空）
 const HOME_ONLY = [];
@@ -84,7 +84,7 @@ function alts(list, nameOrEmpty) {
   const lines = list.map(l =>
     '    <xhtml:link rel="alternate" hreflang="' + l.code + '" href="' + esc(url(l.dir, nameOrEmpty)) + '"/>'
   );
-  lines.push('    <xhtml:link rel="alternate" hreflang="x-default" href="' + esc(url('en', nameOrEmpty)) + '"/>');
+  lines.push('    <xhtml:link rel="alternate" hreflang="x-default" href="' + esc(url('', nameOrEmpty)) + '"/>');
   return lines.join('\n');
 }
 
@@ -109,7 +109,7 @@ function sharedPages() {
   return fs.readdirSync(ROOT)
     .filter(f => f.endsWith('.html'))
     .filter(f => EXCLUDE.indexOf(f) === -1 && !EXCLUDE_RE.some(re => re.test(f)))
-    .filter(f => f !== 'index.html' && !/-tools\.html$/i.test(f))
+    .filter(f => f !== 'index.html' && !/-tools\.html$/i.test(f) && !/^tag-/.test(f))
     .filter(f => MIRROR.every(l => fs.existsSync(path.join(ROOT, l.dir, f))))
     .sort();
 }
@@ -120,7 +120,7 @@ function buildPages() {
   const allHomes = MIRROR.concat(HOME_ONLY);
   const homeAlts = allHomes
     .map(l => '    <xhtml:link rel="alternate" hreflang="' + l.code + '" href="' + esc(url(l.dir, '')) + '"/>')
-    .concat(['    <xhtml:link rel="alternate" hreflang="x-default" href="' + esc(url('en', '')) + '"/>'])
+    .concat(['    <xhtml:link rel="alternate" hreflang="x-default" href="' + esc(url('', '')) + '"/>'])
     .join('\n');
 
   allHomes.forEach(l => {
@@ -172,7 +172,7 @@ function buildCategories() {
   });
 
   // 2) /c/ 主题与源码聚合页（zh + en）
-  const cLangs = [{ dir: '', code: 'zh-Hans' }, { dir: 'en', code: 'en' }];
+  const cLangs = [{ dir: '', code: 'en' }, { dir: 'zh', code: 'zh-Hans' }];
   const cRoot = path.join(ROOT, 'c');
   if (fs.existsSync(cRoot)) {
     fs.readdirSync(cRoot).filter(f => f.endsWith('.html')).sort().forEach(f => {
@@ -202,8 +202,7 @@ function buildTools() {
   const D = loadSiteData();
   const pushTool = (name) => {
     if (seen[name]) return;
-    if (!fs.existsSync(path.join(ROOT, name))) return;
-    if (!fs.existsSync(path.join(ROOT, 'en', name))) return;
+    if (!MIRROR.every(l => fs.existsSync(path.join(ROOT, l.dir, name)))) return;
     seen[name] = 1;
     const a = alts(MIRROR, name);
     MIRROR.forEach(l => {
@@ -253,13 +252,12 @@ function buildBlog() {
 
 // --------------------------------------- 新条目静态 profile 页（数据驱动）
 // 采集管线 daily_ingest.py 为新增的 theme / source 生成 theme-<idx>.html 与
-// source-<idx>.html（root + en）。此处据 THEME_DATA / SOURCE_DATA 发出这些 URL。
+// source-<idx>.html（英文在 root、中文在 /zh/）。此处据 THEME_DATA / SOURCE_DATA 发出这些 URL。
 function buildDataEntries() {
   const urls = [];
   const D = loadSiteData();
   const pushEntry = (fname) => {
-    if (!fs.existsSync(path.join(ROOT, fname))) return;
-    if (!fs.existsSync(path.join(ROOT, 'en', fname))) return;
+    if (!MIRROR.every(l => fs.existsSync(path.join(ROOT, l.dir, fname)))) return;
     const a = alts(MIRROR, fname);
     MIRROR.forEach(l => {
       urls.push({
@@ -283,7 +281,7 @@ function buildResources() {
   // 此处不再扫描 blog/，避免同一 URL 出现在两个子 sitemap。
 
   // tag 页（zh + en）
-  const tagLangs = [{ dir: '', code: 'zh-Hans' }, { dir: 'en', code: 'en' }];
+  const tagLangs = [{ dir: '', code: 'en' }, { dir: 'zh', code: 'zh-Hans' }];
   fs.readdirSync(ROOT).filter(f => f.startsWith('tag-') && f.endsWith('.html')).sort().forEach(f => {
     const langs = tagLangs.filter(l => fs.existsSync(path.join(ROOT, l.dir, f)));
     const a = langs.length > 1 ? alts(langs, f) : null;
@@ -322,6 +320,7 @@ function run() {
 
   const write = (name, urls) => {
     const kept = dedupe(urls);
+    if (!kept.length) return 0;
     fs.writeFileSync(path.join(ROOT, name), urlset(kept), 'utf8');
     files.push(name);
     return kept.length;

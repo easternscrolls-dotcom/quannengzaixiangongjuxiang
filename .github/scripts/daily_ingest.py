@@ -207,8 +207,8 @@ def render_profile(lang, kind, meta, ctas):
     desc = meta["desc"]
     title = (name + " | 72Tool " + kind_zh) if t else (name + " | 72Tool " + kind_en)
     base = "https://72tool.com/"
-    canon_zh = base + url_fname
-    canon_en = base + "en/" + url_fname
+    canon_en = base + url_fname
+    canon_zh = base + "zh/" + url_fname
     cta_html = "".join(
         '<a class="cta%s" href="%s" target="_blank" rel="noopener">%s</a>' % (
             ("" if i == 0 else " alt"), _esc_xml(u),
@@ -237,10 +237,10 @@ def render_profile(lang, kind, meta, ctas):
             '</body></html>') % (
         ("zh" if t else "en"),
         _esc_xml(title), _esc_xml(desc),
-        _esc_xml(canon_zh), _esc_xml(canon_zh), _esc_xml(canon_en), _esc_xml(canon_en),
+        _esc_xml(canon_zh if t else canon_en), _esc_xml(canon_zh), _esc_xml(canon_en), _esc_xml(canon_en),
         _esc_xml(title), _esc_xml(desc),
         _PROFILE_CSS,
-        ("/" if t else "/en/"), (("返回首页") if t else ("Back to Home")),
+        ("/zh/" if t else "/"), (("返回首页") if t else ("Back to Home")),
         (_esc_xml(kind_zh) if t else _esc_xml(kind_en)),
         _esc_xml(name), _esc_xml(desc), cta_html,
         (("内容由 72Tool 整理，详情以官方仓库为准") if t else ("Curated by 72Tool; see the official repo for details)")))
@@ -259,13 +259,13 @@ def write_profile_page(kind, meta):
     else:  # source
         disk_fname = "source-%d.html" % meta["idx"]
         ctas = [("前往 GitHub", "View on GitHub", meta["download"])]
-    for lang, sub in (("zh", ""), ("en", "en/")):
+    for lang, sub in (("zh", "zh/"), ("en", "")):
         page = render_profile(lang, kind, meta, ctas)
         out_dir = os.path.join(SITE_DIR, sub) if sub else SITE_DIR
         if not os.path.isdir(out_dir):
             os.makedirs(out_dir, exist_ok=True)
         open(os.path.join(out_dir, disk_fname), "w", encoding="utf-8").write(page)
-    log("[%s] 生成静态页 %s (+ en/%s)" % (kind, disk_fname, disk_fname))
+    log("[%s] 生成静态页 zh/%s (+ %s)" % (kind, disk_fname, disk_fname))
 
 
 def append_to_array(path, marker, new_objs):

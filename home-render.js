@@ -286,9 +286,9 @@ function formatDateLocal(d, withTime){
    否则英文用户会被扔到中文工具页。de/ar 暂无镜像，回退英文镜像而非中文。*/
 const MIRROR_LANGS = ['en'];          // 已有完整镜像目录的语种
 const LANG_PREFIX = (function(){
-    if(SITE_LANG === 'zh') return '/';
-    if(MIRROR_LANGS.indexOf(SITE_LANG) > -1) return '/' + SITE_LANG + '/';
-    return '/en/';                              // de / ar 等回退到英文镜像
+    if(SITE_LANG === 'en') return '/';
+    if(SITE_LANG === 'zh') return '/zh/';
+    return '/';                                // de / ar 等回退到英文根
 })();
 function toolUrl(slug){
     if(!slug) return LANG_PREFIX;
@@ -1880,7 +1880,7 @@ var langBtn = document.getElementById('langBtn'), langMenu = document.getElement
 langBtn.addEventListener('click',function(e){ e.stopPropagation(); var open = langMenu.classList.toggle('open'); langBtn.setAttribute('aria-expanded', open?'true':'false'); });
 document.addEventListener('click',function(){ langMenu.classList.remove('open'); langBtn.setAttribute('aria-expanded','false'); });
 // 独立语种页面路由（每个语种独立 URL，谷歌可独立收录，权重不再互相稀释）
-var LANG_PATH = { zh:'/', en:'/en/', jp:'/jp/', es:'/es/', de:'/de/', ar:'/ar/' };
+var LANG_PATH = { zh:'/zh/', en:'/', jp:'/jp/', es:'/es/', de:'/de/', ar:'/ar/' };
 langMenu.querySelectorAll('.lang-option').forEach(function(opt){
     if(opt.dataset.lang === SITE_LANG) opt.classList.add('active');
     opt.addEventListener('click',function(e){
@@ -2233,7 +2233,7 @@ function catPageUrl(main, tag){
         return LANG_PREFIX + tag + '-tools';
     }
     if(CAT_PAGE_LANGS.indexOf(SITE_LANG) === -1) return null;
-    var prefix = SITE_LANG === 'zh' ? '/c/' : '/' + SITE_LANG + '/c/';
+    var prefix = SITE_LANG === 'en' ? '/c/' : '/zh/c/';
     return prefix + main + '-' + tag;
 }
 function renderTagAgg(){

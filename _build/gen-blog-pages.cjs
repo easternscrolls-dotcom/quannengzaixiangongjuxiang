@@ -26,7 +26,7 @@ const vm = require('vm');
 const ROOT = path.resolve(__dirname, '..');
 const BASE = 'https://72tool.com/';
 const BLOG = path.join(ROOT, 'blog');
-const BLOG_EN = path.join(ROOT, 'en', 'blog');
+const BLOG_ZH = path.join(ROOT, 'zh', 'blog');
 
 // ---------- 从源文件抽取 JS 数组字面量（兼容未加引号的 key） ----------
 function extractArray(srcText, marker) {
@@ -113,7 +113,7 @@ function genArticles(lang, D) {
   (D.TOOLS_DATA || []).forEach(function (it) {
     const name = t ? it.zh : it.en;
     const cat = t ? (it.type_cn || it.type) : (it.type || it.type_cn);
-    const url = t ? ('/' + it.slug) : ('/en/' + it.slug);
+    const url = t ? ('/zh/' + it.slug) : ('/' + it.slug);
     arts.push({ idx: 'a-tool-' + it.slug + '-lead', atype: 'lead', target: { type: 'tool', name: name },
       title_zh: '推荐 ' + it.zh + '：免费在线 ' + cat + ' 工具（附直达入口）', title_en: 'Try ' + it.en + ': Free Online ' + (it.type || '') + ' Tool',
       date: '2026-07', tag: t ? '工具推荐' : 'Tool Pick',
@@ -188,12 +188,12 @@ function renderArticle(a, lang) {
   const ctaHtml = a.cta ? ('<div class="art-cta-wrap"><a class="art-cta" href="' + _escXml(a.cta.url) + '" target="_blank" rel="noopener">' + _escXml(t ? (a.cta.label_zh || '前往') : (a.cta.label_en || 'Open')) + '</a></div>') : '';
   const f = artFile(a);
   const fNo = f.replace(/\.html$/, '');
-  const canon = (lang === 'zh' ? BASE + 'blog/' : BASE + 'en/blog/') + fNo;
-  const altZh = BASE + 'blog/' + fNo;
-  const altEn = BASE + 'en/blog/' + fNo;
-  const home = lang === 'zh' ? '/' : '/en/';
-  const blogIdx = lang === 'zh' ? '/blog/' : '/en/blog/';
-  const about = lang === 'zh' ? '/about' : '/en/about';
+  const canon = (lang === 'zh' ? BASE + 'zh/blog/' : BASE + 'blog/') + fNo;
+  const altZh = BASE + 'zh/blog/' + fNo;
+  const altEn = BASE + 'blog/' + fNo;
+  const home = lang === 'zh' ? '/zh/' : '/';
+  const blogIdx = lang === 'zh' ? '/zh/blog/' : '/blog/';
+  const about = lang === 'zh' ? '/zh/about' : '/about';
   return '<!DOCTYPE html><html lang="' + (t ? 'zh' : 'en') + '"><head>'
     + '<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
     + '<title>' + _escXml(title) + ' — 72Tool</title>'
@@ -231,7 +231,7 @@ function renderIndex(articles) {
       const f = artFile(a);
       const fNo = f.replace(/\.html$/, '');
       const title = t ? (a.title_zh || a.title_en) : (a.title_en || a.title_zh);
-      return '<li><a href="' + (t ? 'blog/' : 'en/blog/') + fNo + '">' + _escXml(title) + '</a></li>';
+      return '<li><a href="' + (t ? 'zh/blog/' : 'blog/') + fNo + '">' + _escXml(title) + '</a></li>';
     }).join('');
     return '<div class="col"><h2>' + (t ? '中文文章' : 'English Articles') + '</h2><ul>' + items + '</ul></div>';
   }
@@ -244,7 +244,7 @@ function renderIndex(articles) {
     + 'ul{list-style:none;padding:0}li{padding:8px 0;border-bottom:1px solid #eee}'
     + 'a{color:#2478f5;text-decoration:none}.lang{margin-bottom:12px}a.switch{margin-right:14px;color:#6b7280;font-size:14px}</style></head>'
     + '<body><h1>72Tool 博客文章索引</h1>'
-    + '<div class="lang"><a class="switch" href="/blog/">中文</a><a class="switch" href="/en/blog/">English</a></div>'
+    + '<div class="lang"><a class="switch" href="/zh/blog/">中文</a><a class="switch" href="/blog/">English</a></div>'
     + '<div class="cols">' + list('zh') + list('en') + '</div>'
     + '<footer style="margin-top:30px;color:#8b949e;font-size:12px">© 2026 72Tool</footer></body></html>';
 }
@@ -255,21 +255,21 @@ function run() {
   let count = 0;
   const manifest = [];
 
-  [['zh', BLOG], ['en', BLOG_EN]].forEach(function (pair) {
+  [['zh', BLOG_ZH], ['en', BLOG]].forEach(function (pair) {
     const lang = pair[0], dir = pair[1];
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
   });
 
   ['zh', 'en'].forEach(function (lang) {
     const arts = genArticles(lang, D);
-    const dir = lang === 'zh' ? BLOG : BLOG_EN;
+    const dir = lang === 'zh' ? BLOG_ZH : BLOG;
     arts.forEach(function (a) {
       const f = artFile(a);
       const html = renderArticle(a, lang);
       fs.writeFileSync(path.join(dir, f), html, 'utf8');
       if (lang === 'zh') {
         manifest.push({
-          idx: a.idx, file: 'blog/' + f,
+          idx: a.idx, file: 'zh/blog/' + f,
           title_zh: a.title_zh || '', title_en: a.title_en || ''
         });
       }

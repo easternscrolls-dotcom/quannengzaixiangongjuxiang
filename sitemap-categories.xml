@@ -1,398 +1,398 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://72tool.com/audio-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/audio-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/audio-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/audio-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/audio-tools</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/audio-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/audio-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/audio-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/audio-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/audio-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/audio-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/audio-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/audio-tools</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/audio-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/audio-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/audio-tools"/>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://72tool.com/zh/business-tools</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/business-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/business-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/business-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://72tool.com/business-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/business-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/business-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/business-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/business-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/business-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/business-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/business-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/business-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/business-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/business-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/csv-tools</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/csv-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/csv-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/csv-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://72tool.com/csv-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/csv-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/csv-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/csv-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/csv-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/csv-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/csv-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/csv-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/csv-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/csv-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/csv-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/dev-tools</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/dev-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/dev-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/dev-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://72tool.com/dev-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/dev-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/dev-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/dev-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/dev-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/dev-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/dev-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/dev-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/dev-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/dev-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/dev-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/gif-tools</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/gif-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/gif-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/gif-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://72tool.com/gif-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/gif-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/gif-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/gif-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/gif-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/gif-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/gif-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/gif-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/gif-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/gif-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/gif-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/img-tools</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/img-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/img-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/img-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://72tool.com/img-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/img-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/img-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/img-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/img-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/img-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/img-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/img-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/img-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/img-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/img-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/json-tools</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/json-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/json-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/json-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://72tool.com/json-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/json-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/json-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/json-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/json-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/json-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/json-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/json-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/json-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/json-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/json-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/pdf-tools</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/pdf-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/pdf-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/pdf-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://72tool.com/pdf-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/pdf-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/pdf-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/pdf-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/pdf-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/pdf-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/pdf-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/pdf-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/pdf-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/pdf-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/pdf-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/seo-tools</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/seo-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/seo-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/seo-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://72tool.com/seo-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/seo-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/seo-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/seo-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/seo-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/seo-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/seo-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/seo-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/seo-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/seo-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/seo-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/text-tools</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/text-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/text-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/text-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://72tool.com/text-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/text-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/text-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/text-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/text-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/text-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/text-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/text-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/text-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/text-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/text-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/unit-tools</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/unit-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/unit-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/unit-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://72tool.com/unit-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/unit-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/unit-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/unit-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/unit-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/unit-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/unit-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/unit-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/unit-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/unit-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/unit-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/url-tools</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/url-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/url-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/url-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://72tool.com/url-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/url-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/url-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/url-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/url-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/url-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/url-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/url-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/url-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/url-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/url-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/video-tools</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/video-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/video-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/video-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://72tool.com/video-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/video-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/video-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/video-tools"/>
-    <lastmod>2026-08-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://72tool.com/en/video-tools</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/video-tools"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/video-tools"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/video-tools"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/video-tools"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/video-tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/video-tools"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://72tool.com/c/source-blogsrc</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/source-blogsrc"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/source-blogsrc"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/source-blogsrc"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/source-blogsrc"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/source-blogsrc"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/source-blogsrc"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/c/source-blogsrc</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/source-blogsrc"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/source-blogsrc"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/source-blogsrc"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/c/source-blogsrc</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/source-blogsrc"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/source-blogsrc"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/source-blogsrc"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://72tool.com/c/source-navsrc</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/source-navsrc"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/source-navsrc"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/source-navsrc"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/source-navsrc"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/source-navsrc"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/source-navsrc"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/c/source-navsrc</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/source-navsrc"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/source-navsrc"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/source-navsrc"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/c/source-navsrc</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/source-navsrc"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/source-navsrc"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/source-navsrc"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://72tool.com/c/source-newsrc</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/source-newsrc"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/source-newsrc"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/source-newsrc"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/source-newsrc"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/source-newsrc"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/source-newsrc"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/c/source-newsrc</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/source-newsrc"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/source-newsrc"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/source-newsrc"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/c/source-newsrc</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/source-newsrc"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/source-newsrc"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/source-newsrc"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://72tool.com/c/source-toolsrc</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/source-toolsrc"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/source-toolsrc"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/source-toolsrc"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/source-toolsrc"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/source-toolsrc"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/source-toolsrc"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/c/source-toolsrc</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/source-toolsrc"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/source-toolsrc"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/source-toolsrc"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/c/source-toolsrc</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/source-toolsrc"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/source-toolsrc"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/source-toolsrc"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://72tool.com/c/theme-blog</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/theme-blog"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/theme-blog"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/theme-blog"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/theme-blog"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/theme-blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/theme-blog"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/c/theme-blog</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/theme-blog"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/theme-blog"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/theme-blog"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/c/theme-blog</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/theme-blog"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/theme-blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/theme-blog"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://72tool.com/c/theme-dark</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/theme-dark"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/theme-dark"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/theme-dark"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/theme-dark"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/theme-dark"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/theme-dark"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/c/theme-dark</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/theme-dark"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/theme-dark"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/theme-dark"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/c/theme-dark</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/theme-dark"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/theme-dark"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/theme-dark"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://72tool.com/c/theme-homepage</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/theme-homepage"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/theme-homepage"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/theme-homepage"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/theme-homepage"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/theme-homepage"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/theme-homepage"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/c/theme-homepage</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/theme-homepage"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/theme-homepage"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/theme-homepage"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/c/theme-homepage</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/theme-homepage"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/theme-homepage"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/theme-homepage"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://72tool.com/c/theme-light</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/theme-light"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/theme-light"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/theme-light"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/theme-light"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/theme-light"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/theme-light"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/c/theme-light</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/theme-light"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/theme-light"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/theme-light"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/c/theme-light</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/theme-light"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/theme-light"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/theme-light"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://72tool.com/c/theme-toolpage</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/theme-toolpage"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/theme-toolpage"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/theme-toolpage"/>
-    <lastmod>2026-08-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/theme-toolpage"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/theme-toolpage"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/theme-toolpage"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://72tool.com/en/c/theme-toolpage</loc>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/c/theme-toolpage"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/en/c/theme-toolpage"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/en/c/theme-toolpage"/>
-    <lastmod>2026-08-03</lastmod>
+    <loc>https://72tool.com/zh/c/theme-toolpage</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://72tool.com/c/theme-toolpage"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://72tool.com/zh/c/theme-toolpage"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://72tool.com/c/theme-toolpage"/>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
