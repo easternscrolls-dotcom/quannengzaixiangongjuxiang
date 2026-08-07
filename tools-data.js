@@ -2824,5 +2824,6 @@ window.TOOLS_DATA = [
   "type_cn": "开发调试"
  },
  { "slug": "sherlock-project-sherlock", "zh": "sherlock", "en": "sherlock", "cat": "util", "type": "Python", "type_cn": "实用工具" },
+ { "slug": "sherlock-project-sherlock", "zh": "sherlock", "en": "sherlock", "cat": "util", "type": "Python", "type_cn": "实用工具" },
  { "slug": "sherlock-project-sherlock", "zh": "sherlock", "en": "sherlock", "cat": "util", "type": "Python", "type_cn": "实用工具" }
 ];

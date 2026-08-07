@@ -4260,6 +4260,18 @@
   "title_en": "sherlock Tutorial: From Open to Done"
  },
  {
+  "idx": "a-tool-sherlock-project-sherlock-lead",
+  "file": "zh/blog/a-tool-sherlock-project-sherlock-lead.html",
+  "title_zh": "推荐 sherlock：免费在线 实用工具 工具（附直达入口）",
+  "title_en": "Try sherlock: Free Online Python Tool"
+ },
+ {
+  "idx": "a-tool-sherlock-project-sherlock-tut",
+  "file": "zh/blog/a-tool-sherlock-project-sherlock-tut.html",
+  "title_zh": "sherlock 使用教程：从打开到上手（图文）",
+  "title_en": "sherlock Tutorial: From Open to Done"
+ },
+ {
   "idx": "a-theme-0-lead",
   "file": "zh/blog/a-theme-0-lead.html",
   "title_zh": "推荐 Hugo PaperMod 博客主题：开源博客主题模板（附演示与下载）",
@@ -4476,6 +4488,18 @@
   "title_en": "hugo-theme-academic-cv Deploy Guide: From Clone to Live"
  },
  {
+  "idx": "a-theme-18-lead",
+  "file": "zh/blog/a-theme-18-lead.html",
+  "title_zh": "推荐 hugo-book：开源博客主题模板（附演示与下载）",
+  "title_en": "Featured hugo-book: Open-source 博客 Theme"
+ },
+ {
+  "idx": "a-theme-18-tut",
+  "file": "zh/blog/a-theme-18-tut.html",
+  "title_zh": "hugo-book 部署教程：从克隆到上线（图文）",
+  "title_en": "hugo-book Deploy Guide: From Clone to Live"
+ },
+ {
   "idx": "a-source-0-lead",
   "file": "zh/blog/a-source-0-lead.html",
   "title_zh": "推荐 Hugo 静态站点生成器：开源博客项目（附 GitHub 入口）",
@@ -4666,6 +4690,18 @@
   "file": "zh/blog/a-source-15-tut.html",
   "title_zh": "prompts.chat 教程：从克隆仓库到本地运行（图文）",
   "title_en": "prompts.chat Guide: Clone to Running Locally"
+ },
+ {
+  "idx": "a-source-16-lead",
+  "file": "zh/blog/a-source-16-lead.html",
+  "title_zh": "推荐 langchain：开源博客项目（附 GitHub 入口）",
+  "title_en": "Featured langchain: Open-source 博客 Project"
+ },
+ {
+  "idx": "a-source-16-tut",
+  "file": "zh/blog/a-source-16-tut.html",
+  "title_zh": "langchain 教程：从克隆仓库到本地运行（图文）",
+  "title_en": "langchain Guide: Clone to Running Locally"
  },
  {
   "idx": 0,
