@@ -2825,5 +2825,6 @@ window.TOOLS_DATA = [
  },
  { "slug": "sherlock-project-sherlock", "zh": "sherlock", "en": "sherlock", "cat": "util", "type": "Python", "type_cn": "实用工具" },
  { "slug": "sherlock-project-sherlock", "zh": "sherlock", "en": "sherlock", "cat": "util", "type": "Python", "type_cn": "实用工具" },
+ { "slug": "sherlock-project-sherlock", "zh": "sherlock", "en": "sherlock", "cat": "util", "type": "Python", "type_cn": "实用工具" },
  { "slug": "sherlock-project-sherlock", "zh": "sherlock", "en": "sherlock", "cat": "util", "type": "Python", "type_cn": "实用工具" }
 ];
